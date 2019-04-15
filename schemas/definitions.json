@@ -1,2 +1,100 @@
 {
+  "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/definitions.json"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "spineType": {
+      "$id" : "#spineType",
+      "description": "SPINE Type",
+      "type": "string",
+      "enum": ["imageFile","imageEntity","auxiliaryImageFile","imagingVariable", "String", "Number","roiAnnotationGroup","imagingVariable","imagingVariableGroup","lookupTable"]
+    },
+    "spineInput": {
+      "$id" : "#spineInput",
+      "description": "SPINE definition for inputs for workflows and tasks",
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties" : {
+        ".*" : {
+          "type": "object",
+          "properties": {
+            "type":{
+              "description":"Input/Output type",
+              "$ref":"#/definitions/spineType"
+            },
+            "typeImageFile":{
+              "description":"Input/Output Image File Type",
+              "type":"string"
+            },
+            "typeAuxiliaryImageFile":{
+              "description":"Input/Output Image File Type",
+              "type":"string"
+            },
+            "typeImagingVariable":{
+              "description":"Input/Output Image File Type",
+              "type":"string"
+            },
+            "fileType":{
+              "description":"Input/Output File Type",
+              "type":"string"
+            },
+            "idInDescriptor": {
+              "description":"Id of the Input/Output in the descriptor",
+              "type":"string"
+            }
+          },
+          "required": ["type", "idInDescriptor"],
+          "oneOf": [
+            {
+              "properties":{
+                "type": {"enum": ["imageFile"]}
+              },
+              "required":["typeImageFile", "fileType"]
+            },
+            {
+              "properties":{
+                "type": {"enum": ["auxiliaryImageFile"]}
+              },
+              "required":["typeAuxiliaryImageFile", "fileType"]
+            },
+            {
+              "properties":{
+                "type": {"enum": ["imagingVariable"]}
+              },
+              "required":["typeImagingVariable"]
+            }
+          ],
+          "dependencies": {
+            "typeImageFile": {
+              "properties": {
+                "type": {
+                  "enum": ["imageFile"]
+                }
+              }
+            },
+            "typeAuxiliaryImageFile": {
+              "properties": {
+                "type": {
+                  "enum": ["auxiliaryImageFile"]
+                }
+              }
+            },
+            "typeImagingVariable": {
+              "properties": {
+                "type": {
+                  "enum": ["imagingVariable"]
+                }
+              }
+            },
+            "fileType": {
+              "properties": {
+                "type": {
+                  "enum": ["imageFile", "auxiliaryImageFile"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
