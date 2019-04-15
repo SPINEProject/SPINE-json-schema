@@ -9,6 +9,30 @@
       "type": "string",
       "enum": ["imageFile","imageEntity","auxiliaryImageFile","imagingVariable", "String", "Number","roiAnnotationGroup","imagingVariable","imagingVariableGroup","lookupTable"]
     },
+    "imageType": {
+      "$id" : "#imageType",
+      "description": "SPINE Image Type",
+      "type": "string",
+      "enum": ["T1w","T2w","T2star","T1map","T2map", "FLAIR", "PDT2","PDmap",
+        "Anatomical", "DWI","DiscreteLabelMap","ProbabilisticLabelMap"]
+    },
+    "auxiliaryFileType": {
+      "$id" : "#auxiliaryFileType",
+      "description": "SPINE Aux. Image Type",
+      "type": "string",
+      "enum": ["bvec","bval"]
+    },
+    "format": {
+      "$id" : "#format",
+      "description": "Format",
+      "type": "string",
+      "enum": ["nii","nii.gz","dicom.gz","minc","nrrd"]
+    },
+    "filter": {
+      "$id" : "#filter",
+      "description": "Filter for inputs. To be defined",
+      "type": "object",
+    },
     "spineInput": {
       "$id" : "#spineInput",
       "description": "SPINE definition for inputs for workflows and tasks",
@@ -18,78 +42,87 @@
         ".*" : {
           "type": "object",
           "properties": {
+            "name": {
+              "description":"Human readable name for the input",
+              "type":"string"
+            },
+            "description": {
+              "description":"Human readable description for the input",
+              "type":"string"
+            },
+            "isList": {
+              "description":"True if the Input is a list.",
+              "type":"boolean"
+            },
             "type":{
               "description":"Input type",
               "$ref":"#/definitions/spineType"
             },
-            "typeImageFile":{
-              "description":"Input Image File Type",
+            "format":{
+              "description":"Input format",
+              "$ref":"#/definitions/spineFormat"
+            },
+            "imageType":{
+              "description":"Image type if input type is imageFile or imageEntity",
+              "$ref":"#/definitions/imageType"
+            },
+            "auxiliaryFileType":{
+              "description":"Image type if input type is auxiliaryImageFileimageFile",
+              "$ref":"#/definitions/auxiliaryFileType"
+            },
+            "imagingVariable":{
+              "description":"Imaging variable ID",
               "type":"string"
             },
-            "typeAuxiliaryImageFile":{
-              "description":"Input Image File Type",
-              "type":"string"
-            },
-            "typeImagingVariable":{
-              "description":"Input Image File Type",
-              "type":"string"
-            },
-            "fileType":{
-              "description":"Input File Type",
-              "type":"string"
+            "filter":{
+              "description":"Filter for this input based on input parameters",
+              "$ref":"#/definitions/filter"
             },
             "idInDescriptor": {
-              "description":"Id of the Input in the descriptor",
+              "description":"ID of the corresponding Tool Input in the Tool Descriptor. Required if it is the Input of a Task",
               "type":"string"
             }
           },
-          "required": ["type", "idInDescriptor"],
+          "required": [],
           "oneOf": [
             {
               "properties":{
                 "type": {"enum": ["imageFile"]}
               },
-              "required":["typeImageFile", "fileType"]
+              "required":["imageType", "format"]
+            },
+            {
+              "properties":{
+                "type": {"enum": ["imageEntity"]}
+              },
+              "required":["imageType", "format"]
             },
             {
               "properties":{
                 "type": {"enum": ["auxiliaryImageFile"]}
               },
-              "required":["typeAuxiliaryImageFile", "fileType"]
-            },
-            {
-              "properties":{
-                "type": {"enum": ["imagingVariable"]}
-              },
-              "required":["typeImagingVariable"]
+              "required":["auxiliaryFileType", "format"]
             }
           ],
           "dependencies": {
-            "typeImageFile": {
+            "imageType": {
               "properties": {
                 "type": {
                   "enum": ["imageFile"]
                 }
               }
             },
-            "typeAuxiliaryImageFile": {
+            "auxiliaryFileType": {
               "properties": {
                 "type": {
                   "enum": ["auxiliaryImageFile"]
                 }
               }
             },
-            "typeImagingVariable": {
+            "format": {
               "properties": {
                 "type": {
-                  "enum": ["imagingVariable"]
-                }
-              }
-            },
-            "fileType": {
-              "properties": {
-                "type": {
-                  "enum": ["imageFile", "auxiliaryImageFile"]
+                  "enum": ["imageFile","imageEntity","auxiliaryImageFile"]
                 }
               }
             }
