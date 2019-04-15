@@ -1,6 +1,7 @@
 {
   "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/definitions.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SPINE Core schema",
   "definitions": {
     "spineType": {
       "$id" : "#spineType",
