@@ -1,0 +1,70 @@
+{
+    "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/task.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Task Executor",
+    "properties": {
+      "uuid": {
+        "description":"Task Executor UUID",
+        "type":"string"
+      },
+      "reference": {
+        "description":"References to other entities",
+        "type":"object",
+        "properties": {
+          "taskId": {
+            "description": "UUID of the task",
+            "type": "string"
+          },
+          "workflowExecutorId": {
+            "description": "UUID of the workflow executor running this task",
+            "type": "string"
+          }
+        }
+      },
+      "state": {
+        "description":"State of the executor",
+        "type":"string",
+        "enum":  ["WAITING", "RUNNING", "DONE", "ERROR"]
+      },
+      "manualConfig": {
+        "description":"Manual configuration of the task in case of manual task",
+        "type":"object",
+        "properties": {
+          "contributionType": {
+            "description": "Type of contribution",
+            "type": "string"
+          },
+          "contributorEmail": {
+            "description": "Email of the contributor",
+            "type": "string"
+          },
+          "dueDate": {
+            "description": "Due date for the contribution",
+            "type": "string"
+          },
+          "contributorEmails": {
+            "description": "List of email of the contributors",
+            "type": "list",
+            "item": "string"
+          }
+        }
+      },
+      "inputs": {
+        "description":"Input values for the task",
+        "type":"object",
+        "patternProperties" : {
+          ".*" : {
+            "type": "object",
+            "properties": {
+              "value":{
+                "description":"Value of the input",
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": ["inputs","state","uuid","reference"],
+    "additionalProperties" : false
+}
