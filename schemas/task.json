@@ -1,0 +1,76 @@
+{
+    "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/task.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Task",
+    "properties": {
+        "uuid": {
+          "description":"Task UUID",
+          "type":"string"
+        },
+        "name": {
+          "description":"Task name",
+          "type":"string"
+        },
+        "description": {
+          "description":"Task description",
+          "type":"string"
+        },
+        "version": {
+          "description":"Task version",
+          "type":"string"
+        },
+        "owner": {
+          "description":"Task owner",
+          "type":"string"
+        },
+        "privacy": {
+          "description":"Task privacy",
+            "type":"string",
+            "enum":["PUBLIC","PRIVATE"]
+          },
+        "creationDate": {
+          "description":"Task date of creation",
+          "type":"string"
+        },
+        "process":{
+          "type": "object",
+          "properties": {
+            "type": {
+              "description":"Process type",
+              "type":"string",
+              "enum":["auto","manual"]
+            },
+            "execution": {
+              "type": "object",
+              "properties": {
+                "executor": {
+                  "description":"Process executor. Currently ",
+                  "type":"string",
+                  "enum":["bosh","SPINE","SPINEGame"]
+                },
+                "descriptorId": {
+                  "description":"Process descriptor ID",
+                  "type":"string"
+                }
+              }
+            }
+          },
+          "required": ["type", "execution"]
+        },
+        "inputs":{
+          "description": "Object with the inputs of the task",
+          "$ref":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/definitions.json/definitions/spineInput"
+        },
+        "constants":{
+          "description": "Object with the constant inputs of the task",
+          "$ref":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/definitions.json/definitions/spineInput"
+        },
+        "outputs":{
+          "description": "Object with the outputs of the task",
+          "$ref":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/definitions.json/definitions/spineOutput"
+        }
+    },
+    "required": ["name","uuid","description","version","owner","privacy","creationDate","process","inputs","outputs", "constants"],
+    "additionalProperties" : false
+}

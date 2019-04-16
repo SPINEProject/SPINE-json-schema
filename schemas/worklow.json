@@ -1,0 +1,76 @@
+{
+  "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflow.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SPINE Workflow",
+  "type": "object",
+  "properties": {
+      "uuid": {
+        "description":"Workflow UUID",
+        "type":"string"
+      },
+      "name": {
+        "description":"Workflow name",
+        "type":"string"
+      },
+      "description": {
+        "description":"Workflow description",
+        "type":"string"
+      },
+      "version": {
+        "description":"Workflow version",
+        "type":"string"
+      },
+      "owner": {
+        "description":"Workflow owner",
+        "type":"string"
+      },
+      "privacy": {
+        "description":"Workflow privacy",
+          "type":"string",
+          "enum":["PUBLIC","PRIVATE"]
+        },
+      "creationDate": {
+        "description":"Workflow date of creation",
+        "type":"string"
+      },
+      "inputs":{
+        "description": "Object with the inputs of the Workflow",
+        "$ref":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/definitions.json/definitions/spineInput"
+      },
+      "constants":{
+        "description": "Object with the constant inputs of the Workflow",
+        "$ref":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/definitions.json/definitions/spineInput"
+      },
+      "outputs":{
+        "description": "Object with the outputs of the Workflow",
+        "$ref":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/definitions.json/definitions/spineOutput"
+      }
+  },
+  "tasks":{
+    "type": "object",
+    "minProperties": 1,
+    "patternProperties" : {
+      ".*" : {
+        "type": "object",
+        "properties": {
+          "type":{
+            "description":"Task description",
+            "$ref":"#/definitions/spineType"
+          },
+          "taskId":{
+            "description":"UUID of the task descriptor",
+            "$ref":"#/definitions/spineType"
+          }
+        }
+      }
+    }
+  },
+  "connectionsBetweenWorkflowAndTasks": {},
+  "connectionsBetweenTasks": {},
+  "transitions": {},
+  "required": ["name","uuid","description","version","owner","privacy",
+    "creationDate","inputs","outputs", "constants",
+    "tasks","connectionsBetweenWorkflowAndTasks","connectionsBetweenTasks",
+  "transitions"],
+  "additionalProperties": false
+}
