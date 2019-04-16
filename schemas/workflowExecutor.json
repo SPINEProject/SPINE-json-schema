@@ -1,0 +1,67 @@
+{
+    "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflowExecutor.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Workflow Executor",
+    "properties": {
+      "uuid": {
+        "description":"Task Executor UUID",
+        "type":"string"
+      },
+      "reference": {
+        "description":"References to other entities",
+        "type":"object",
+        "properties": {
+          "workflowId": {
+            "description": "UUID of the workflow corresponding to this executor",
+            "type": "string"
+          },
+          "workflowExecutorId": {
+            "description": "UUID of the workflow executor running this workflow executor",
+            "type": "string"
+          },
+          "userId": {
+            "description": "UUID of the user launching the workflow",
+            "type": "string"
+          }
+        }
+      },
+      "state": {
+        "description":"State of the executor",
+        "type":"string",
+        "enum":  ["WAITING", "RUNNING", "DONE", "ERROR"]
+      },
+      "inputs": {
+        "description":"Input values for the task",
+        "type":"object",
+        "patternProperties" : {
+          ".*" : {
+            "type": "object",
+            "properties": {
+              "value":{
+                "description":"Value of the input",
+              }
+            }
+          }
+        }
+      },
+      "stateOfTransitions": {
+        "description":"State of the transitions",
+        "type":"object",
+        "patternProperties" : {
+          ".*" : {
+            "type": "object",
+            "properties": {
+              "state":{
+                "description":"State of the transition",
+                "type":"string",
+                "enum":  ["WAITING", "FIRED"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": ["inputs","state","uuid","reference"],
+    "additionalProperties" : false
+}

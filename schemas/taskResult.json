@@ -1,0 +1,9 @@
+{
+  "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/taskResult.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Task Result",
+  "properties": {
+    
+  }
+}

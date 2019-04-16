@@ -1,5 +1,5 @@
 {
-    "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/task.json",
+    "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/taskExecutor.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "title": "Task Executor",
@@ -19,6 +19,10 @@
           "workflowExecutorId": {
             "description": "UUID of the workflow executor running this task",
             "type": "string"
+          },
+          "userId": {
+            "description": "UUID of the user launching the task",
+            "type": "string"
           }
         }
       },
@@ -33,7 +37,8 @@
         "properties": {
           "contributionType": {
             "description": "Type of contribution",
-            "type": "string"
+            "type": "string",
+            "enum":  ["SINGLE_USER", "MULTIPLE_USER", "CROWDSOURCING"]
           },
           "contributorEmail": {
             "description": "Email of the contributor",
