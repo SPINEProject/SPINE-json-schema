@@ -94,7 +94,7 @@
         ".*": {
           "allOf":[
             {
-              "$ref": "core.json#/definitions/spineInput"
+              "$ref": "core.schema.json#/definitions/spineInput"
             },
             {
               "properties": {
