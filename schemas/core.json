@@ -1,5 +1,5 @@
 {
-  "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/core.json",
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/core.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "SPINE Core",
   "definitions": {
@@ -8,7 +8,7 @@
       "description": "SPINE Type",
       "type": "string",
       "enum": ["imageFile","imageEntity","auxiliaryImageFile","imagingVariable",
-        "String", "Number","roiAnnotationGroup","imagingVariable",
+        "String", "Number","roiAnnotationGroup",
         "imagingVariableGroup","lookupTable"]
     },
     "imageType": {
@@ -33,7 +33,7 @@
     "filter": {
       "$id" : "#filter",
       "description": "Filter for inputs. To be defined",
-      "type": "object",
+      "type": "object"
     },
     "spineInput": {
       "$id" : "#spineInput",
@@ -62,7 +62,7 @@
             },
             "format":{
               "description":"Input format",
-              "$ref":"#/definitions/spineFormat"
+              "$ref":"#/definitions/format"
             },
             "imageType":{
               "description":"Image type if input type is imageFile or imageEntity",
