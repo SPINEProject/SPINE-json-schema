@@ -7,9 +7,12 @@
       "$id" : "#spineType",
       "description": "SPINE Type",
       "type": "string",
-      "enum": ["imageFile","imageEntity","auxiliaryImageFile","imagingVariable",
-        "String", "Number","roiAnnotationGroup",
-        "imagingVariableGroup","lookupTable"]
+      "QUESTIONS":[
+        "ALF - What is the lookuptable created for? In this a file, e.g, json file?",
+        "ALF - If we have imageEntity as a spineType, can we have visit or clinical variables as spineType? Does it make sense?"
+      ],
+      "enum": ["String", "Number", "imageFile","imageEntity","auxiliaryImageFile","imagingVariable",
+        "lookupTable"]
     },
     "imageType": {
       "$id" : "#imageType",
@@ -85,7 +88,7 @@
               "type":"string"
             }
           },
-          "required": [],
+          "required": ["isList"],
           "oneOf": [
             {
               "properties":{

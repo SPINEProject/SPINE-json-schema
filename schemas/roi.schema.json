@@ -1,0 +1,121 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/roi.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Region of Interest (ROI) schema",
+  "Restrictions": [],
+  "TODOS": [
+    "Extend the possible values of implicitRelationWithRoi",
+    "Add combination restriction for implicit and explicit",
+    "Add other explicit forms of ROI, for instace bezier contour"
+  ],
+  "description": "Schema for Region of Interest (ROI)",
+  "type": "object",
+  "properties": {
+    "typeROI": {
+      "description": "Type of the ROI: implicit or explicit",
+      "type": "string",
+      "enum": ["IMPLICIT","EXPLICIT"]
+    },
+    "reference": {
+      "description": "References of the ROI",
+      "type": "object",
+      "properties": {
+        "imageEntityId": {
+          "description": "Id of the image the ROI belongs to",
+          "type": "string"
+        },
+        "materializedTaskId":{
+          "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
+          "type": "string"
+        },
+        "taskExecutorId":{
+          "description": "Id of the executor used to created the ROI. If not set then the materialized task has not been submitted.",
+          "type": "string"
+        }
+      },
+      "required":["imageEntityId"],
+      "oneOf":[
+        {
+          "required": []
+        },
+        {
+          "required": ["materializedTaskId", "taskExecutorId"]
+        }
+      ]
+    },
+    "properties": {
+      "implicit":{
+        "description": "Object having all the implicit properties.",
+        "type": "object",
+        "properties":{
+          "implicitRelationWithRoi": {
+            "description": "Type implicit relationship with the ROI. If the type of ROI is IMPLICIT.",
+            "type": "string",
+            "enum": [
+              "INSIDE",
+              "ON BORDER",
+              "ENCOMPASS"
+            ]
+          },
+          "implicitGemetryPointer": {
+            "description": "Geometry of the implicit point for the ROI. If the type of ROI is IMPLICIT.",
+            "type": "string",
+            "enum": [
+              "POINT",
+              "CIRCLE"
+            ]
+          },
+          "pointProperties": {
+            "description": "Properties for a point in implicit pointer. If the implicitGemetryPointer is POINT.",
+            "type": "object",
+            "properties": {
+              "worldCoordinates": {
+                "description": "World coordinates of the point, also called XYZ coordinates.",
+                "type": "object",
+                "properties": {
+                  "x": { "type": "number" },
+                  "y": { "type": "number" },
+                  "z": { "type": "number" }
+                }
+              },
+              "imageCoordinates": {
+                "description": "Images coordinates of the point, also called IJK coordinates.",
+                "type": "object",
+                "properties": {
+                  "i": { "type": "number" },
+                  "j": { "type": "number" },
+                  "k": { "type": "number" }
+                }
+              }
+            },
+            "oneOf":[
+              { "required": ["worldCoordinates"] },
+              { "required": ["imageCoordinates"] }
+            ]
+          }
+        }
+      },
+      "explicit":{
+        "description": "Object having all the implicit properties.",
+        "type": "object",
+        "properties":{
+          "labelMap":{
+            "description": "Object having the properties of the label map where the ROI was defined. For instance when a segmentation is done using paint brush.",
+            "type": "object",
+            "properties":{
+              "imageEntityId": {
+                "description": "Id of the label map. A label map is an image in SPINE.",
+                "type": "string"
+              },
+              "labelIntensity":{
+                "description": "Intensity in the label map assigned to the ROI. For instance 1. Usually the background is represented by 0.",
+                "type": "number"
+              }
+            },
+            "required": ["imageEntityId", "labelIntensity"]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/annotation.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Annotation Schema",
+  "type": "object",
+  "TODOS": [
+    "Usually an annotation is a simple comment. In the future an annotation can be an image, for instance a probability mask.",
+    "Set the required properties"
+  ],
+  "properties":{
+    "typeAnnotation": {
+      "description": "",
+      "type": "string",
+      "enum": ["text","image"]
+    },
+    "annotationProperties": {
+      "description": "Properties of the annotation. The list of properties depends in the type of annotation.",
+      "type": "object",
+      "properties": {
+        "ontologyId": {
+          "description": "Id of the ontology where the value of the annotation is retrieved.",
+          "type": "string"
+        },
+        "ontologyValue": {
+          "description": "Value in the ontology selected for the annotation.",
+          "type": "string"
+        },
+        "PreferredName": {
+          "description": "Value preferred bame in the ontology selected for the annotation.",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
