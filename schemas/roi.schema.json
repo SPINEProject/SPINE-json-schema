@@ -16,6 +16,11 @@
       "type": "string",
       "enum": ["IMPLICIT","EXPLICIT"]
     },
+    "status": {
+      "description": "Status of the ROI: saved or submitted",
+      "type": "string",
+      "enum": ["SAVED","SUBMITTED"]
+    },
     "reference": {
       "description": "References of the ROI",
       "type": "object",
@@ -27,21 +32,9 @@
         "materializedTaskId":{
           "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
           "type": "string"
-        },
-        "taskExecutorId":{
-          "description": "Id of the executor used to created the ROI. If not set then the materialized task has not been submitted.",
-          "type": "string"
         }
       },
-      "required":["imageEntityId"],
-      "oneOf":[
-        {
-          "required": []
-        },
-        {
-          "required": ["materializedTaskId", "taskExecutorId"]
-        }
-      ]
+      "required":["imageEntityId", "materializedTaskId"]
     },
     "properties": {
       "implicit":{
@@ -76,7 +69,8 @@
                   "x": { "type": "number" },
                   "y": { "type": "number" },
                   "z": { "type": "number" }
-                }
+                },
+                "required": ["x", "y", "z"]
               },
               "imageCoordinates": {
                 "description": "Images coordinates of the point, also called IJK coordinates.",
@@ -85,7 +79,8 @@
                   "i": { "type": "number" },
                   "j": { "type": "number" },
                   "k": { "type": "number" }
-                }
+                },
+                "required": ["i", "j", "k"]
               }
             },
             "oneOf":[
@@ -117,5 +112,6 @@
         }
       }
     }
-  }
+  },
+  "required": ["typeROI", "status", "reference", "properties"]
 }
