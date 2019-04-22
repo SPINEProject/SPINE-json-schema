@@ -402,7 +402,7 @@
   	},
     "outputs": {
       "description": "Object with the outputs of the tool",
-      "$ref":"core.json#/definitions/spineOutput"
+      "$ref":"core.schema.json#/definitions/spineOutput"
     },
     "configuration":{
       "description": "Configuration of the particular tool. For instance the particular configuration of an anotation tool.",
