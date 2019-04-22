@@ -342,7 +342,7 @@
     	  	  "defaultAnnotations":{
     	  	    "type": "array",
     	  	    "items": {
-                "$ref": "annnotation.schema.json"
+                "$ref": "annotation.schema.json"
               }
     	  	  },
             "userAnnotations":{
