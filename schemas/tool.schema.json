@@ -180,6 +180,34 @@
           	      },
                   "required": ["row", "column", "rowspan", "columnspan"]
           	    },
+                "windowLevel": {
+                  "description": "Window/Level configuration for the viewer",
+                  "type": "object",
+                  "properties": {
+                    "userCanChangeWindowLevel":{
+                      "description": "If the user is able to control the Window/Level.",
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "defaultValue": {
+                      "description": "Default values for the Window/Level.",
+                      "type": "object",
+                      "properties": {
+                        "window": {
+                          "description": "Default Window value.",
+                          "type": "number",
+                          "default": 0
+                        },
+                        "level": {
+                          "description": "Default Level value.",
+                          "type": "number",
+                          "default": 0
+                        }
+                      }
+                    }
+                  },
+                  "required": ["userCanChangeWindowLevel"]
+                },
           	    "displayImages":{
           	      "description": "Display options of the viewer regarding the images.",
           	      "type": "object",
