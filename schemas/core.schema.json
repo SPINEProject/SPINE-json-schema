@@ -27,23 +27,6 @@
       "enum": ["String","Number","imageFile","imageEntityInOut","auxiliaryImageFile","lookupTable","roiInOut"]
     },
 
-    "nameDescriptionHumanReadable":{
-      "$id": "#nameDescriptionHumanReadable",
-      "description": "Name and description human readable",
-      "type": "object",
-      "properties":{
-        "name": {
-          "description": "Human readable name",
-          "type": "string"
-        },
-        "description": {
-          "description": "Human readable description",
-          "type": "string"
-        }
-      },
-      "require": ["name", "description"]
-    },
-
     "imageEntityInOut_Type": {
       "$id" : "#imageEntityInOut_Type",
       "description": "SPINE Image Type",
@@ -68,6 +51,14 @@
       "allOf": [
         {
           "properties":{
+            "name": {
+              "description": "Human readable name",
+              "type": "string"
+            },
+            "description": {
+              "description": "Human readable description",
+              "type": "string"
+            },
             "type":{
               "description": "SPINE type",
               "type": "string",
@@ -75,7 +66,6 @@
             }
           }
         },
-        {"$ref": "#/definitions/nameDescriptionHumanReadable"},
         {"$ref": "#/definitions/imageEntityInOut_Type"}
       ]
     },
@@ -101,6 +91,14 @@
       "allOf": [
         {
           "properties": {
+            "name": {
+              "description": "Human readable name",
+              "type": "string"
+            },
+            "description": {
+              "description": "Human readable description",
+              "type": "string"
+            },
             "type":{
               "description": "SPINE type",
               "type": "string",
@@ -108,7 +106,6 @@
             }
           }
         },
-        {"$ref": "#/definitions/nameDescriptionHumanReadable"},
         {"$ref": "#/definitions/auxiliaryImageFileType"},
         {"$ref": "#/definitions/auxiliaryImageFileFormat"}
       ]
@@ -127,6 +124,14 @@
       "type": "object",
       "allOf": [
         {
+          "name": {
+              "description": "Human readable name",
+              "type": "string"
+            },
+            "description": {
+              "description": "Human readable description",
+              "type": "string"
+            },
           "properties": {
             "type":{
               "description": "SPINE type",
@@ -135,7 +140,6 @@
             }
           }
         },
-        {"$ref": "#/definitions/nameDescriptionHumanReadable"},
         {"$ref": "#/definitions/roiInOut_FileFormat"}
       ]
     },
