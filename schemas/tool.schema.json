@@ -120,13 +120,13 @@
       "description": "Inputs for the annotation tool. The spineInput schema is extended to have a property required.",
       "type": "object",
       "minProperties": 1,
-      "patternProperties": {
-        ".*": {
-          "allOf":[
-            {
-              "$ref": "core.schema.json#/definitions/spineInput"
-            },
-            {
+      "allOf":[
+        {
+          "$ref": "core.schema.json#/definitions/spineInput"
+        },
+        {
+          "patternProperties" : {
+            ".*" : {
               "properties": {
                 "required": {
                   "description": "True if the input is required.",
@@ -135,9 +135,9 @@
               },
               "required":["required"]
             }
-          ]
-    	  }
-      }
+          }
+        }
+      ]
     },
 
     "viewersAnnotationTool": {
