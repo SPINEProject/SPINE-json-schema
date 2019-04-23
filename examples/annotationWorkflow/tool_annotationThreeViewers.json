@@ -88,9 +88,9 @@
             "userCanChangeWindowLevel": true
           },
       	  "displayImages":{
-      	    "possibleImagesToDisplay": ["imagesA"]
+      	    "possibleImagesToDisplay": ["imagesA"],
+            "hasDefaultImageToDisplay": false
       	  },
-      	  "hasDefaultImageToDisplay": false,
       	  "displayControls":{
       	  	"orientations": ["axial", "sagittal", "coronal"],
       	  	"defaultOrientation": "axial",
