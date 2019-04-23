@@ -158,8 +158,6 @@
       "$id" : "#input",
       "description": "Definition of a general input",
       "type": "object",
-      "minProperties": 1,
-      "maxProperties": 1,
       "patternProperties" : {
         ".*" : {
           "type": "object",
@@ -189,8 +187,6 @@
       "$id" : "#spineInput",
       "description": "SPINE definition for inputs.",
       "type": "object",
-      "minProperties": 1,
-      "maxProperties": 1,
       "patternProperties" : {
         ".*" : {
           "type": "object",
@@ -218,8 +214,6 @@
       "$id" : "#spineOutput",
       "description": "SPINE definition for outputs",
       "type": "object",
-      "minProperties": 1,
-      "maxProperties": 1,
       "patternProperties" : {
         ".*" : {
           "type": "object",
