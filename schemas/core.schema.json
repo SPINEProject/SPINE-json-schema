@@ -76,7 +76,6 @@
           }
         },
         {"$ref": "#/definitions/nameDescriptionHumanReadable"},
-        {"$ref": "#/definitions/imageEntityInOut_FileFormat"},
         {"$ref": "#/definitions/imageEntityInOut_Type"}
       ]
     },

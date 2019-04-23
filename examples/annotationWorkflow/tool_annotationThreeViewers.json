@@ -52,7 +52,6 @@
         "test": "test"
       },
       "type": "imageEntityInOut",
-      "imageEntityInOut_FileFormat": "dicom.gz",
       "imageEntityInOut_Type": "ANATOMICAL",
       "required": true
     }
