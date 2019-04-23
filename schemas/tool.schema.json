@@ -128,7 +128,7 @@
             },
             "filter":{
               "description":"Filter for this input based on input parameters",
-              "$ref":"#/definitions/filter"
+              "$ref":"core.schema.json#/definitions/filter"
             },
             "required": {
               "description": "True if the input is required.",
