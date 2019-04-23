@@ -48,26 +48,26 @@
     "imageEntityInOut": {
       "$id": "#imageEntityInOut",
       "description": "Schema defining an image entity as input or output",
-      "allOf": [
-        {
-          "properties":{
-            "name": {
-              "description": "Human readable name",
-              "type": "string"
-            },
-            "description": {
-              "description": "Human readable description",
-              "type": "string"
-            },
-            "type":{
-              "description": "SPINE type",
-              "type": "string",
-              "enum": ["imageEntityInOut"]
-            }
-          }
+      "type": "object",
+      "properties":{
+        "name": {
+          "description": "Human readable name",
+          "type": "string"
         },
-        {"$ref": "#/definitions/imageEntityInOut_Type"}
-      ]
+        "description": {
+          "description": "Human readable description",
+          "type": "string"
+        },
+        "type":{
+          "description": "SPINE type",
+          "type": "string",
+          "enum": ["imageEntityInOut"]
+        },
+        "imageEntityInOut_Type": {
+          "$ref": "#/definitions/imageEntityInOut_Type"
+        }
+      },
+      "require": ["name", "description", "type", "imageEntityInOut_Type"]
     },
 
     "auxiliaryImageFileType": {
