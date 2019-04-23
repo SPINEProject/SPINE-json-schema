@@ -122,26 +122,23 @@
       "$id": "#roiInOut",
       "description": "Schema defining an ROI as input or output",
       "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "name": {
-              "description": "Human readable name",
-              "type": "string"
-            },
-            "description": {
-              "description": "Human readable description",
-              "type": "string"
-            },
-            "type":{
-              "description": "SPINE type",
-              "type": "string",
-              "enum": ["roiInOut"]
-            }
-          }
+      "properties": {
+        "name": {
+          "description": "Human readable name",
+          "type": "string"
         },
-        {"$ref": "#/definitions/roiInOut_FileFormat"}
-      ]
+        "description": {
+          "description": "Human readable description",
+          "type": "string"
+        },
+        "type":{
+          "description": "SPINE type",
+          "type": "string",
+          "enum": ["roiInOut"]
+        },
+        "roiInOut_FileFormat": {"$ref": "#/definitions/roiInOut_FileFormat"}
+      },
+      "required": ["name", "description", "type", "roiInOut_FileFormat"]
     },
 
     "format": {
