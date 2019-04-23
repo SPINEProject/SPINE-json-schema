@@ -119,25 +119,30 @@
       "$id": "#inputsAnnotationTool",
       "description": "Inputs for the annotation tool. The spineInput schema is extended to have a property required.",
       "type": "object",
-      "minProperties": 1,
-      "allOf":[
-        {
-          "$ref": "core.schema.json#/definitions/spineInput"
-        },
-        {
-          "patternProperties" : {
-            ".*" : {
-              "properties": {
-                "required": {
-                  "description": "True if the input is required.",
-                  "type": "boolean"
-                }
-              },
-              "required":["required"]
+      "patternProperties" : {
+        ".*" : {
+          "properties": {
+            "isList": {
+              "description":"True if the Input is a list.",
+               "type":"boolean"
+            },
+            "filter":{
+              "description":"Filter for this input based on input parameters",
+              "$ref":"#/definitions/filter"
+            },
+            "required": {
+              "description": "True if the input is required.",
+              "type": "boolean"
             }
-          }
-        }
-      ]
+          },
+          "required": ["isList"],
+          "oneOf":[
+            {"$ref": "core.schema.json#/definitions/imageEntityInOut"},
+            {"$ref": "core.schema.json#/definitions/auxiliaryImageFile"},
+            {"$ref": "core.schema.json#/definitions/roiInOut"}
+          ]
+        }  
+      }
     },
 
     "viewersAnnotationTool": {
