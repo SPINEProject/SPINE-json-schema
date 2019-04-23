@@ -1,0 +1,26 @@
+{
+  "typeROI": "IMPLICIT",
+  "status": "SAVED",
+  "reference": {
+    "imageEntityId": "imageId_01",
+    "materializedTaskId": "materializedTaskId_01"
+  },
+  "properties":{
+    "implicit":{
+      "implicitRelationWithRoi": "INSIDE",
+      "implicitGemetryPointer": "POINT",
+      "pointProperties":{
+        "worldCoordinates":{
+          "x": 10.45,
+      	  "y": 20.67,
+      	  "z": 20.99
+      	},
+      	"imageCoordinates":{
+          "i": 34,
+      	  "j": 56,
+      	  "k": 70
+      	}
+      }
+    }
+  }
+}

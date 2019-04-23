@@ -1,0 +1,119 @@
+{
+  "name": "Lesion annotation with three viewers",
+  "description": "This annotation configuration allows the annotation implicit ROIs using points",
+  "version": "1.0.2",
+  "owner": "user@email.com",
+  "privacy": "PUBLIC",
+  "creationDate": "April 22, 2019",
+  "type": "ANNOTATION",
+  
+  "annotationTables": {
+    "lesion": {
+      "defaultAnnotations": [
+        {
+          "title": "Pathological tissue: Lesion",
+          "typeAnnotation": "text",
+          "ontologyId":"https://bioportal.bioontology.org/ontologies/SNOMEDCT",
+          "ontologyValue": "http://purl.bioontology.org/ontology/SNOMEDCT/52988006",
+          "valueToDisplay": "Lesion"
+        }
+      ],
+      "userAnnotations": [
+        {
+          "title": "Location",
+          "typeAnnotation": "text",
+          "ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
+          "hasDefaultValue": false,
+          "possibleValues": [
+            {
+              "valueInOntology": "http://purl.org/sig/ont/fma/fma258716",
+              "valueToDisplay" : "Left thalamus"
+            },
+            {
+              "valueInOntology": "http://purl.org/sig/ont/fma/fma258714",
+              "valueToDisplay" : "Right thalamus"
+            },
+            {
+              "valueInOntology": "http://purl.org/sig/ont/fma/fma7647",
+              "valueToDisplay" : "Spinal cord"
+            }
+          ]
+        } 
+      ]
+    }
+  },
+
+  "inputs": {
+    "imagesA":{
+      "name": "Input images",
+      "description": "Input images for the annotation tool",
+      "isList": true,
+      "filter": {
+        "test": "test"
+      },
+      "type": "imageEntityInOut",
+      "imageEntityInOut_Type": "ANATOMICAL",
+      "required": true
+    }
+  },
+
+  "outputs": {
+    "rois":{
+      "name": "Created ROIs",
+      "description": "ROIs created with the annotation tool",
+      "isList": true,
+      "type": "roiInOut",
+      "roiInOut_FileFormat": "json"
+    }
+  },
+
+  "configuration":{
+    "viewers": {
+      "generalConfiguration":{
+        "linking":{
+          "linkingControl": true,
+          "linkingInitialValue": false
+        }
+      },
+      "specificConfiguration":{
+      	"left":{
+      	  "name": "left viewer",
+      	  "location": {
+      	    "row": 1,
+      	    "column": 1,
+      	    "rowspan": 1,
+      	    "columnspan": 1
+      	  },
+          "windowLevel":{
+            "userCanChangeWindowLevel": true
+          },
+      	  "displayImages":{
+      	    "possibleImagesToDisplay": ["imagesA"],
+            "hasDefaultImageToDisplay": false
+      	  },
+      	  "displayControls":{
+      	  	"orientations": ["axial", "sagittal", "coronal"],
+      	  	"defaultOrientation": "axial",
+      	  	"smoothing": {
+      	  	  "smoothingControl": true,
+      	  	  "smoothingDefault": false
+      	  	}
+      	  }
+      	}
+      }
+    },
+
+    "widgets":{
+      "pointSelector":{
+        "roiAnnotationLinks": [
+          {
+            "nameRoi": "lesion",
+            "relationWithRoi": "implicit",
+            "implicitRelationWithRoi":"inside",
+            "geometryPointer": "point"
+          }
+        ]
+      }
+    }
+  }
+}

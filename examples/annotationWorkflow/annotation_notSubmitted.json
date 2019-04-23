@@ -1,0 +1,13 @@
+{
+  "typeAnnotation": "text",
+  "status": "SAVED",
+  "reference": {
+    "roiId": "roiId_01",
+    "materializedTaskId": "materializedTaskId_01"
+  },
+  "properties":{
+    "ontologyId": "https://bioportal.bioontology.org/ontologies/SNOMEDCT",
+    "ontologyValue": "http://purl.bioontology.org/ontology/SNOMEDCT/52988006",
+    "PreferredName" : "Lesion"
+  }
+}
