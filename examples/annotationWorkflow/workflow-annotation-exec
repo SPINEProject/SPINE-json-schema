@@ -1,0 +1,21 @@
+{
+  "uuid":"uuid",
+  "reference" :{
+    "workflowId": "uuid",
+    "userId": "userlaunchingtheWF@gmail.com"
+  },
+  "inputs": {
+    "images" : {
+      "value": "uuid"
+    }
+  },
+  "state": "DONE",
+  "stateOfTasks": {
+    "annotation" : {
+      "taskExecutorId": "uuid",
+    }
+  },
+  "stateOfTransitions": {
+    "01" : {"state": "FIRED"}
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "uuid":"uuid",
+  "reference" :{
+    "taskId": "uuid",
+    "workflowExecutorId": "uuid",
+    "userId": "userlaunchingtheWF@gmail.com"
+  },
+  "inputs": {
+    "images" : {
+      "value": "uuid"
+    }
+  },
+  "state": "DONE",
+  "manualConfig": {
+    "contributorEmail": "christian@ex.com",
+    "dueDate":"date"
+  }
+}

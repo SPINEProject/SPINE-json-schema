@@ -2,6 +2,7 @@
     "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflowExecutor.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
+    "additionalProperties": false,
     "title": "Workflow Executor",
     "properties": {
       "uuid": {
@@ -11,6 +12,8 @@
       "reference": {
         "description":"References to other entities",
         "type":"object",
+        "required":["workflowId", "userId"],
+        "additionalProperties": false,
         "properties": {
           "workflowId": {
             "description": "UUID of the workflow corresponding to this executor",
@@ -37,6 +40,7 @@
         "patternProperties" : {
           ".*" : {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "value":{
                 "description":"Value of the input",
@@ -51,6 +55,7 @@
         "patternProperties" : {
           ".*" : {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "state":{
                 "description":"State of the transition",
@@ -67,11 +72,11 @@
         "patternProperties" : {
           ".*" : {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "taskExecutorId":{
-                "description":"ID of the executor ",
-                "type":"string",
-                "enum":  ["WAITING", "FIRED"]
+                "description":"ID of the executor",
+                "type":"string"
               }
             }
           }
