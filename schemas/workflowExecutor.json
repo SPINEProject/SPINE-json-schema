@@ -60,6 +60,22 @@
             }
           }
         }
+      },
+      "stateOfTasks": {
+        "description":"State of the tasks",
+        "type":"object",
+        "patternProperties" : {
+          ".*" : {
+            "type": "object",
+            "properties": {
+              "taskExecutorId":{
+                "description":"ID of the executor ",
+                "type":"string",
+                "enum":  ["WAITING", "FIRED"]
+              }
+            }
+          }
+        }
       }
     },
     "required": ["inputs","state","uuid","reference"],

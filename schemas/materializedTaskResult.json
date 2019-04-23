@@ -4,6 +4,76 @@
   "type": "object",
   "title": "Materialized Task Result",
   "properties": {
+    "completed":{
+      "type":"boolean",
+      "description":"Is the contribution submitted?"
+    },
+    "contributionDate": "Date",
+    "results": {
+      // Pattern
+    },
+    "reference" :{
+      "materializedTask":{
+        
+      },
+      "userId":{
 
+      }
+    },
+    "userSnapshot": {
+      "type":"object",
+      "description":"Snapshot of the user from when he submitted the results",
+      "properties":{
+        "certification": {
+          "type":"object",
+          "description":"Certification of the user when he is submitting the result for this skill (task?)",
+          "properties": {
+            "grade": {
+              "description":"Grade of the user for the skill",
+              "type":"string",
+              "enum":["S","A","B","C","D","E","F","G"]
+            },
+            "CertificationDate": {
+              "description":"Date of the certification",
+              "type":"string"
+            }
+          }
+        },
+        "demographics": {
+          "description":"Demographic informations about the user",
+          "type":"object",
+          "properties": {
+            "name": {
+              "description":"User's name",
+              "type":"string"
+            },
+            "lastname": {
+              "description":"User's lastname",
+              "type":"string"
+            },
+            "nickname": {
+              "description":"User's nickname",
+              "type":"string"
+            },
+            "profession": {
+              "description":"User's profession",
+              "type":"string"
+            },
+            "specialty": {
+              "description":"User's specialty",
+              "type":"string"
+            },
+            "eduLevel": {
+              "description":"User's education level",
+              "type":"string"
+            },
+            "experience": {
+              "description":"User's experience in ?",
+              "type":"string"
+            },
+          }
+        }
+      }
+    }
   }
 }
