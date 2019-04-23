@@ -159,7 +159,6 @@
       "type": "object",
       "patternProperties" : {
         ".*" : {
-          "type": "object",
           "properties": {
             "name": {
               "description":"Human readable name for the input",
@@ -188,7 +187,6 @@
       "type": "object",
       "patternProperties" : {
         ".*" : {
-          "type": "object",
           "properties": {
             "isList": {
               "description":"True if the Input is a list.",
@@ -215,7 +213,6 @@
       "type": "object",
       "patternProperties" : {
         ".*" : {
-          "type": "object",
           "properties": {
             "isList": {
               "description":"True if the Ouput is a list.",
