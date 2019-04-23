@@ -6,7 +6,7 @@
   },
   "inputs": {
     "images" : {
-      "value": "uuid"
+      "value": ["uuid"]
     }
   },
   "state": "DONE",

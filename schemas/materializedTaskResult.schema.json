@@ -2,33 +2,59 @@
   "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/materializedTaskResult.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
+  "additionalProperties": false,
   "title": "Materialized Task Result",
   "properties": {
+    "uuid":{
+      "type":"string",
+      "description":"Is the contribution submitted?"
+    },
     "completed":{
       "type":"boolean",
       "description":"Is the contribution submitted?"
     },
-    "contributionDate": "Date",
+    "contributionDate": {
+      "type":"string",
+      "description":"Date of contribution"
+    },
     "results": {
-      // Pattern
+      "description":"The results",
+      "type":"object",
+      "patternProperties" : {
+        ".*" : {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "value":{
+              "description":"Value of the input",
+            }
+          }
+        }
+      }
     },
     "reference" :{
-      "materializedTaskId":{
-        "type":"string",
-        "description":"Reference to the materialized task",
-      },
-      "userId":{
-        "type":"string",
-        "description":"Reference to the user posting the results",
+      "type":"object",
+      "additionalProperties": false,
+      "properties": {
+        "materializedTaskId":{
+          "type":"string",
+          "description":"Reference to the materialized task",
+        },
+        "userId":{
+          "type":"string",
+          "description":"Reference to the user posting the results",
+        }
       }
     },
     "userSnapshot": {
       "type":"object",
+      "additionalProperties": false,
       "description":"Snapshot of the user from when he submitted the results",
       "properties":{
         "certification": {
           "type":"object",
           "description":"Certification of the user when he is submitting the result for this skill (task?)",
+          "additionalProperties": false,
           "properties": {
             "grade": {
               "description":"Grade of the user for the skill",
@@ -44,6 +70,7 @@
         "demographics": {
           "description":"Demographic informations about the user",
           "type":"object",
+          "additionalProperties": false,
           "properties": {
             "name": {
               "description":"User's name",
@@ -77,5 +104,6 @@
         }
       }
     }
-  }
+  },
+  "required": ["uuid", "completed", "contributionDate", "results", "reference", "userSnapshot"]
 }
