@@ -1,5 +1,5 @@
 {
-  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflow.json",
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflow.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "SPINE Workflow",
   "type": "object",
@@ -35,15 +35,15 @@
     },
     "inputs":{
       "description": "Object with the inputs of the Workflow",
-      "$ref":"core.json#/definitions/spineInput"
+      "$ref":"core.schema.json#/definitions/spineInput"
     },
     "constants":{
       "description": "Object with the constant inputs of the Workflow",
-      "$ref":"core.json#/definitions/spineInput"
+      "$ref":"core.schema.json#/definitions/spineInput"
     },
     "outputs":{
       "description": "Object with the outputs of the Workflow",
-      "$ref":"core.json#/definitions/spineOutput"
+      "$ref":"core.schema.json#/definitions/spineOutput"
     },
     "tasks":{
       "type": "object",

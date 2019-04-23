@@ -1,0 +1,458 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/tool.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tool Schema",
+  "Restrictions": [
+  	"At least one image is required, at least for now",
+  	"At least one viewer is required, at leas for now",
+  	"A viewer displays at least one image",
+    "For now we are dealing with rois that cannot be decomposed into sub-rois, for instance annotate differently each voxel of an ROI",
+    "The annotation properties are only handle for ontology based annotations",
+    "Tell Charles that the annotation table is a simplistic approach, there is no way to concate options, for instance if some characteristics depend on the value of others"
+  ],
+  "TODOS": [
+    "Instead of using groups, e.g., imagingVariableGroup, we should use a parameter list, as done in boutiques",
+    "Define the outputs!!! ROI??!!!!",
+  	"Define the SPINE Types using the definitions of ROIs and annotations",
+  	"Define if the viewer should offer to display the images in different mode regarding organization of the voxels: RAI, RAS, ...",
+  	"Add the paint brush as widget",
+    "Status of the Task Instance, don't forget to add it",
+    "Add all the required attributes!",
+    "PossibleImagesToDisplay in the displayImages in the viewer section has to have an option to say dispay all images",
+    "How to make this definitions independent of SPINE types? In case in the future we would like to share/publish this work"
+  ],
+
+  "definitions": {
+
+    "possibleValueInAnnotationTable": {
+      "$id": "#possibleValueInAnnotationTable",
+      "description": "A possible value of an annotation.",
+      "type": "object",
+      "properties":{
+        "valueInOntology": {
+          "description": "Value in the ontology.",
+          "type": "string"
+        },
+        "valueToDisplay": {
+          "description": "Value in to be displayed to the user.",
+          "type": "string"
+        }
+      }
+    },
+
+    "defaultAnnotationTableOption":{
+      "$id" : "#defaultAnnotationTableOption",
+      "description": "A default option of an annotation table",
+      "type": "object",
+      "properties": {
+        "title":{
+          "description": "Title of the option. It can be displayed if required but cannot be modified. This can also be seen as the column name in an annotation table",
+          "type": "string"
+        },
+        "typeAnnotation": {
+          "type": "string",
+          "enum": ["text"]
+        },
+        "ontologyId": {
+          "description": "Id of the ontology where the value of the annotation is retrieved.",
+          "type": "string"
+        },
+        "ontologyValue":{
+          "description": "Value of the annotation in the ontology.",
+          "type": "string"
+        },
+        "valueToDisplay": {
+          "description": "Value in to be displayed to the user.",
+          "type": "string"
+        }
+      },
+      "required":["title", "typeAnnotation", "ontologyId", "ontologyValue"]
+    },
+
+
+    "annotationTableOption":{
+      "$id" : "#annotationTableOption",
+      "description": "One option of an annotation table",
+      "type": "object",
+      "properties": {
+        "title":{
+          "description": "Title of the option to be display. This can also be seen as the column name in an annotation table",
+          "type": "string"
+        },
+        "typeAnnotation": {
+          "type": "string",
+          "enum": ["text"]
+        },
+        "ontologyId": {
+          "description": "Id of the ontology where the value of the annotation is retrieved.",
+          "type": "string"
+        },
+        "hasDefaultValue":{
+          "description": "If the annotation has a default value.",
+          "type": "boolean"
+        },
+        "defaultValue": {
+          "description": "This is the default value of the annotation.",
+          "$ref": "#/definitions/possibleValueInAnnotationTable"
+        },
+        "possibleValues":{
+          "description": "Possible values for the annotation.",
+          "type": "array",
+          "items": {
+              "$ref": "#/definitions/possibleValueInAnnotationTable"
+            }
+        }
+      },
+      "required":["title", "typeAnnotation", "ontologyId", "hasDefaultValue"],
+      "dependencies":{
+        "defaultValue": {
+          "properties":{
+            "hasDefaultValue":{
+              "enum": [true]
+            }
+          }
+        }
+      }
+    },
+
+    "inputsAnnotationTool": {
+      "$id": "#inputsAnnotationTool",
+      "description": "Inputs for the annotation tool. The spineInput schema is extended to have a property required.",
+      "type": "object",
+      "patternProperties" : {
+        ".*" : {
+          "properties": {
+            "isList": {
+              "description":"True if the Input is a list.",
+               "type":"boolean"
+            },
+            "filter":{
+              "description":"Filter for this input based on input parameters",
+              "$ref":"core.schema.json#/definitions/filter"
+            },
+            "required": {
+              "description": "True if the input is required.",
+              "type": "boolean"
+            }
+          },
+          "required": ["isList"],
+          "oneOf":[
+            {"$ref": "core.schema.json#/definitions/imageEntityInOut"},
+            {"$ref": "core.schema.json#/definitions/auxiliaryImageFile"},
+            {"$ref": "core.schema.json#/definitions/roiInOut"}
+          ]
+        }  
+      }
+    },
+
+    "viewersAnnotationTool": {
+      "$id": "#viewersAnnotationTool",
+      "description": "Description of all the viewers for the tool.",
+      "type": "object",
+      "properties": {
+        "generalConfiguration":{
+          "description": "General configuration of the viewers.",
+          "type": "object",
+          "properties":{
+            "linking":{
+              "description": "Linking properties for the viewers.",
+              "type": "object",
+              "properties": {
+                "linkingControl":{
+                  "description": "If the user can use the linking control.",
+                  "type": "boolean",
+                  "default": true
+                },
+                "linkingInitialValue":{
+                  "description": "Initial value for the linking control.",
+                  "type": "boolean",
+                  "default": false
+                }
+              },
+              "required": ["linkingControl", "linkingInitialValue"]
+            }
+          },
+          "required": ["linking"]
+        },
+        "specificConfiguration":{
+          "description": "Configuration of each viewers of the annotation tool.",
+          "type": "object",
+          "minProperties": 1,
+          "patternProperties": {
+            ".*": {
+          	  "type": "object",
+          	  "properties": {
+          	    "name": {
+          	      "description": "Name of the viewer",
+          	      "type": "string"
+          	    },
+          	    "location":{
+          	      "description": "Location of the viewer in a grid",
+          	      "type": "object",
+          	      "properties":{
+          	      	"row":{
+          	      		"description": "Row location",
+          	      		"type": "number",
+          	      		"minimum": 1
+          	      	},
+          	      	"column":{
+          	      		"description": "Column location",
+          	      		"type": "number",
+          	      		"minimum": 1
+          	      	},
+          	      	"rowspan":{
+          	      		"description": "Number of rows the viewer should span",
+          	      		"type": "number",
+          	      		"minimum": 1,
+          	      		"default": 1
+          	      	},
+          	      	"columnspan":{
+          	      		"description": "Number of colums the viewer should span",
+          	      		"type": "number",
+          	      		"minimum": 1,
+          	      		"default": 1
+          	      	}
+          	      },
+                  "required": ["row", "column", "rowspan", "columnspan"]
+          	    },
+                "windowLevel": {
+                  "description": "Window/Level configuration for the viewer",
+                  "type": "object",
+                  "properties": {
+                    "userCanChangeWindowLevel":{
+                      "description": "If the user is able to control the Window/Level.",
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "defaultValue": {
+                      "description": "Default values for the Window/Level.",
+                      "type": "object",
+                      "properties": {
+                        "window": {
+                          "description": "Default Window value.",
+                          "type": "number",
+                          "default": 0
+                        },
+                        "level": {
+                          "description": "Default Level value.",
+                          "type": "number",
+                          "default": 0
+                        }
+                      }
+                    }
+                  },
+                  "required": ["userCanChangeWindowLevel"]
+                },
+          	    "displayImages":{
+          	      "description": "Display options of the viewer regarding the images.",
+          	      "type": "object",
+          	      "properties":{
+      	        	  "possibleImagesToDisplay": {
+      	        	    "description": "List of input images the viewer can display. The input images must reference an id of the input images.",
+      	        	    "type": "array",
+      	        	    "items": {
+      	      	  	    "type": "string"
+      	      	      },
+      	      	      "minItems": 1
+      	            },
+                    "hasDefaultImageToDisplay":{
+                      "description": "True is there is a default image to display",
+                      "type": "boolean"
+                    },
+      	        	  "defaultImageToDisplay": {
+      	        	    "description": "Id of the input images to be displayed",
+                      "type": "string"
+      	      	    }
+      	      	  },
+                  "required": ["possibleImagesToDisplay", "hasDefaultImageToDisplay"],
+                  "dependencies": {
+                    "defaultImageToDisplay": {
+                      "properties": {
+                        "hasDefaultImageToDisplay": {
+                          "enum": [true]
+                        }
+                      }
+                    }
+                  }
+      	        },
+      	        "displayControls":{
+          	      "description": "Display controls of the viewer.",
+          	      "type": "object",
+          	      "properties":{
+      	        	  "orientations": {
+      	        	    "description": "Possible orientations of the images",
+      	        	    "type": "array",
+      	        	    "items": {
+      	      	  	    "type": "string",
+      	      	  	    "enum": ["axial", "sagittal", "coronal"]
+      	      	      },
+      	      	      "minItems": 1
+      	            },
+      	        	  "defaultOrientation": {
+      	        	    "description": "Default orientation of the images",
+      	              "type": "string",
+      	              "enum": ["axial", "sagittal", "coronal"]
+      	      	    },
+      	      	    "smoothing":{
+      	      	      "description": "Smoothing control for the images",
+      	      	      "type": "object",
+      	      	      "properties":{
+      	      	        "smoothingControl": {
+      	      	      	  "description": "Smoothing control for the viewer",
+      	              	  "type": "boolean",
+      	              	  "default": true
+      	      	        },
+      	      	        "smoothingDefault":{
+      	      	      	  "description": "Smoothing default value for the viewer",
+      	              	  "type": "boolean",
+      	              	  "default": false
+      	      	        }
+      	      	      },
+                      "required": ["smoothingControl", "smoothingDefault"]
+      	      	    }
+      	          },
+                  "required": ["orientations", "defaultOrientation", "smoothing"]
+      	        }
+          	  },
+              "required":["name", "location"]
+            }
+          }
+        }
+      },
+      "required": ["generalConfiguration", "specificConfiguration"]
+    },
+
+    "widgetsAnnotationTool": {
+      "$id": "#widgetsAnnotationTool",
+      "description": "Widget for the annotation tool.",
+      "type": "object",
+      "properties": {
+      	"pointSelector": {
+      	  "description": "Point selector tool",
+          "type": "object",
+          "properties": {
+          	"roiAnnotationLinks": {
+          	  "description": "List of roi annotation table ids that can be linked to the pointed roi. The id must refer to one of the annotation tables listed in the rois section",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties":{
+                  "nameRoi": {
+                    "description": "Corresponds to the name of the roi to be used in the widget. The roi name must be part of the rois object.",
+                    "type": "string"
+                  },
+                  "relationWithRoi": {
+                    "description": "The point can be inside the roi or can be a explicit ROI, e.g., AC/PC points",
+                    "type": "string",
+                    "enum": ["implicit", "explicit"]
+                  },
+                  "implicitRelationWithRoi":{
+                    "description": "In case that the relationWithRoi is an implicit relationship the implicit relationship type has to be defined here.",
+                    "type": "string",
+                    "enum": ["inside"]
+                  },
+                  "geometryPointer": {
+                    "description": "Geometry of the pointer",
+                    "type": "string",
+                    "enum": ["point"]
+                  }
+                }
+              }
+          	}
+          },
+          "required": ["roiAnnotationLinks"]
+      	}
+      }
+    },
+
+    "roisAnnotationTable": {
+      "$id": "#roisAnnotationTable",
+      "description": "Annotation tables for the rois. For instance if the tool is used to annotation lesions and peri-ventricular spaces.",
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": {
+        ".*": {
+          "type": "object",
+    	    "properties": {
+    	  	  "defaultAnnotations":{
+    	  	    "type": "array",
+    	  	    "items": {
+                "$ref": "#/definitions/defaultAnnotationTableOption"
+              }
+    	  	  },
+            "userAnnotations":{
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/annotationTableOption"
+              }
+            }
+    	    },
+          "required": ["defaultAnnotations", "userAnnotations"]
+        }
+      }
+    }
+
+  },
+
+  "description": "Annotation Tool for Medical Images",
+  "type": "object",
+  "properties": {
+  	"name": {
+  		"description": "The name of the annotation tool. For instance, annotation tool with three viewers only axial planes.",
+  		"type": "string"
+  	},
+  	"description": {
+      "description": "Description of the annotation tool.",
+  	  "type": "string"  		
+  	},
+  	"version": {
+      "description": "Version of the annotation tool.",
+  	  "type": "string"  		
+  	},
+  	"owner": {
+      "description": "Owner of the annotation tool.",
+  	  "type": "string"  		
+  	},
+  	"privacy": {
+      "description": "Privacy of the tool.",
+  	  "type": "string",
+      "enum":["PUBLIC","PRIVATE"]
+  	},
+  	"creationDate": {
+      "description": "Creation date of the annotation tool.",
+  	  "type": "string"  		
+  	},
+    "type": {
+      "description": "Type of the tool.",
+      "type": "string",
+      "enum":["ANNOTATION"] 
+    },
+    "annotationTables": {
+      "description": "Configuration of the ROIs for the annotation tool.",
+      "$ref": "#/definitions/roisAnnotationTable"
+    },
+  	"inputs": {
+  	  "description": "Inputs for the annotation tool.",
+  	  "$ref": "#/definitions/inputsAnnotationTool"
+  	},
+    "outputs": {
+      "description": "Object with the outputs of the tool",
+      "$ref":"core.schema.json#/definitions/spineOutput"
+    },
+    "configuration":{
+      "description": "Configuration of the particular tool. For instance the particular configuration of an anotation tool.",
+      "type": "object",
+      "properties": {
+        "viewers": {
+          "description": "Configuration of the viewers for the annotation tool.",
+          "$ref": "#/definitions/viewersAnnotationTool"
+        },
+        "widgets": {
+          "description": "Configuration of the widgets for the annotation tool.",
+          "$ref": "#/definitions/widgetsAnnotationTool"
+        }
+      }
+    }
+  },
+  "required": ["name", "description", "version", "owner", "privacy", "creationDate", "type", "annotationTables", "inputs", "outputs", "configuration"]
+}
