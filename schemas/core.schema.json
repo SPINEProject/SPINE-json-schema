@@ -5,6 +5,9 @@
   "TODO": [
     "Filter schema is to be defined."
   ],
+    "QUESTIONS":[
+    "ALF - As we don't deal anymore with T1 or T2 images, instead we deal with filters, can we set the imageEntityIO_Type as Anatomical, Functional, DWI, DiscreteLabelMap, ProbabilisticLabelMap?"
+  ],
   "definitions": {
 
     "basicType":{
@@ -32,10 +35,7 @@
       "description": "SPINE Image Type",
       "type": "string",
       "enum": ["T1w","T2w","T2star","T1map","T2map", "FLAIR", "PDT2","PDmap",
-        "ANATOMICAL", "FUNCTIONAL", "DWI","DiscreteLabelMap","ProbabilisticLabelMap"],
-      "QUESTIONS":[
-        "ALF - As we don't deal anymore with T1 or T2 images, instead we deal with filters, can we set the imageEntityIO_Type as Anatomical, Functional, DWI, DiscreteLabelMap, ProbabilisticLabelMap?"
-      ]
+        "ANATOMICAL", "FUNCTIONAL", "DWI","DiscreteLabelMap","ProbabilisticLabelMap"]
     },
 
     "imageEntityInOut_FileFormat": {
