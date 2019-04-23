@@ -124,7 +124,8 @@
       "type": "object",
       "allOf": [
         {
-          "name": {
+          "properties": {
+            "name": {
               "description": "Human readable name",
               "type": "string"
             },
@@ -132,7 +133,6 @@
               "description": "Human readable description",
               "type": "string"
             },
-          "properties": {
             "type":{
               "description": "SPINE type",
               "type": "string",
