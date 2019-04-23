@@ -13,11 +13,13 @@
       // Pattern
     },
     "reference" :{
-      "materializedTask":{
-        
+      "materializedTaskId":{
+        "type":"string",
+        "description":"Reference to the materialized task",
       },
       "userId":{
-
+        "type":"string",
+        "description":"Reference to the user posting the results",
       }
     },
     "userSnapshot": {
@@ -33,7 +35,7 @@
               "type":"string",
               "enum":["S","A","B","C","D","E","F","G"]
             },
-            "CertificationDate": {
+            "certificationDate": {
               "description":"Date of the certification",
               "type":"string"
             }

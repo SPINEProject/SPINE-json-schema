@@ -35,11 +35,6 @@
         "description":"Manual configuration of the task in case of manual task",
         "type":"object",
         "properties": {
-          "contributionType": {
-            "description": "Type of contribution",
-            "type": "string",
-            "enum":  ["SINGLE_USER", "MULTIPLE_USER", "CROWDSOURCING"]
-          },
           "contributorEmail": {
             "description": "Email of the contributor",
             "type": "string"

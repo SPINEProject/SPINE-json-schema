@@ -1,0 +1,72 @@
+{
+  "uuid":"uuid",
+  "version": "0.1",
+  "name": "Worfklow Lesion Annotation NMO",
+  "description": "Worfklow to annotate three images",
+  "owner":"gregory.bliault@u-bordeaux.fr",
+  "privacy":"PUBLIC",
+  "creationDate":"",
+  "constants": {
+  },
+  "inputs": {
+    "images" : {
+      "description": "List of image to be annotated",
+      "type": "imageEntityInOut",
+      "filter":{},
+      "format":"nifti",
+      "isList": true,
+      "imageType":"Anatomical",
+      "name": "Images"
+    }
+  },
+  "outputs": {
+    "roi" : {
+      "description": "List of annotations",
+      "metadata":{},
+      "reference":{},
+      "isList": true,
+      "name": "ROIs"
+    }
+  },
+  "tasks": {
+	"annotation":
+    {
+		"name": "Annotation",
+		"description": "The scientist annotate the images",
+		"taskId": "uuid"
+    }
+	},
+  "connectionsBetweenWorkflowAndTasks":{
+    "inputs": {
+      "01": {
+        "workflowInput": "images",
+        "task": {
+          "name":"annotation",
+          "input":"images"
+        }
+      }
+    },
+    "outputs": {
+      "01": {
+        "workflowOutput": "images",
+        "task": {
+          "name":"annotation",
+          "input":"images"
+        }
+      }
+    }
+  },
+  "connectionsBetweenTasks":{},
+  "transitions": {
+    "01":{
+      "to": [
+        "annotation"
+      ]
+    },
+    "02": {
+      "from": [
+        "annotation"
+      ]
+    }
+  }
+}

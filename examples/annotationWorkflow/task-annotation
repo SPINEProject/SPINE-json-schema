@@ -1,0 +1,39 @@
+{
+  "uuid":"uuid",
+  "version": "0.1",
+  "name": "Task Lesion Annotation NMO",
+  "description": "Task to annotate three images",
+  "owner":"gregory.bliault@u-bordeaux.fr",
+  "privacy":"PUBLIC",
+  "creationDate":"",
+  "process": {
+    "type":"manual",
+    "execution" : {
+      "executor":"SPINE",
+      "descriptorId":"uuid"
+    },
+    "contributionType": "SINGLE_USER"
+  },
+  "constants": {
+  },
+  "inputs": {
+    "images" : {
+      "description": "List of image to be annotated",
+      "type": "imageEntityInOut",
+      "filter":{},
+      "format":"nifti",
+      "isList": true,
+      "imageType":"Anatomical",
+      "name": "Images"
+    }
+  },
+  "outputs": {
+    "roi" : {
+      "description": "List of annotations",
+      "metadata":{},
+      "reference":{},
+      "isList": true,
+      "name": "ROIs"
+    }
+  }
+}
