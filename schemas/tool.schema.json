@@ -40,6 +40,36 @@
       }
     },
 
+    "defaultAnnotationTableOption":{
+      "$id" : "#defaultAnnotationTableOption",
+      "description": "A default option of an annotation table",
+      "type": "object",
+      "properties": {
+        "title":{
+          "description": "Title of the option. It can be displayed if required but cannot be modified. This can also be seen as the column name in an annotation table",
+          "type": "string"
+        },
+        "typeAnnotation": {
+          "type": "string",
+          "enum": ["text"]
+        },
+        "ontologyId": {
+          "description": "Id of the ontology where the value of the annotation is retrieved.",
+          "type": "string"
+        },
+        "ontologyValue":{
+          "description": "Value of the annotation in the ontology.",
+          "type": "string"
+        },
+        "valueToDisplay": {
+          "description": "Value in to be displayed to the user.",
+          "type": "string"
+        }
+      },
+      "required":["title", "typeAnnotation", "ontologyId", "ontologyValue"]
+    },
+
+
     "annotationTableOption":{
       "$id" : "#annotationTableOption",
       "description": "One option of an annotation table",
@@ -342,7 +372,7 @@
     	  	  "defaultAnnotations":{
     	  	    "type": "array",
     	  	    "items": {
-                "$ref": "annotation.schema.json"
+                "$ref": "#/definitions/defaultAnnotationTableOption"
               }
     	  	  },
             "userAnnotations":{
