@@ -1,0 +1,29 @@
+{
+  "uuid":"uuid",
+  "completed":true,
+  "contributionDate": "Date",
+  "results": {
+    "roi": {
+      "value":["uuid", "uuid"]
+    }
+  },
+  "reference" :{
+    "materializedTaskId":"uuid",
+    "userId": "userdoingtheusertask@gmail.com"
+  },
+  "userSnapshot": {
+    "certification": {
+      "grade": "S",
+      "certificationDate": "2019-02-25T09:42:19.174Z"
+    },
+    "demographics": {
+      "name": "Unnamed User",
+      "lastname": "",
+      "nickname": "",
+      "profession": "",
+      "specialty": "",
+      "eduLevel": "",
+      "experience": "",
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "uuid":"uuid",
+  "results": {
+    "roi": {
+      "value":["uuid", "uuid"]
+    }
+  },
+  "reference" :{
+    "taskExecutorId":"uuid",
+    "taskId":"uuid"
+  }
+}

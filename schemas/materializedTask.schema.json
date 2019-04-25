@@ -1,0 +1,50 @@
+{
+  "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/materializedTask.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Materialized Task",
+  "properties": {
+    "uuid":{
+      "type":"string"
+    },
+    "status":{
+      "type":"boolean",
+      "description":"Is the task done?"
+    },
+    "assignedUser": {
+      "type":"string",
+      "description":"ID of the user assigned to the task"
+    },
+    "inputs": {
+      "description":"The results",
+      "type":"object",
+      "patternProperties" : {
+        ".*" : {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "value":{
+              "description":"Value of the input",
+            }
+          }
+        }
+      }
+    },
+    "reference" :{
+      "type":"object",
+      "additionalProperties": false,
+      "properties": {
+        "toolId":{
+          "type":"string",
+          "description":"Reference to the tool to use",
+        },
+        "taskExecutorId":{
+          "type":"string",
+          "description":"Reference to the task executor",
+        }
+      }
+    }
+  },
+  "required": ["uuid", "status", "assignedUser", "inputs", "reference"]
+}

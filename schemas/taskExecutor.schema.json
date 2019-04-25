@@ -1,8 +1,9 @@
 {
-    "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/taskExecutor.json",
+    "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/taskExecutor.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "title": "Task Executor",
+    "additionalProperties": false,
     "properties": {
       "uuid": {
         "description":"Task Executor UUID",
@@ -11,6 +12,7 @@
       "reference": {
         "description":"References to other entities",
         "type":"object",
+        "additionalProperties": false,
         "properties": {
           "taskId": {
             "description": "UUID of the task",
@@ -34,12 +36,8 @@
       "manualConfig": {
         "description":"Manual configuration of the task in case of manual task",
         "type":"object",
+        "additionalProperties": false,
         "properties": {
-          "contributionType": {
-            "description": "Type of contribution",
-            "type": "string",
-            "enum":  ["SINGLE_USER", "MULTIPLE_USER", "CROWDSOURCING"]
-          },
           "contributorEmail": {
             "description": "Email of the contributor",
             "type": "string"
@@ -50,8 +48,10 @@
           },
           "contributorEmails": {
             "description": "List of email of the contributors",
-            "type": "list",
-            "item": "string"
+            "type": "array",
+            "items": {
+              "type":"string"
+            }
           }
         }
       },
@@ -61,6 +61,7 @@
         "patternProperties" : {
           ".*" : {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "value":{
                 "description":"Value of the input",
