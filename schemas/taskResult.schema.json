@@ -1,9 +1,44 @@
 {
-  "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/taskResult.json",
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/taskResult.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "title": "Task Result",
   "properties": {
-    
-  }
+    "uuid":{
+      "type":"string",
+      "description":"Is the contribution submitted?"
+    },
+    "results": {
+      "description":"The results",
+      "type":"object",
+      "patternProperties" : {
+        ".*" : {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "value":{
+              "description":"Value of the result",
+            }
+          }
+        }
+      }
+    },
+    "reference" :{
+      "type":"object",
+      "additionalProperties": false,
+      "properties": {
+        "taskExecutorId":{
+          "type":"string",
+          "description":"Reference to the task executor",
+        },
+        "taskId":{
+          "type":"string",
+          "description":"Reference to the task",
+        }
+      },
+      "required":["taskId", "taskExecutorId"]
+    }
+  },
+  "additionalProperties": false,
+  "required":["uuid", "reference", "results"]
 }

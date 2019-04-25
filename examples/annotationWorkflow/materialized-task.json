@@ -1,0 +1,14 @@
+{
+  "uuid":"uuid",
+  "reference" :{
+    "taskExecutorId": "uuid",
+    "toolId": "uuid"
+  },
+  "inputs": {
+    "images" : {
+      "value": ["uuid"]
+    }
+  },
+  "status": "TODO",
+  "assignedTo": "admin@test.com"
+}

@@ -51,10 +51,15 @@
       "minProperties": 1,
       "patternProperties" : {
         ".*" : {
+          "additionalProperties": false,
           "type": "object",
           "properties": {
-            "type":{
+            "description":{
               "description":"Task description",
+              "type":"string"
+            },
+            "name":{
+              "description":"Task human readable name",
               "type":"string"
             },
             "taskId":{
@@ -68,6 +73,7 @@
     "connectionsBetweenWorkflowAndTasks": {
       "type": "object",
       "description": "The connections between the workflow input/output and the tasks input/output.",
+      "additionalProperties": false,
       "properties": {
         "inputs": {
           "type": "object",
@@ -76,6 +82,7 @@
           "patternProperties" : {
             ".*" : {
               "type": "object",
+              "additionalProperties": false,
               "properties": {
                 "workflowInput":{
                   "description":"ID of the workflow input",
@@ -106,6 +113,7 @@
           "patternProperties" : {
             ".*" : {
               "type": "object",
+              "additionalProperties": false,
               "properties": {
                 "workflowOutput":{
                   "description":"ID of the workflow output",
@@ -136,6 +144,7 @@
       "patternProperties" : {
         ".*": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "fromTask": {
               "description": "Output of a task to connect",
@@ -178,6 +187,7 @@
       "patternProperties" : {
         ".*": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "to": {
               "description": "Targeted task, just the names, to be fired when the by the transition.",

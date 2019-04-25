@@ -3,7 +3,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "SPINE Core",
   "TODO": [
-    "Filter schema is to be defined."
+    "Filter schema is to be defined.",
+    "Metadata schema is to be defined.",
+    "Reference schema is to be defined."
   ],
     "QUESTIONS":[
     "ALF - As we don't deal anymore with T1 or T2 images, instead we deal with filters, can we set the imageEntityIO_Type as Anatomical, Functional, DWI, DiscreteLabelMap, ProbabilisticLabelMap?"
@@ -245,7 +247,7 @@
             {"$ref": "#/definitions/roiInOut"},
             {"$ref": "#/definitions/annotationInOut"}
           ]
-        }  
+        }
       }
     },
 
@@ -259,6 +261,14 @@
             "isList": {
               "description":"True if the Ouput is a list.",
                "type":"boolean"
+            },
+            "metadata": {
+              "description":"Metadata to add to the output",
+              "type":"object"
+            },
+            "reference": {
+              "description":"Reference to add to the output",
+              "type":"object"
             }
           },
           "required": ["isList"],
@@ -268,7 +278,7 @@
             {"$ref": "#/definitions/roiInOut"},
             {"$ref": "#/definitions/annotationInOut"}
           ]
-        }  
+        }
       }
     }
 
