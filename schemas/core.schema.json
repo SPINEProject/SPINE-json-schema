@@ -27,7 +27,7 @@
         "If the input is a list, for instance a list of imageEntity, how can we handle different types of formats? For instance if some come in .gz but others in nii.gz.",
         "ALF - I feel idInDescriptor in the spineInput/spineOutput can actually only be used in task and workflow. I am trying to use it in the tool but I don't have that property. I propose to remove it from the definition and create an extended defintion. An example of extention is in tool.schema.json/#definitions/inputsAnnotationTool"
       ],
-      "enum": ["String","Number","imageFile","imageEntityInOut","auxiliaryImageFile","lookupTable","roiInOut"]
+      "enum": ["String","Number","imageFile","imageEntityInOut","auxiliaryImageFile","lookupTable","roiInOut","annotationInOut"]
     },
 
     "imageEntityInOut_Type": {
@@ -136,9 +136,49 @@
           "type": "string",
           "enum": ["roiInOut"]
         },
+        "schema":{
+          "description": "Schema to be used for the format of the ROI",
+          "type": "string",
+          "enum": ["https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/roi.schema.json"]
+        },
         "roiInOut_FileFormat": {"$ref": "#/definitions/roiInOut_FileFormat"}
       },
-      "required": ["name", "description", "type", "roiInOut_FileFormat"]
+      "required": ["name", "description", "type", "roiInOut_FileFormat", "schema"]
+    },
+
+    "annotationInOut_FileFormat": {
+      "$id" : "#annotationInOut_FileFormat",
+      "description": "Possible formats of annotation in and outputs files",
+      "type": "string",
+      "enum": ["json"]
+    },
+
+    "annotationInOut":{
+      "$id": "#annotationInOut",
+      "description": "Schema defining an annotation as input or output",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Human readable name",
+          "type": "string"
+        },
+        "description": {
+          "description": "Human readable description",
+          "type": "string"
+        },
+        "type":{
+          "description": "SPINE type",
+          "type": "string",
+          "enum": ["annotationInOut"]
+        },
+        "schema":{
+          "description": "Schema to be used for the format of the annotation",
+          "type": "string",
+          "enum": ["https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/annotation.schema.json"]
+        },
+        "annotationInOut_FileFormat": {"$ref": "#/definitions/annotationInOut_FileFormat"}
+      },
+      "required": ["name", "description", "type", "annotationInOut_FileFormat"]
     },
 
     "format": {
@@ -202,7 +242,8 @@
           "oneOf":[
             {"$ref": "#/definitions/imageEntityInOut"},
             {"$ref": "#/definitions/auxiliaryImageFile"},
-            {"$ref": "#/definitions/roiInOut"}
+            {"$ref": "#/definitions/roiInOut"},
+            {"$ref": "#/definitions/annotationInOut"}
           ]
         }  
       }
@@ -224,7 +265,8 @@
           "oneOf":[
             {"$ref": "#/definitions/imageEntityInOut"},
             {"$ref": "#/definitions/auxiliaryImageFile"},
-            {"$ref": "#/definitions/roiInOut"}
+            {"$ref": "#/definitions/roiInOut"},
+            {"$ref": "#/definitions/annotationInOut"}
           ]
         }  
       }

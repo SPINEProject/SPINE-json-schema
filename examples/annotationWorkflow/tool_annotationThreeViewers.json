@@ -63,7 +63,16 @@
       "description": "ROIs created with the annotation tool",
       "isList": true,
       "type": "roiInOut",
-      "roiInOut_FileFormat": "json"
+      "roiInOut_FileFormat": "json",
+      "schema": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/roi.schema.json"
+    },
+    "annotations":{
+      "name": "Created annotations",
+      "description": "Annotations created with the annotation tool",
+      "isList": true,
+      "type": "annotationInOut",
+      "annotationInOut_FileFormat": "json",
+      "schema": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/annotation.schema.json"
     }
   },
 
