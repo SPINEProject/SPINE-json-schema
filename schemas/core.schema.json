@@ -3,38 +3,170 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "SPINE Core",
   "TODO": [
-    "Filter schema is to be defined.",
-    "Metadata schema is to be defined.",
-    "Reference schema is to be defined."
+    "TODO #1. Filter schema is to be defined.",
+    "TODO #2. Metadata schema is to be defined.",
+    "TODO #3. Reference schema is to be defined.",
+    "TODO #4. lookuptable schema has to be improved"
   ],
     "QUESTIONS":[
-    "ALF - As we don't deal anymore with T1 or T2 images, instead we deal with filters, can we set the imageEntityIO_Type as Anatomical, Functional, DWI, DiscreteLabelMap, ProbabilisticLabelMap?"
+    "Q #1. ALF - As we don't deal anymore with T1 or T2 images, instead we deal with filters, can we set the imageEntityIO_Type as Anatomical, Functional, DWI, DiscreteLabelMap, ProbabilisticLabelMap?",
+    "Q #2. ALF - spineTypeInOut schema - What is the lookuptable created for? In this a file, e.g, json file?",
+    "Q #3. ALF - spineTypeInOut schema - If we have imageEntity as a spineTypeInOut, can we have visit or clinical variables as spineType? Does it make sense?",
+    "Q #4. ALF - spineTypeInOut schema - If the input is a list, for instance a list of imageEntity, how can we handle different types of formats? For instance if some come in .gz but others in nii.gz.",
+    "Q #5. ALF - spineTypeInOut schema - I feel idInDescriptor in the spineInput/spineOutput can actually only be used in task and workflow. I am trying to use it in the tool but I don't have that property. I propose to remove it from the definition and create an extended defintion. An example of extention is in tool.schema.json/#definitions/inputsAnnotationTool"
   ],
   "definitions": {
 
-    "basicType":{
-      "$id" : "#basicType",
-      "description": "Basic system types",
-      "type": "string",
-      "enum": ["String", "Number", "Boolean", "File"]
-    },
-
-    "spineType": {
-      "$id" : "#spineType",
+    "spineTypeInOut": {
+      "$id" : "#spineTypeInOut",
       "description": "SPINE Type",
       "type": "string",
-      "QUESTIONS":[
-        "ALF - What is the lookuptable created for? In this a file, e.g, json file?",
-        "ALF - If we have imageEntity as a spineType, can we have visit or clinical variables as spineType? Does it make sense?",
-        "If the input is a list, for instance a list of imageEntity, how can we handle different types of formats? For instance if some come in .gz but others in nii.gz.",
-        "ALF - I feel idInDescriptor in the spineInput/spineOutput can actually only be used in task and workflow. I am trying to use it in the tool but I don't have that property. I propose to remove it from the definition and create an extended defintion. An example of extention is in tool.schema.json/#definitions/inputsAnnotationTool"
-      ],
-      "enum": ["String","Number","imageFile","imageEntityInOut","auxiliaryImageFile","lookupTable","roiInOut"]
+      "enum": ["String","Number","imageFileInOut","imageEntityInOut","auxiliaryImageFile","lookupTableInOut","roiInOut","annotationInOut"]
+    },
+
+    "inputOutput": {
+      "$id" : "#inputOutput",
+      "description": "Definition of a general input or output",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description":"Human readable name for the input/output",
+          "type":"string"
+        },
+        "description": {
+          "description":"Human readable description for the input/output",
+          "type":"string"
+        },
+        "isList": {
+          "description":"True if the input/output is a list.",
+          "type":"boolean"
+        },
+        "type": {
+          "description":"Type of the input/output",
+          "type":"string"
+        }
+      },
+      "required": ["name","description","isList","type"]
+    },
+
+    "inputOutput_spine":{
+      "$id" : "#inputOutput_spine",
+      "description": "Specialization of inputOutput for SPINE",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput"},
+        {
+          "properties": {
+            "type":{
+              "$ref": "#/definitions/spineTypeInOut"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+
+    "String": {
+      "$id": "#String",
+      "description": "Schema defining String as input or output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["String"]
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+
+    "Number": {
+      "$id": "#Number",
+      "description": "Schema defining Number as input or output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["Number"]
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+
+    "imageFileInOut_Type": {
+      "$id" : "#imageFileInOut_Type",
+      "description": "SPINE Image Type for imageFile",
+      "type": "string",
+      "enum": ["T1w","T2w","T2star","T1map","T2map", "FLAIR", "PDT2","PDmap",
+        "ANATOMICAL", "FUNCTIONAL", "DWI","DiscreteLabelMap","ProbabilisticLabelMap"]
+    },
+
+    "imageFileInOut_FileFormat": {
+      "$id" : "#imageFileInOut_FileFormat",
+      "description": "Format of the file for the image file",
+      "type": "string",
+      "enum": ["nii","nii.gz","dicom.gz","minc","nrrd","dicom"]
+    },
+
+    "imageFileInOut": {
+      "$id": "#imageFileInOut",
+      "description": "Schema defining an image file as input or output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["imageFileInOut"]
+            },
+            "imageFileInOut_Type": {
+              "$ref": "#/definitions/imageFileInOut_Type"
+            },
+            "imageFileInOut_FileFormat":{
+              "$ref": "#/definitions/imageFileInOut_FileFormat"
+            }
+          },
+          "required": ["type","imageFileInOut_Type","imageFileInOut_FileFormat"]
+        }
+      ]
+    },
+
+    "lookupTableInOut_FileFormat": {
+      "$id" : "#lookupTableInOut_Type",
+      "description": "File format for lookup tables",
+      "type": "string",
+      "enum": ["txt","tmf", "json"]
+    },
+
+    "lookupTableInOut": {
+      "$id": "#lookupTableInOut",
+      "description": "Schema defining an lookup table as input or output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["lookupTableInOut"]
+            },
+            "lookupTableInOut_FileFormat": {
+              "$ref": "#/definitions/lookupTableInOut_FileFormat"
+            }
+          },
+          "required": ["type","lookupTableInOut_FileFormat"]
+        }
+      ]
     },
 
     "imageEntityInOut_Type": {
       "$id" : "#imageEntityInOut_Type",
-      "description": "SPINE Image Type",
+      "description": "SPINE Image Type for imageEntity",
       "type": "string",
       "enum": ["T1w","T2w","T2star","T1map","T2map", "FLAIR", "PDT2","PDmap",
         "ANATOMICAL", "FUNCTIONAL", "DWI","DiscreteLabelMap","ProbabilisticLabelMap"]
@@ -50,26 +182,25 @@
     "imageEntityInOut": {
       "$id": "#imageEntityInOut",
       "description": "Schema defining an image entity as input or output",
-      "type": "object",
-      "properties":{
-        "name": {
-          "description": "Human readable name",
-          "type": "string"
-        },
-        "description": {
-          "description": "Human readable description",
-          "type": "string"
-        },
-        "type":{
-          "description": "SPINE type",
-          "type": "string",
-          "enum": ["imageEntityInOut"]
-        },
-        "imageEntityInOut_Type": {
-          "$ref": "#/definitions/imageEntityInOut_Type"
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["imageEntityInOut"]
+            },
+            "imageEntityInOut_Type": {
+              "$ref": "#/definitions/imageEntityInOut_Type"
+            },
+            "imageEntityInOut_FileFormat":{
+              "description": "This format of the file is not required as in the case of a list of EntityImages, each EntityImages can have its own format.",
+              "$ref": "#/definitions/imageEntityInOut_FileFormat"
+            }
+          },
+          "required": ["type","imageEntityInOut_Type"]
         }
-      },
-      "require": ["name", "description", "type", "imageEntityInOut_Type"]
+      ]
     },
 
     "auxiliaryImageFileType": {
@@ -80,7 +211,7 @@
     },
 
     "auxiliaryImageFileFormat": {
-      "$id" : "#auxiliaryImageFileType",
+      "$id" : "#auxiliaryImageFileFormat",
       "description": "Possible formats of auxialiary image files",
       "type": "string",
       "enum": ["txt","tmf", "json"]
@@ -91,25 +222,22 @@
       "description": "Schema defining an auxiliary image file as input or output",
       "type": "object",
       "allOf": [
+        {"$ref": "#/definitions/inputOutput_spine"},
         {
           "properties": {
-            "name": {
-              "description": "Human readable name",
-              "type": "string"
-            },
-            "description": {
-              "description": "Human readable description",
-              "type": "string"
-            },
             "type":{
-              "description": "SPINE type",
               "type": "string",
               "enum": ["auxiliaryImageFile"]
+            },
+            "auxiliaryImageFileType": {
+              "$ref": "#/definitions/auxiliaryImageFileType"
+            },
+            "auxiliaryImageFileFormat": {
+              "$ref": "#/definitions/auxiliaryImageFileFormat"
             }
-          }
-        },
-        {"$ref": "#/definitions/auxiliaryImageFileType"},
-        {"$ref": "#/definitions/auxiliaryImageFileFormat"}
+          },
+          "required": ["type","auxiliaryImageFileType","auxiliaryImageFileFormat"]
+        }
       ]
     },
 
@@ -123,121 +251,81 @@
     "roiInOut":{
       "$id": "#roiInOut",
       "description": "Schema defining an ROI as input or output",
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "Human readable name",
-          "type": "string"
-        },
-        "description": {
-          "description": "Human readable description",
-          "type": "string"
-        },
-        "type":{
-          "description": "SPINE type",
-          "type": "string",
-          "enum": ["roiInOut"]
-        },
-        "roiInOut_FileFormat": {"$ref": "#/definitions/roiInOut_FileFormat"}
-      },
-      "required": ["name", "description", "type", "roiInOut_FileFormat"]
+      "allOf": [
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "type": "object",
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["roiInOut"]
+            },
+            "schema":{
+              "description": "Schema to be used for the format of the ROI",
+              "type": "string",
+              "enum": ["https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/roi.schema.json"]
+            },
+            "roiInOut_FileFormat": {
+              "$ref": "#/definitions/roiInOut_FileFormat"
+            }
+          },
+          "required": ["type","schema","roiInOut_FileFormat"]
+        }
+      ]
     },
 
-    "format": {
-      "$id" : "#format",
-      "description": "Format of the file.",
+    "annotationInOut_FileFormat": {
+      "$id" : "#annotationInOut_FileFormat",
+      "description": "Possible formats of annotation in and outputs files",
       "type": "string",
-      "enum": ["nii","nii.gz","dicom.gz","minc","nrrd","dicom","json"]
+      "enum": ["json"]
+    },
+
+    "annotationInOut":{
+      "$id": "#annotationInOut",
+      "description": "Schema defining an annotation as input or output",
+      "type": "object",
+      "allOf": [
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["annotationInOut"]
+            },
+            "schema":{
+             "description": "Schema to be used for the format of the annotation",
+              "type": "string",
+              "enum": ["https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/annotation.schema.json"]
+            },
+            "annotationInOut_FileFormat": {
+              "$ref": "#/definitions/annotationInOut_FileFormat"
+            }
+          },
+          "required": ["type","schema","annotationInOut_FileFormat"]
+        }
+      ]
     },
 
     "filter": {
       "$id" : "#filter",
-      "description": "Filter for inputs. TO BE DEFINED",
+      "description": "Filter for inputs. TO BE DEFINED. This has to deal with dicom fields ...",
       "type": "object"
     },
 
-    "input": {
-      "$id" : "#input",
-      "description": "Definition of a general input",
-      "type": "object",
-      "patternProperties" : {
-        ".*" : {
-          "properties": {
-            "name": {
-              "description":"Human readable name for the input",
-              "type":"string"
-            },
-            "description": {
-              "description":"Human readable description for the input",
-              "type":"string"
-            },
-            "isList": {
-              "description":"True if the Input is a list.",
-              "type":"boolean"
-            },
-            "type": {
-              "description":"Type of the input.",
-              "$ref":"#/definitions/basicType"
-            }
-          }
-        }
-      }
-    },
-
-    "spineInput": {
+    "spineInputOuput": {
       "$id" : "#spineInput",
       "description": "SPINE definition for inputs.",
-      "type": "object",
-      "patternProperties" : {
-        ".*" : {
-          "properties": {
-            "isList": {
-              "description":"True if the Input is a list.",
-               "type":"boolean"
-            },
-            "filter":{
-              "description":"Filter for this input based on input parameters",
-              "$ref":"#/definitions/filter"
-            }
-          },
-          "required": ["isList"],
-          "oneOf":[
-            {"$ref": "#/definitions/imageEntityInOut"},
-            {"$ref": "#/definitions/auxiliaryImageFile"},
-            {"$ref": "#/definitions/roiInOut"}
-          ]
-        }
-      }
-    },
-
-    "spineOutput": {
-      "$id" : "#spineOutput",
-      "description": "SPINE definition for outputs",
-      "type": "object",
-      "patternProperties" : {
-        ".*" : {
-          "properties": {
-            "isList": {
-              "description":"True if the Ouput is a list.",
-               "type":"boolean"
-            },
-            "metadata": {
-              "description":"Metadata to add to the output",
-              "type":"object"
-            },
-            "reference": {
-              "description":"Reference to add to the output",
-              "type":"object"
-            }
-          },
-          "required": ["isList"],
-          "oneOf":[
-            {"$ref": "#/definitions/imageEntityInOut"},
-            {"$ref": "#/definitions/auxiliaryImageFile"},
-            {"$ref": "#/definitions/roiInOut"}
-          ]
-        }
-      }
+      "oneOf": [
+        {"$ref": "#/definitions/imageEntityInOut"},
+        {"$ref": "#/definitions/auxiliaryImageFile"},
+        {"$ref": "#/definitions/roiInOut"},
+        {"$ref": "#/definitions/annotationInOut"},
+        {"$ref": "#/definitions/String"},
+        {"$ref": "#/definitions/Number"},
+        {"$ref": "#/definitions/imageFileInOut"},
+        {"$ref": "#/definitions/lookupTableInOut"}
+      ]
     }
 
   }

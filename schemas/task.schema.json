@@ -1,8 +1,56 @@
 {
-  "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/task.json",
+  "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/task.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "title": "Task",
+  "TODOS": [
+    "TODO #1. spineInputsTask - Insert restrictions for the use of filter and idInDescriptor.",
+    "TODO #2. spineInputsTask - Insert restrictions for the use of idInDescriptor."
+  ],
+  "definitions":{
+
+    "spineInputsTask": {
+      "$id" : "#spineInputsTask",
+      "description": "Inputs for tasks and workflows. It extends the definition of spineInputOuput because it might need filters associated with the inputs.",
+      "type": "object",
+      "patternProperties" : {
+        ".*" : {
+          "properties": {
+            "filter":{
+              "$ref":"core.schema.json#/definitions/filter"
+            },
+            "idInDescriptor": {
+              "description":"Id of the Input/Output in the descriptor. This is required for automatica tasks, for now wraped using boutiques.",
+              "type":"string"
+            }
+          },
+          "allOf":[
+            {"$ref": "core.schema.json#/definitions/spineInputOuput"}
+          ]
+        }  
+      }
+    },
+
+    "spineOutputsTask": {
+      "$id" : "#spineOutputsTask",
+      "description": "Outputs for tasks and workflows.",
+      "type": "object",
+      "patternProperties" : {
+        ".*" : {
+          "properties": {
+            "idInDescriptor": {
+              "description":"Id of the Input/Output in the descriptor. This is required for automatica tasks, for now wraped using boutiques.",
+              "type":"string"
+            }
+          },
+          "allOf":[
+            {"$ref": "core.schema.json#/definitions/spineInputOuput"}
+          ]
+        }  
+      }
+    }
+
+  },
   "properties": {
     "uuid": {
       "description": "Task UUID",
@@ -82,15 +130,15 @@
     },
     "inputs": {
       "description": "Object with the inputs of the Workflow",
-      "$ref": "core.schema.json#/definitions/spineInput"
+      "$ref": "#/definitions/spineInputsTask"
     },
     "constants": {
       "description": "Object with the constant inputs of the Workflow",
-      "$ref": "core.schema.json#/definitions/spineInput"
+      "$ref": "#/definitions/spineInputsTask"
     },
     "outputs": {
       "description": "Object with the outputs of the Workflow",
-      "$ref": "core.schema.json#/definitions/spineOutput"
+      "$ref": "#/definitions/spineOutputsTask"
     }
   },
   "required": [

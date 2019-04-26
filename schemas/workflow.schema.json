@@ -35,15 +35,15 @@
     },
     "inputs":{
       "description": "Object with the inputs of the Workflow",
-      "$ref":"core.schema.json#/definitions/spineInput"
+      "$ref":"task.schema.json#/definitions/spineInputsTask"
     },
     "constants":{
       "description": "Object with the constant inputs of the Workflow",
-      "$ref":"core.schema.json#/definitions/spineInput"
+      "$ref":"task.schema.json#/definitions/spineInputsTask"
     },
     "outputs":{
       "description": "Object with the outputs of the Workflow",
-      "$ref":"core.schema.json#/definitions/spineOutput"
+      "$ref":"task.schema.json#/definitions/spineOutputsTask"
     },
     "tasks":{
       "type": "object",

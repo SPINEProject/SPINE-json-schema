@@ -117,29 +117,32 @@
 
     "inputsAnnotationTool": {
       "$id": "#inputsAnnotationTool",
-      "description": "Inputs for the annotation tool. The spineInput schema is extended to have a property required.",
+      "description": "Inputs for the annotation tool. The spineInputOuput schema is extended to have a property required.",
       "type": "object",
       "patternProperties" : {
         ".*" : {
           "properties": {
-            "isList": {
-              "description":"True if the Input is a list.",
-               "type":"boolean"
-            },
-            "filter":{
-              "description":"Filter for this input based on input parameters",
-              "$ref":"core.schema.json#/definitions/filter"
-            },
             "required": {
               "description": "True if the input is required.",
               "type": "boolean"
             }
           },
-          "required": ["isList"],
-          "oneOf":[
-            {"$ref": "core.schema.json#/definitions/imageEntityInOut"},
-            {"$ref": "core.schema.json#/definitions/auxiliaryImageFile"},
-            {"$ref": "core.schema.json#/definitions/roiInOut"}
+          "required":["required"],
+          "allOf":[
+            {"$ref": "core.schema.json#/definitions/spineInputOuput"}
+          ]
+        }  
+      }
+    },
+
+    "outputsAnnotationTool": {
+      "$id": "#outputsAnnotationTool",
+      "description": "Outputs for the annotation tool. The spineInputOuput schema used.",
+      "type": "object",
+      "patternProperties" : {
+        ".*" : {
+          "allOf":[
+            {"$ref": "core.schema.json#/definitions/spineInputOuput"}
           ]
         }  
       }
@@ -437,7 +440,7 @@
   	},
     "outputs": {
       "description": "Object with the outputs of the tool",
-      "$ref":"core.schema.json#/definitions/spineOutput"
+      "$ref":"#/definitions/outputsAnnotationTool"
     },
     "configuration":{
       "description": "Configuration of the particular tool. For instance the particular configuration of an anotation tool.",
