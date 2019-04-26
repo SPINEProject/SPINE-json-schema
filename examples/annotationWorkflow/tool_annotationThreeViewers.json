@@ -54,6 +54,18 @@
       "type": "imageEntityInOut",
       "imageEntityInOut_Type": "ANATOMICAL",
       "required": true
+    },
+    "imagesB":{
+      "name": "Input images",
+      "description": "Input images for the annotation tool",
+      "isList": true,
+      "filter": {
+        "test": "test"
+      },
+      "type": "auxiliaryImageFile",
+      "auxiliaryImageFileType": "bval",
+      "auxiliaryImageFileFormat": "txt",
+      "required": true
     }
   },
 
