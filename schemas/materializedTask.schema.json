@@ -1,5 +1,5 @@
 {
-  "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/materializedTask.json",
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/materializedTask.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "additionalProperties": false,
@@ -9,8 +9,9 @@
       "type":"string"
     },
     "status":{
-      "type":"boolean",
-      "description":"Is the task done?"
+      "type":"string",
+      "description":"Status of the materializedTask.",
+      "enum": ["TODO", "SAVE", "SUBMITTED"]
     },
     "assignedUser": {
       "type":"string",
@@ -25,7 +26,7 @@
           "additionalProperties": false,
           "properties": {
             "value":{
-              "description":"Value of the input",
+              "description":"Value of the input"
             }
           }
         }
@@ -37,11 +38,11 @@
       "properties": {
         "toolId":{
           "type":"string",
-          "description":"Reference to the tool to use",
+          "description":"Reference to the tool to use"
         },
         "taskExecutorId":{
           "type":"string",
-          "description":"Reference to the task executor",
+          "description":"Reference to the task executor"
         }
       }
     }

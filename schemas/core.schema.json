@@ -2,7 +2,7 @@
   "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/core.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "SPINE Core",
-  "TODO": [
+  "TODOS": [
     "TODO #1. Filter schema is to be defined.",
     "TODO #2. Metadata schema is to be defined.",
     "TODO #3. Reference schema is to be defined.",
