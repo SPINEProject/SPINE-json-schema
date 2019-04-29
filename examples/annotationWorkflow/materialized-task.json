@@ -10,5 +10,5 @@
     }
   },
   "status": "TODO",
-  "assignedTo": "admin@test.com"
+  "assignedUser": "admin@test.com"
 }

@@ -18,22 +18,25 @@
   },
   "inputs": {
     "images" : {
+      "name": "Images",
       "description": "List of image to be annotated",
       "type": "imageEntityInOut",
       "filter":{},
-      "format":"nifti",
+      "imageEntityInOut_FileFormat":"nii",
       "isList": true,
-      "imageType":"Anatomical",
-      "name": "Images"
+      "imageEntityInOut_Type":"ANATOMICAL"
     }
   },
   "outputs": {
     "roi" : {
+      "name": "Created ROIs",
       "description": "List of annotations",
-      "metadata":{},
-      "reference":{},
+      "type": "roiInOut",
       "isList": true,
-      "name": "ROIs"
+      "roiInOut_FileFormat": "json",
+      "schema": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/roi.schema.json",
+      "metadata":{},
+      "reference":{}
     }
   }
 }

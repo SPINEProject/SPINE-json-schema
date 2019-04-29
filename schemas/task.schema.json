@@ -5,7 +5,8 @@
   "title": "Task",
   "TODOS": [
     "TODO #1. spineInputsTask - Insert restrictions for the use of filter and idInDescriptor.",
-    "TODO #2. spineInputsTask - Insert restrictions for the use of idInDescriptor."
+    "TODO #2. spineInputsTask - Insert restrictions for the use of idInDescriptor.",
+    "TODO #3. spineOutputsTask - Define the output metadata for the spine types that we have. This allows us to know what to expect in each case."
   ],
   "definitions":{
 
@@ -20,7 +21,7 @@
               "$ref":"core.schema.json#/definitions/filter"
             },
             "idInDescriptor": {
-              "description":"Id of the Input/Output in the descriptor. This is required for automatica tasks, for now wraped using boutiques.",
+              "description":"Id of the Input/Output in the descriptor. This is required for automatic tasks, for now wraped using boutiques.",
               "type":"string"
             }
           },
@@ -41,6 +42,14 @@
             "idInDescriptor": {
               "description":"Id of the Input/Output in the descriptor. This is required for automatica tasks, for now wraped using boutiques.",
               "type":"string"
+            },
+            "metadata": {
+              "description":"Metadata to add to the output",
+              "type":"object"
+            },
+            "reference": {
+              "description":"Reference to add to the output",
+              "type":"object"
             }
           },
           "allOf":[
