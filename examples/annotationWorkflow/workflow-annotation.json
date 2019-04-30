@@ -13,19 +13,22 @@
       "description": "List of image to be annotated",
       "type": "imageEntityInOut",
       "filter":{},
-      "format":"nifti",
+      "imageEntityInOut_FileFormat":"nii",
       "isList": true,
-      "imageType":"Anatomical",
+      "imageEntityInOut_Type":"ANATOMICAL",
       "name": "Images"
     }
   },
   "outputs": {
     "roi" : {
       "description": "List of annotations",
+      "type": "roiInOut",
       "metadata":{},
       "reference":{},
       "isList": true,
-      "name": "ROIs"
+      "name": "ROIs",
+      "roiInOut_FileFormat": "json",
+      "schema": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/roi.schema.json"
     }
   },
   "tasks": {

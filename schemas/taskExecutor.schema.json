@@ -1,5 +1,5 @@
 {
-    "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/taskExecutor.json",
+    "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/taskExecutor.schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "title": "Task Executor",
@@ -64,13 +64,12 @@
             "additionalProperties": false,
             "properties": {
               "value":{
-                "description":"Value of the input",
+                "description":"Value of the input"
               }
             }
           }
         }
       }
     },
-    "required": ["inputs","state","uuid","reference"],
-    "additionalProperties" : false
+    "required": ["inputs","state","uuid","reference"]
 }
