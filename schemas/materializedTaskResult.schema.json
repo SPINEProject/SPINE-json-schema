@@ -1,5 +1,5 @@
 {
-  "id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/materializedTaskResult.json",
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/materializedTaskResult.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "additionalProperties": false,
@@ -26,7 +26,7 @@
           "additionalProperties": false,
           "properties": {
             "value":{
-              "description":"Value of the input",
+              "description":"Value of the input"
             }
           }
         }
@@ -38,11 +38,11 @@
       "properties": {
         "materializedTaskId":{
           "type":"string",
-          "description":"Reference to the materialized task",
+          "description":"Reference to the materialized task"
         },
         "userId":{
           "type":"string",
-          "description":"Reference to the user posting the results",
+          "description":"Reference to the user posting the results"
         }
       }
     },
@@ -99,7 +99,7 @@
             "experience": {
               "description":"User's experience in ?",
               "type":"string"
-            },
+            }
           }
         }
       }

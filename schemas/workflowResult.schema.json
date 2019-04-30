@@ -1,5 +1,5 @@
 {
-  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflowResult.json",
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflowResult.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "title": "Workflow Result",
@@ -17,7 +17,7 @@
           "additionalProperties": false,
           "properties": {
             "value":{
-              "description":"Value of the result",
+              "description":"Value of the result"
             }
           }
         }
@@ -29,11 +29,11 @@
       "properties": {
         "workflowExecutorId":{
           "type":"string",
-          "description":"Reference to the workflow executor",
+          "description":"Reference to the workflow executor"
         },
         "workflowId":{
           "type":"string",
-          "description":"Reference to the workflow",
+          "description":"Reference to the workflow"
         }
       },
       "required":["workflowId", "workflowExecutorId"]

@@ -37,80 +37,85 @@
       "required":["imageEntityId", "materializedTaskId"]
     },
     "properties": {
-      "implicit":{
-        "description": "Object having all the implicit properties.",
-        "type": "object",
-        "properties":{
-          "implicitRelationWithRoi": {
-            "description": "Type implicit relationship with the ROI. If the type of ROI is IMPLICIT.",
-            "type": "string",
-            "enum": [
-              "INSIDE",
-              "ON BORDER",
-              "ENCOMPASS"
-            ]
-          },
-          "implicitGemetryPointer": {
-            "description": "Geometry of the implicit point for the ROI. If the type of ROI is IMPLICIT.",
-            "type": "string",
-            "enum": [
-              "POINT",
-              "CIRCLE"
-            ]
-          },
-          "pointProperties": {
-            "description": "Properties for a point in implicit pointer. If the implicitGemetryPointer is POINT.",
-            "type": "object",
-            "properties": {
-              "worldCoordinates": {
-                "description": "World coordinates of the point, also called XYZ coordinates.",
-                "type": "object",
-                "properties": {
-                  "x": { "type": "number" },
-                  "y": { "type": "number" },
-                  "z": { "type": "number" }
-                },
-                "required": ["x", "y", "z"]
-              },
-              "imageCoordinates": {
-                "description": "Images coordinates of the point, also called IJK coordinates.",
-                "type": "object",
-                "properties": {
-                  "i": { "type": "number" },
-                  "j": { "type": "number" },
-                  "k": { "type": "number" }
-                },
-                "required": ["i", "j", "k"]
-              }
+      "description": "Properties of the ROI.",
+      "type":"object",
+      "properties": {
+        "implicit":{
+          "description": "Object having all the implicit properties.",
+          "type": "object",
+          "properties":{
+            "implicitRelationWithRoi": {
+              "description": "Type implicit relationship with the ROI. If the type of ROI is IMPLICIT.",
+              "type": "string",
+              "enum": [
+                "INSIDE",
+                "ON BORDER",
+                "ENCOMPASS"
+              ]
             },
-            "oneOf":[
-              { "required": ["worldCoordinates"] },
-              { "required": ["imageCoordinates"] }
-            ]
+            "implicitGemetryPointer": {
+              "description": "Geometry of the implicit point for the ROI. If the type of ROI is IMPLICIT.",
+              "type": "string",
+              "enum": [
+                "POINT",
+                "CIRCLE"
+              ]
+            },
+            "pointProperties": {
+              "description": "Properties for a point in implicit pointer. If the implicitGemetryPointer is POINT.",
+              "type": "object",
+              "properties": {
+                "worldCoordinates": {
+                  "description": "World coordinates of the point, also called XYZ coordinates.",
+                  "type": "object",
+                  "properties": {
+                    "x": { "type": "number" },
+                    "y": { "type": "number" },
+                    "z": { "type": "number" }
+                  },
+                  "required": ["x", "y", "z"]
+                },
+                "imageCoordinates": {
+                  "description": "Images coordinates of the point, also called IJK coordinates.",
+                  "type": "object",
+                  "properties": {
+                    "i": { "type": "number" },
+                    "j": { "type": "number" },
+                    "k": { "type": "number" }
+                  },
+                  "required": ["i", "j", "k"]
+                }
+              },
+              "required": ["worldCoordinates", "imageCoordinates"]
+            }
+          }
+        },
+        "explicit":{
+          "description": "Object having all the implicit properties.",
+          "type": "object",
+          "properties":{
+            "labelMap":{
+              "description": "Object having the properties of the label map where the ROI was defined. For instance when a segmentation is done using paint brush.",
+              "type": "object",
+              "properties":{
+                "imageEntityId": {
+                  "description": "Id of the label map. A label map is an image in SPINE.",
+                  "type": "string"
+                },
+                "labelIntensity":{
+                  "description": "Intensity in the label map assigned to the ROI. For instance 1. Usually the background is represented by 0.",
+                  "type": "number"
+                }
+              },
+              "required": ["imageEntityId", "labelIntensity"]
+            }
           }
         }
       },
-      "explicit":{
-        "description": "Object having all the implicit properties.",
-        "type": "object",
-        "properties":{
-          "labelMap":{
-            "description": "Object having the properties of the label map where the ROI was defined. For instance when a segmentation is done using paint brush.",
-            "type": "object",
-            "properties":{
-              "imageEntityId": {
-                "description": "Id of the label map. A label map is an image in SPINE.",
-                "type": "string"
-              },
-              "labelIntensity":{
-                "description": "Intensity in the label map assigned to the ROI. For instance 1. Usually the background is represented by 0.",
-                "type": "number"
-              }
-            },
-            "required": ["imageEntityId", "labelIntensity"]
-          }
-        }
-      }
+      "oneOf":[
+        {"required": ["implicit"]},
+        {"required": ["explicit"]}
+      ]
     }
   },
   "required": ["typeROI", "status", "reference", "properties"]

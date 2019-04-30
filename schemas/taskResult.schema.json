@@ -1,5 +1,5 @@
 {
-  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/taskResult.json",
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/taskResult.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "title": "Task Result",
@@ -17,7 +17,7 @@
           "additionalProperties": false,
           "properties": {
             "value":{
-              "description":"Value of the result",
+              "description":"Value of the result"
             }
           }
         }
@@ -29,11 +29,11 @@
       "properties": {
         "taskExecutorId":{
           "type":"string",
-          "description":"Reference to the task executor",
+          "description":"Reference to the task executor"
         },
         "taskId":{
           "type":"string",
-          "description":"Reference to the task",
+          "description":"Reference to the task"
         }
       },
       "required":["taskId", "taskExecutorId"]
