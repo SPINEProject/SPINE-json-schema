@@ -1,0 +1,627 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/experiment.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Experiment definitions",
+  "TODOS": [
+    "1. Review the convetion for the status for the experiment."
+  ],
+    "QUESTIONS":[
+  ],
+  "definitions": {
+
+    "operator": {
+      "$id": "#operator",
+      "decription": "Description of an operators",
+      "type": "object",
+      "properties":{
+        "label": {
+          "description": "Label of the operator",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of the operator",
+          "type": "string"
+        }
+      },
+      "required": ["label", "value"]
+    },
+
+    "operatorLessThan": {
+      "$id": "#operatorLessThan",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": ["<"]
+            },
+            "value":{
+              "enum": ["less than"]
+            }
+          }
+        }
+      ]
+    },
+
+    "operatorLesserEqual": {
+      "$id": "#operatorLesserEqual",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": ["<="]
+            },
+            "value":{
+              "enum": ["less than or equal to"]
+            }
+          }
+        }
+      ]
+    },
+
+    "operatorEqual": {
+      "$id": "#operatorEqual",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": ["="]
+            },
+            "value":{
+              "enum": ["equals"]
+            }
+          }
+        }
+      ]
+    },
+
+    "operatorNotEqual": {
+      "$id": "#operatorNotEqual",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": ["!="]
+            },
+            "value":{
+              "enum": ["not equals"]
+            }
+          }
+        }
+      ]
+    },
+
+    "operatorGreaterEqual": {
+      "$id": "#operatorGreaterEqual",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": [">="]
+            },
+            "value":{
+              "enum": ["greater than or equal to"]
+            }
+          }
+        }
+      ]
+    },
+
+    "operatorGreaterThan": {
+      "$id": "#operatorGreaterThan",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": [">"]
+            },
+            "value":{
+              "enum": ["greater than"]
+            }
+          }
+        }
+      ]
+    },
+
+    "operatorContains": {
+      "$id": "#operatorContains",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": ["contains"]
+            },
+            "vale":{
+              "enum": ["contains"]
+            }
+          }
+        }
+      ]
+    },
+
+    "operatorDoesNotContain": {
+      "$id": "#operatorDoesNotContain",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": ["does not contains"]
+            },
+            "value":{
+              "enum": ["does not contains"]
+            }
+          }
+        }
+      ]
+    },
+
+    "operatorAND": {
+      "$id": "#operatorAND",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": ["AND"]
+            },
+            "value":{
+              "enum": ["AND"]
+            }
+          }
+        }
+      ]
+    },
+
+    "operatorOR": {
+      "$id": "#operatorOR",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": ["OR"]
+            },
+            "value":{
+              "enum": ["OR"]
+            }
+          }
+        }
+      ]
+    },
+
+    "operatorXOR": {
+      "$id": "#operatorXOR",
+      "allOf": [
+        {"$ref": "#/definitions/operator"}
+        {
+          "properties":{
+            "label":{
+              "enum": ["XOR"]
+            },
+            "value":{
+              "enum": ["XOR"]
+            }
+          }
+        }
+      ]
+    },
+
+    "ordinalOperator": {
+      "$id": "#ordinalOperator",
+      "description": "Ordinal operator",
+      "oneOf":[
+        {"$ref": "#/definitions/operatorLessThan"},
+        {"$ref": "#/definitions/operatorLesserEqual"},
+        {"$ref": "#/definitions/operatorEqual"},
+        {"$ref": "#/definitions/operatorNotEqual"},
+        {"$ref": "#/definitions/operatorGreaterEqual"},
+        {"$ref": "#/definitions/operatorGreaterThan"}
+      ],
+      "allOf": [
+        {
+          "properties":{
+            "type":{
+              "type": "string",
+              "enum": ["ORDINAL_OPERATOR"]
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+
+    "logicalOperator": {
+      "$id": "#logicalOperator",
+      "description": "Logical operator",
+      "oneOf":[
+        {"$ref": "#/definitions/operatorAND"},
+        {"$ref": "#/definitions/operatorOR"},
+        {"$ref": "#/definitions/operatorXOR"}
+      ],
+      "allOf": [
+        {
+          "properties":{
+            "type":{
+              "type": "string",
+              "enum": ["LOGICAL_OPERATOR"]
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+
+    "categoricalOperator": {
+      "$id": "#categoricalOperator",
+      "description": "Ordinal operator",
+      "oneOf":[
+        {"$ref": "#/definitions/operatorEqual"},
+        {"$ref": "#/definitions/operatorNotEqual"}
+      ],
+      "allOf": [
+        {
+          "properties":{
+            "type":{
+              "type": "string",
+              "enum": ["CATEGORICAL_OPERATOR"]
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+
+    "textualOperator": {
+      "$id": "#textualOperator",
+      "description": "Textual operator",
+      "oneOf":[
+        {"$ref": "#/definitions/operatorContains"},
+        {"$ref": "#/definitions/operatorDoesNotContains"}
+      ],
+      "allOf": [
+        {
+          "properties":{
+            "type":{
+              "type": "string",
+              "enum": ["TEXTUAL_OPERATOR"]
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+
+    "criterion": {
+      "$id": "#criterion",
+      "description": "Criterion",
+      "type": "object",
+      "properties": {
+        "variableId": {
+          "description": "Id of the variable to be filtered.",
+          "type": "string"
+        },
+        "operator": {
+          "oneOf":[
+            {"ref": "#/definitions/ordinalOperator"},
+            {"ref": "#/definitions/categoricalOperator"}
+            {"ref": "#/definitions/textualOperator"},
+          ]
+        },
+        "value": {
+          "description": "Value for the criterion.",
+          "type": "string"
+        }
+      }
+    },
+
+    "expression": {
+      "$id": "#expression",
+      "description": "Expression",
+        "properties":{
+        "logicalOperator":{
+          "description": "Logical operator ruling the expression. For instance if the logical operator is AND, then all the expression will AND all the criteria and expressions, e.g., Criteria_1 AND Criteria_2 AND Expression_1 AND Expression_2",
+          "ref": "#/definitions/logicalOperator"
+        },
+        "criteria": {
+          "description": "List of criteria in the expression.",
+          "type": "array",
+          "items": {
+            "type": {
+              "$ref": "#/definitions/criterion"
+            }
+          }
+        },
+        "expressions":{
+          "description": "List of expression in the expression.",
+          "type": "array",
+          "items": {
+            "type": {
+              "$ref": "#/definitions/expression"
+            }
+          }
+        }
+      }
+    },
+
+    "systemVariableForStatisticalModel":{
+      "$id": "#systemVariableForStatisticalModel",
+      "description": "System variable for statistical models",
+      "type": "object",
+      "properties": {
+        "entityType": {
+          "description": "Type of entity for the variable",
+          "type": "string",
+          "enum": ["SUBJECT", "ANATOMICAL", "PATHOLOGICAL"]
+        },
+        "measurement": {
+          "description": "Measurement for the entity type.",
+          "type": "string"
+        }
+      }
+    },
+
+    "systemVariableForStatisticalModel_subject":{
+      "description": "System variable, extracted from the clinical data of the subject, for statistical models",
+      "allOf":[
+        { 
+          "$ref": "#/definitions/systemVariableForStatisticalModel"
+        },
+        {
+          "properties":{
+            "entityType": {
+              "enum": ["SUBJECT"]
+            }
+          }
+        }
+      ]
+    },
+
+    "targetDate_toleranceWindow": {
+      "$id": "#targetDate_toleranceWindow",
+      "description": "Defintion of target and tolerance window.",
+      "type": "object",
+      "properties": {
+        "targetDate": {
+          "type": "object",
+          "properties": {
+            "distance": {
+              "type": "number"
+            },
+            "units": {
+              "type": "string",
+              "enum": ["DAYS", "WEEKS", "MONTHS", "YEARS"]
+            }
+          }
+        },
+        "toleranceWindow": {
+          "type": "object",
+          "properties":{
+            "leftLimit": {
+              "description": "Left limit for the tolerance window.",
+              "type": "number",
+              "minimun": 0
+            },
+            "rightLimit": {
+              "description": "Right limit for the tolerance window.",
+              "type": "number",
+              "minimun": 0
+            }
+          }
+        }
+      }
+    },
+
+    "timeFrame_referenceTimePoint": {
+      "$id": "#timeFrame_referenceTimePoint",
+      "description": "Time-frame definition with reference to a time-point",
+      "allOf": [
+        {"$ref": "#/definition/targetDate_toleranceWindow"},
+        {
+          "properties": {
+            "relativeTo": {
+              "description": "Reference time point for this date",
+              "type": "string",
+              "enum": ["REFERENCE_TIME_POINT"]
+            },
+            "referenceTimePoint":{
+              "type": "object",
+              "properties": {
+                "variableReference": {
+                  "description": "Variable serving as reference for the timepoint, for instance Attack_date.",
+                  "type": "string"
+                },
+                "ocurrrencePosition":{
+                  "description": "Ocurrence position of the time-point, for instance first ocurrence.",
+                  "type": "integer",
+                  "minimun": 1
+                }
+              } 
+            }
+          }
+        }
+      ]
+    },
+
+    "timeFrame_otherVariableTimeStamp": {
+      "$id": "#timeFrame_otherVariableTimeStamp",
+      "description": "Target date definition with reference to the time stamp of other variable",
+      "allOf": [
+        {"$ref": "#/definition/targetDate_toleranceWindow"},
+        {
+          "properties": {
+            "relativeTo": {
+              "description": "Reference time point for this date",
+              "type": "string",
+              "enum": ["DIFFERENT_VARIABLE_TIME_STAMP"]
+            },
+            "referenceVariable":{
+              "description": "Variable serving as reference for the timepoint, for instance Attack_date.",
+              "type": "string"
+            },
+
+          }
+        }
+      ]
+    },
+
+    "systemVariableForStatisticalModel_annotation":{
+      "description": "System variable, extracted from annotations of an ROI, for statistical models",
+      "allOf":[
+        { 
+          "$ref": "#/definitions/systemVariableForStatisticalModel"
+        },
+        {
+          "properties":{
+            "entityType": {
+              "enum": ["ANATOMICAL", "PATHOLOGICAL"]
+            },
+            "annotation":{
+              "ontologyId": {
+                "description": "Id of the ontology where the value of the annotation is retrieved.",
+                "type": "string"
+              },
+              "ontologyValue": {
+                "description": "Value in the ontology selected for the annotation.",
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+
+    "experiment__POST":{
+      "$id": "#experiment__POST",
+      "decription": "Experiment when posted",
+      "type": "object",
+      "properties":{
+        "hypothesis": {
+          "description": "Hypothesis of the experiment",
+          "type":"string",
+          "minLength": 1
+        },
+        "description": {
+          "description": "Description of the experiment",
+          "type":"string",
+          "minLength": 1
+        },
+        "question": {
+          "description": "Question of the experiment",
+          "type":"string",
+          "minLength": 1
+        },
+        "projectId": {
+          "description": "Id of the project where the experiment will belong.",
+          "type":"string",
+          "minLength": 1
+        },
+        "privacy": {
+          "description": "Privay of the experiment.",
+          "type":{
+            "$ref": "core.schema.json#/definitions/privacyExperiment"
+          }
+        }
+      },
+      "required": ["hypothesis", "description", "question", "projectId", "privacy"]
+    },
+
+    "experiment__PUT_GET":{
+      "decription": "Experiment when modified or returned.",
+      "allOf":[
+        {"$ref":"experiment__POST"},
+        {
+          "properties":{
+            "owner":{
+              "description": "Owner the experiment.",
+              "type":"string"
+            },
+            "creationDate":{
+              "description": "Date of creation of the experiment.",
+              "type":"date-time"
+            },
+            "uuid":{
+              "description": "UUID of the experiment in SPINE.",
+              "type":"string"
+            },
+            "revisionId":{
+              "description": "Revision id of the experiment in SPINE.",
+              "type":"string"
+            },
+            "modificationDate":{
+              "description": "Date of modification of the experiment.",
+              "type":"date-time"
+            },
+            "modifiedBy":{
+              "description": "User that modified the experiment.",
+              "type":"string"
+            },
+            "status":{
+              "description": "Status of the experiment.",
+              "type":"string",
+              "enum": ["DRAFT","REVIEW","EXECUTION","COMPLETED","TRASHED"]
+            },
+            "cohortIds":{
+              "description": "List of ids of the cohorts used in the experiment.",
+              "type":"array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "selectionCriteria":{
+              "decription": "Selection criteria for the experiment",
+              "type": "object",
+              "properties":{
+                "inclusion":{
+                  "description": "Expression defining the inclusion criteria",
+                  "$ref": "#/definitions/expression"
+                },
+                "exclusion":{
+                  "description": "Expression defining the exclusion criteria",
+                  "$ref": "#/definitions/expression"
+                }
+              }
+            },
+            "statisticalModel": {
+              "description": "Statistical model for the experiment",
+              "$ref": "statisticalModel.schema.json#/definitions/statisticalModel"
+            },
+            "systemVariablesForStatisticalModel": {
+              "description": "Variables from the systema assigned to the variables of the statistical model.",
+              "patternProperties" : {
+                ".*" : {
+                  "oneOf": [
+                    {"$ref": "#/definitions/systemVariableForStatisticalModel_subject"},
+                    {"$ref": "#/definitions/systemVariableForStatisticalModel_annotation"}
+                  ]
+                }  
+              }
+            },
+            "timeFrame":{
+              "description": "Time frame description for the variables of the statistical model. Each key correspond to the one of the keys in systemVariablesForStatisticalModel.",
+              "patternProperties" : {
+                ".*" : {
+                  "oneOf": [
+                    {"$ref": "#/definitions/timeFrame_referenceTimePoint"},
+                    {"$ref": "#/definitions/timeFrame_otherVariableTimeStamp"}
+                  ]
+                }  
+              }
+            }
+          },
+          "required": ["owner", "creationDate", "uuid", "revisionId", 
+            "modificationDate", "modifiedBy", "status", "cohortIds",
+            "selectionCriteria", "statisticalModel",
+            "systemVariablesForStatisticalModel", "timeFrame"]
+        }
+      ]
+    }
+
+  }
+}

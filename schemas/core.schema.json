@@ -17,6 +17,27 @@
   ],
   "definitions": {
 
+    "privacy":{
+      "$id" : "#privacy",
+      "description": "Possible privacy options",
+      "type": "string",
+      "enum": ["PUBLIC", "PRIVATE"]
+    },
+
+    "privacyProject":{
+      "$id" : "#privacyProject",
+      "description": "Possible privacy options for a project.",
+      "type": "string",
+      "enum": ["PUBLIC", "PRIVATE_ONLY_SPINE_USERS", "PRIVATE_ONLY_PROJECT_USERS"]
+    },
+
+    "privacyExperiment":{
+      "$id" : "#privacyExperiment",
+      "description": "Possible privacy options for an experiment. This cannot overwrite the privacy of the project or be less flexible than the project privacy.",
+      "type": "string",
+      "enum": ["PUBLIC", "PRIVATE_ONLY_SPINE_USERS", "PRIVATE_ONLY_PROJECT_USERS"]
+    },
+
     "spineTypeInOut": {
       "$id" : "#spineTypeInOut",
       "description": "SPINE Type",
