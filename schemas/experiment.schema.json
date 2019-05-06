@@ -3,7 +3,8 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Experiment definitions",
   "TODOS": [
-    "1. Review the convetion for the status for the experiment."
+    "1. Review the convetion for the status for the experiment.",
+    "2. Change metrics to have values extracted from ontologies."
   ],
     "QUESTIONS":[
   ],
@@ -29,7 +30,7 @@
     "operatorLessThan": {
       "$id": "#operatorLessThan",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -46,7 +47,7 @@
     "operatorLesserEqual": {
       "$id": "#operatorLesserEqual",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -63,7 +64,7 @@
     "operatorEqual": {
       "$id": "#operatorEqual",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -80,7 +81,7 @@
     "operatorNotEqual": {
       "$id": "#operatorNotEqual",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -97,7 +98,7 @@
     "operatorGreaterEqual": {
       "$id": "#operatorGreaterEqual",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -114,7 +115,7 @@
     "operatorGreaterThan": {
       "$id": "#operatorGreaterThan",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -131,7 +132,7 @@
     "operatorContains": {
       "$id": "#operatorContains",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -148,7 +149,7 @@
     "operatorDoesNotContain": {
       "$id": "#operatorDoesNotContain",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -165,7 +166,7 @@
     "operatorAND": {
       "$id": "#operatorAND",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -182,7 +183,7 @@
     "operatorOR": {
       "$id": "#operatorOR",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -199,7 +200,7 @@
     "operatorXOR": {
       "$id": "#operatorXOR",
       "allOf": [
-        {"$ref": "#/definitions/operator"}
+        {"$ref": "#/definitions/operator"},
         {
           "properties":{
             "label":{
@@ -310,8 +311,8 @@
         "operator": {
           "oneOf":[
             {"ref": "#/definitions/ordinalOperator"},
-            {"ref": "#/definitions/categoricalOperator"}
-            {"ref": "#/definitions/textualOperator"},
+            {"ref": "#/definitions/categoricalOperator"},
+            {"ref": "#/definitions/textualOperator"}
           ]
         },
         "value": {
@@ -333,18 +334,14 @@
           "description": "List of criteria in the expression.",
           "type": "array",
           "items": {
-            "type": {
-              "$ref": "#/definitions/criterion"
-            }
+            "$ref": "#/definitions/criterion"
           }
         },
         "expressions":{
           "description": "List of expression in the expression.",
           "type": "array",
           "items": {
-            "type": {
-              "$ref": "#/definitions/expression"
-            }
+            "$ref": "#/definitions/expression"
           }
         }
       }
@@ -359,10 +356,6 @@
           "description": "Type of entity for the variable",
           "type": "string",
           "enum": ["SUBJECT", "ANATOMICAL", "PATHOLOGICAL"]
-        },
-        "measurement": {
-          "description": "Measurement for the entity type.",
-          "type": "string"
         }
       }
     },
@@ -377,6 +370,90 @@
           "properties":{
             "entityType": {
               "enum": ["SUBJECT"]
+            },
+            "clinicalVariableId": {
+              "description": "Id of the clinical variable.",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+
+    "systemVariableForStatisticalModel_imaging_pathological":{
+      "$id": "systemVariableForStatisticalModel_imaging_pathological",
+      "description": "System variable, extracted from annotations of an ROI using imaging, for statistical models",
+      "allOf":[
+        { 
+          "$ref": "#/definitions/systemVariableForStatisticalModel"
+        },
+        {
+          "properties":{
+            "entityType": {
+              "enum": ["PATHOLOGICAL"]
+            },
+            "metric": {
+              "description": "Metric or measurement to be calculated.",
+              "type": "string",
+              "enum": ["VOLUME", "MEAN_INTENSITY"]
+            },
+            "pathologicalAnnotation":{
+              "description": "Description of the patholocial annotation",
+              "type": "object",
+              "properties": {
+                "ontologyId": {
+                  "description": "Id of the pathological ontology where the value of the annotation is retrieved.",
+                  "type": "string"
+                },
+                "ontologyValue": {
+                  "description": "Value in the pathological ontology selected for the annotation.",
+                  "type": "string"
+                }
+              }
+            },
+            "anatomicalAnnotation":{
+              "description": "Description of the anatomical annotation",
+              "ontologyId": {
+                "description": "Id of the anatomical ontology where the value of the annotation is retrieved.",
+                "type": "string"
+              },
+              "ontologyValue": {
+                "description": "Value in the anatomical ontology selected for the annotation.",
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+
+    "systemVariableForStatisticalModel_imaging_anatomical":{
+      "$id": "systemVariableForStatisticalModel_imaging_anatomical",
+      "description": "System variable, extracted from annotations of an ROI using imaging, for statistical models",
+      "allOf":[
+        { 
+          "$ref": "#/definitions/systemVariableForStatisticalModel"
+        },
+        {
+          "properties":{
+            "entityType": {
+              "enum": ["ANATOMICAL"]
+            },
+            "metric": {
+              "description": "Metric or measurement to be calculated.",
+              "type": "string",
+              "enum": ["VOLUME", "MEAN_INTENSITY"]
+            },
+            "anatomicalAnnotation":{
+              "description": "Description of the anatomical annotation",
+              "ontologyId": {
+                "description": "Id of the anatomical ontology where the value of the annotation is retrieved.",
+                "type": "string"
+              },
+              "ontologyValue": {
+                "description": "Value in the anatomical ontology selected for the annotation.",
+                "type": "string"
+              }
             }
           }
         }
@@ -425,6 +502,11 @@
         {"$ref": "#/definition/targetDate_toleranceWindow"},
         {
           "properties": {
+            "type":{
+              "description": "Type of time-frame",
+              "type": "string",
+              "enum": ["RELATIVE"]
+            },
             "relativeTo": {
               "description": "Reference time point for this date",
               "type": "string",
@@ -456,6 +538,11 @@
         {"$ref": "#/definition/targetDate_toleranceWindow"},
         {
           "properties": {
+            "type":{
+              "description": "Type of time-frame",
+              "type": "string",
+              "enum": ["RELATIVE"]
+            },
             "relativeTo": {
               "description": "Reference time point for this date",
               "type": "string",
@@ -464,33 +551,23 @@
             "referenceVariable":{
               "description": "Variable serving as reference for the timepoint, for instance Attack_date.",
               "type": "string"
-            },
-
+            }
           }
         }
       ]
     },
 
-    "systemVariableForStatisticalModel_annotation":{
-      "description": "System variable, extracted from annotations of an ROI, for statistical models",
-      "allOf":[
-        { 
-          "$ref": "#/definitions/systemVariableForStatisticalModel"
-        },
+    "timeFrame_allTimePoints": {
+      "$id": "#timeFrame_allTimePoints",
+      "description": "Time frame defining all possible time points",
+      "allOf": [
+        {"$ref": "#/definition/targetDate_toleranceWindow"},
         {
-          "properties":{
-            "entityType": {
-              "enum": ["ANATOMICAL", "PATHOLOGICAL"]
-            },
-            "annotation":{
-              "ontologyId": {
-                "description": "Id of the ontology where the value of the annotation is retrieved.",
-                "type": "string"
-              },
-              "ontologyValue": {
-                "description": "Value in the ontology selected for the annotation.",
-                "type": "string"
-              }
+          "properties": {
+            "type":{
+              "description": "Type of time-frame",
+              "type": "string",
+              "enum": ["ALL_TIME_POINTS"]
             }
           }
         }
@@ -524,9 +601,7 @@
         },
         "privacy": {
           "description": "Privay of the experiment.",
-          "type":{
-            "$ref": "core.schema.json#/definitions/privacyExperiment"
-          }
+          "$ref": "core.schema.json#/definitions/privacyExperiment"
         }
       },
       "required": ["hypothesis", "description", "question", "projectId", "privacy"]
@@ -544,7 +619,7 @@
             },
             "creationDate":{
               "description": "Date of creation of the experiment.",
-              "type":"date-time"
+              "type":"string"
             },
             "uuid":{
               "description": "UUID of the experiment in SPINE.",
@@ -556,7 +631,7 @@
             },
             "modificationDate":{
               "description": "Date of modification of the experiment.",
-              "type":"date-time"
+              "type":"string"
             },
             "modifiedBy":{
               "description": "User that modified the experiment.",
@@ -593,12 +668,13 @@
               "$ref": "statisticalModel.schema.json#/definitions/statisticalModel"
             },
             "systemVariablesForStatisticalModel": {
-              "description": "Variables from the systema assigned to the variables of the statistical model.",
+              "description": "Variables from the system assigned to the variables of the statistical model.",
               "patternProperties" : {
                 ".*" : {
                   "oneOf": [
                     {"$ref": "#/definitions/systemVariableForStatisticalModel_subject"},
-                    {"$ref": "#/definitions/systemVariableForStatisticalModel_annotation"}
+                    {"$ref": "#/definitions/systemVariableForStatisticalModel_imaging_pathological"},
+                    {"$ref": "#/definitions/systemVariableForStatisticalModel_imaging_anatomical"}
                   ]
                 }  
               }
@@ -609,7 +685,8 @@
                 ".*" : {
                   "oneOf": [
                     {"$ref": "#/definitions/timeFrame_referenceTimePoint"},
-                    {"$ref": "#/definitions/timeFrame_otherVariableTimeStamp"}
+                    {"$ref": "#/definitions/timeFrame_otherVariableTimeStamp"},
+                    {"$ref": "#/definitions/timeFrame_allTimePoints"}
                   ]
                 }  
               }

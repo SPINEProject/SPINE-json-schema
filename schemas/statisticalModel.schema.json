@@ -1,5 +1,5 @@
 {
-  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/experiment.schema.json",
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/statisticalModel.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Statistical Model",
   "TODOS": [
@@ -36,7 +36,7 @@
         "type":{
           "description": "Type of the variable",
           "type": "string",
-          "enum": ["Number", "MultipleChoise", "Date", "Text"]
+          "enum": ["Number", "MultipleChoice", "Date", "Text"]
         },
         "statisticalType":{
           "$ref": "#/definitions/statisticalType"
@@ -50,22 +50,18 @@
       "description": "List of variables whose statistical type is part of a defined set of statistical types. This allows the definition of mathematical symbols, e.g., summation, where a list of variables is linked to it.",
       "type":"object",
       "properties": {
-        "variables":{
-          "description": "Variables in the summation.",
+        "type":{
+          "description": "Type of variable in the list.",
           "type": "array",
           "items": {
-            "type": {
-              "$ref": "#/definitions/variable"
-            }
+            "$ref": "#/definitions/variableTypeInModel"
           }
         },
         "statisticalType": {
           "description": "Statistical types of the variables allowed to be in the list.",
           "type": "array",
           "items": {
-            "type": {
-              "$ref": "#/definitions/statisticalType"
-            }
+            "$ref": "#/definitions/statisticalType"
           }
         }
       },
@@ -73,7 +69,7 @@
     },
 
     "variableInModel": {
-      "description": "Variable defintion in a model",
+      "description": "Variable definition in a model",
       "type": "object",
       "allOf": [
         {

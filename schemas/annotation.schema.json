@@ -10,7 +10,7 @@
     "typeAnnotation": {
       "description": "",
       "type": "string",
-      "enum": ["text","image"]
+      "enum": ["text","image","number"]
     },
     "status": {
       "description": "Status of the annotation: saved or submitted",
