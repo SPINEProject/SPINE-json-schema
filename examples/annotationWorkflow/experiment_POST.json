@@ -1,0 +1,9 @@
+{
+  "hypothesis": "yes",
+  "description": "B&S",
+  "question": "Is EDSS correlated to lesions in T2 ?",
+  "reference": {
+    "projectId": "ef192f79e1751488b5bc2e1e730142d2"
+  },
+  "privacy": "PUBLIC"
+}

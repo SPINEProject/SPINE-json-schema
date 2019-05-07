@@ -1,0 +1,171 @@
+{
+  "hypothesis": "yes",
+  "description": "B&S",
+  "question": "Is EDSS correlated to lesions in T2 ?",
+  "reference": {
+    "projectId": "ef192f79e1751488b5bc2e1e730142d2"
+  },
+  "privacy": "PUBLIC",
+  "owner": "experimentuserowner@email.com",
+  "creationDate": "2019-04-30T16:11:21.798Z",
+  "uuid": "96298b28e3f16f1ef85526af4200256a",
+  "revisionId": "6-55e0e08a814262625193204520302357",
+  "modificationDate": "May 6, 2019 - 19h11",
+  "modifiedBy": "experimentusermodigying@email.com",
+  "status": "DRAFT",
+  "cohortIds": [
+  	"7166bae11fe4b5742fc27bf89f000ea8",
+  	"6166bae11fe4b5742fc27bf89f000ea9"
+  ],
+  "selectionCriteria":{
+  	"inclusion": {
+  		"logicalOperator": "OR",
+      "criteria": [
+		  	{
+		    	"value": 6,
+		    	"operator": "equal",
+		    	"variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec"
+		   	}
+		  ],
+		  "expressions": [
+		    {
+	        "logicalOperator": "AND",
+		      "criteria": [
+		        {
+		          "value": 4,
+		          "operator": "greaterequal",
+		          "variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec"
+		        },
+		        {
+		          "value": "1969-12-25T05:00:00.000Z",
+		          "operator": "greaterequal",
+		          "variableId": "ATTACK_End_Date"
+		        }
+		      ],
+		      "expressions": [
+		        {
+		        	"logicalOperator": "AND",
+		          "criteria": [
+		            {
+		              "value": null,
+		              "operator": "is",
+		              "variableId": "CLINICAL_T25FW_Ankle_Foot_Orthosis"
+		            }
+		          ],
+		          "expressions": []
+		        }
+		      ]
+		    }
+		  ]
+  	},
+  	"exclusion": {
+  		"logicalOperator": "OR",
+      "criteria": [
+		  	{
+		    	"value": 6,
+		    	"operator": "equal",
+		    	"variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec"
+		   	}
+		  ],
+		  "expressions": [
+		    {
+	        "logicalOperator": "AND",
+		      "criteria": [
+		        {
+		          "value": 4,
+		          "operator": "greaterequal",
+		          "variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec"
+		        },
+		        {
+		          "value": "1969-12-25T05:00:00.000Z",
+		          "operator": "greaterequal",
+		          "variableId": "ATTACK_End_Date"
+		        }
+		      ],
+		      "expressions": [
+		        {
+		        	"logicalOperator": "AND",
+		          "criteria": [
+		            {
+		              "value": null,
+		              "operator": "is",
+		              "variableId": "CLINICAL_T25FW_Ankle_Foot_Orthosis"
+		            }
+		          ],
+		          "expressions": []
+		        }
+		      ]
+		    }
+		  ]
+  	}
+  },
+  "statisticalModel": {
+  	"name": "General Linear Model",
+  	"spineType": "SPINE",
+  	"variables":{
+  		"Y":{
+  			"name": "Outcome",
+  			"variableTypeInModel": "OUTCOME",
+  			"type": "Number",
+  			"statisticalType": "CONTINUOUS"
+  		},
+  		"X":{
+  			"variableTypeInModel": "EXPLANATORY",
+  			"name": "Regressors",
+  			"type": ["Number"],
+  			"statisticalType": ["CONTINUOUS"]
+  		}
+  	},
+  	"formula": "Y = b_{0} + \\sum(b_{i}*X_{i}) + e_{0}"
+  },
+  "systemVariablesForStatisticalModel": {
+  	"Y": {
+  		"entityType": "SUBJECT",
+  		"clinicalVariableId": "CLINICAL_9HPT_DomHand_Trial_1_sec"
+  	},
+  	"X1": {
+  		"entityType": "ANATOMICAL",
+  		"metric": "VOLUME",
+  		"anatomicalAnnotation":{
+        "ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
+        "ontologyClassId": "http://purl.org/sig/ont/fma/fma86464"
+  	}
+  },
+  "timeFrame":{
+  	"Y": [
+  		{
+  			"targetDate": {
+          "distance": 6,
+          "units": "YEAR"
+        },
+        "toleranceWindow": {
+          "leftLimit": 2,
+          "rightLimit": 1
+        },
+        "type":"RELATIVE",
+        "relativeTo": "REFERENCE_TIME_POINT",
+        "referenceTimePoint":{
+          "variableReference": "ATTACK_Start_Date",
+          "ocurrrencePosition":1
+        } 
+  		}
+  	],
+  	"X1": [
+  		 {
+  			"targetDate": {
+          "distance": 6,
+          "units": "MONTHS"
+        },
+        "toleranceWindow": {
+          "leftLimit": 1,
+          "rightLimit": 3
+        },
+        "type":"RELATIVE",
+        "relativeTo": "DIFFERENT_VARIABLE_TIME_STAMP",
+        "referenceVariable":{
+          "variableReference": "Y"
+        } 
+  		}
+  	]
+  }
+}
