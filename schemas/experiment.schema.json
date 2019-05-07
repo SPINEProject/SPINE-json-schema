@@ -361,6 +361,7 @@
     },
 
     "systemVariableForStatisticalModel_subject":{
+      "$id": "#systemVariableForStatisticalModel_subject",
       "description": "System variable, extracted from the clinical data of the subject, for statistical models",
       "allOf":[
         { 
@@ -405,8 +406,8 @@
                   "description": "Id of the pathological ontology where the value of the annotation is retrieved.",
                   "type": "string"
                 },
-                "ontologyValue": {
-                  "description": "Value in the pathological ontology selected for the annotation.",
+                "ontologyClassId": {
+                  "description": "Id of the class in the pathological ontology selected for the annotation.",
                   "type": "string"
                 }
               }
@@ -417,8 +418,8 @@
                 "description": "Id of the anatomical ontology where the value of the annotation is retrieved.",
                 "type": "string"
               },
-              "ontologyValue": {
-                "description": "Value in the anatomical ontology selected for the annotation.",
+              "ontologyClassId": {
+                "description": "Id of the class in the anatomical ontology selected for the annotation.",
                 "type": "string"
               }
             }
@@ -450,8 +451,8 @@
                 "description": "Id of the anatomical ontology where the value of the annotation is retrieved.",
                 "type": "string"
               },
-              "ontologyValue": {
-                "description": "Value in the anatomical ontology selected for the annotation.",
+              "ontologyClassId": {
+                "description": "Id of the class in the anatomical ontology selected for the annotation.",
                 "type": "string"
               }
             }
@@ -473,7 +474,7 @@
             },
             "units": {
               "type": "string",
-              "enum": ["DAYS", "WEEKS", "MONTHS", "YEARS"]
+              "enum": ["DAY", "WEEK", "MONTH", "YEAR"]
             }
           }
         },
@@ -594,10 +595,12 @@
           "type":"string",
           "minLength": 1
         },
-        "projectId": {
-          "description": "Id of the project where the experiment will belong.",
-          "type":"string",
-          "minLength": 1
+        "reference": {
+          "projectId": {
+            "description": "Id of the project where the experiment will belong.",
+            "type":"string",
+            "minLength": 1
+          }
         },
         "privacy": {
           "description": "Privay of the experiment.",
@@ -683,11 +686,14 @@
               "description": "Time frame description for the variables of the statistical model. Each key correspond to the one of the keys in systemVariablesForStatisticalModel.",
               "patternProperties" : {
                 ".*" : {
-                  "oneOf": [
-                    {"$ref": "#/definitions/timeFrame_referenceTimePoint"},
-                    {"$ref": "#/definitions/timeFrame_otherVariableTimeStamp"},
-                    {"$ref": "#/definitions/timeFrame_allTimePoints"}
-                  ]
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {"$ref": "#/definitions/timeFrame_referenceTimePoint"},
+                      {"$ref": "#/definitions/timeFrame_otherVariableTimeStamp"},
+                      {"$ref": "#/definitions/timeFrame_allTimePoints"}
+                    ]
+                  }
                 }  
               }
             }

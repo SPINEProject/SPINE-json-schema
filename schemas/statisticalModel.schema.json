@@ -29,10 +29,6 @@
       "description": "Definition of variable",
       "type": "object",
       "properties": {
-        "name": {
-          "description": "Human readable variable name",
-          "type": "string"
-        },
         "type":{
           "description": "Type of the variable",
           "type": "string",
@@ -42,7 +38,7 @@
           "$ref": "#/definitions/statisticalType"
         }
       },
-      "required":["name", "statisticalType"]
+      "required":["statisticalType"]
     },
 
     "listOfVariables": {
@@ -74,11 +70,15 @@
       "allOf": [
         {
           "properties":{
+            "name": {
+              "description": "Human readable variable name",
+              "type": "string"
+            },
             "variableTypeInModel": {
               "$ref": "#variableTypeInModel"
             }
           },
-          "required": ["variableTypeInModel"]
+          "required": ["name", "variableTypeInModel"]
         }
       ],
       "oneOf":[
@@ -92,6 +92,10 @@
       "description": "Statistical model",
       "type": "object",
       "properties": {
+        "name": {
+          "description": "Name of the statistical model.",
+          "type": "string"
+        },
         "spineType": {
           "description": "Type of statistical model in SPINE",
           "type": "string",
