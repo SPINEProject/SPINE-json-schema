@@ -6,15 +6,68 @@
   "TODOS": [
     "Extend the possible values of implicitRelationWithRoi",
     "Add combination restriction for implicit and explicit",
-    "Add other explicit forms of ROI, for instace bezier contour"
+    "Add other explicit forms of ROI, for instace bezier contour",
+    "Add dependencies for roiMenu (implicit and explicit)"
   ],
   "description": "Schema for Region of Interest (ROI)",
   "type": "object",
-  "properties": {
+  "definitions":{
+
     "typeROI": {
+      "$id": "#typeROI",
       "description": "Type of the ROI: implicit or explicit",
       "type": "string",
       "enum": ["IMPLICIT","EXPLICIT"]
+    },
+
+    "implicitRelationWithRoi": {
+      "$id": "#implicitRelationWithRoi",
+      "description": "Type implicit relationship with the ROI. If the type of ROI is IMPLICIT.",
+      "type": "string",
+      "enum": ["INSIDE","ON BORDER","ENCOMPASS"]
+    },
+
+    "implicitGeometryPointer": {
+      "$id": "#implicitGeometryPointer",
+      "description": "Geometry of the implicit point for the ROI. If the type of ROI is IMPLICIT.",
+      "type": "string",
+      "enum": [
+        "POINT",
+        "CIRCLE"
+      ]
+    },
+
+    "roiMenu": {
+      "$id": "roiMenu",
+      "description": "Options exposed by a tool or a task when defining an ROI",
+      "type": "object",
+      "properties":{
+        "typeROI": {
+          "$ref": "#typeROI"
+        },
+        "properties":{
+          "implicit":{
+            "description": "Object having all the implicit properties.",
+            "type": "object",
+            "properties":{
+              "implicitRelationWithRoi": {
+                "$ref": "#implicitRelationWithRoi"
+              },
+              "implicitGeometryPointer": {
+                "$ref": "#implicitGeometryPointer"
+              }
+            },
+            "required": ["implicitRelationWithRoi", "implicitGeometryPointer"]
+          }
+        }
+      },
+      "required": ["typeROI"]
+    }
+
+  },
+  "properties": {
+    "typeROI": {
+      "$ref": "#typeROI"
     },
     "status": {
       "description": "Status of the ROI: saved or submitted",
@@ -45,21 +98,10 @@
           "type": "object",
           "properties":{
             "implicitRelationWithRoi": {
-              "description": "Type implicit relationship with the ROI. If the type of ROI is IMPLICIT.",
-              "type": "string",
-              "enum": [
-                "INSIDE",
-                "ON BORDER",
-                "ENCOMPASS"
-              ]
+              "$ref": "#implicitRelationWithRoi"
             },
-            "implicitGemetryPointer": {
-              "description": "Geometry of the implicit point for the ROI. If the type of ROI is IMPLICIT.",
-              "type": "string",
-              "enum": [
-                "POINT",
-                "CIRCLE"
-              ]
+            "implicitGeometryPointer": {
+              "$ref": "#implicitGeometryPointer"
             },
             "pointProperties": {
               "description": "Properties for a point in implicit pointer. If the implicitGemetryPointer is POINT.",

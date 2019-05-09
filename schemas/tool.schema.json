@@ -19,7 +19,8 @@
     "Status of the Task Instance, don't forget to add it",
     "Add all the required attributes!",
     "PossibleImagesToDisplay in the displayImages in the viewer section has to have an option to say dispay all images",
-    "How to make this definitions independent of SPINE types? In case in the future we would like to share/publish this work"
+    "How to make this definitions independent of SPINE types? In case in the future we would like to share/publish this work",
+    "Create different definitions of tools based on the type."
   ],
 
   "definitions": {
@@ -51,14 +52,14 @@
         },
         "typeAnnotation": {
           "type": "string",
-          "enum": ["text"]
+          "enum": ["TEXT"]
         },
         "ontologyId": {
           "description": "Id of the ontology where the value of the annotation is retrieved.",
           "type": "string"
         },
-        "ontologyValue":{
-          "description": "Value of the annotation in the ontology.",
+        "ontologyConcept":{
+          "description": "Concept of the annotation in the ontology.",
           "type": "string"
         },
         "valueToDisplay": {
@@ -66,7 +67,7 @@
           "type": "string"
         }
       },
-      "required":["title", "typeAnnotation", "ontologyId", "ontologyValue"]
+      "required":["title", "typeAnnotation", "ontologyId", "ontologyConcept"]
     },
 
 
@@ -81,7 +82,7 @@
         },
         "typeAnnotation": {
           "type": "string",
-          "enum": ["text"]
+          "enum": ["TEXT"]
         },
         "ontologyId": {
           "description": "Id of the ontology where the value of the annotation is retrieved.",
@@ -428,7 +429,7 @@
     "type": {
       "description": "Type of the tool.",
       "type": "string",
-      "enum":["ANNOTATION"] 
+      "enum":["CREATION_OF_ROI", "ANNOTATION", "CREATION_OF_ROI_AND_ANNOTATION"] 
     },
     "annotationTables": {
       "description": "Configuration of the ROIs for the annotation tool.",

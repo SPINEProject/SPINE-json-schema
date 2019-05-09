@@ -70,21 +70,42 @@
   },
 
   "outputs": {
-    "rois":{
-      "name": "Created ROIs",
-      "description": "ROIs created with the annotation tool",
+    "lesions":{
+      "name": "Created ROIs and annotations",
+      "description": "ROIs and corresponding annotations created with the annotation tool",
       "isList": true,
-      "type": "roiInOut",
-      "roiInOut_FileFormat": "json",
-      "schema": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/roi.schema.json"
-    },
-    "annotations":{
-      "name": "Created annotations",
-      "description": "Annotations created with the annotation tool",
-      "isList": true,
-      "type": "annotationInOut",
-      "annotationInOut_FileFormat": "json",
-      "schema": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/annotation.schema.json"
+      "type": "roiWithAnnotationsInOut",
+      "roi":{
+        "typeROI": "IMPLICIT",
+        "properties": {
+          "implicit":{
+            "implicitRelationWithRoi": "INSIDE",
+            "implicitGeometryPointer": "POINT"
+          }
+        }
+      },
+      "annotations": [
+        {
+          "typeAnnotation": "text",
+          "properties":{
+            "ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
+            "possibleConceptsInOntology":[
+              "http://purl.org/sig/ont/fma/fma258716",
+              "http://purl.org/sig/ont/fma/fma258714",
+              "http://purl.org/sig/ont/fma/fma7647"
+            ]
+          }
+        },
+        {
+          "typeAnnotation": "text",
+          "properties":{
+            "ontologyId": "https://bioportal.bioontology.org/ontologies/SNOMEDCT",
+            "possibleConceptsInOntology":[
+              "http://purl.bioontology.org/ontology/SNOMEDCT/52988006"
+            ]
+          }
+        }
+      ]
     }
   },
 

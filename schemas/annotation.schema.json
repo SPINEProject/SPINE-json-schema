@@ -6,25 +6,58 @@
   "TODOS": [
     "Usually an annotation is a simple comment. In the future an annotation can be an image, for instance a probability mask."
   ],
-  "properties":{
+  "definitions":{
     "typeAnnotation": {
+      "$id": "#typeAnnotation",
       "description": "",
       "type": "string",
-      "enum": ["text","image","number"]
+      "enum": ["TEXT","IMAGE","NUMBER"]
+    },
+
+    "annotationMenu": {
+      "$id":"#annotationMenu",
+      "description": "Menu for a given annotation. In other words all the possible values for a given annotation.",
+      "type": "object",
+      "properties":{
+        "typeAnnotation": {
+          "$ref": "annotation.schema.json#typeAnnotation"
+        },
+        "ontologyId": {
+          "description": "Id of the ontology where the value of the annotation is retrieved.",
+          "type": "string"
+        },
+        "conceptIds":{
+          "description": "Ids of concepts in the ontology that the menu exposes.",
+          "type": "array",
+          "items":{
+            "type":"strin"
+          }
+        }
+      },
+      "required": ["typeAnnotation", "ontologyId", "conceptIds"]
+    }
+
+  },
+  "properties":{
+    "typeAnnotation": {
+      "$ref": "#typeAnnotation"
     },
     "status": {
-      "description": "Status of the annotation: saved or submitted",
+      "description": "Status of the annotation: saved or submitted.",
       "type": "string",
       "enum": ["SAVED","SUBMITTED"]
     },
     "reference": {
-      "roiId": {
-        "description": "Id of the ROI annotated by this annotation",
-        "type": "string"
-      },
-      "materializedTaskId":{
-        "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
-        "type": "string"
+      "type":"object",
+      "properties":{
+        "roiId": {
+          "description": "Id of the ROI annotated by this annotation.",
+          "type": "string"
+        },
+        "materializedTaskId":{
+          "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
+          "type": "string"
+        }
       }
     },
     "properties": {
@@ -35,8 +68,8 @@
           "description": "Id of the ontology where the value of the annotation is retrieved.",
           "type": "string"
         },
-        "ontologyValue": {
-          "description": "Value in the ontology selected for the annotation.",
+        "ontologyConcept": {
+          "description": "Concept in the ontology selected for the annotation.",
           "type": "string"
         },
         "PreferredName": {
