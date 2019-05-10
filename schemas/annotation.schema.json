@@ -4,9 +4,11 @@
   "title": "Annotation Schema",
   "type": "object",
   "TODOS": [
-    "Usually an annotation is a simple comment. In the future an annotation can be an image, for instance a probability mask."
+    "Usually an annotation is a simple comment. In the future an annotation can be an image, for instance a probability mask.",
+    "Units for the value in an annotation should come from an ontology."
   ],
   "definitions":{
+
     "typeAnnotation": {
       "$id": "#typeAnnotation",
       "description": "",
@@ -14,9 +16,9 @@
       "enum": ["TEXT","IMAGE","NUMBER"]
     },
 
-    "annotationMenu": {
-      "$id":"#annotationMenu",
-      "description": "Menu for a given annotation. In other words all the possible values for a given annotation.",
+    "annotationExposedConcepts": {
+      "$id":"#annotationExposedConcepts",
+      "description": "Exposed concepts for a given annotation. In other words, all the possible values for a given annotation. Examples: a. Ontology FMA with possible concepts like Thalamus and corpus callosum. b. Ontology for physical measurement, with volume as possible concept.",
       "type": "object",
       "properties":{
         "typeAnnotation": {
@@ -30,7 +32,7 @@
           "description": "Ids of concepts in the ontology that the menu exposes.",
           "type": "array",
           "items":{
-            "type":"strin"
+            "type":"string"
           }
         }
       },
@@ -75,8 +77,17 @@
         "PreferredName": {
           "description": "Value preferred bame in the ontology selected for the annotation.",
           "type": "string"
+        },
+        "value":{
+          "description": "Value if required. For instance the ontology can be Radlex, the concept can be volume, and the value can be 47.",
+          "type": "number"
+        },
+        "units": {
+          "description": "Units of the value.",
+          "type": "string"
         }
-      }
+      },
+      "required": ["ontologyId", "ontologyConcept"]
     }
   },
   "required": ["typeAnnotation", "status", "reference", "properties"]

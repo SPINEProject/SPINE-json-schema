@@ -37,8 +37,8 @@
       ]
     },
 
-    "roiMenu": {
-      "$id": "roiMenu",
+    "roisExposed": {
+      "$id": "roisExposed",
       "description": "Options exposed by a tool or a task when defining an ROI",
       "type": "object",
       "properties":{
