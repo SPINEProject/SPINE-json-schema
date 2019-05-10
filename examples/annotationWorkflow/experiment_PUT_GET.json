@@ -126,7 +126,6 @@
 					  "leftLimit": 2,
 					  "rightLimit": 1
 				  },
-				  "type": "ABSOLUTE",
 				  "relativeTo": "REFERENCE_TIME_POINT",
 				  "referenceTimePoint": {
 					  "variableReference": "ATTACK_Start_Date",
@@ -144,7 +143,6 @@
 					  "leftLimit": 1,
 					  "rightLimit": 3
 				  },
-				  "type": "RELATIVE",
 				  "relativeTo": "DIFFERENT_VARIABLE_TIME_STAMP",
 				  "referenceVariable": {
 					  "variableReference": "Y"
