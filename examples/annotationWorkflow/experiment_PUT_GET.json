@@ -114,42 +114,55 @@
   	}
   },
   "timeFrame":{
-	  "primary-time-reference":"DOB",
-	  "constraints": {
-		  "Y": [
+	  "primaryTimeReference":"DOB",
+	  "absoluteConstraints": {
+		  "Y": {
+			  "targetDate": {
+				  "distance": 6,
+				  "units": "YEAR"
+			  },
+			  "toleranceWindow": {
+				  "leftLimit": 2,
+				  "rightLimit": 1,
+				  "leftUnits":"YEAR",
+				  "rightUnits":"YEAR"
+			  }
+		  },
+		  "X":{
+			  "targetDate": {
+				  "distance": 6,
+				  "units": "YEAR"
+			  },
+			  "toleranceWindow": {
+				  "leftLimit": 2,
+				  "rightLimit": 1,
+				  "leftUnits":"YEAR",
+				  "rightUnits":"YEAR"
+			  }
+		  }
+	  },
+	  "relativeConstraints": [
 			  {
-				  "targetDate": {
-					  "distance": 6,
-					  "units": "YEAR"
-				  },
+				  "variableRelativeFrom": "Y",
+				  "variableRelativeTo": "X1",
+				  "relationType": "CAN_BE",
 				  "toleranceWindow": {
 					  "leftLimit": 2,
-					  "rightLimit": 1
-				  },
-				  "relativeTo": "REFERENCE_TIME_POINT",
-				  "referenceTimePoint": {
-					  "variableReference": "ATTACK_Start_Date",
-					  "ocurrrencePosition": 1
+					  "rightLimit": 1,
+					  "leftUnits":"YEAR",
+					  "rightUnits":"YEAR"
 				  }
-			  }
-		  ],
-		  "X1": [
+			  },
 			  {
-				  "targetDate": {
-					  "distance": 6,
-					  "units": "MONTHS"
-				  },
+				  "variableRelativeFrom": "X",
+				  "variableRelativeTo": "Y",
+				  "relationType": "CAN_BE",
 				  "toleranceWindow": {
 					  "leftLimit": 1,
 					  "rightLimit": 3
-				  },
-				  "relativeTo": "DIFFERENT_VARIABLE_TIME_STAMP",
-				  "referenceVariable": {
-					  "variableReference": "Y"
 				  }
 			  }
 		  ]
-	  }
   }
 }
 }
