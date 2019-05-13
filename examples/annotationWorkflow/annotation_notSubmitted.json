@@ -1,13 +1,15 @@
 {
-  "typeAnnotation": "text",
+  "typeAnnotationForm": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+  "typeAnnotation": "TEXT",
   "status": "SAVED",
   "reference": {
     "roiId": "roiId_01",
     "materializedTaskId": "materializedTaskId_01"
   },
   "properties":{
+    "isOntologyBased": true,
     "ontologyId": "https://bioportal.bioontology.org/ontologies/SNOMEDCT",
-    "ontologyValue": "http://purl.bioontology.org/ontology/SNOMEDCT/52988006",
-    "PreferredName" : "Lesion"
+    "value": "http://purl.bioontology.org/ontology/SNOMEDCT/52988006",
+    "valueToDisplay" : "Lesion"
   }
 }

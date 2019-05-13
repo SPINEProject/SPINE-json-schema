@@ -7,7 +7,7 @@
     "Extend the possible values of implicitRelationWithRoi",
     "Add combination restriction for implicit and explicit",
     "Add other explicit forms of ROI, for instace bezier contour",
-    "Add dependencies for roiMenu (implicit and explicit)"
+    "Add dependencies for roisExposed (implicit and explicit)"
   ],
   "description": "Schema for Region of Interest (ROI)",
   "type": "object",

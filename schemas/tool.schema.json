@@ -396,6 +396,29 @@
       }
     },
 
+    "map_InputROI_OuputAnnotation":{
+      "$id": "#map_InputROI_OuputAnnotation",
+      "description": "Mapping of ROI in the inputs and the annotations added by the tool.",
+      "type": "object",
+      "properties": {
+        "roiInputName": {
+          "description": "Name of the input having the ROIs",
+          "type": "string"
+        },
+        "annotationInputName": {
+          "description": "Name of the input having the annotations",
+          "type": "string"
+        }
+      }
+    },
+
+    "mappingFunction":{
+      "$id": "#mappingFunction",
+      "oneOf":[
+        { "$ref": "#/definitions/map_InputROI_OuputAnnotation"}
+      ]
+    },
+
     "toolBasicProperties": {
       "$id": "#toolBasicProperties",
       "type": "object",
@@ -425,12 +448,10 @@
             "description": "Creation date of the annotation tool.",
             "type": "string"      
           },
-          "type": {
-            "description": "Type of the tool.",
-            "type": "string",
-            "enum":["CREATION_OF_ROI", "ANNOTATION", "CREATION_OF_ROI_AND_ANNOTATION"] 
+          "annotationTables": {
+            "description": "Configuration of the ROIs for the annotation tool.",
+            "$ref": "#/definitions/roisAnnotationTable"
           },
-          TODO: Find a better way to define the inputs and outputs for a tool
           "inputs": {
             "description": "Inputs for the annotation tool.",
             "$ref": "#/definitions/inputsAnnotationTool"
@@ -438,6 +459,13 @@
           "outputs": {
             "description": "Object with the outputs of the tool",
             "$ref":"#/definitions/outputsAnnotationTool"
+          },
+          "mappingFunctions": {
+            "description": "List of mapping fuctions inside the tool. A tool can have many mapping functions. This will allow to define different types of mapping functions, even new ones coming in the future.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/mappingFunction"
+            }
           },
           "configuration":{
             "description": "Configuration of the particular tool. For instance the particular configuration of an anotation tool.",
@@ -454,26 +482,7 @@
             }
           }
         },
-        "required": ["name", "description", "version", "owner", "privacy", "creationDate", "type", "annotationTables", "inputs", "outputs", "configuration"]
-    },
-
-    "map_InputROI_OuputAnnotation":{
-      "$id": "#map_InputROI_OuputAnnotation",
-      "description": "Mapping of ROI in the inputs and the annotations added by the tool.",
-      "type": "object",
-      "properties": {
-        "roiInputName": {
-          "description": "Name of the input having the ROIs",
-          "type": "string"
-        },
-        "exposedAnnotationConcepts": {
-          "All the possible annotations (also called annotation Menu mapped to the roi input)"
-          "type": "array",
-          "items": {
-            "$ref": "annotation.schema.json#/definitions/annotationExposedConcepts"
-          }
-        }
-      }
+        "required": ["name", "description", "version", "owner", "privacy", "creationDate", "annotationTables", "inputs", "outputs", "configuration"]
     },
 
     "toolCreateAndAnnotateROI": {
@@ -483,18 +492,15 @@
         {"$ref": "#toolBasicProperties"},
         {
           "properties":{
-            "type": {
-              "enum":["CREATION_OF_ROI_AND_ANNOTATION"] 
-            },
             "annotationTables": {
               "description": "Configuration of the ROIs for the annotation tool.",
               "$ref": "#/definitions/roisAnnotationTable"
             },
             "exposedAnnotationConcepts": {
-              "All the exposed annotations concepts for a given ROI in the output"
+              "description": "All the exposed annotations concepts for a given ROI in the output",
               "type": "array",
               "items": {
-                "$ref": "annotation.schema.json#/definitions/annotationExposedConcepts"
+                "$ref": "annotationForm.schema.json#/definitions/annotationExposedConcepts"
               }
             }
           }
@@ -509,9 +515,6 @@
         {"$ref": "#toolBasicProperties"},
         {
           "properties":{
-            "type": {
-              "enum":["ANNOTATION"] 
-            },
             "annotationTables": {
               "description": "Configuration of the ROIs for the annotation tool.",
               "$ref": "#/definitions/roisAnnotationTable"
@@ -520,7 +523,7 @@
               "description": "Mapping of the annotations that will added to each ROI in the input.",
               "type": "array",
               "items": {
-                "$ref": "#map_InputROI_OuputAnnotation"
+                "$ref": "#/definitions/map_InputROI_OuputAnnotation"
               }
             }
           }
@@ -535,9 +538,6 @@
         {"$ref": "#toolBasicProperties"},
         {
           "properties":{
-            "type": {
-              "enum":["CREATION_OF_ROI"] 
-            }
           }
         }
       ]
@@ -548,8 +548,6 @@
   "description": "Annotation Tool for Medical Images",
   "type": "object",
   "oneOf": [
-    {"$ref": "#toolCreateAndAnnotateROI"},
-    {"$ref": "#toolAddAnnotation"},
-    {"$ref": "#toolCreateROI"}
+    {"$ref": "#toolBasicProperties"}
   ]
 }

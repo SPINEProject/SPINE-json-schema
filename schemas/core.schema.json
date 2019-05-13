@@ -44,7 +44,7 @@
       "type": "string",
       "enum": ["String","Number","imageFileInOut","imageEntityInOut",
         "auxiliaryImageFile","lookupTableInOut","roiInOut","annotationInOut",
-        "roiWithAnnotationsInOut", "roiWithMenuAnnotationsInOut"]
+        "roiWithAnnotationsInOut"]
     },
 
     "inputOutput": {
@@ -283,11 +283,16 @@
               "type": "string",
               "enum": ["roiInOut"]
             },
-            "roi": {
-              "$ref": "roi.schema.json"
+            "schema":{
+              "description": "Schema to be used for the format of the ROI",
+              "type": "string",
+              "enum": ["https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/roi.schema.json"]
+            },
+            "roiInOut_FileFormat": {
+              "$ref": "#/definitions/roiInOut_FileFormat"
             }
           },
-          "required": ["type","roi"]
+          "required": ["type","schema","roiInOut_FileFormat"]
         }
       ]
     },
@@ -332,44 +337,17 @@
               "type": "string",
               "enum": ["roiWithAnnotationsInOut"]
             },
-            "roi":{
-              "$ref": "roi.schema.json"
+            "typeROI":{
+              "$ref": "roi.schema.json#/definitions/typeROI"
             },
             "annotations":{
               "type": "array",
               "items": {
-                "$ref": "annotation.schema.json"
+                "$ref": "annotationForm.schema.json"
               }
             }
           },
-          "required": ["type","roi","annotations"]
-        }
-      ]
-    },
-
-    "roiWithMenuAnnotationsInOut":{
-      "$id": "#roiWithMenuAnnotationsInOut",
-      "description": "Schema defining an roi with associated annotations as input or output",
-      "type": "object",
-      "allOf": [
-        {"$ref": "#/definitions/inputOutput_spine"},
-        {
-          "properties": {
-            "type":{
-              "type": "string",
-              "enum": ["roiWithMenuAnnotationsInOut"]
-            },
-            "roi":{
-              "$ref": "roi.schema.json"
-            },
-            "annotations":{
-              "type": "array",
-              "items": {
-                "$ref": "annotation.schema.json"
-              }
-            }
-          },
-          "required": ["type","roi","annotations"]
+          "required": ["type","typeROI","annotations"]
         }
       ]
     },
