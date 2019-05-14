@@ -1,27 +1,26 @@
 {
   "name": "Lesion annotation with three viewers",
-  "description": "This annotation configuration allows the annotation implicit ROIs using points",
+  "description": "This annotation configuration allows the annotation implicit ROIs using points.",
   "version": "1.0.2",
   "owner": "user@email.com",
   "privacy": "PUBLIC",
   "creationDate": "April 22, 2019",
-  "type": "ANNOTATION",
   
   "annotationTables": {
     "lesion": {
       "defaultAnnotations": [
         {
           "title": "Pathological tissue: Lesion",
-          "typeAnnotation": "text",
+          "typeAnnotation": "TEXT",
           "ontologyId":"https://bioportal.bioontology.org/ontologies/SNOMEDCT",
-          "ontologyValue": "http://purl.bioontology.org/ontology/SNOMEDCT/52988006",
+          "ontologyConcept": "http://purl.bioontology.org/ontology/SNOMEDCT/52988006",
           "valueToDisplay": "Lesion"
         }
       ],
       "userAnnotations": [
         {
           "title": "Location",
-          "typeAnnotation": "text",
+          "typeAnnotation": "TEXT",
           "ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
           "hasDefaultValue": false,
           "possibleValues": [
@@ -46,18 +45,19 @@
   "inputs": {
     "imagesA":{
       "name": "Input images",
-      "description": "Input images for the annotation tool",
+      "description": "Input images for the annotation tool.",
       "isList": true,
       "filter": {
         "test": "test"
       },
       "type": "imageEntityInOut",
       "imageEntityInOut_Type": "ANATOMICAL",
+      "imageEntityInOut_FileFormat": "dicom.gz",
       "required": true
     },
     "imagesB":{
       "name": "Input images",
-      "description": "Input images for the annotation tool",
+      "description": "Input images for the annotation tool.",
       "isList": true,
       "filter": {
         "test": "test"
@@ -70,23 +70,43 @@
   },
 
   "outputs": {
-    "rois":{
-      "name": "Created ROIs",
-      "description": "ROIs created with the annotation tool",
+    "lesions":{
+      "name": "Created ROIs and annotations",
+      "description": "ROIs and corresponding annotations created with the annotation tool.",
       "isList": true,
-      "type": "roiInOut",
-      "roiInOut_FileFormat": "json",
-      "schema": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/roi.schema.json"
-    },
-    "annotations":{
-      "name": "Created annotations",
-      "description": "Annotations created with the annotation tool",
-      "isList": true,
-      "type": "annotationInOut",
-      "annotationInOut_FileFormat": "json",
-      "schema": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/annotation.schema.json"
+      "type": "roiWithAnnotationsInOut",
+      "typeROI": "EXPLICIT",
+      "annotations": [
+        {
+          "typeAnnotationForm": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+          "propertiesAnnotation": {
+            "isOntologyBased": true,
+            "typeAnnotationOptions": "TEXT",
+            "ontologyId": "https://bioportal.bioontology.org/ontologies/SNOMEDCT",
+            "options": [
+              {
+                "value": "Corpus Callosum",
+                "valueToDisplay": "CC",
+                "suboptions": [
+                  {
+                    "value": "Thalamus",
+                    "valueToDisplay": "TH"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     }
   },
+
+  "mappingFunctions": [
+    {
+      "roiInputName":"inputRoi",
+      "annotationInputName":"imagesB"
+    }
+  ],
 
   "configuration":{
     "viewers": {

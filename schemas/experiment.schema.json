@@ -500,7 +500,8 @@
         "rightUnits":{
           "$ref": "#/definitions/units"
         }
-      }
+      },
+      "required": ["leftLimit","leftUnits","rightLimit","rightUnits"]
     },
 
     "toleranceWindow_betweenVariables": {

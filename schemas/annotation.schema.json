@@ -6,45 +6,132 @@
   "TODOS": [
     "Usually an annotation is a simple comment. In the future an annotation can be an image, for instance a probability mask."
   ],
-  "properties":{
-    "typeAnnotation": {
-      "description": "",
-      "type": "string",
-      "enum": ["text","image","number"]
-    },
-    "status": {
-      "description": "Status of the annotation: saved or submitted",
-      "type": "string",
-      "enum": ["SAVED","SUBMITTED"]
-    },
-    "reference": {
-      "roiId": {
-        "description": "Id of the ROI annotated by this annotation",
-        "type": "string"
-      },
-      "materializedTaskId":{
-        "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
-        "type": "string"
-      }
-    },
-    "properties": {
-      "description": "Properties of the annotation. The list of properties depends in the type of annotation.",
-      "type": "object",
-      "properties": {
-        "ontologyId": {
-          "description": "Id of the ontology where the value of the annotation is retrieved.",
-          "type": "string"
+  "definitions": {
+
+    "annotationBasic":{
+      "$id": "#annotationBasic",
+      "description": "Basic description of an annotation",
+      "properties":{
+        "typeAnnotationForm":{
+          "$ref": "annotationForm.schema.json#/definitions/typeAnnotationForm"
         },
-        "ontologyValue": {
-          "description": "Value in the ontology selected for the annotation.",
-          "type": "string"
+        "typeAnnotation": {
+          "description": "",
+          "type": "string",
+          "enum": ["TEXT","IMAGE","NUMBER","BOOLEAN"]
         },
-        "PreferredName": {
-          "description": "Value preferred bame in the ontology selected for the annotation.",
-          "type": "string"
+        "status": {
+          "description": "Status of the annotation: saved or submitted",
+          "type": "string",
+          "enum": ["SAVED","SUBMITTED"]
+        },
+        "reference": {
+          "roiId": {
+            "description": "Id of the ROI annotated by this annotation",
+            "type": "string"
+          },
+          "materializedTaskId":{
+            "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
+            "type": "string"
+          }
+        },
+        "properties": {
+          "description": "Properties of the annotation. The list of properties depends in the type of annotation.",
+          "type": "object",
+          "properties": {
+            "isOntologyBased":{
+              "description": "True if the annotation and its options are based on an ontology",
+              "type": "boolean"
+            },
+            "ontologyId": {
+              "description": "Id of the ontology where the value of the annotation is retrieved.",
+              "type": "string"
+            }
+          }
         }
-      }
+      },
+      "required": ["typeAnnotationForm", "typeAnnotation", "status", "reference", "properties"]
+    },
+
+    "annotationMultipleChoiceMultipleAnswer":{
+      "$id": "#annotationMultipleChoiceMultipleAnswer",
+      "description": "Description an annotation with multiple answers.",
+      "allOf": [
+        { "$ref": "#/definitions/annotationBasic" },
+        {
+          "properties":{
+            "typeAnnotationForm": {
+              "enum": ["MULTIPLE_CHOICE_MULTIPLE_ANSWER"]
+            },
+            "properties":{
+              "values": {
+                "description": "List of multiple values selected.",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+
+    "annotationMultipleChoiceSingleAnswer":{
+      "$id": "#annotationMultipleChoiceSingleAnswer",
+      "description": "Description an annotation with a single answers.",
+      "allOf": [
+        { "$ref": "#/definitions/annotationBasic" },
+        {
+          "properties":{
+            "typeAnnotationForm": {
+              "enum": ["MULTIPLE_CHOICE_SINGLE_ANSWER"]
+            },
+            "properties":{
+              "value": {
+                "description": "Selected value.",
+                "type": "string"
+              },
+              "valueToDisplay": {
+                "description": "Value to be shown to the user. For instance the value can be FMA.org/6758 but the preffered value is CorpusCallosum.",
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+
+    "annotationOpenEnded":{
+      "$id": "#annotationOpenEnded",
+      "description": "Description an openended annotation.",
+      "allOf": [
+        { "$ref": "#/definitions/annotationBasic" },
+        {
+          "properties":{
+            "typeAnnotationForm": {
+              "enum": ["OPEN_ENDED"]
+            },
+            "properties":{
+              "concept":{
+                "description": "Concept of the value. For instance Volume.",
+                "type": "string"
+              },
+              "value": {
+                "description": "Value of the annotation.",
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
     }
+
   },
-  "required": ["typeAnnotation", "status", "reference", "properties"]
+  "oneOf": [
+    { "$ref": "#/definitions/annotationMultipleChoiceMultipleAnswer" },
+    { "$ref": "#/definitions/annotationMultipleChoiceSingleAnswer" },
+    { "$ref": "#/definitions/annotationOpenEnded" }
+
+  ]
 }

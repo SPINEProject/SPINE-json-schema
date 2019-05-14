@@ -42,7 +42,9 @@
       "$id" : "#spineTypeInOut",
       "description": "SPINE Type",
       "type": "string",
-      "enum": ["String","Number","imageFileInOut","imageEntityInOut","auxiliaryImageFile","lookupTableInOut","roiInOut","annotationInOut"]
+      "enum": ["String","Number","imageFileInOut","imageEntityInOut",
+        "auxiliaryImageFile","lookupTableInOut","roiInOut","annotationInOut",
+        "roiWithAnnotationsInOut"]
     },
 
     "inputOutput": {
@@ -314,16 +316,38 @@
               "type": "string",
               "enum": ["annotationInOut"]
             },
-            "schema":{
-             "description": "Schema to be used for the format of the annotation",
-              "type": "string",
-              "enum": ["https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/annotation.schema.json"]
-            },
-            "annotationInOut_FileFormat": {
-              "$ref": "#/definitions/annotationInOut_FileFormat"
+            "annotation": {
+              "$ref": "annotation.schema.json"
             }
           },
-          "required": ["type","schema","annotationInOut_FileFormat"]
+          "required": ["type","annotation"]
+        }
+      ]
+    },
+
+    "roiWithAnnotationsInOut":{
+      "$id": "#roiWithAnnotationsInOut",
+      "description": "Schema defining an roi with associated annotations as input or output",
+      "type": "object",
+      "allOf": [
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["roiWithAnnotationsInOut"]
+            },
+            "typeROI":{
+              "$ref": "roi.schema.json#/definitions/typeROI"
+            },
+            "annotations":{
+              "type": "array",
+              "items": {
+                "$ref": "annotationForm.schema.json"
+              }
+            }
+          },
+          "required": ["type","typeROI","annotations"]
         }
       ]
     },
@@ -342,6 +366,7 @@
         {"$ref": "#/definitions/auxiliaryImageFile"},
         {"$ref": "#/definitions/roiInOut"},
         {"$ref": "#/definitions/annotationInOut"},
+        {"$ref": "#/definitions/roiWithAnnotationsInOut"},
         {"$ref": "#/definitions/String"},
         {"$ref": "#/definitions/Number"},
         {"$ref": "#/definitions/imageFileInOut"},
