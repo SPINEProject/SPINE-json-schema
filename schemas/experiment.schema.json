@@ -737,9 +737,9 @@
                 }
               }
             },
-            "statisticalModel": {
-              "description": "Statistical model for the experiment",
-              "$ref": "statisticalModel.schema.json#/definitions/statisticalModel"
+            "statisticalModelId": {
+              "description": "Id of the statistical in the system",
+              "type": "string"
             },
             "systemVariablesForStatisticalModel": {
               "description": "Variables from the system assigned to the variables of the statistical model.",

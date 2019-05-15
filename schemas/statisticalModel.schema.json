@@ -3,7 +3,8 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Statistical Model",
   "TODOS": [
-    "1. Ask a specialist to get the full set of variableTypeInModel."
+    "1. Ask a specialist to get the full set of variableTypeInModel.",
+    "2. statisticalModel.author requires validation"
   ],
     "QUESTIONS":[
   ],
@@ -100,6 +101,10 @@
           "description": "Type of statistical model in SPINE",
           "type": "string",
           "enum": ["SPINE", "USER_DEFINED"]
+        },
+        "author": {
+          "description": "In case the model is USER_DEFINED then the author is required.",
+          "type": "string"
         },
         "variables": {
           "description": "Variables used in the model. Each variable or agregation of variables, e.g., summation, has a name and corresponds to the each key in this object.",
