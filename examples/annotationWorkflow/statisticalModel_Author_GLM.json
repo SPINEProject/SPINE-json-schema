@@ -17,5 +17,6 @@
       "statisticalType": ["CONTINUOUS"]
     }
   },
-  "formula":"Y=\\sum_{i} X_{i}"
+  "formula":"Y=\\sum_{i} X_{i}",
+  "scriptId": "id of the author script in SPINE"
 }
