@@ -1,0 +1,21 @@
+{
+  "name": "General Lineal Model - Alfredo",
+  "spineType": "USER_DEFINED",
+  "author": "amoralespinzon@bwh.harvard.edu",
+  "variables": {
+    "Y": {
+      "name": "Y",
+      "isList": false,
+      "variableTypeInModel": "OUTCOME",
+      "type":"Number",
+      "statisticalType":"CONTINUOUS"
+    },
+    "X": {
+      "name": "X",
+      "isList": true,
+      "variableTypeInModel": "EXPLANATORY",
+      "statisticalType": ["CONTINUOUS"]
+    }
+  },
+  "formula":"Y=\\sum_{i} X_{i}"
+}
