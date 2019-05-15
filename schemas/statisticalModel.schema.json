@@ -2,6 +2,7 @@
   "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/statisticalModel.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Statistical Model",
+  "type": "object",
   "TODOS": [
     "1. Ask a specialist to get the full set of variableTypeInModel.",
     "2. statisticalModel.author requires validation"
@@ -35,11 +36,15 @@
           "type": "string",
           "enum": ["Number", "MultipleChoice", "Date", "Text"]
         },
+        "isList": {
+          "type": "boolean",
+          "enum": [false]
+        },
         "statisticalType":{
           "$ref": "#/definitions/statisticalType"
         }
       },
-      "required":["statisticalType"]
+      "required":["statisticalType", "isList"]
     },
 
     "listOfVariables": {
@@ -54,6 +59,10 @@
             "$ref": "#/definitions/variableTypeInModel"
           }
         },
+        "isList": {
+          "type": "boolean",
+          "enum": [true]
+        },
         "statisticalType": {
           "description": "Statistical types of the variables allowed to be in the list.",
           "type": "array",
@@ -62,7 +71,7 @@
           }
         }
       },
-      "required": ["variables", "variablesType"]
+      "required": ["statisticalType", "isList"]
     },
 
     "variableInModel": {
@@ -75,52 +84,51 @@
               "description": "Human readable variable name",
               "type": "string"
             },
+            "isList": {
+              "description": "True if the variable is a list of variables.",
+              "type": "boolean"
+            },
             "variableTypeInModel": {
               "$ref": "#variableTypeInModel"
             }
           },
-          "required": ["name", "variableTypeInModel"]
+          "required": ["name", "variableTypeInModel", "isList"]
         }
       ],
       "oneOf":[
         {"$ref": "#/definitions/variable"},
         {"$ref": "#/definitions/listOfVariables"}
       ]
-    },
-
-    "statisticalModel": {
-      "$id": "#statisticalModel",
-      "description": "Statistical model",
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "Name of the statistical model.",
-          "type": "string"
-        },
-        "spineType": {
-          "description": "Type of statistical model in SPINE",
-          "type": "string",
-          "enum": ["SPINE", "USER_DEFINED"]
-        },
-        "author": {
-          "description": "In case the model is USER_DEFINED then the author is required.",
-          "type": "string"
-        },
-        "variables": {
-          "description": "Variables used in the model. Each variable or agregation of variables, e.g., summation, has a name and corresponds to the each key in this object.",
-          "patternProperties" : {
-            ".*" : {
-              "allOf":[
-                {"$ref": "core.schema.json#/definitions/variableInModel"}
-              ]
-            }  
-          }
-        },
-        "formula":{
-          "description": "Formula for the statistical model. The formula must include all the variables defined in the variables section but also the parameters to be calculated.",
-          "type": "string"
-        }
-      }
     }
-  }
+  },
+  "properties": {
+    "name": {
+      "description": "Name of the statistical model.",
+      "type": "string"
+    },
+    "spineType": {
+      "description": "Type of statistical model in SPINE",
+      "type": "string",
+      "enum": ["SPINE", "USER_DEFINED"]
+    },
+    "author": {
+      "description": "In case the model is USER_DEFINED then the author is required.",
+      "type": "string"
+    },
+    "variables": {
+      "description": "Variables used in the model. Each variable or agregation of variables, e.g., summation, has a name and corresponds to the each key in this object.",
+      "patternProperties" : {
+        ".*" : {
+          "allOf":[
+            {"$ref": "#/definitions/variableInModel"}
+          ]
+        }  
+      }
+    },
+    "formula":{
+      "description": "Formula for the statistical model. The formula must include all the variables defined in the variables section but also the parameters to be calculated.",
+      "type": "string"
+    }
+  },
+  "required": ["name", "spineType", "variables"]
 }
