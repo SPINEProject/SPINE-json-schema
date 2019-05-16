@@ -2,9 +2,7 @@
   "hypothesis": "yes",
   "description": "B&S",
   "question": "Is EDSS correlated to lesions in T2 ?",
-  "reference": {
-    "projectId": "ef192f79e1751488b5bc2e1e730142d2"
-  },
+  "projectId": "ef192f79e1751488b5bc2e1e730142d2",
   "privacy": "PUBLIC",
   "owner": "experimentuserowner@email.com",
   "creationDate": "2019-04-30T16:11:21.798Z",
@@ -19,12 +17,29 @@
   ],
   "selectionCriteria":{
   	"inclusion": {
-  		"logicalOperator": "OR",
+  	  "logicalOperator": "OR",
       "criteria": [
 		  	{
-		    	"value": 6,
-		    	"operator": "equal",
-		    	"variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec"
+		    	"value": "6",
+		    	"operator": {
+		    		"type":"ORDINAL_OPERATOR",
+		    		"label":"<",
+		    		"value": "less than"
+		    	},
+		    	"variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec",
+		    	"timeFrame":{
+			    	"referenceTimeFrame": "DOB",
+			    	"targetDate": {
+						  "distance": 6,
+						  "units": "YEAR"
+					  },
+					  "toleranceWindow": {
+						  "leftLimit": 2,
+						  "rightLimit": 1,
+						  "leftUnits":"YEAR",
+						  "rightUnits":"YEAR"
+					  }
+			   	}
 		   	}
 		  ],
 		  "expressions": [
@@ -32,24 +47,75 @@
 	        "logicalOperator": "AND",
 		      "criteria": [
 		        {
-		          "value": 4,
-		          "operator": "greaterequal",
-		          "variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec"
+		          "value": "4",
+		          "operator": {
+				    		"type":"ORDINAL_OPERATOR",
+				    		"label":"<=",
+				    		"value": "less than or equal to"
+				    	},
+		          "variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec",
+		          "timeFrame":{
+			          "referenceTimeFrame": "First Attack",
+					    	"targetDate": {
+								  "distance": 5,
+								  "units": "YEAR"
+							  },
+							  "toleranceWindow": {
+								  "leftLimit": 2,
+								  "rightLimit": 1,
+								  "leftUnits":"YEAR",
+								  "rightUnits":"YEAR"
+							  }
+							}
 		        },
 		        {
-		          "value": "1969-12-25T05:00:00.000Z",
-		          "operator": "greaterequal",
-		          "variableId": "ATTACK_End_Date"
-		        }
+		          "value": "10",
+		          "operator": {
+				    		"type":"CATEGORICAL_OPERATOR",
+				    		"label":"!=",
+				    		"value": "not equals"
+				    	},
+		          "variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec",
+		          "timeFrame":{
+			          "referenceTimeFrame": "First Attack",
+					    	"targetDate": {
+								  "distance": 5,
+								  "units": "YEAR"
+							  },
+							  "toleranceWindow": {
+								  "leftLimit": 2,
+								  "rightLimit": 1,
+								  "leftUnits":"YEAR",
+								  "rightUnits":"YEAR"
+							  }
+			        }
+			      }
 		      ],
 		      "expressions": [
 		        {
 		        	"logicalOperator": "AND",
 		          "criteria": [
 		            {
-		              "value": null,
-		              "operator": "is",
-		              "variableId": "CLINICAL_T25FW_Ankle_Foot_Orthosis"
+		              "value": "10",
+		              "operator": {
+						    		"type":"ORDINAL_OPERATOR",
+						    		"label":"=",
+						    		"value": "equals"
+						    	},
+		              "variableId": "CLINICAL_T25FW_Ankle_Foot_Orthosis",
+		              "timeFrame":{
+			              "referenceTimeFrame": "DOB",
+							    	"targetDate": {
+										  "distance": 5,
+										  "units": "YEAR"
+									  },
+									  "toleranceWindow": {
+										  "leftLimit": 2,
+										  "rightLimit": 1,
+										  "leftUnits":"YEAR",
+										  "rightUnits":"YEAR"
+									  }
+									}
 		            }
 		          ],
 		          "expressions": []
@@ -62,9 +128,26 @@
   		"logicalOperator": "OR",
       "criteria": [
 		  	{
-		    	"value": 6,
-		    	"operator": "equal",
-		    	"variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec"
+		    	"value": "6",
+		    	"operator": {
+		    		"type":"ORDINAL_OPERATOR",
+		    		"label":"=",
+		    		"value": "equals"
+		    	},
+		    	"variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec",
+		    	"timeFrame":{
+            "referenceTimeFrame": "DOB",
+			    	"targetDate": {
+						  "distance": 5,
+						  "units": "YEAR"
+					  },
+					  "toleranceWindow": {
+						  "leftLimit": 2,
+						  "rightLimit": 1,
+						  "leftUnits":"YEAR",
+						  "rightUnits":"YEAR"
+					  }
+					}
 		   	}
 		  ],
 		  "expressions": [
@@ -72,14 +155,48 @@
 	        "logicalOperator": "AND",
 		      "criteria": [
 		        {
-		          "value": 4,
-		          "operator": "greaterequal",
-		          "variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec"
+		          "value": "4",
+		          "operator": {
+				    		"type":"ORDINAL_OPERATOR",
+				    		"label":"=",
+				    		"value": "equals"
+				    	},
+		          "variableId": "CLINICAL_9HPT_DomHand_Trial_1_sec",
+		          "timeFrame":{
+	              "referenceTimeFrame": "DOB",
+					    	"targetDate": {
+								  "distance": 5,
+								  "units": "YEAR"
+							  },
+							  "toleranceWindow": {
+								  "leftLimit": 2,
+								  "rightLimit": 1,
+								  "leftUnits":"YEAR",
+								  "rightUnits":"YEAR"
+							  }
+							}
 		        },
 		        {
 		          "value": "1969-12-25T05:00:00.000Z",
-		          "operator": "greaterequal",
-		          "variableId": "ATTACK_End_Date"
+		          "operator": {
+				    		"type":"ORDINAL_OPERATOR",
+				    		"label":"=",
+				    		"value": "equals"
+				    	},
+		          "variableId": "ATTACK_End_Date",
+		          "timeFrame":{
+	              "referenceTimeFrame": "DOB",
+					    	"targetDate": {
+								  "distance": 5,
+								  "units": "YEAR"
+							  },
+							  "toleranceWindow": {
+								  "leftLimit": 2,
+								  "rightLimit": 1,
+								  "leftUnits":"YEAR",
+								  "rightUnits":"YEAR"
+							  }
+							}
 		        }
 		      ],
 		      "expressions": [
@@ -87,9 +204,26 @@
 		        	"logicalOperator": "AND",
 		          "criteria": [
 		            {
-		              "value": null,
-		              "operator": "is",
-		              "variableId": "CLINICAL_T25FW_Ankle_Foot_Orthosis"
+		              "value": "25",
+		              "operator": {
+						    		"type":"ORDINAL_OPERATOR",
+						    		"label":"=",
+						    		"value": "equals"
+						    	},
+		              "variableId": "CLINICAL_T25FW_Ankle_Foot_Orthosis",
+		              "timeFrame":{
+			              "referenceTimeFrame": "DOB",
+							    	"targetDate": {
+										  "distance": 5,
+										  "units": "YEAR"
+									  },
+									  "toleranceWindow": {
+										  "leftLimit": 2,
+										  "rightLimit": 1,
+										  "leftUnits":"YEAR",
+										  "rightUnits":"YEAR"
+									  }
+									}
 		            }
 		          ],
 		          "expressions": []
@@ -111,6 +245,7 @@
   		"anatomicalAnnotation":{
         "ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
         "ontologyClassId": "http://purl.org/sig/ont/fma/fma86464"
+  		}
   	}
   },
   "timeFrame":{
@@ -164,5 +299,4 @@
 			  }
 		  ]
   }
-}
 }
