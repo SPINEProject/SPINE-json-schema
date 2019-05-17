@@ -149,10 +149,10 @@
         {
           "properties":{
             "label":{
-              "enum": ["does not contains"]
+              "enum": ["does not contain"]
             },
             "value":{
-              "enum": ["does not contains"]
+              "enum": ["does not contain"]
             }
           },
           "required": ["label", "value"]
