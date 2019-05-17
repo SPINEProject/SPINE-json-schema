@@ -412,10 +412,19 @@
             "entityType": {
               "enum": ["PATHOLOGICAL"]
             },
-            "metric": {
+            "metricAnnotation": {
               "description": "Metric or measurement to be calculated.",
-              "type": "string",
-              "enum": ["VOLUME", "MEAN_INTENSITY"]
+              "type": "object",
+              "properties": {
+                "ontologyId": {
+                  "description": "Id of the pathological ontology where the value of the annotation is retrieved.",
+                  "type": "string"
+                },
+                "ontologyClassId": {
+                  "description": "Id of the class in the pathological ontology selected for the annotation.",
+                  "type": "string"
+                }
+              }
             },
             "pathologicalAnnotation":{
               "description": "Description of the patholocial annotation",
@@ -463,10 +472,19 @@
             "entityType": {
               "enum": ["ANATOMICAL"]
             },
-            "metric": {
+            "metricAnnotation": {
               "description": "Metric or measurement to be calculated.",
-              "type": "string",
-              "enum": ["VOLUME", "MEAN_INTENSITY"]
+              "type": "object",
+              "properties": {
+                "ontologyId": {
+                  "description": "Id of the pathological ontology where the value of the annotation is retrieved.",
+                  "type": "string"
+                },
+                "ontologyClassId": {
+                  "description": "Id of the class in the pathological ontology selected for the annotation.",
+                  "type": "string"
+                }
+              }
             },
             "anatomicalAnnotation":{
               "description": "Description of the anatomical annotation",

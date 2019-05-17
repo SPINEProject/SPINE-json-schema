@@ -265,7 +265,11 @@
   	},
   	"X1": {
   		"entityType": "ANATOMICAL",
-  		"metric": "VOLUME",
+  		"metricAnnotation": {
+          "name": "Volume",
+          "ontologyId": "http://bioportal.bioontology.org/ontologies/RADLEX",
+          "ontologyClassId": "http://radlex.org/RID/RID49526"
+        },
   		"anatomicalAnnotation":{
 			"ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
 			"ontologyClassId": "http://purl.org/sig/ont/fma/fma86464"
