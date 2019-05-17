@@ -17,7 +17,11 @@
   ],
   "selectionCriteria":{
   	"inclusion": {
-  	  "logicalOperator": "OR",
+  	  "logicalOperator": {
+        "type":"LOGICAL_OPERATOR",
+        "label":"AND",
+        "value": "AND"
+      },
       "criteria": [
 		  	{
 		    	"value": "6",
@@ -44,7 +48,11 @@
 		  ],
 		  "expressions": [
 		    {
-	        "logicalOperator": "AND",
+              "logicalOperator": {
+                "type":"LOGICAL_OPERATOR",
+                "label":"AND",
+                "value": "AND"
+              },
 		      "criteria": [
 		        {
 		          "value": "4",
@@ -93,7 +101,11 @@
 		      ],
 		      "expressions": [
 		        {
-		        	"logicalOperator": "AND",
+                  "logicalOperator": {
+                    "type":"LOGICAL_OPERATOR",
+                    "label":"AND",
+                    "value": "AND"
+                  },
 		          "criteria": [
 		            {
 		              "value": "10",
@@ -125,7 +137,11 @@
 		  ]
   	},
   	"exclusion": {
-  		"logicalOperator": "OR",
+      "logicalOperator": {
+        "type":"LOGICAL_OPERATOR",
+        "label":"OR",
+        "value": "OR"
+      },
       "criteria": [
 		  	{
 		    	"value": "6",
@@ -152,7 +168,11 @@
 		  ],
 		  "expressions": [
 		    {
-	        "logicalOperator": "AND",
+              "logicalOperator": {
+                "type":"LOGICAL_OPERATOR",
+                "label":"OR",
+                "value": "OR"
+              },
 		      "criteria": [
 		        {
 		          "value": "4",
@@ -201,7 +221,11 @@
 		      ],
 		      "expressions": [
 		        {
-		        	"logicalOperator": "AND",
+                  "logicalOperator": {
+                    "type":"LOGICAL_OPERATOR",
+                    "label":"OR",
+                    "value": "OR"
+                  },
 		          "criteria": [
 		            {
 		              "value": "25",

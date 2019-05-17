@@ -341,7 +341,7 @@
       "properties":{
         "logicalOperator":{
           "description": "Logical operator ruling the expression. For instance if the logical operator is AND, then all the expression will AND all the criteria and expressions, e.g., Criteria_1 AND Criteria_2 AND Expression_1 AND Expression_2",
-          "ref": "#/definitions/logicalOperator"
+          "$ref": "#/definitions/logicalOperator"
         },
         "criteria": {
           "description": "List of criteria in the expression. For now it is only clinicalCriterion",
