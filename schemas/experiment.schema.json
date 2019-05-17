@@ -478,6 +478,10 @@
                 "description": "Id of the class in the anatomical ontology selected for the annotation.",
                 "type": "string"
               }
+            },
+            "workflowId": {
+              "description": "Id of the workflow selected to get the variable",
+              "type": "string"
             }
           }
         }
