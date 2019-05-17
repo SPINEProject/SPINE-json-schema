@@ -243,9 +243,10 @@
   		"entityType": "ANATOMICAL",
   		"metric": "VOLUME",
   		"anatomicalAnnotation":{
-        "ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
-        "ontologyClassId": "http://purl.org/sig/ont/fma/fma86464"
-  		}
+			"ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
+			"ontologyClassId": "http://purl.org/sig/ont/fma/fma86464"
+  		},
+		"workflowId": "workflow_uuid"
   	}
   },
   "timeFrame":{
