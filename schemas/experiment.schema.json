@@ -416,6 +416,10 @@
               "description": "Metric or measurement to be calculated.",
               "type": "object",
               "properties": {
+                "preferredName":{
+                  "description": "Preferred name of the class in the ontology.",
+                  "type": "string"
+                },
                 "ontologyId": {
                   "description": "Id of the pathological ontology where the value of the annotation is retrieved.",
                   "type": "string"

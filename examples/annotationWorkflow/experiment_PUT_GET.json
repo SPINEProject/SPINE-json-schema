@@ -266,16 +266,36 @@
   	"X1": {
   		"entityType": "ANATOMICAL",
   		"metricAnnotation": {
-          "name": "Volume",
+          "preferredName": "Volume",
           "ontologyId": "http://bioportal.bioontology.org/ontologies/RADLEX",
           "ontologyClassId": "http://radlex.org/RID/RID49526"
         },
   		"anatomicalAnnotation":{
+			"preferredName": "Corpus callosum",
 			"ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
 			"ontologyClassId": "http://purl.org/sig/ont/fma/fma86464"
   		},
 		"workflowId": "workflow_uuid"
-  	}
+  	},
+	  "X2": {
+		  "entityType": "PATHOLOGICAL",
+		  "metricAnnotation": {
+			  "preferredName": "Volume",
+			  "ontologyId": "http://bioportal.bioontology.org/ontologies/RADLEX",
+			  "ontologyClassId": "http://radlex.org/RID/RID49526"
+		  },
+		  "pathologicalAnnotation":{
+			  "preferredName": "Lesion",
+			  "ontologyId": "https://bioportal.bioontology.org/ontologies/RADLEX",
+			  "ontologyClassId": "http://radlex.org/RID/RID38780"
+		  },
+		  "anatomicalAnnotation":{
+			  "preferredName": "Corpus callosum",
+			  "ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
+			  "ontologyClassId": "http://purl.org/sig/ont/fma/fma86464"
+		  },
+		  "workflowId": "workflow_uuid"
+	  }
   },
   "timeFrame":{
 	  "primaryTimeReference":"DOB",
