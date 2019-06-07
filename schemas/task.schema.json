@@ -28,7 +28,7 @@
           "allOf":[
             {"$ref": "core.schema.json#/definitions/spineInputOuput"}
           ]
-        }  
+        }
       }
     },
 
@@ -55,7 +55,7 @@
           "allOf":[
             {"$ref": "core.schema.json#/definitions/spineInputOuput"}
           ]
-        }  
+        }
       }
     }
 
@@ -148,6 +148,20 @@
     "outputs": {
       "description": "Object with the outputs of the Workflow",
       "$ref": "#/definitions/spineOutputsTask"
+    },
+    "helpFile" : {
+      "description": "Help file for an interactive task",
+      "type":"object",
+      "properties": {
+        "text":{
+          "description":"Text to help the user performing the task. Markdown format.",
+          "type":"string"
+        },
+        "video":{
+          "description":"Tutorial video",
+          "type":"string"
+        }
+      }
     }
   },
   "required": [
