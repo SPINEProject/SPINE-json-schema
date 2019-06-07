@@ -9,6 +9,10 @@
         "description":"Task Executor UUID",
         "type":"string"
       },
+      "label":{
+        "type":"string",
+        "description": "Label for this workflow instance",
+      },
       "reference": {
         "description":"References to other entities",
         "type":"object",

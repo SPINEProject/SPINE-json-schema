@@ -13,6 +13,10 @@
       "description":"Status of the materializedTask.",
       "enum": ["TODO", "SAVE", "SUBMITTED"]
     },
+    "label":{
+      "type":"string",
+      "description": "Label for the materialized task (for instance a case number)",
+    },
     "assignedUser": {
       "type":"string",
       "description":"ID of the user assigned to the task"

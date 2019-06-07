@@ -1,0 +1,55 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/miniWorkflowSet.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SPINE Mini Workflow Set",
+  "type": "object",
+  "properties": {
+    "miniWorkflows":{
+      "type":"object",
+      "additionalProperties": false,
+      "description":"The sets of mini workflow. One object = one set.",
+      "minProperties": 1,
+      "patternProperties" : {
+        ".*" : {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name":{
+              "description":"Name of the mini workflow",
+              "type":"string"
+            },
+            "description":{
+              "description":"Description of the mini workflow",
+              "type":"string"
+            },
+            "tasks":{
+              "type": "array",
+              "description":"List of key corresponding to the tasks of the mini workflow",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required":["tasks"]
+        }
+      }
+    },
+    "reference" :{
+      "type":"object",
+      "additionalProperties": false,
+      "properties": {
+        "userId":{
+          "type":"string",
+          "description":"User owning this set"
+        },
+        "workflowId":{
+          "type":"string",
+          "description":"Reference to the workflow"
+        }
+      },
+      "required":["workflowId", "userId"]
+    }
+  },
+  "required": ["miniWorkflows","reference"],
+  "additionalProperties": false
+}
