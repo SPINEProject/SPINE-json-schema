@@ -1,7 +1,7 @@
 {
   "uuid":"uuid",
   "version": "0.1",
-  "name": "Task Lesion Annotation NMO",
+  "name": "Select lower slice / Select lower slice of Medulla Oblongata",
   "description": "Task to annotate three images",
   "owner":"gregory.bliault@u-bordeaux.fr",
   "privacy":"PUBLIC",
