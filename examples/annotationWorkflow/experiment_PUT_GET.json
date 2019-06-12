@@ -2,8 +2,10 @@
   "hypothesis": "yes",
   "description": "B&S",
   "question": "Is EDSS correlated to lesions in T2 ?",
-  "projectId": "ef192f79e1751488b5bc2e1e730142d2",
   "privacy": "PUBLIC",
+  "reference":{
+    "projectId": "ef192f79e1751488b5bc2e1e730142d2",
+  },
   "owner": "experimentuserowner@email.com",
   "creationDate": "2019-04-30T16:11:21.798Z",
   "uuid": "96298b28e3f16f1ef85526af4200256a",
@@ -292,7 +294,7 @@
 				  "rightUnits":"YEAR"
 			  }
 		  },
-		  "X":{
+		  "X1":{
 			  "targetDate": {
 				  "distance": 6,
 				  "units": "YEAR"
@@ -306,26 +308,26 @@
 		  }
 	  },
 	  "relativeConstraints": [
-			  {
-				  "variableRelativeFrom": "Y",
-				  "variableRelativeTo": "X1",
-				  "relationType": "CAN_BE",
-				  "toleranceWindow": {
-					  "leftLimit": 2,
-					  "rightLimit": 1,
-					  "leftUnits":"YEAR",
-					  "rightUnits":"YEAR"
-				  }
-			  },
-			  {
-				  "variableRelativeFrom": "X",
-				  "variableRelativeTo": "Y",
-				  "relationType": "CAN_BE",
-				  "toleranceWindow": {
-					  "leftLimit": 1,
-					  "rightLimit": 3
-				  }
+		  {
+			  "variableRelativeFrom": "Y",
+			  "variableRelativeTo": "X1",
+			  "relationType": "CAN_BE",
+			  "toleranceWindow": {
+				  "leftLimit": 2,
+				  "rightLimit": 1,
+				  "leftUnits":"YEAR",
+				  "rightUnits":"YEAR"
 			  }
-		  ]
+		  },
+		  {
+			  "variableRelativeFrom": "X",
+			  "variableRelativeTo": "Y",
+			  "relationType": "CAN_BE",
+			  "toleranceWindow": {
+				  "leftLimit": 1,
+				  "rightLimit": 3
+			  }
+		  }
+	  ]
   }
 }
