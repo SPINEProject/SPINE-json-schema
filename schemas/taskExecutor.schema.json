@@ -33,6 +33,14 @@
         "type":"string",
         "enum":  ["WAITING", "RUNNING", "DONE", "ERROR"]
       },
+      "label":{
+        "type":"string",
+        "description": "Label for the materialized task (for instance a case number)",
+      },
+      "miniWorkflow": {
+        "type":"string",
+        "description": "If this task is inside a mini workflow, the value of this attribute is the key of the corresponding mini workflow"
+      },
       "manualConfig": {
         "description":"Manual configuration of the task in case of manual task",
         "type":"object",

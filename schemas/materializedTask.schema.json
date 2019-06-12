@@ -13,6 +13,14 @@
       "description":"Status of the materializedTask.",
       "enum": ["TODO", "SAVE", "SUBMITTED"]
     },
+    "label":{
+      "type":"string",
+      "description": "Label for the materialized task (for instance a case number)",
+    },
+    "miniWorkflow": {
+      "type":"string",
+      "description": "If this task is inside a mini workflow, the value of this attribute is the key of the corresponding mini workflow"
+    },
     "assignedUser": {
       "type":"string",
       "description":"ID of the user assigned to the task"

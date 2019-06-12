@@ -4,10 +4,6 @@
   "title": "SPINE Workflow",
   "type": "object",
   "properties": {
-    "uuid": {
-      "description":"Workflow UUID",
-      "type":"string"
-    },
     "name": {
       "description":"Workflow name",
       "type":"string"
