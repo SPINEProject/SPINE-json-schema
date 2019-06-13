@@ -13,17 +13,31 @@
             "imageEntityInOut_FileFormat": "dicom.gz",
             "required": true
         },
-        "lower-bound":{
-            "name": "The lower bound",
-            "description": "The selected slice number for the lower bound",
+        "lowerSliceNumber":{
+            "name": "Lower axial slice number",
+            "description": "Lower axial slice number",
             "isList": false,
             "type": "Number",
+            "required": true,
+            "bindingMapping":{
+                "componentType": "viewer",
+                "viewerId": "0",
+                "orientation": "AXIAL",
+                "viewerProperty": "minSliceNumber"
+            }
         },
-        "upper-bound":{
+        "upperSliceNumber":{
             "name": "The upper bound",
             "description": "The selected slice number for the upper bound",
             "isList": false,
             "type": "Number",
+            "required": true,
+            "bindingMapping":{
+                "componentType": "viewer",
+                "viewerId": "0",
+                "orientation": "AXIAL",
+                "viewerProperty": "maxSliceNumber"
+            }
         }
     },
     "outputs": {
@@ -43,7 +57,7 @@
                         "options": [
                             {
                                 "value": "http://purl.bioontology.org/ontology/SNOMEDCT/279104005",
-                                "valueToDisplay": "Medulla Oblongata",
+                                "valueToDisplay": "Medulla Oblongata"
                             }
                         ]
                     }
@@ -53,18 +67,50 @@
     },
     "configuration":{
         "viewers": {
-            numberOfRows:1,  //
-			numberOfColumns:1,
-            viewers:[
-                {   type:"2D",
-                    orientationControlVisible:true,
-		            orientationControlDisabled:true,
-                    sequenceControlVisible:false,
-                    smoothingControlVisible:true,
-                    linkedControlVisible:true,  //obsolete?
-                    smoothing:false, //initial
-                    slice:14,   //initial slice
-                    orientation:2, //SAGIT-0, CORONAL-1, AXIAL-2
+            "numberOfRows":1,
+			"numberOfColumns":1,
+            "viewers":{
+                "0":{
+                    "name": "Only viewer",
+                    "type":"2D", // 2D or 3D
+                    "linkedControlVisible":false,  //If true then the linking check-box is visible. NOT USED FOR NOW.
+                    "location": {
+                        "row": 1,
+                        "column": 1
+                    },
+                    "initialState":{
+                        "initialSlice": {
+                            "strategy": "number", // or dynamic
+                            "value": "FIRST" // need to chack if there is constraint
+                        },
+                        "initialWindowLevel":{
+                            "strategy": "dynamic", // or number
+                            "value": "MIDDLE-FULL" // or [valueWindow, valueLevel], distributionBase
+                        }
+                    },
+                    "displayImages":{
+                        "possibleImagesToDisplay": ["T1"],
+                        "hasDefaultImageToDisplay": true,
+                        "defaultImageToDisplay": "T1"
+                    },
+                    "displayControls":{
+                        "orientationControlVisible": true,
+                        "orientationControlDisabled": true,
+                        "orientationOptions":["AXIAL"],
+                        "orientationByDefault": "AXIAL",
+                        "smoothing":{
+                            "smoothingControlVisible": true,
+                            "smoothingControlDisabled": false,
+                            "smoothingDefault": true
+                        },
+                        "sequence":{
+                            "sequenceControlVisible": false
+                        }
+                    }
+                }
+            },
+            "viewers":[
+                {   "type":"2D",
                     hasCropping:true,
                     croppingSlices:[0,0,0,0,14,256] //sagittal, coronal, axial
                 }

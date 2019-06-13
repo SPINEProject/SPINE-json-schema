@@ -12,6 +12,13 @@
             "imageEntityInOut_Type": "ANATOMICAL",
             "imageEntityInOut_FileFormat": "dicom.gz",
             "required": true
+        },
+        "lowerSliceNumber":{
+            "name": "Lower axial slice number",
+            "description": "Lower axial slice number",
+            "isList": false,
+            "type": "Number",
+            "required": true
         }
     },
     "outputs": {
@@ -28,6 +35,24 @@
             }
         }
     },
+    "bindingInputsToViewersInputs":[
+        {
+            "inputInTool": "lowerSliceNumber",
+            "inputInViewer":{
+                "viewerId":"0",
+                "viewerProperty": ["slicingRanges","AXIAL","minSliceNumber"]
+            }
+        }
+    ],
+    "bindingViewersOutputsToOutputs":[
+        {
+            "outputInTool": "slice_number_a",
+            "outputInViewer":{
+                "viewerId":"0",
+                "viewerProperty": ["slicingRanges","AXIAL","minSliceNumber"]
+            }
+        }
+    ],
     "configuration":{
         "viewers": {
             "numberOfRows":1,
@@ -42,9 +67,9 @@
                         "column": 1
                     },
                     "initialState":{
-                        "initialSliceNumber": {
-                            "strategy": "number", // or dynamic
-                            "value": "0" // or FIRST, LAST, MIDDLE
+                        "initialSlice": {
+                            "strategy": "dynamic", // or number
+                            "value": "FIRST" // or FIRST, LAST, MIDDLE- eg. first available
                         },
                         "initialWindowLevel":{
                             "strategy": "dynamic", // or number
@@ -68,6 +93,12 @@
                         },
                         "sequence":{
                             "sequenceControlVisible": false
+                        }
+                    },
+                    "slicingRanges":{
+                        "AXIAL":{
+                            "minSliceNumber": "$INPUT",
+                            "maxSliceNumber": "DEFAULT"
                         }
                     }
                 }
