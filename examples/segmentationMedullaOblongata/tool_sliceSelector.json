@@ -1,6 +1,7 @@
 {
-    "name": "Slice selector",
-    "description": "This tool has one viewer and is used to select a specific slice",
+    "id":"1dd174e57260e384c4f45e9c490004a9",
+    "name": "Slice selector tool",
+    "description": "This tool has one viewer and is used to select a specific slice in an image in a given direction, e.g., sagittal, coronal, or axial.",
     "version": "0.0.1",
     "privacy": "PUBLIC",
     "inputs": {
