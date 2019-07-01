@@ -1,24 +1,24 @@
 {
     "id":"1dd174e57260e384c4f45e9c490004a9",
     "name": "Slice selector tool",
-    "description": "This tool has one viewer and is used to select a specific slice in an image in a given direction, e.g., sagittal, coronal, or axial.",
+    "description": "This tool has one viewer and is used to select a specific slice in an image in the axial direction.",
     "version": "0.0.1",
     "privacy": "PUBLIC",
     "inputs": {
-        "T1":{
+        "inputImage":{
             "name": "Input image",
             "description": "Input image",
             "isList": false,
             "type": "imageEntityInOut",
             "imageEntityInOut_Type": "ANATOMICAL",
-            "imageEntityInOut_FileFormat": "dicom.gz",
+            "imageEntityInOut_FileFormat": "nii",
             "required": true
         }
     },
     "outputs": {
-        "slice_number_a":{
-            "name": "The slice number",
-            "description": "The selected slice number",
+        "slice_number_axial":{
+            "name": "The slice number in axial direction",
+            "description": "The selected slice number in axial direction",
             "isList": false,
             "type": "Number",
             "bindingMapping":{
@@ -35,7 +35,7 @@
 	        "numberOfColumns":1, // MaxColumns = 4
             "viewers":{
                 "0":{
-                    "name": "Only viewer",
+                    "name": "Axial viewer",
                     "type":"2D", // 2D or 3D
                     "linkedControlVisible":false,  //If true then the linking check-box is visible. NOT USED FOR NOW.
                     "location": {
@@ -43,9 +43,10 @@
                         "column": 1
                     },
                     "initialState":{
-                        "initialSliceNumber": {
-                            "strategy": "number", // or dynamic
-                            "value": "0" // or FIRST, LAST, MIDDLE
+                        "initialOrientationSliceNumber": {
+                            "orientation": "AXIAL",
+                            "strategy": "dynamic", // or dynamic
+                            "value": "MOST INFERIOR" // or FIRST, LAST, MIDDLE
                         },
                         "initialWindowLevel":{
                             "strategy": "dynamic", // or number
@@ -53,28 +54,12 @@
                         }
                     },
                     "displayImages":{
-                        "possibleImagesToDisplay": ["T1"],
+                        "possibleImagesToDisplay": ["inputImage"],
                         "hasDefaultImageToDisplay": true,
-                        "defaultImageToDisplay": "T1"
-                    },
-                    "displayControls":{
-                        "orientationControlVisible": true,
-                        "orientationControlDisabled": true,
-                        "orientationOptions":["AXIAL"],
-                        "orientationByDefault": "AXIAL",
-                        "smoothing":{
-                            "smoothingControlVisible": true,
-                            "smoothingControlDisabled": false,
-                            "smoothingDefault": true
-                        },
-                        "sequence":{
-                            "sequenceControlVisible": false
-                        }
+                        "defaultImageToDisplay": "inputImage"
                     }
                 }
             }
-        },
-        "widgets":{
         }
     }
 }
