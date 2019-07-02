@@ -20,7 +20,12 @@
             "name": "The slice number in axial direction",
             "description": "The selected slice number in axial direction",
             "isList": false,
-            "type": "Number",
+            "type": "roiInOut",
+            "typeROI": "IMPLICIT",
+            "implicitGeometryPointer": "SLICE",
+            "planeProperties":{
+                "anatomicalDirection": "AXIAL"
+            },
             "bindingMapping":{
                 "componentType": "viewer",
                 "viewerId": "0",

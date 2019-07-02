@@ -35,7 +35,8 @@
       "type": "roiWithAnnotationsInOut",
       "typeROI": "IMPLICIT",
       "implicitRelationWithRoi": "CAUDAL_EXTERNAL_LIMIT",
-      "implicitGeometryPointer": "PLANE",
+      "implicitGeometryPointer": "SLICE",
+      "idDescriptor": "slice_number_axial",
       "planeProperties":{
         "anatomicalDirection": "AXIAL"
       },
