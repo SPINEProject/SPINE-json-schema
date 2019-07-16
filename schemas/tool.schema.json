@@ -179,7 +179,7 @@
           "required": ["linking"]
         },
         "specificConfiguration":{
-          "description": "Configuration of each viewers of the annotation tool.",
+          "description": "Configuration of each viewer of the annotation tool.",
           "type": "object",
           "minProperties": 1,
           "patternProperties": {

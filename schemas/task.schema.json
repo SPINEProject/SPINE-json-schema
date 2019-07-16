@@ -117,7 +117,7 @@
               ]
             },
             "descriptorId": {
-              "description": "Process descriptor ID",
+              "description": "Process descriptor ID. If the task is automatic, then this corresponds to the boutiques uuid, if manual then it corresponds to the tool uuid.",
               "type": "string"
             }
           }
