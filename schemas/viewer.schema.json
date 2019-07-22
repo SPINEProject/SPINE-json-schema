@@ -1,0 +1,144 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/viewer.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Viewer Schema",
+  "description": "Description of a medical imaging viewer.",
+  "type": "object",
+  "TODOS": [
+    "Add different types of layouts for the location of the viewer, for instance float left."
+  ],
+  "properties": {
+    "name": {
+      "description": "Name of the viewer",
+      "type": "string"
+    },
+    "location":{
+      "description": "Location of the viewer in a grid",
+      "type": "object",
+      "properties":{
+      	"row":{
+      		"description": "Row location",
+      		"type": "number",
+      		"minimum": 1
+      	},
+      	"column":{
+      		"description": "Column location",
+      		"type": "number",
+      		"minimum": 1
+      	},
+      	"rowspan":{
+      		"description": "Number of rows the viewer should span",
+      		"type": "number",
+      		"minimum": 1,
+      		"default": 1
+      	},
+      	"columnspan":{
+      		"description": "Number of colums the viewer should span",
+      		"type": "number",
+      		"minimum": 1,
+      		"default": 1
+      	}
+      },
+      "required": ["row", "column", "rowspan", "columnspan"]
+    },
+    "windowLevel": {
+      "description": "Window/Level configuration for the viewer",
+      "type": "object",
+      "properties": {
+        "userCanChangeWindowLevel":{
+          "description": "If the user is able to control the Window/Level.",
+          "type": "boolean",
+          "default": true
+        },
+        "defaultValue": {
+          "description": "Default values for the Window/Level.",
+          "type": "object",
+          "properties": {
+            "window": {
+              "description": "Default Window value.",
+              "type": "number",
+              "default": 0
+            },
+            "level": {
+              "description": "Default Level value.",
+              "type": "number",
+              "default": 0
+            }
+          }
+        }
+      },
+      "required": ["userCanChangeWindowLevel"]
+    },
+    "displayImages":{
+      "description": "Display options of the viewer regarding the images.",
+      "type": "object",
+      "properties":{
+    	  "possibleImagesToDisplay": {
+    	    "description": "List of input images the viewer can display. The input images must reference an id of the input images.",
+    	    "type": "array",
+    	    "items": {
+  	  	    "type": "string"
+  	      },
+  	      "minItems": 1
+        },
+        "hasDefaultImageToDisplay":{
+          "description": "True is there is a default image to display",
+          "type": "boolean"
+        },
+    	  "defaultImageToDisplay": {
+    	    "description": "Id of the input images to be displayed",
+          "type": "string"
+  	    }
+  	  },
+      "required": ["possibleImagesToDisplay", "hasDefaultImageToDisplay"],
+      "dependencies": {
+        "defaultImageToDisplay": {
+          "properties": {
+            "hasDefaultImageToDisplay": {
+              "enum": [true]
+            }
+          }
+        }
+      }
+    },
+    "displayControls":{
+      "description": "Display controls of the viewer.",
+      "type": "object",
+      "properties":{
+    	  "orientations": {
+    	    "description": "Possible orientations of the images",
+    	    "type": "array",
+    	    "items": {
+  	  	    "type": "string",
+  	  	    "enum": ["axial", "sagittal", "coronal"]
+  	      },
+  	      "minItems": 1
+        },
+    	  "defaultOrientation": {
+    	    "description": "Default orientation of the images",
+          "type": "string",
+          "enum": ["axial", "sagittal", "coronal"]
+  	    },
+  	    "smoothing":{
+  	      "description": "Smoothing control for the images",
+  	      "type": "object",
+  	      "properties":{
+  	        "smoothingControl": {
+  	      	  "description": "Smoothing control for the viewer",
+          	  "type": "boolean",
+          	  "default": true
+  	        },
+  	        "smoothingDefault":{
+  	      	  "description": "Smoothing default value for the viewer",
+          	  "type": "boolean",
+          	  "default": false
+  	        }
+  	      },
+          "required": ["smoothingControl", "smoothingDefault"]
+  	    }
+      },
+      "required": ["orientations", "defaultOrientation", "smoothing"]
+    }
+  },
+  "required":["name", "location"]
+}
