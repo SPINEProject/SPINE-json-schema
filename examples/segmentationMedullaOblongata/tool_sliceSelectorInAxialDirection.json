@@ -5,13 +5,13 @@
     "version": "0.0.1",
     "privacy": "PUBLIC",
     "inputs": {
-        "inputImage":{
+        "inputImage_key":{
             "name": "Input image",
             "description": "Input image",
             "isList": false,
             "type": "imageEntityInOut",
             "imageEntityInOut_Type": "ANATOMICAL",
-            "imageEntityInOut_FileFormat": "nii",
+            "imageEntityInOut_FileFormat": "nii.gz",
             "required": true
         }
     },
@@ -25,15 +25,19 @@
             "implicitGeometryPointer": "SLICE",
             "planeProperties":{
                 "anatomicalDirection": "AXIAL"
-            },
-            "bindingMapping":{
-                "componentType": "viewer",
-                "viewerId": "0",
+            }
+        }
+    },
+    "bindingViewersOutputsToToolOutputs":[
+        {
+            "outputTool": "slice_number_axial",
+            "outputViewer":{
+                "viewerId":"0",
                 "viewerProperty": "sliceNumber",
                 "orientation": "AXIAL"
             }
         }
-    },
+    ],
     "configuration":{
         "viewers": {
             "numberOfRows":1,
@@ -58,10 +62,27 @@
                             "value": "MIDDLE-FULL" // or [valueWindow, valueLevel], distributionBase
                         }
                     },
+                    "displayControls":{
+                        "orientation":{
+                            "orientationControlVisible": false,
+                            "orientationControlDisabled": true,
+                            "orientationOptions":["AXIAL"],
+                            "orientationByDefault": "AXIAL"
+                        },
+                        "smoothing":{
+                            "smoothingControlVisible": false,
+                            "smoothingControlDisabled": true,
+                            "smoothingDefault": true
+                        },
+                        "sequence":{
+                            "sequenceControlVisible": false,
+                            "sequenceControlDisabled": true
+                        }
+                    },
                     "displayImages":{
-                        "possibleImagesToDisplay": ["inputImage"],
+                        "possibleImagesToDisplay": ["inputImage_key"],
                         "hasDefaultImageToDisplay": true,
-                        "defaultImageToDisplay": "inputImage"
+                        "defaultImageToDisplay": "inputImage_key"
                     }
                 }
             }

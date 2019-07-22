@@ -1,19 +1,20 @@
 {
-    "name": "Slice selector",
+    "id":"1dd174e57260e384c4f45e9c490004a0",
+    "name": "Slice selector tool with restricted range",
     "description": "This tool has one viewer and is used to select a specific slice",
     "version": "0.0.1",
     "privacy": "PUBLIC",
     "inputs": {
-        "T1":{
+        "inputImage_key":{
             "name": "Input image",
             "description": "Input image",
             "isList": false,
             "type": "imageEntityInOut",
             "imageEntityInOut_Type": "ANATOMICAL",
-            "imageEntityInOut_FileFormat": "dicom.gz",
+            "imageEntityInOut_FileFormat": "nii.gz",
             "required": true
         },
-        "lowerSliceNumber":{
+        "lowerSliceNumber_key":{
             "name": "Lower axial slice number",
             "description": "Lower axial slice number",
             "isList": false,
@@ -22,34 +23,35 @@
         }
     },
     "outputs": {
-        "slice_number_a":{
-            "name": "The slice number",
-            "description": "The selected slice number",
+        "slice_number_axial":{
+            "name": "The slice number in axial direction",
+            "description": "The selected slice number in axial direction",
             "isList": false,
-            "type": "Number",
-            "bindingMapping":{
-                "componentType": "viewer",
-                "viewerId": "0",
-                "viewerProperty": "sliceNumber",
-                "orientation": "AXIAL"
+            "type": "roiInOut",
+            "typeROI": "IMPLICIT",
+            "implicitGeometryPointer": "SLICE",
+            "planeProperties":{
+                "anatomicalDirection": "AXIAL"
             }
         }
     },
-    "bindingInputsToViewersInputs":[
+    "bindingToolInputsToViewersInputs":[
         {
-            "inputInTool": "lowerSliceNumber",
-            "inputInViewer":{
+            "inputTool": "lowerSliceNumber_key",
+            "inputViewer":{
                 "viewerId":"0",
-                "viewerProperty": ["slicingRanges","AXIAL","minSliceNumber"]
+                "property": "slicingRanges.AXIAL.lowerSliceNumber",
+                "viewerProperty": ["slicingRanges","AXIAL","lowerSliceNumber"]
             }
         }
     ],
-    "bindingViewersOutputsToOutputs":[
+    "bindingViewersOutputsToToolOutputs":[
         {
-            "outputInTool": "slice_number_a",
-            "outputInViewer":{
+            "outputTool": "slice_number_axial",
+            "outputViewer":{
                 "viewerId":"0",
-                "viewerProperty": ["slicingRanges","AXIAL","minSliceNumber"]
+                "viewerProperty": "sliceNumber",
+                "orientation": "AXIAL"
             }
         }
     ],
@@ -77,9 +79,9 @@
                         }
                     },
                     "displayImages":{
-                        "possibleImagesToDisplay": ["T1"],
+                        "possibleImagesToDisplay": ["inputImage_key"],
                         "hasDefaultImageToDisplay": true,
-                        "defaultImageToDisplay": "T1"
+                        "defaultImageToDisplay": "inputImage_key"
                     },
                     "displayControls":{
                         "orientationControlVisible": true,
@@ -93,12 +95,6 @@
                         },
                         "sequence":{
                             "sequenceControlVisible": false
-                        }
-                    },
-                    "slicingRanges":{
-                        "AXIAL":{
-                            "minSliceNumber": "$INPUT",
-                            "maxSliceNumber": "DEFAULT"
                         }
                     }
                 }
