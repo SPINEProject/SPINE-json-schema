@@ -1,19 +1,21 @@
 {
+    "id":"1dd174e57260e384c4f45e9c490004a9",
     "name": "Segmentation (Brush)",
     "description": "This tool is used to visualize a segmentation and check it.",
     "version": "0.0.1",
     "privacy": "PUBLIC",
+    "type": "CONFIRMATION", //MEANS THAT RESULT MIGHT BE ONLY TRUE/FALSE WITHOUT NEED FOR BINDING TO ANYTHING
     "inputs": {
-        "image":{
+        "inputImage_key":{
             "name": "Input image",
             "description": "Input image",
             "isList": false,
             "type": "imageEntityInOut",
             "imageEntityInOut_Type": "ANATOMICAL",
-            "imageEntityInOut_FileFormat": "dicom.gz",
+            "imageEntityInOut_FileFormat": "nii.gz",
             "required": true
         },
-        "segmentation":{
+        "segmentation_key":{
             "name": "Segmentation",
             "description": "Segmentation",
             "isList": false,
@@ -22,66 +24,237 @@
             "required": true
         }
     },
-    "outputs": {},
+    "outputs": {
+        "confimationSignal_key":{
+            "name": "Confimation signal",
+            "description": "Confimation signal",
+            "isList": false,
+            "type": "Confirmation"
+        }
+    },
     "configuration":{
         "viewers": {
-            numberOfRows:1,  //
-            numberOfColumns:4,
-            viewers:[
-                { type:"2D",
-                    orientationControlVisible:true,
-                    orientationControlOptions:[
-                        {label:"Sagittal", value:0},
-                        {label:"Coronal", value:1},
-                        {label:"Axial", value:2}
-                    ],
-                    sequenceControlVisible:false,
-                    smoothingControlVisible:true,
-                    linkedControlVisible:true,  //obsolete?
-                    smoothing:false, //initial
-                    slice:0,   //initial slice
-                    orientation:0, //SAGIT-0, CORONAL-1, AXIAL-2
-                    hasCropping:false
-                },
-                { type:"2D",
-                    orientationControlVisible:true,
-                    orientationControlDisabled:false,
-                    orientationControlOptions:[
-                        {label:"Sagittal", value:0},
-                        {label:"Coronal", value:1},
-                        {label:"Axial", value:2}
-                    ],
-                    sequenceControlVisible:false,
-                    smoothingControlVisible:true,
-                    linkedControlVisible:true,  //obsolete?
-                    smoothing:false, //initial
-                    slice:0,   //initial slice
-                    orientation:1, //SAGIT-0, CORONAL-1, AXIAL-2
-                    hasCropping:false
-                },
-                { type:"2D",
-                    orientationControlVisible:true,
-                    orientationControlOptions:[
-                        {label:"Sagittal", value:0},
-                        {label:"Coronal", value:1},
-                        {label:"Axial", value:2}
-                    ],
-                    sequenceControlVisible:false,
-                    smoothingControlVisible:true,
-                    linkedControlVisible:true,  //obsolete?
-                    smoothing:false, //initial
-                    slice:14,   //initial slice
-                    orientation:2, //SAGIT-0, CORONAL-1, AXIAL-2
-                    hasCropping:false
-                },
-                {   type:"3D"
+            "layout": {
+                "type": "fourInARow",
+                //"threeirregular", "grid"
+                "layoutOrder": {
+                    "left": "0",
+                    "middleLeft": "1",
+                    "middleRight": "2",
+                    "right": "3"
                 }
-            ]
-
-        },
-        "widgets":{
-            toolbarVisible:false,
-            annotationTableVisible:false,
+                //key coorresponds to layout (template) reference
+            },
+            "viewers": {
+                "0": {
+                    "name": "Sagittal viewer",
+                    "type": "2D",
+                    // 2D or 3D
+                    "linkedControlVisible": false,
+                    //If true then the linking check-box is visible. NOT USED FOR NOW.
+                    "initialState": {
+                        "initialOrientationSliceNumber": {
+                            "orientation": "AXIAL",
+                            "strategy": "dynamic",
+                            // or number
+                            "value": "MIDDLE"
+                            // or FIRST, LAST, MIDDLE
+                        },
+                        "initialWindowLevel": {
+                            "strategy": "dynamic",
+                            // or number
+                            "value": "MIDDLE-FULL"
+                            // or [valueWindow, valueLevel], distributionBase
+                        }
+                    },
+                    "displayImages": {
+                        "possibleImagesToDisplay": [
+                            "inputImage_key"
+                        ],
+                        "hasDefaultImageToDisplay": true,
+                        "defaultImageToDisplay": "inputImage_key"
+                    },
+                    "displayControls": {
+                        "orientation": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "options": [
+                                {
+                                    "label": "Sagittal",
+                                    "value": "SAGITTAL"
+                                },
+                                {
+                                    "label": "Coronal",
+                                    "value": "CORONAL"
+                                },
+                                {
+                                    "label": "Axial",
+                                    "value": "AXIAL"
+                                }
+                            ],
+                            "defaultValue": "AXIAL"
+                        },
+                        "smoothing": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
+                        },
+                        "sequence": {
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
+                    }
+                },
+                "1": {
+                    "name": "Coronal viewer",
+                    "type": "2D",
+                    // 2D or 3D
+                    "linkedControlVisible": false,
+                    //If true then the linking check-box is visible. NOT USED FOR NOW.
+                    "initialState": {
+                        "initialOrientationSliceNumber": {
+                            "orientation": "CORONAL",
+                            "strategy": "dynamic",
+                            // or number
+                            "value": "MIDDLE"
+                            // or FIRST, LAST, MIDDLE
+                        },
+                        "initialWindowLevel": {
+                            "strategy": "dynamic",
+                            // or number
+                            "value": "MIDDLE-FULL"
+                            // or [valueWindow, valueLevel], distributionBase
+                        }
+                    },
+                    "displayImages": {
+                        "possibleImagesToDisplay": [
+                            "inputImage_key"
+                        ],
+                        "hasDefaultImageToDisplay": true,
+                        "defaultImageToDisplay": "inputImage_key"
+                    },
+                    "displayControls": {
+                        "orientation": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "options": [
+                                {
+                                    "label": "Sagittal",
+                                    "value": "SAGITTAL"
+                                },
+                                {
+                                    "label": "Coronal",
+                                    "value": "CORONAL"
+                                },
+                                {
+                                    "label": "Axial",
+                                    "value": "AXIAL"
+                                }
+                            ],
+                            "defaultValue": "CORONAL"
+                        },
+                        "smoothing": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
+                        },
+                        "sequence": {
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
+                    }
+                },
+                "2": {
+                    "name": "Coronal viewer",
+                    "type": "2D",
+                    // 2D or 3D
+                    "linkedControlVisible": false,
+                    //If true then the linking check-box is visible. NOT USED FOR NOW.
+                    "initialState": {
+                        "initialOrientationSliceNumber": {
+                            "orientation": "AXIAL",
+                            "strategy": "dynamic",
+                            // or number
+                            "value": "MIDDLE"
+                            // or FIRST, LAST, MIDDLE
+                        },
+                        "initialWindowLevel": {
+                            "strategy": "dynamic",
+                            // or number
+                            "value": "MIDDLE-FULL"
+                            // or [valueWindow, valueLevel], distributionBase
+                        }
+                    },
+                    "displayImages": {
+                        "possibleImagesToDisplay": [
+                            "inputImage_key"
+                        ],
+                        "hasDefaultImageToDisplay": true,
+                        "defaultImageToDisplay": "inputImage_key"
+                    },
+                    "displayControls": {
+                        "orientation": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "options": [
+                                {
+                                    "label": "Sagittal",
+                                    "value": "SAGITTAL"
+                                },
+                                {
+                                    "label": "Coronal",
+                                    "value": "CORONAL"
+                                },
+                                {
+                                    "label": "Axial",
+                                    "value": "AXIAL"
+                                }
+                            ],
+                            "defaultValue": "AXIAL"
+                        },
+                        "smoothing": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
+                        },
+                        "sequence": {
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
+                    }
+                },
+                "3": {
+                    "name": "3D viewer",
+                    "type": "3D",
+                    "displayControls": {
+                        "smoothing": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
+                        },
+                        "sequence": {
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
+                    }
+                }
+            },
+            "widgets": {
+                "pointerTool":{
+                    "controlVisible":true
+                },
+                "labelmapOpacity":{
+                    "controlVisible":true,
+                    "controlEnabled":true,
+                    "defaultValue":1
+                },
+                "referenceLines":{
+                    "controlVisible":true,
+                    "controlEnabled":true,
+                    "defaultValue":true,
+                    "strategy":"ACTIVE_WINDOW" //refer to the sequence in active window, as opposed to ALL (might work different in XYZ mode)
+                }
+            }
         }
     }
 }

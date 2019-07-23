@@ -1,87 +1,88 @@
 {
+    "id":"1dd174e57260e384c4f45e9c490004a9",
     "name": "Segmentation (Brush)",
     "description": "This tool is used to segment something in an image using the paint brush",
     "version": "0.0.1",
     "privacy": "PUBLIC",
+    "type": "SEGMENTATION_TOOL",
     "inputs": {
-        "image":{
+        "inputImage_key":{
             "name": "Input image",
             "description": "Input image",
             "isList": false,
             "type": "imageEntityInOut",
             "imageEntityInOut_Type": "ANATOMICAL",
-            "imageEntityInOut_FileFormat": "dicom.gz",
+            "imageEntityInOut_FileFormat": "nii.gz",
             "required": true
         },
-        "lowerSliceNumber":{
+        "lowerSliceNumber_key":{
             "name": "Lower axial slice number",
             "description": "Lower axial slice number",
             "isList": false,
             "type": "Number",
-            "required": true,
-            "bindingMapping":{
-                "componentType": "viewer",
-                "viewerId": "0",
-                "orientation": "AXIAL",
-                "viewerProperty": "minSliceNumber"
-            }
+            "required": true
         },
-        "upperSliceNumber":{
+        "upperSliceNumber_key":{
             "name": "The upper bound",
             "description": "The selected slice number for the upper bound",
             "isList": false,
             "type": "Number",
-            "required": true,
-            "bindingMapping":{
-                "componentType": "viewer",
-                "viewerId": "0",
-                "orientation": "AXIAL",
-                "viewerProperty": "maxSliceNumber"
-            }
+            "required": true
         }
     },
     "outputs": {
-        "segmentation":{
+        "segmentation_key":{
             "name": "Medulla oblongata segmentation",
             "description": "The medulla oblongata segmentation from the user",
             "isList": false,
-            "type": "roiWithAnnotationsInOut",
-            "typeROI": "EXPLICIT",
-            "annotations": [
-                {
-                    "typeAnnotationForm": "MULTIPLE_CHOICE_SINGLE_ANSWER",
-                    "propertiesAnnotation": {
-                        "isOntologyBased": true,
-                        "typeAnnotationOptions": "TEXT",
-                        "ontologyId": "https://bioportal.bioontology.org/ontologies/SNOMEDCT",
-                        "options": [
-                            {
-                                "value": "http://purl.bioontology.org/ontology/SNOMEDCT/279104005",
-                                "valueToDisplay": "Medulla Oblongata"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "type": "roiInOut",
+            "typeROI": "EXPLICIT"
         }
     },
+    "bindingToolInputsToViewersInputs":[
+        {
+            "inputTool": "lowerSliceNumber_key",
+            "inputViewer":{
+                "viewerId":"0",
+                "property": "slicingRanges.AXIAL.lowerSliceNumber"
+            }
+        },
+        {
+            "inputTool": "upperSliceNumber_key",
+            "inputViewer":{
+                "viewerId":"0",
+                "property": "slicingRanges.AXIAL.upperSliceNumber"
+            }
+        }
+    ],
+    "bindingViewersOutputsToToolOutputs":[
+        {
+            "outputTool": "segmentation_key",
+            "outputViewer":{
+                "viewerId":"0",
+                "viewerProperty": "sliceNumber",
+                "orientation": "AXIAL"
+            }
+        }
+    ],
     "configuration":{
         "viewers": {
-            "numberOfRows":1,
-			"numberOfColumns":1,
-            "viewers":{
+            "layout":{
+              "type":"single",//"threeirregular", "grid"
+              "layoutOrder":{
+                  "middle":"0"
+              }  //key coorresponds to layout (template) reference
+            },
+            "renderWindows":{
                 "0":{
-                    "name": "Only viewer",
+                    "name": "Axial viewer",
                     "type":"2D", // 2D or 3D
                     "linkedControlVisible":false,  //If true then the linking check-box is visible. NOT USED FOR NOW.
-                    "location": {
-                        "row": 1,
-                        "column": 1
-                    },
                     "initialState":{
-                        "initialSlice": {
-                            "strategy": "number", // or dynamic
-                            "value": "FIRST" // need to chack if there is constraint
+                        "orientationAndSliceNumber": {
+                            "orientation": "AXIAL",
+                            "strategy": "dynamic", // or number
+                            "value": "MOST INFERIOR" // or FIRST, LAST, MIDDLE
                         },
                         "initialWindowLevel":{
                             "strategy": "dynamic", // or number
@@ -89,69 +90,106 @@
                         }
                     },
                     "displayImages":{
-                        "possibleImagesToDisplay": ["T1"],
+                        "possibleImagesToDisplay": ["inputImage_key"],
                         "hasDefaultImageToDisplay": true,
-                        "defaultImageToDisplay": "T1"
+                        "defaultImageToDisplay": "inputImage_key"
                     },
                     "displayControls":{
-                        "orientationControlVisible": true,
-                        "orientationControlDisabled": true,
-                        "orientationOptions":["AXIAL"],
-                        "orientationByDefault": "AXIAL",
+                        "orientation":{
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "options":[  {
+                                "label": "Axial",
+                                "value": "AXIAL"
+                            }]
+                        },
                         "smoothing":{
-                            "smoothingControlVisible": true,
-                            "smoothingControlDisabled": false,
-                            "smoothingDefault": true
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
                         },
                         "sequence":{
-                            "sequenceControlVisible": false
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
+                    }
+                }
+            }
+        },
+        "widgets":{
+           "brushTool": {
+               "controlVisible": true,
+               "controlEnabled": true,
+               "properties": {
+                   "size": {
+                       "controlVisible": true,
+                       "controlEnabled": true,
+                       "defaultValue": 1
+                   },
+                   "labelmap": {
+                       "controlVisible": false,
+                       "controlEnabled": false,
+                       "defaultValue": 1,
+                       "properties": {
+                           "options": {
+                               "label": "Medulla Oblongata",
+                               "iri": "",
+                               "color": "#f00",
+                               "value": 1
+                           }
+                       }
+                   },
+                   "threshold":{
+                       "controlVisible":false,
+                       "controlEnabled":false,
+                       "properties":{
+                           "lowerValueByDefault":0,
+                           "upperValueByDefault":65000,
+                           "probeControlVisible":true, //to set intensity value to input text with focus
+                           "probeControlEnabled":true
+                       }
+                   }
+               }
+           },
+            "fillingTool":{
+                "controlVisible": true,
+                "controlEnabled": true,
+                "properties": {
+                    "labelmap": {
+                        "controlVisible": false,
+                        "controlEnabled": false,
+                        "defaultValue": 1,
+                        "properties": {
+                            "options": [{
+                                "label": "Lesion",
+                                "iri": "",
+                                "color": "#f00",
+                                "value": 1
+                            }]
                         }
                     }
                 }
             },
-            "viewers":[
-                {   "type":"2D",
-                    hasCropping:true,
-                    croppingSlices:[0,0,0,0,14,256] //sagittal, coronal, axial
+            "eraserTool":{
+                "controlVisible":true,
+                "controlEnabled":true,
+                "properties":{
+                    "size":{
+                        "controlVisible": true,
+                        "controlEnabled": true,
+                        "defaultValue": 1
+                    }
                 }
-            ]
-        },
-        "widgets":{
-            toolbarVisible:true,
-            pointerToolVisible:true,//picking cell and positioning slices on the remaining views
-            pinToolVisible:false,
-            brushToolVisible:true,
-            brushToolProperties:{
-                toolTip:"Brush Tool",
-                brushSizeControlVisible:true,
-                brushSizeLabel:"Brush Size",
-                brushSize:1,
-                colorMapValuesOptionsVisible:false,
-                borderControlVisible:false,
-                colorValue:1,
-                thresholdingControlVisible:false,
             },
-            fillingToolVisible:true,
-            fillingToolProperties:{
-                toolTip:"Bucket Tool",
-                colorMapValuesOptionsVisible:true,
-                colorMapValuesLabel:"Label",
-                colorValue:1,
+            "labelmapUndoRedoTool":{
+                "controlVisible":true,
+                "controlEnabled":true
             },
-            eraserToolVisible:true,
-            eraserProperties:{
-                size:1,
-            },
-            undoButtonVisible:true,
-            redoButtonVisible:true,
-            referenceLinesControlVisible:true,
-            referenceLines:false, //default
-            labelMapOpacityControlVisible:true,
-            labelMapOpacity:100,
-            pinOpacityControlVisible:false, // maybe glass Opacity - it is used for reference lines and
-            pinOpacity:100, //default value
-            annotationTableVisible:false,
+            "labelmapOpacity":{
+                "controlVisible":true,
+                "controlEnabled":true,
+                "defaultValue":1
+            }
         }
-
     }
 }

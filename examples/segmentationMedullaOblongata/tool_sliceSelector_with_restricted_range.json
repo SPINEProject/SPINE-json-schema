@@ -4,6 +4,7 @@
     "description": "This tool has one viewer and is used to select a specific slice",
     "version": "0.0.1",
     "privacy": "PUBLIC",
+    "type": "SLICE_SELECTOR",
     "inputs": {
         "inputImage_key":{
             "name": "Input image",
@@ -23,7 +24,7 @@
         }
     },
     "outputs": {
-        "slice_number_axial":{
+        "slice_number_axial_key":{
             "name": "The slice number in axial direction",
             "description": "The selected slice number in axial direction",
             "isList": false,
@@ -40,8 +41,7 @@
             "inputTool": "lowerSliceNumber_key",
             "inputViewer":{
                 "viewerId":"0",
-                "property": "slicingRanges.AXIAL.lowerSliceNumber",
-                "viewerProperty": ["slicingRanges","AXIAL","lowerSliceNumber"]
+                "property": "slicingRanges.AXIAL.lowerSliceNumber"
             }
         }
     ],
@@ -57,21 +57,22 @@
     ],
     "configuration":{
         "viewers": {
-            "numberOfRows":1,
-	        "numberOfColumns":1, // MaxColumns = 4
-            "viewers":{
+            "layout":{
+              "type":"single",//"threeirregular", "grid"
+              "layoutOrder":{
+                  "middle":"0"
+              }  //key coorresponds to layout (template) reference
+            },
+            "renderWindows":{
                 "0":{
-                    "name": "Only viewer",
+                    "name": "Axial viewer",
                     "type":"2D", // 2D or 3D
                     "linkedControlVisible":false,  //If true then the linking check-box is visible. NOT USED FOR NOW.
-                    "location": {
-                        "row": 1,
-                        "column": 1
-                    },
                     "initialState":{
-                        "initialSlice": {
+                        "orientationAndSliceNumber": {
+                            "orientation": "AXIAL",
                             "strategy": "dynamic", // or number
-                            "value": "FIRST" // or FIRST, LAST, MIDDLE- eg. first available
+                            "value": "MOST INFERIOR" // or FIRST, LAST, MIDDLE
                         },
                         "initialWindowLevel":{
                             "strategy": "dynamic", // or number
@@ -84,17 +85,22 @@
                         "defaultImageToDisplay": "inputImage_key"
                     },
                     "displayControls":{
-                        "orientationControlVisible": true,
-                        "orientationControlDisabled": true,
-                        "orientationOptions":["AXIAL"],
-                        "orientationByDefault": "AXIAL",
+                        "orientation":{
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "options":[  {
+                                "label": "Axial",
+                                "value": "AXIAL"
+                            }]
+                        },
                         "smoothing":{
-                            "smoothingControlVisible": true,
-                            "smoothingControlDisabled": false,
-                            "smoothingDefault": true
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
                         },
                         "sequence":{
-                            "sequenceControlVisible": false
+                            "controlVisible": false,
+                            "controlEnabled": false
                         }
                     }
                 }

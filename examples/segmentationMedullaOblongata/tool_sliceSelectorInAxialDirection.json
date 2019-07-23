@@ -4,6 +4,7 @@
     "description": "This tool has one viewer and is used to select a specific slice in an image in the axial direction.",
     "version": "0.0.1",
     "privacy": "PUBLIC",
+    "type":"SLICE_SELECTOR",
     "inputs": {
         "inputImage_key":{
             "name": "Input image",
@@ -16,7 +17,7 @@
         }
     },
     "outputs": {
-        "slice_number_axial":{
+        "slice_number_axial_key":{
             "name": "The slice number in axial direction",
             "description": "The selected slice number in axial direction",
             "isList": false,
@@ -40,19 +41,19 @@
     ],
     "configuration":{
         "viewers": {
-            "numberOfRows":1,
-	        "numberOfColumns":1, // MaxColumns = 4
-            "viewers":{
+            "layout":{
+              "type":"single",//"threeirregular", "grid"
+              "layoutOrder":{
+                  "middle":"0"
+              }  //key coorresponds to layout (template) reference
+            },
+            "renderWindows":{
                 "0":{
                     "name": "Axial viewer",
                     "type":"2D", // 2D or 3D
                     "linkedControlVisible":false,  //If true then the linking check-box is visible. NOT USED FOR NOW.
-                    "location": {
-                        "row": 1,
-                        "column": 1
-                    },
                     "initialState":{
-                        "initialOrientationSliceNumber": {
+                        "orientationAndSliceNumber": {
                             "orientation": "AXIAL",
                             "strategy": "dynamic", // or dynamic
                             "value": "MOST INFERIOR" // or FIRST, LAST, MIDDLE
@@ -62,30 +63,34 @@
                             "value": "MIDDLE-FULL" // or [valueWindow, valueLevel], distributionBase
                         }
                     },
-                    "displayControls":{
-                        "orientation":{
-                            "orientationControlVisible": false,
-                            "orientationControlDisabled": true,
-                            "orientationOptions":["AXIAL"],
-                            "orientationByDefault": "AXIAL"
-                        },
-                        "smoothing":{
-                            "smoothingControlVisible": false,
-                            "smoothingControlDisabled": true,
-                            "smoothingDefault": true
-                        },
-                        "sequence":{
-                            "sequenceControlVisible": false,
-                            "sequenceControlDisabled": true
-                        }
-                    },
                     "displayImages":{
                         "possibleImagesToDisplay": ["inputImage_key"],
                         "hasDefaultImageToDisplay": true,
                         "defaultImageToDisplay": "inputImage_key"
+                    },
+                    "displayControls":{
+                        "orientation":{
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "options":[  {
+                                "label": "Axial",
+                                "value": "AXIAL"
+                            }]
+                        },
+                        "smoothing":{
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
+                        },
+                        "sequence":{
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
                     }
                 }
             }
+        },
+        "widgets":{
         }
     }
 }

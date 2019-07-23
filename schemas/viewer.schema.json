@@ -12,35 +12,6 @@
       "description": "Name of the viewer",
       "type": "string"
     },
-    "location":{
-      "description": "Location of the viewer in a grid",
-      "type": "object",
-      "properties":{
-      	"row":{
-      		"description": "Row location",
-      		"type": "number",
-      		"minimum": 1
-      	},
-      	"column":{
-      		"description": "Column location",
-      		"type": "number",
-      		"minimum": 1
-      	},
-      	"rowspan":{
-      		"description": "Number of rows the viewer should span",
-      		"type": "number",
-      		"minimum": 1,
-      		"default": 1
-      	},
-      	"columnspan":{
-      		"description": "Number of colums the viewer should span",
-      		"type": "number",
-      		"minimum": 1,
-      		"default": 1
-      	}
-      },
-      "required": ["row", "column", "rowspan", "columnspan"]
-    },
     "windowLevel": {
       "description": "Window/Level configuration for the viewer",
       "type": "object",
