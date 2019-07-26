@@ -4,7 +4,7 @@
     "description": "This tool is used to visualize a segmentation and check it.",
     "version": "0.0.1",
     "privacy": "PUBLIC",
-    "type": "CONFIRMATION", //MEANS THAT RESULT MIGHT BE ONLY TRUE/FALSE WITHOUT NEED FOR BINDING TO ANYTHING
+    "type": "CONFIRMATION_TOOL",
     "inputs": {
         "inputImage_key":{
             "name": "Input image",
@@ -35,36 +35,27 @@
     "configuration":{
         "viewers": {
             "layout": {
-                "type": "fourInARow",
-                //"threeirregular", "grid"
+                "type": "FOUR_IN_A_ROW",
                 "layoutOrder": {
                     "left": "0",
                     "middleLeft": "1",
                     "middleRight": "2",
                     "right": "3"
                 }
-                //key coorresponds to layout (template) reference
             },
-            "viewers": {
+            "renderWindows": {
                 "0": {
                     "name": "Sagittal viewer",
                     "type": "2D",
-                    // 2D or 3D
-                    "linkedControlVisible": false,
-                    //If true then the linking check-box is visible. NOT USED FOR NOW.
                     "initialState": {
                         "initialOrientationSliceNumber": {
                             "orientation": "AXIAL",
-                            "strategy": "dynamic",
-                            // or number
-                            "value": "MIDDLE"
-                            // or FIRST, LAST, MIDDLE
+                            "strategy": "DYNAMIC",
+                            "sliceValue": "MIDDLE"
                         },
                         "initialWindowLevel": {
-                            "strategy": "dynamic",
-                            // or number
-                            "value": "MIDDLE-FULL"
-                            // or [valueWindow, valueLevel], distributionBase
+                            "strategy": "DYNAMIC",
+                            "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
                         }
                     },
                     "displayImages": {

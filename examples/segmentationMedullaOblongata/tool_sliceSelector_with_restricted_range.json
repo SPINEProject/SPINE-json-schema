@@ -4,7 +4,7 @@
     "description": "This tool has one viewer and is used to select a specific slice",
     "version": "0.0.1",
     "privacy": "PUBLIC",
-    "type": "SLICE_SELECTOR",
+    "type": "SLICE_SELECTOR_TOOL",
     "inputs": {
         "inputImage_key":{
             "name": "Input image",
@@ -41,7 +41,7 @@
             "inputTool": "lowerSliceNumber_key",
             "inputViewer":{
                 "viewerId":"0",
-                "property": "slicingRanges.AXIAL.lowerSliceNumber"
+                "property": "slicingRanges_AXIAL_lowerSliceNumber"
             }
         }
     ],
@@ -50,33 +50,31 @@
             "outputTool": "slice_number_axial",
             "outputViewer":{
                 "viewerId":"0",
-                "viewerProperty": "sliceNumber",
-                "orientation": "AXIAL"
+                "property": "currentSliceNumber_AXIAL"
             }
         }
     ],
     "configuration":{
         "viewers": {
             "layout":{
-              "type":"single",//"threeirregular", "grid"
+              "type":"SINGLE",
               "layoutOrder":{
                   "middle":"0"
-              }  //key coorresponds to layout (template) reference
+              }
             },
             "renderWindows":{
                 "0":{
                     "name": "Axial viewer",
-                    "type":"2D", // 2D or 3D
-                    "linkedControlVisible":false,  //If true then the linking check-box is visible. NOT USED FOR NOW.
+                    "type":"2D",
                     "initialState":{
                         "orientationAndSliceNumber": {
                             "orientation": "AXIAL",
-                            "strategy": "dynamic", // or number
-                            "value": "MOST INFERIOR" // or FIRST, LAST, MIDDLE
+                            "strategy": "DYNAMIC",
+                            "sliceValue": "INFERIORMOST"
                         },
                         "initialWindowLevel":{
-                            "strategy": "dynamic", // or number
-                            "value": "MIDDLE-FULL" // or [valueWindow, valueLevel], distributionBase
+                            "strategy": "DYNAMIC",
+                            "value": "FULLWINDOW_MIDDLELEVEL"
                         }
                     },
                     "displayImages":{

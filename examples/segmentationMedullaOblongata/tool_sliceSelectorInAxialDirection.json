@@ -3,8 +3,9 @@
     "name": "Slice selector tool",
     "description": "This tool has one viewer and is used to select a specific slice in an image in the axial direction.",
     "version": "0.0.1",
+    "owner": "amarciniak@bwh.harvard.edu",
     "privacy": "PUBLIC",
-    "type":"SLICE_SELECTOR",
+    "type":"SLICE_SELECTOR_TOOL",
     "inputs": {
         "inputImage_key":{
             "name": "Input image",
@@ -43,7 +44,7 @@
     "configuration":{
         "viewers": {
             "layout":{
-              "type":"single",//"threeirregular", "grid"
+              "type":"SINGLE",//"threeirregular", "grid"
               "layoutOrder":{
                   "middle":"0"
               }  //key coorresponds to layout (template) reference
@@ -51,17 +52,16 @@
             "renderWindows":{
                 "0":{
                     "name": "Axial viewer",
-                    "type":"2D", // 2D or 3D
-                    "linkedControlVisible":false,  //If true then the linking check-box is visible. NOT USED FOR NOW.
+                    "type":"2D",
                     "initialState":{
                         "orientationAndSliceNumber": {
                             "orientation": "AXIAL",
-                            "strategy": "dynamic", // or dynamic
-                            "value": "MOST INFERIOR" // or FIRST, LAST, MIDDLE
+                            "strategy": "DYNAMIC",
+                            "dynamicSliceValue": "INFERIORMOST"
                         },
                         "initialWindowLevel":{
-                            "strategy": "dynamic", // or number
-                            "value": "MIDDLE-FULL" // or [valueWindow, valueLevel], distributionBase
+                            "strategy": "DYNAMIC",
+                            "value": "FULLWINDOW_MIDDLELEVEL"
                         }
                     },
                     "displayImages":{
