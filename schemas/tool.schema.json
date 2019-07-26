@@ -182,7 +182,7 @@
               "patternProperties": {
                 ".*": {
                   "description": "String corresponding to the viewer key-name of a viewer in the tool",
-                  "type": "string",
+                  "type": "string"
                 }
               }
             }
@@ -193,7 +193,7 @@
           "patternProperties": {
             ".*": {
               "description": "Configuration of a viewer",
-              "$ref": "viewer.schema.json",
+              "$ref": "viewer.schema.json"
             }
           }
         }
@@ -294,7 +294,7 @@
       ]
     },
 
-    "bindinToolInputToViewerInput":{
+    "bindingToolInputToViewerInput":{
       "$id": "#bindinToolInputToViewerInput",
       "description": "Mapping a tool input to a viewer input",
       "type": "object",
@@ -322,7 +322,7 @@
       "required": ["inputTool", "inputViewer"]
     },
 
-    "bindinViewerOutputToToolOutput":{
+    "bindingViewerOutputToToolOutput":{
       "$id": "#bindinViewerOutputToToolOutput",
       "description": "Mapping a viewer output to a tool output",
       "type": "object",
@@ -390,14 +390,14 @@
             "description": "Binding of tool inputs to the viewer inputs",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/bindinToolInputToViewerInput"
+              "$ref": "#/definitions/bindingToolInputToViewerInput"
             }
           },
           "bindingViewerOutputsToViewesOutputs": {
             "description": "Binding of viewer's inputs to tool outputs",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/bindinViewerOutputToToolOutput"
+              "$ref": "#/definitions/bindingViewerOutputToToolOutput"
             }
           },
           "configuration":{

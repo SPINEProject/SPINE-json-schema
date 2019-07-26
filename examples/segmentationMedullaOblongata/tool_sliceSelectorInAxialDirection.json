@@ -44,10 +44,10 @@
     "configuration":{
         "viewers": {
             "layout":{
-              "type":"SINGLE",//"threeirregular", "grid"
+              "type":"SINGLE",
               "layoutOrder":{
                   "middle":"0"
-              }  //key coorresponds to layout (template) reference
+              }
             },
             "renderWindows":{
                 "0":{
@@ -61,7 +61,7 @@
                         },
                         "initialWindowLevel":{
                             "strategy": "DYNAMIC",
-                            "value": "FULLWINDOW_MIDDLELEVEL"
+                            "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
                         }
                     },
                     "displayImages":{

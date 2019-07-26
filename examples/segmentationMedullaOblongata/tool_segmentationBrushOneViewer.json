@@ -44,14 +44,14 @@
             "inputTool": "lowerSliceNumber_key",
             "inputViewer":{
                 "viewerId":"0",
-                "property": "slicingRanges.AXIAL.lowerSliceNumber"
+                "property": "slicingRanges_AXIAL_inferiormostSliceNumber"
             }
         },
         {
             "inputTool": "upperSliceNumber_key",
             "inputViewer":{
                 "viewerId":"0",
-                "property": "slicingRanges.AXIAL.upperSliceNumber"
+                "property": "slicingRanges_AXIAL_superiormostSliceNumber"
             }
         }
     ],
@@ -60,8 +60,7 @@
             "outputTool": "segmentation_key",
             "outputViewer":{
                 "viewerId":"0",
-                "viewerProperty": "sliceNumber",
-                "orientation": "AXIAL"
+                "viewerProperty": "currentSliceNumber_AXIAL"
             }
         }
     ],
@@ -81,11 +80,11 @@
                         "orientationAndSliceNumber": {
                             "orientation": "AXIAL",
                             "strategy": "DYNAMIC",
-                            "value": "INFERIORMOST"
+                            "dynamicSliceValue": "INFERIORMOST"
                         },
                         "initialWindowLevel":{
                             "strategy": "DYNAMIC",
-                            "value": "FULLWINDOW_MIDDLELEVEL"
+                            "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
                         }
                     },
                     "displayImages":{
@@ -144,7 +143,7 @@
                        "properties":{
                            "lowerValueByDefault":0,
                            "upperValueByDefault":65000,
-                           "probeControlVisible":true, //to set intensity value to input text with focus
+                           "probeControlVisible":true,
                            "probeControlEnabled":true
                        }
                    }

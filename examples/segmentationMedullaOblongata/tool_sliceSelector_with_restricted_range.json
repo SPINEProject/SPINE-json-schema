@@ -41,7 +41,7 @@
             "inputTool": "lowerSliceNumber_key",
             "inputViewer":{
                 "viewerId":"0",
-                "property": "slicingRanges_AXIAL_lowerSliceNumber"
+                "property": "slicingRanges_AXIAL_inferiormostSliceNumber"
             }
         }
     ],
@@ -74,7 +74,7 @@
                         },
                         "initialWindowLevel":{
                             "strategy": "DYNAMIC",
-                            "value": "FULLWINDOW_MIDDLELEVEL"
+                            "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
                         }
                     },
                     "displayImages":{

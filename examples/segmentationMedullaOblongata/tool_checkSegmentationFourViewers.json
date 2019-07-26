@@ -1,6 +1,6 @@
 {
     "id":"1dd174e57260e384c4f45e9c490004a9",
-    "name": "Segmentation (Brush)",
+    "name": "Segmentation (Check)",
     "description": "This tool is used to visualize a segmentation and check it.",
     "version": "0.0.1",
     "privacy": "PUBLIC",
@@ -25,9 +25,9 @@
         }
     },
     "outputs": {
-        "confimationSignal_key":{
-            "name": "Confimation signal",
-            "description": "Confimation signal",
+        "confirmationSignal_key":{
+            "name": "Confirmation signal",
+            "description": "Confirmation signal",
             "isList": false,
             "type": "Confirmation"
         }
@@ -99,22 +99,16 @@
                 "1": {
                     "name": "Coronal viewer",
                     "type": "2D",
-                    // 2D or 3D
                     "linkedControlVisible": false,
-                    //If true then the linking check-box is visible. NOT USED FOR NOW.
                     "initialState": {
                         "initialOrientationSliceNumber": {
                             "orientation": "CORONAL",
                             "strategy": "dynamic",
-                            // or number
                             "value": "MIDDLE"
-                            // or FIRST, LAST, MIDDLE
                         },
                         "initialWindowLevel": {
                             "strategy": "dynamic",
-                            // or number
                             "value": "MIDDLE-FULL"
-                            // or [valueWindow, valueLevel], distributionBase
                         }
                     },
                     "displayImages": {
@@ -158,22 +152,16 @@
                 "2": {
                     "name": "Coronal viewer",
                     "type": "2D",
-                    // 2D or 3D
                     "linkedControlVisible": false,
-                    //If true then the linking check-box is visible. NOT USED FOR NOW.
                     "initialState": {
                         "initialOrientationSliceNumber": {
                             "orientation": "AXIAL",
                             "strategy": "dynamic",
-                            // or number
                             "value": "MIDDLE"
-                            // or FIRST, LAST, MIDDLE
                         },
                         "initialWindowLevel": {
                             "strategy": "dynamic",
-                            // or number
                             "value": "MIDDLE-FULL"
-                            // or [valueWindow, valueLevel], distributionBase
                         }
                     },
                     "displayImages": {
@@ -243,7 +231,7 @@
                     "controlVisible":true,
                     "controlEnabled":true,
                     "defaultValue":true,
-                    "strategy":"ACTIVE_WINDOW" //refer to the sequence in active window, as opposed to ALL (might work different in XYZ mode)
+                    "strategy":"ACTIVE_WINDOW"
                 }
             }
         }

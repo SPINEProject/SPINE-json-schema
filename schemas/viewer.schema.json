@@ -56,15 +56,15 @@
       "description": "All the viewer properties that can be exposed",
       "type": "string",
       "enum": [
-        "slicingRanges_AXIAL_lowermostSliceNumber",
-        "slicingRanges_AXIAL_uppermostSliceNumber",
+        "slicingRanges_AXIAL_inferiormostSliceNumber",
+        "slicingRanges_AXIAL_superiormostSliceNumber",
         "slicingRanges_SAGITTAL_leftmostSliceNumber",
         "slicingRanges_SAGITTAL_rigthmostSliceNumber",
         "slicingRanges_CORONAL_posteriormostSliceNumber",
-        "slicingRanges_CORONAL_anteriormostSliceNumber"
+        "slicingRanges_CORONAL_anteriormostSliceNumber",
 
         "windowLevel_windowWidth",
-        "windowLevel_LevelValue",
+        "windowLevel_levelValue",
 
         "currentSliceNumber_AXIAL",
         "currentSliceNumber_SAGITTAL",
@@ -109,10 +109,10 @@
           },
           "oneOf":[
             {
-              "required": ["orientation", "strategy", "dynamicSliceValue"],
+              "required": ["orientation", "strategy", "dynamicSliceValue"]
             },
             {
-              "required": ["orientation", "strategy", "predefinedSliceNumber"],
+              "required": ["orientation", "strategy", "predefinedSliceNumber"]
             }
           ]
         },
@@ -139,10 +139,10 @@
           },
           "oneOf":[
             {
-              "required": ["strategy", "dynamicStrategy"],
+              "required": ["strategy", "dynamicStrategy"]
             },
             {
-              "required": ["orientation", "dynamicStrategy", "predefinedWindowWidth", "predefinedLevelValue"],
+              "required": ["orientation", "dynamicStrategy", "predefinedWindowWidth", "predefinedLevelValue"]
             }
           ]
         }
