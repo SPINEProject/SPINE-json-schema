@@ -33,7 +33,7 @@
     },
     "bindingViewersOutputsToToolOutputs":[
         {
-            "outputTool": "slice_number_axial",
+            "outputTool": "slice_number_axial_key",
             "outputViewer":{
                 "viewerId":"0",
                 "viewerProperty": "sliceNumber",

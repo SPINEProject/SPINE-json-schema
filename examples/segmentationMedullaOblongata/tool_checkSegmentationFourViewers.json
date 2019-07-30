@@ -29,7 +29,7 @@
             "name": "Confirmation signal",
             "description": "Confirmation signal",
             "isList": false,
-            "type": "Confirmation"
+            "type": "confirmation"
         }
     },
     "configuration":{
@@ -48,8 +48,8 @@
                     "name": "Sagittal viewer",
                     "type": "2D",
                     "initialState": {
-                        "initialOrientationSliceNumber": {
-                            "orientation": "AXIAL",
+                        "orientationAndSliceNumber": {
+                            "orientation": "SAGITTAL",
                             "strategy": "DYNAMIC",
                             "sliceValue": "MIDDLE"
                         },
@@ -101,7 +101,7 @@
                     "type": "2D",
                     "linkedControlVisible": false,
                     "initialState": {
-                        "initialOrientationSliceNumber": {
+                        "orientationAndSliceNumber": {
                             "orientation": "CORONAL",
                             "strategy": "dynamic",
                             "value": "MIDDLE"
@@ -154,7 +154,7 @@
                     "type": "2D",
                     "linkedControlVisible": false,
                     "initialState": {
-                        "initialOrientationSliceNumber": {
+                        "orientationAndSliceNumber": {
                             "orientation": "AXIAL",
                             "strategy": "dynamic",
                             "value": "MIDDLE"
@@ -215,6 +215,13 @@
                             "controlVisible": false,
                             "controlEnabled": false
                         }
+                    },
+                    "displayImages": {
+                        "possibleImagesToDisplay": [
+                            "inputImage_key"
+                        ],
+                        "hasDefaultImageToDisplay": true,
+                        "defaultImageToDisplay": "inputImage_key"
                     }
                 }
             },
