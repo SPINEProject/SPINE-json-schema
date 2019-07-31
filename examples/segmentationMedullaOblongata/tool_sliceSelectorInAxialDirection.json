@@ -36,7 +36,7 @@
             "outputTool": "slice_number_axial_key",
             "outputViewer":{
                 "viewerId":"0",
-                "viewerProperty": "sliceNumber",
+                "property": "sliceNumber",
                 "orientation": "AXIAL"
             }
         }
