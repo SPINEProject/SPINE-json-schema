@@ -101,6 +101,9 @@
                             "controlVisible": false,
                             "controlEnabled": false
                         }
+                    },
+                    "lookAndFeel":{
+                        "color":"#ffa07a"
                     }
                 },
                 "1": {
@@ -154,6 +157,9 @@
                             "controlVisible": false,
                             "controlEnabled": false
                         }
+                    },
+                    "lookAndFeel":{
+                        "color":"#fff967"
                     }
                 },
                 "2": {
@@ -207,6 +213,9 @@
                             "controlVisible": false,
                             "controlEnabled": false
                         }
+                    },
+                    "lookAndFeel":{
+                        "color":"#90ee90"
                     }
                 },
                 "3": {
