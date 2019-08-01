@@ -65,6 +65,13 @@
                         "hasDefaultImageToDisplay": true,
                         "defaultImageToDisplay": "inputImage_key"
                     },
+                    "displayLabelMaps": {
+                        "possibleImagesToDisplay": [
+                            "segmentation_key"
+                        ],
+                        "hasDefaultLabelMapToDisplay": true,
+                        "defaultImageToDisplay": "segmentation_key"
+                    },
                     "displayControls": {
                         "orientation": {
                             "controlVisible": false,
@@ -224,22 +231,22 @@
                         "defaultImageToDisplay": "inputImage_key"
                     }
                 }
+            }
+        },
+        "widgets": {
+            "pointerTool":{
+                "controlVisible":true
             },
-            "widgets": {
-                "pointerTool":{
-                    "controlVisible":true
-                },
-                "labelmapOpacity":{
-                    "controlVisible":true,
-                    "controlEnabled":true,
-                    "defaultValue":1
-                },
-                "referenceLines":{
-                    "controlVisible":true,
-                    "controlEnabled":true,
-                    "defaultValue":true,
-                    "strategy":"ACTIVE_WINDOW"
-                }
+            "labelmapOpacity":{
+                "controlVisible":true,
+                "controlEnabled":true,
+                "defaultValue":1
+            },
+            "referenceLines":{
+                "controlVisible":true,
+                "controlEnabled":true,
+                "defaultValue":true,
+                "strategy":"ACTIVE_WINDOW"
             }
         }
     }
