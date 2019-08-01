@@ -71,7 +71,7 @@
                         "orientationAndSliceNumber": {
                             "orientation": "AXIAL",
                             "strategy": "DYNAMIC",
-                            "sliceValue": "INFERIORMOST"
+                            "dynamicSliceValue": "INFERIORMOST"
                         },
                         "initialWindowLevel":{
                             "strategy": "DYNAMIC",

@@ -51,7 +51,7 @@
                         "orientationAndSliceNumber": {
                             "orientation": "SAGITTAL",
                             "strategy": "DYNAMIC",
-                            "sliceValue": "MIDDLE"
+                            "dynamicSliceValue": "MIDDLE"
                         },
                         "initialWindowLevel": {
                             "strategy": "DYNAMIC",
@@ -114,7 +114,7 @@
                         "orientationAndSliceNumber": {
                             "orientation": "CORONAL",
                             "strategy": "dynamic",
-                            "value": "MIDDLE"
+                            "dynamicSliceValue": "MIDDLE"
                         },
                         "initialWindowLevel": {
                             "strategy": "dynamic",
@@ -170,7 +170,7 @@
                         "orientationAndSliceNumber": {
                             "orientation": "AXIAL",
                             "strategy": "dynamic",
-                            "value": "MIDDLE"
+                            "dynamicSliceValue": "MIDDLE"
                         },
                         "initialWindowLevel": {
                             "strategy": "dynamic",
