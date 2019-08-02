@@ -1,19 +1,21 @@
 {
-    "name": "Segmentation (Brush)",
+    "id":"1dd174e57260e384c4f45e9c490004a9",
+    "name": "Segmentation (Check)",
     "description": "This tool is used to visualize a segmentation and check it.",
     "version": "0.0.1",
     "privacy": "PUBLIC",
+    "type": "CONFIRMATION_TOOL",
     "inputs": {
-        "image":{
+        "inputImage_key":{
             "name": "Input image",
             "description": "Input image",
             "isList": false,
             "type": "imageEntityInOut",
             "imageEntityInOut_Type": "ANATOMICAL",
-            "imageEntityInOut_FileFormat": "dicom.gz",
+            "imageEntityInOut_FileFormat": "nii.gz",
             "required": true
         },
-        "segmentation":{
+        "segmentation_key":{
             "name": "Segmentation",
             "description": "Segmentation",
             "isList": false,
@@ -22,66 +24,239 @@
             "required": true
         }
     },
-    "outputs": {},
+    "outputs": {
+        "confirmationSignal_key":{
+            "name": "Confirmation signal",
+            "description": "Confirmation signal",
+            "isList": false,
+            "type": "confirmation"
+        }
+    },
     "configuration":{
         "viewers": {
-            numberOfRows:1,  //
-            numberOfColumns:4,
-            viewers:[
-                { type:"2D",
-                    orientationControlVisible:true,
-                    orientationControlOptions:[
-                        {label:"Sagittal", value:0},
-                        {label:"Coronal", value:1},
-                        {label:"Axial", value:2}
-                    ],
-                    sequenceControlVisible:false,
-                    smoothingControlVisible:true,
-                    linkedControlVisible:true,  //obsolete?
-                    smoothing:false, //initial
-                    slice:0,   //initial slice
-                    orientation:0, //SAGIT-0, CORONAL-1, AXIAL-2
-                    hasCropping:false
-                },
-                { type:"2D",
-                    orientationControlVisible:true,
-                    orientationControlDisabled:false,
-                    orientationControlOptions:[
-                        {label:"Sagittal", value:0},
-                        {label:"Coronal", value:1},
-                        {label:"Axial", value:2}
-                    ],
-                    sequenceControlVisible:false,
-                    smoothingControlVisible:true,
-                    linkedControlVisible:true,  //obsolete?
-                    smoothing:false, //initial
-                    slice:0,   //initial slice
-                    orientation:1, //SAGIT-0, CORONAL-1, AXIAL-2
-                    hasCropping:false
-                },
-                { type:"2D",
-                    orientationControlVisible:true,
-                    orientationControlOptions:[
-                        {label:"Sagittal", value:0},
-                        {label:"Coronal", value:1},
-                        {label:"Axial", value:2}
-                    ],
-                    sequenceControlVisible:false,
-                    smoothingControlVisible:true,
-                    linkedControlVisible:true,  //obsolete?
-                    smoothing:false, //initial
-                    slice:14,   //initial slice
-                    orientation:2, //SAGIT-0, CORONAL-1, AXIAL-2
-                    hasCropping:false
-                },
-                {   type:"3D"
+            "layout": {
+                "type": "FOUR_IN_A_ROW",
+                "layoutOrder": {
+                    "left": "0",
+                    "middleLeft": "1",
+                    "middleRight": "2",
+                    "right": "3"
                 }
-            ]
-
+            },
+            "renderWindows": {
+                "0": {
+                    "name": "Sagittal viewer",
+                    "type": "2D",
+                    "initialState": {
+                        "orientationAndSliceNumber": {
+                            "orientation": "SAGITTAL",
+                            "strategy": "DYNAMIC",
+                            "dynamicSliceValue": "MIDDLE"
+                        },
+                        "initialWindowLevel": {
+                            "strategy": "DYNAMIC",
+                            "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                        }
+                    },
+                    "displayImages": {
+                        "possibleImagesToDisplay": [
+                            "inputImage_key"
+                        ],
+                        "hasDefaultImageToDisplay": true,
+                        "defaultImageToDisplay": "inputImage_key"
+                    },
+                    "displayLabelMaps": {
+                        "possibleImagesToDisplay": [
+                            "segmentation_key"
+                        ],
+                        "hasDefaultLabelMapToDisplay": true,
+                        "defaultImageToDisplay": "segmentation_key"
+                    },
+                    "displayControls": {
+                        "orientation": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "options": [
+                                {
+                                    "label": "Sagittal",
+                                    "value": "SAGITTAL"
+                                },
+                                {
+                                    "label": "Coronal",
+                                    "value": "CORONAL"
+                                },
+                                {
+                                    "label": "Axial",
+                                    "value": "AXIAL"
+                                }
+                            ],
+                            "defaultValue": "AXIAL"
+                        },
+                        "smoothing": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
+                        },
+                        "sequence": {
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
+                    },
+                    "lookAndFeel":{
+                        "color":"#ffa07a"
+                    }
+                },
+                "1": {
+                    "name": "Coronal viewer",
+                    "type": "2D",
+                    "linkedControlVisible": false,
+                    "initialState": {
+                        "orientationAndSliceNumber": {
+                            "orientation": "CORONAL",
+                            "strategy": "dynamic",
+                            "dynamicSliceValue": "MIDDLE"
+                        },
+                        "initialWindowLevel": {
+                            "strategy": "dynamic",
+                            "value": "MIDDLE-FULL"
+                        }
+                    },
+                    "displayImages": {
+                        "possibleImagesToDisplay": [
+                            "inputImage_key"
+                        ],
+                        "hasDefaultImageToDisplay": true,
+                        "defaultImageToDisplay": "inputImage_key"
+                    },
+                    "displayControls": {
+                        "orientation": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "options": [
+                                {
+                                    "label": "Sagittal",
+                                    "value": "SAGITTAL"
+                                },
+                                {
+                                    "label": "Coronal",
+                                    "value": "CORONAL"
+                                },
+                                {
+                                    "label": "Axial",
+                                    "value": "AXIAL"
+                                }
+                            ],
+                            "defaultValue": "CORONAL"
+                        },
+                        "smoothing": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
+                        },
+                        "sequence": {
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
+                    },
+                    "lookAndFeel":{
+                        "color":"#fff967"
+                    }
+                },
+                "2": {
+                    "name": "Coronal viewer",
+                    "type": "2D",
+                    "linkedControlVisible": false,
+                    "initialState": {
+                        "orientationAndSliceNumber": {
+                            "orientation": "AXIAL",
+                            "strategy": "dynamic",
+                            "dynamicSliceValue": "MIDDLE"
+                        },
+                        "initialWindowLevel": {
+                            "strategy": "dynamic",
+                            "value": "MIDDLE-FULL"
+                        }
+                    },
+                    "displayImages": {
+                        "possibleImagesToDisplay": [
+                            "inputImage_key"
+                        ],
+                        "hasDefaultImageToDisplay": true,
+                        "defaultImageToDisplay": "inputImage_key"
+                    },
+                    "displayControls": {
+                        "orientation": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "options": [
+                                {
+                                    "label": "Sagittal",
+                                    "value": "SAGITTAL"
+                                },
+                                {
+                                    "label": "Coronal",
+                                    "value": "CORONAL"
+                                },
+                                {
+                                    "label": "Axial",
+                                    "value": "AXIAL"
+                                }
+                            ],
+                            "defaultValue": "AXIAL"
+                        },
+                        "smoothing": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
+                        },
+                        "sequence": {
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
+                    },
+                    "lookAndFeel":{
+                        "color":"#90ee90"
+                    }
+                },
+                "3": {
+                    "name": "3D viewer",
+                    "type": "3D",
+                    "displayControls": {
+                        "smoothing": {
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
+                        },
+                        "sequence": {
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
+                    },
+                    "displayImages": {
+                        "possibleImagesToDisplay": [
+                            "inputImage_key"
+                        ],
+                        "hasDefaultImageToDisplay": true,
+                        "defaultImageToDisplay": "inputImage_key"
+                    }
+                }
+            }
         },
-        "widgets":{
-            toolbarVisible:false,
-            annotationTableVisible:false,
+        "widgets": {
+            "pointerTool":{
+                "controlVisible":true
+            },
+            "labelmapOpacity":{
+                "controlVisible":true,
+                "controlEnabled":true,
+                "defaultValue":1
+            },
+            "referenceLines":{
+                "controlVisible":true,
+                "controlEnabled":true,
+                "defaultValue":true,
+                "strategy":"ACTIVE_WINDOW"
+            }
         }
     }
 }
