@@ -225,7 +225,7 @@
                         "smoothing": {
                             "controlVisible": false,
                             "controlEnabled": false,
-                            "defaultValue": false
+                            "defaultValue": true
                         },
                         "sequence": {
                             "controlVisible": false,
