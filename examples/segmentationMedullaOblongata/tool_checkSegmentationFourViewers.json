@@ -113,7 +113,7 @@
                     "initialState": {
                         "orientationAndSliceNumber": {
                             "orientation": "CORONAL",
-                            "strategy": "dynamic",
+                            "strategy": "DYNAMIC",
                             "dynamicSliceValue": "MIDDLE"
                         },
                         "initialWindowLevel": {
@@ -169,7 +169,7 @@
                     "initialState": {
                         "orientationAndSliceNumber": {
                             "orientation": "AXIAL",
-                            "strategy": "dynamic",
+                            "strategy": "DYNAMIC",
                             "dynamicSliceValue": "MIDDLE"
                         },
                         "initialWindowLevel": {
