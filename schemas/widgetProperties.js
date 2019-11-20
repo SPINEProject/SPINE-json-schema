@@ -1,7 +1,8 @@
 const widgets = {
     "pickerTool": {
         "controlVisible": true,
-        "controlEnabled": true
+        "controlEnabled": true,
+        "defaultValue": false
     },
     "pinTool": {
         "controlVisible": true,
@@ -26,6 +27,7 @@ const widgets = {
     "projectionTool": {
         "controlVisible": true,
         "controlEnabled": true,
+        "defaultValue": false,
         "properties": {
             "range": {
                 "controlVisible": true,
@@ -36,11 +38,13 @@ const widgets = {
     },
     "linkAllTool": {
         "controlVisible": true,
-        "controlEnabled": true
+        "controlEnabled": true,
+        "defaultValue": false
     },
     "crossHairTool": {
         "controlVisible": true,
-        "controlEnabled": true
+        "controlEnabled": true,
+        "defaultValue": false
     },
     "brushTool": {
         "controlVisible": true,
