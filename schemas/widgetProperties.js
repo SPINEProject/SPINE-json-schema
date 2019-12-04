@@ -1,5 +1,5 @@
 const widgets = {
-    "pickerTool": {
+    "pointerTool": {
         "controlVisible": true,
         "controlEnabled": true,
         "defaultValue": false
