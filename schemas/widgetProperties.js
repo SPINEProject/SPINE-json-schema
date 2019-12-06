@@ -80,48 +80,49 @@ const widgets = {
             }
         }
     },
-    "fillingTool": {
+    "fillingTool":{
         "controlVisible": true,
         "controlEnabled": true,
         "properties": {
-            "labelmap": {
-                "controlVisible": false,
-                "controlEnabled": false,
-                "defaultValue": 1,
-                "properties": {
-                    "options": [{
-                        "label": "Lesion",
-                        "iri": "",
-                        "color": "#f00",
-                        "value": 1
-                    }]
-                }
-            }
         }
     },
-    "eraserTool": {
-        "controlVisible": true,
-        "controlEnabled": true,
-        "properties": {
-            "size": {
+    "eraserTool":{
+        "controlVisible":true,
+        "controlEnabled":true,
+        "properties":{
+            "size":{
                 "controlVisible": true,
                 "controlEnabled": true,
                 "defaultValue": 1
             }
         }
     },
-    "labelmapUndoRedoTool": {
-        "controlVisible": true,
-        "controlEnabled": true
-    },
-    "labelmapOpacity": {
+    "labelmapLUT": {
         "controlVisible": true,
         "controlEnabled": true,
-        "defaultValue": 1
+        "defaultValue": 1,
+        "properties": {
+            "options":  [
+                {"value":1,"label":"Lesion","color":"#f00","iri":""},
+                {"value":2,"label":"Plaque","color":"#0f0","iri":""},
+                {"value":3,"label":"Toxin","color":"#00f","iri":""},
+                {"value":4,"label":"Tumor","color":"#f8f","iri":""},
+                {"value":5,"label":"Aging","color":"#8ff","iri":""}
+            ]
+        }
+    },
+    "labelmapUndoRedoTool":{
+        "controlVisible":true,
+        "controlEnabled":true
     },
     "annotationOpacity": {
         "controlVisible": true,
-        "controlEnabled": true,
+        "controlEnabled": false,
         "defaultValue": 1
+    },
+    "labelmapOpacity":{
+        "controlVisible":true,
+        "controlEnabled":true,
+        "defaultValue":1
     }
 };
