@@ -103,7 +103,7 @@
             "implicitGeometryPointer": {
               "$ref": "#implicitGeometryPointer"
             },
-            "pointProperties": {
+            "roiProperties": {
               "description": "Properties for a point in implicit pointer. If the implicitGemetryPointer is POINT.",
               "type": "object",
               "properties": {
