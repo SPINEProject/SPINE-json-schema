@@ -1,0 +1,63 @@
+{
+  "id":"1dd174e57260e384c4f45e9c49000061",
+  "version": "0.1",
+  "name": "Select inferior (caudal) slice of the Caudal Segment of the Medulla Oblongata",
+  "description": "Task for the selection of the inferior (caudal) slice of the Caudal Segment of Medulla Oblongata",
+  "owner":"gregory.bliault@u-bordeaux.fr",
+  "privacy":"PUBLIC",
+  "creationDate":"",
+  "process": {
+    "type":"manual",
+    "execution" : {
+      "executor":"SPINE",
+      "descriptorId":"1dd174e57260e384c4f45e9c490004a9"
+    },
+    "contributionType": "SINGLE_USER"
+  },
+  "constants": {
+  },
+  "inputs": {
+    "image" : {
+      "name": "Image",
+      "description": "T1 image",
+      "isList": false,
+      "type": "imageEntityInOut",
+      "imageEntityInOut_Type":"ANATOMICAL",
+      "imageEntityInOut_FileFormat":"nii",
+      "filter":{}
+    }
+  },
+  "outputs": {
+    "slice_number_axial":{
+      "name": "Implicit ROI referring to the caudal limit of the Caudal Segment of the Medulla Oblongata",
+      "description": "Implicit ROI referring to the caudal limit of the Caudal Segment of the Medulla Oblongata",
+      "isList": false,
+      "type": "roiWithAnnotationsInOut",
+      "typeROI": "IMPLICIT",
+      "implicitRelationWithRoi": "CAUDAL_EXTERNAL_LIMIT",
+      "implicitGeometryPointer": "SLICE",
+      "idDescriptor": "slice_number_axial",
+      "planeProperties":{
+        "anatomicalDirection": "AXIAL"
+      },
+      "annotations": [
+        {
+          "typeAnnotationForm": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+          "propertiesAnnotation": {
+            "isOntologyBased": true,
+            "typeAnnotationOptions": "TEXT",
+            "ontologyId": "https://bioportal.bioontology.org/ontologies/FMA",
+            "options": [
+              {
+                "value": "http://purl.org/sig/ont/fma/fma258700",
+                "valueToDisplay": "Caudal segment of medulla oblongata",
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+
+

@@ -1,0 +1,111 @@
+{
+    "id":"1dd174e57260e384c4f45e9c490004a0",
+    "name": "Slice selector tool with restricted range",
+    "description": "This tool has one viewer and is used to select a specific slice",
+    "version": "0.0.1",
+    "privacy": "PUBLIC",
+    "type": "SLICE_SELECTOR_TOOL",
+    "inputs": {
+        "inputImage_key":{
+            "name": "Input image",
+            "description": "Input image",
+            "isList": false,
+            "type": "imageEntityInOut",
+            "imageEntityInOut_Type": "ANATOMICAL",
+            "imageEntityInOut_FileFormat": "nii.gz",
+            "required": true
+        },
+        "lowerSliceNumber_key":{
+            "name": "Lower axial slice number",
+            "description": "Lower axial slice number",
+            "isList": false,
+            "type": "Number",
+            "required": true
+        }
+    },
+    "outputs": {
+        "slice_number_axial_key":{
+            "name": "The slice number in axial direction",
+            "description": "The selected slice number in axial direction",
+            "isList": false,
+            "type": "roiInOut",
+            "typeROI": "IMPLICIT",
+            "implicitGeometryPointer": "SLICE",
+            "planeProperties":{
+                "anatomicalDirection": "AXIAL"
+            }
+        }
+    },
+    "bindingToolInputsToViewersInputs":[
+        {
+            "inputTool": "lowerSliceNumber_key",
+            "inputViewer":{
+                "viewerId":"0",
+                "property": "slicingRanges_AXIAL_inferiormostSliceNumber"
+            }
+        }
+    ],
+    "bindingViewersOutputsToToolOutputs":[
+        {
+            "outputTool": "slice_number_axial_key",
+            "outputViewer":{
+                "viewerId":"0",
+                "property": "sliceNumber",
+                "orientation": "AXIAL"
+            }
+        }
+    ],
+    "configuration":{
+        "viewers": {
+            "layout":{
+              "type":"SINGLE",
+              "layoutOrder":{
+                  "middle":"0"
+              }
+            },
+            "renderWindows":{
+                "0":{
+                    "name": "Axial viewer",
+                    "type":"2D",
+                    "initialState":{
+                        "orientationAndSliceNumber": {
+                            "orientation": "AXIAL",
+                            "strategy": "DYNAMIC",
+                            "dynamicSliceValue": "INFERIORMOST"
+                        },
+                        "initialWindowLevel":{
+                            "strategy": "DYNAMIC",
+                            "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                        }
+                    },
+                    "displayImages":{
+                        "possibleImagesToDisplay": ["inputImage_key"],
+                        "hasDefaultImageToDisplay": true,
+                        "defaultImageToDisplay": "inputImage_key"
+                    },
+                    "displayControls":{
+                        "orientation":{
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "options":[  {
+                                "label": "Axial",
+                                "value": "AXIAL"
+                            }]
+                        },
+                        "smoothing":{
+                            "controlVisible": false,
+                            "controlEnabled": false,
+                            "defaultValue": false
+                        },
+                        "sequence":{
+                            "controlVisible": false,
+                            "controlEnabled": false
+                        }
+                    }
+                }
+            }
+        },
+        "widgets":{
+        }
+    }
+}

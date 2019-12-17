@@ -1,0 +1,252 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/viewer.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Viewer Schema",
+  "description": "Description of a medical imaging viewer",
+  "type": "object",
+  "TODOS": [
+    "Add different types of layouts for the location of the viewer, for instance float left"
+  ],
+  "definitions":{
+
+    "orientationType":{
+      "$id": "#orientationType",
+      "description": "Type of orientations",
+      "type": "string",
+      "enum": ["AXIAL", "SAGITTAL", "CORONAL"]
+    },
+
+    "strategyInitialSlice":{
+      "$id": "#strategyInitialSlice",
+      "description": "Strategy to define initial slices. DYNAMIC uses the ranges of the image to dynamicall set the slice number. NUMBER uses a predefined number of slice.",
+      "type": "string",
+      "enum": ["DYNAMIC", "NUMBER"]
+    },
+
+    "dynamicValueInitialSlice":{
+      "$id": "#dynamicValueInitialSlice",
+      "description": "Value for initial slices calculated dynamically for a given image",
+      "type": "string",
+      "enum": ["LOWERMOST", "UPPERMOST", "LEFTMOST", "RIGHTMOST", "POSTERIORMOST", "ANTERIORMOST", "MIDDLE"]
+    },
+
+    "strategyInitialWindowLevel":{
+      "$id": "#strategyInitialWindowLevel",
+      "description": "Strategy to define initial window/level. DYNAMIC uses the intensity ranges of the image to dynamicall set the window/level values. NUMBER uses predefined values.",
+      "type": "string",
+      "enum": ["DYNAMIC", "NUMBER"]
+    },
+
+    "dynamicStrategyWindowLevel":{
+      "$id": "#dynamicStrategyWindowLevel",
+      "description": "Strategy used to dynamically set the values for window/level",
+      "type": "string",
+      "enum": ["FULLWINDOW_MIDDLELEVEL"]
+    },
+
+    "viewerType":{
+      "$id": "#viewerType",
+      "description": "Type of viewers",
+      "type": "string",
+      "enum": ["2D", "3D"]
+    },
+
+    "viewerProperty":{
+      "$id": "#viewerProperty",
+      "description": "All the viewer properties that can be exposed",
+      "type": "string",
+      "enum": [
+        "slicingRanges_AXIAL_inferiormostSliceNumber",
+        "slicingRanges_AXIAL_superiormostSliceNumber",
+        "slicingRanges_SAGITTAL_leftmostSliceNumber",
+        "slicingRanges_SAGITTAL_rigthmostSliceNumber",
+        "slicingRanges_CORONAL_posteriormostSliceNumber",
+        "slicingRanges_CORONAL_anteriormostSliceNumber",
+
+        "windowLevel_windowWidth",
+        "windowLevel_levelValue",
+
+        "currentSliceNumber_AXIAL",
+        "currentSliceNumber_SAGITTAL",
+        "currentSliceNumber_CORONAL",
+
+        "orientation"
+      ]
+    }
+
+  },
+  "properties": {
+    "name": {
+      "description": "Name of the viewer",
+      "type": "string"
+    },
+    "type":{
+      "description": "Type of viewer",
+      "$ref": "#/definitions/viewerType"
+    },
+    "initialState":{
+      "description": "Initial state of the viewer",
+      "properties":{
+        "orientationAndSliceNumber": {
+          "description": "Initial orientation and slice number",
+          "type": "object",
+          "properties":{
+            "orientation": {
+              "$ref": "#/definitions/orientationType"
+            },
+            "strategy": {
+              "description": "Strategy to define the initial slice",
+              "$ref": "#/definitions/strategyInitialSlice"
+            },
+            "dynamicSliceValue":{
+              "description": "Initial slice value",
+              "$ref": "#/definitions/dynamicValueInitialSlice"
+            },
+            "predefinedSliceNumber":{
+              "description": "Predefined slice number",
+              "type": "number"
+            }
+          },
+          "oneOf":[
+            {
+              "required": ["orientation", "strategy", "dynamicSliceValue"]
+            },
+            {
+              "required": ["orientation", "strategy", "predefinedSliceNumber"]
+            }
+          ]
+        },
+        "initialWindowLevel":{
+          "description": "Initial window/level for the viewer",
+          "type": "object",
+          "properties":{
+            "strategy": {
+              "description": "Strategy to define the initial window/level",
+              "$ref": "#/definitions/strategyInitialWindowLevel"
+            },
+            "dynamicStrategy":{
+              "description": "Initial slice value",
+              "$ref": "#/definitions/dynamicStrategyWindowLevel"
+            },
+            "predefinedWindowWidth":{
+              "description": "Predefined window width",
+              "type": "number"
+            },
+            "predefinedLevelValue":{
+              "description": "Predefined level value",
+              "type": "number"
+            }
+          },
+          "oneOf":[
+            {
+              "required": ["strategy", "dynamicStrategy"]
+            },
+            {
+              "required": ["orientation", "dynamicStrategy", "predefinedWindowWidth", "predefinedLevelValue"]
+            }
+          ]
+        }
+      },
+      "required": ["orientationAndSliceNumber", "initialWindowLevel"]
+    },
+    "displayImages":{
+      "description": "Display options of the viewer regarding the images.",
+      "type": "object",
+      "properties":{
+        "possibleImagesToDisplay": {
+          "description": "List of input images the viewer can display. The input images must reference an id of the input images.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "hasDefaultImageToDisplay":{
+          "description": "True is there is a default image to display",
+          "type": "boolean"
+        },
+        "defaultImageToDisplay": {
+          "description": "Id of the input images to be displayed",
+          "type": "string"
+        }
+      },
+      "required": ["possibleImagesToDisplay", "hasDefaultImageToDisplay"],
+      "dependencies": {
+        "defaultImageToDisplay": {
+          "properties": {
+            "hasDefaultImageToDisplay": {
+              "enum": [true]
+            }
+          }
+        }
+      }
+    },
+    "windowLevel": {
+      "description": "Window/Level configuration for the viewer",
+      "type": "object",
+      "properties": {
+        "userCanChangeWindowLevel":{
+          "description": "If the user is able to control the Window/Level.",
+          "type": "boolean",
+          "default": true
+        },
+        "defaultValue": {
+          "description": "Default values for the Window/Level.",
+          "type": "object",
+          "properties": {
+            "window": {
+              "description": "Default Window value.",
+              "type": "number",
+              "default": 0
+            },
+            "level": {
+              "description": "Default Level value.",
+              "type": "number",
+              "default": 0
+            }
+          }
+        }
+      },
+      "required": ["userCanChangeWindowLevel"]
+    },
+    "displayControls":{
+      "description": "Display controls of the viewer.",
+      "type": "object",
+      "properties":{
+    	  "orientations": {
+    	    "description": "Possible orientations of the images",
+    	    "type": "array",
+    	    "items": {
+  	  	    "type": "string",
+  	  	    "enum": ["axial", "sagittal", "coronal"]
+  	      },
+  	      "minItems": 1
+        },
+    	  "defaultOrientation": {
+    	    "description": "Default orientation of the images",
+          "type": "string",
+          "enum": ["axial", "sagittal", "coronal"]
+  	    },
+  	    "smoothing":{
+  	      "description": "Smoothing control for the images",
+  	      "type": "object",
+  	      "properties":{
+  	        "smoothingControl": {
+  	      	  "description": "Smoothing control for the viewer",
+          	  "type": "boolean",
+          	  "default": true
+  	        },
+  	        "smoothingDefault":{
+  	      	  "description": "Smoothing default value for the viewer",
+          	  "type": "boolean",
+          	  "default": false
+  	        }
+  	      },
+          "required": ["smoothingControl", "smoothingDefault"]
+  	    }
+      },
+      "required": ["orientations", "defaultOrientation", "smoothing"]
+    }
+  },
+  "required":["name", "type", "initialState"]
+}

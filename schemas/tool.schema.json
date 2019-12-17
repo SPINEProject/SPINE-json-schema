@@ -21,10 +21,25 @@
     "PossibleImagesToDisplay in the displayImages in the viewer section has to have an option to say dispay all images",
     "How to make this definitions independent of SPINE types? In case in the future we would like to share/publish this work",
     "Create different definitions of tools based on the type.",
-    "map_InputROIs_OuputAnnotations might be an object instead of an array to make sure there is only one list of exposed annotation concepts for a given roi in the input"
+    "map_InputROIs_OuputAnnotations might be an object instead of an array to make sure there is only one list of exposed annotation concepts for a given roi in the input",
+    "Linking property for the viewers"
   ],
 
   "definitions": {
+
+    "toolType":{
+      "$id": "#toolType",
+      "description": "Type of tool. This defines the layout to be used. SLICE_SELECTOR_TOOL refers to a tool where a slice is selected. SEGMENTATION_TOOL refers to a tool where a segmentation is created. CONFIRMATION_TOOL refers to a tool to confirm results, the output is only true/false without need for binding to anything.",
+      "type": "string",
+      "enum": ["SLICE_SELECTOR_TOOL", "SEGMENTATION_TOOL", "CONFIRMATION_TOOL"]
+    },
+
+    "layoutViewersType":{
+      "$id": "#layoutViewersType",
+      "description": "Type of viewers layout.",
+      "type": "string",
+      "enum": ["SINGLE", "FOUR_IN_A_ROW", "THREE_IRREGULAR", "GRID"]
+    },
 
     "possibleValueInAnnotationTable": {
       "$id": "#possibleValueInAnnotationTable",
@@ -149,185 +164,45 @@
       }
     },
 
-    "viewersAnnotationTool": {
-      "$id": "#viewersAnnotationTool",
-      "description": "Description of all the viewers for the tool.",
+    "viewersTool": {
+      "$id": "#viewersTool",
+      "description": "Configuration of all the viewers for the tool.",
       "type": "object",
       "properties": {
-        "generalConfiguration":{
-          "description": "General configuration of the viewers.",
+        "layout":{
+          "description": "Layout to be used for the viewers",
           "type": "object",
-          "properties":{
-            "linking":{
-              "description": "Linking properties for the viewers.",
-              "type": "object",
-              "properties": {
-                "linkingControl":{
-                  "description": "If the user can use the linking control.",
-                  "type": "boolean",
-                  "default": true
-                },
-                "linkingInitialValue":{
-                  "description": "Initial value for the linking control.",
-                  "type": "boolean",
-                  "default": false
+          "properties": {
+            "type": {
+              "description": "Layout to be used for the viewers",
+              "$ref": "#/definitions/layoutViewersType"
+            },
+            "layoutOrder": {
+              "description": "Assignation of viewer in the layout based on the order defined by the layout. The match is done by associating a key-name in the layout to the key-name of a viewer in the tool",
+              "patternProperties": {
+                ".*": {
+                  "description": "String corresponding to the viewer key-name of a viewer in the tool",
+                  "type": "string"
                 }
-              },
-              "required": ["linkingControl", "linkingInitialValue"]
+              }
             }
-          },
-          "required": ["linking"]
+          }
         },
-        "specificConfiguration":{
-          "description": "Configuration of each viewer of the annotation tool.",
-          "type": "object",
-          "minProperties": 1,
+        "renderWindows":{
+          "description": "Configuration of the viewers in the tool",
           "patternProperties": {
             ".*": {
-          	  "type": "object",
-          	  "properties": {
-          	    "name": {
-          	      "description": "Name of the viewer",
-          	      "type": "string"
-          	    },
-          	    "location":{
-          	      "description": "Location of the viewer in a grid",
-          	      "type": "object",
-          	      "properties":{
-          	      	"row":{
-          	      		"description": "Row location",
-          	      		"type": "number",
-          	      		"minimum": 1
-          	      	},
-          	      	"column":{
-          	      		"description": "Column location",
-          	      		"type": "number",
-          	      		"minimum": 1
-          	      	},
-          	      	"rowspan":{
-          	      		"description": "Number of rows the viewer should span",
-          	      		"type": "number",
-          	      		"minimum": 1,
-          	      		"default": 1
-          	      	},
-          	      	"columnspan":{
-          	      		"description": "Number of colums the viewer should span",
-          	      		"type": "number",
-          	      		"minimum": 1,
-          	      		"default": 1
-          	      	}
-          	      },
-                  "required": ["row", "column", "rowspan", "columnspan"]
-          	    },
-                "windowLevel": {
-                  "description": "Window/Level configuration for the viewer",
-                  "type": "object",
-                  "properties": {
-                    "userCanChangeWindowLevel":{
-                      "description": "If the user is able to control the Window/Level.",
-                      "type": "boolean",
-                      "default": true
-                    },
-                    "defaultValue": {
-                      "description": "Default values for the Window/Level.",
-                      "type": "object",
-                      "properties": {
-                        "window": {
-                          "description": "Default Window value.",
-                          "type": "number",
-                          "default": 0
-                        },
-                        "level": {
-                          "description": "Default Level value.",
-                          "type": "number",
-                          "default": 0
-                        }
-                      }
-                    }
-                  },
-                  "required": ["userCanChangeWindowLevel"]
-                },
-          	    "displayImages":{
-          	      "description": "Display options of the viewer regarding the images.",
-          	      "type": "object",
-          	      "properties":{
-      	        	  "possibleImagesToDisplay": {
-      	        	    "description": "List of input images the viewer can display. The input images must reference an id of the input images.",
-      	        	    "type": "array",
-      	        	    "items": {
-      	      	  	    "type": "string"
-      	      	      },
-      	      	      "minItems": 1
-      	            },
-                    "hasDefaultImageToDisplay":{
-                      "description": "True is there is a default image to display",
-                      "type": "boolean"
-                    },
-      	        	  "defaultImageToDisplay": {
-      	        	    "description": "Id of the input images to be displayed",
-                      "type": "string"
-      	      	    }
-      	      	  },
-                  "required": ["possibleImagesToDisplay", "hasDefaultImageToDisplay"],
-                  "dependencies": {
-                    "defaultImageToDisplay": {
-                      "properties": {
-                        "hasDefaultImageToDisplay": {
-                          "enum": [true]
-                        }
-                      }
-                    }
-                  }
-      	        },
-      	        "displayControls":{
-          	      "description": "Display controls of the viewer.",
-          	      "type": "object",
-          	      "properties":{
-      	        	  "orientations": {
-      	        	    "description": "Possible orientations of the images",
-      	        	    "type": "array",
-      	        	    "items": {
-      	      	  	    "type": "string",
-      	      	  	    "enum": ["axial", "sagittal", "coronal"]
-      	      	      },
-      	      	      "minItems": 1
-      	            },
-      	        	  "defaultOrientation": {
-      	        	    "description": "Default orientation of the images",
-      	              "type": "string",
-      	              "enum": ["axial", "sagittal", "coronal"]
-      	      	    },
-      	      	    "smoothing":{
-      	      	      "description": "Smoothing control for the images",
-      	      	      "type": "object",
-      	      	      "properties":{
-      	      	        "smoothingControl": {
-      	      	      	  "description": "Smoothing control for the viewer",
-      	              	  "type": "boolean",
-      	              	  "default": true
-      	      	        },
-      	      	        "smoothingDefault":{
-      	      	      	  "description": "Smoothing default value for the viewer",
-      	              	  "type": "boolean",
-      	              	  "default": false
-      	      	        }
-      	      	      },
-                      "required": ["smoothingControl", "smoothingDefault"]
-      	      	    }
-      	          },
-                  "required": ["orientations", "defaultOrientation", "smoothing"]
-      	        }
-          	  },
-              "required":["name", "location"]
+              "description": "Configuration of a viewer",
+              "$ref": "viewer.schema.json"
             }
           }
         }
       },
-      "required": ["generalConfiguration", "specificConfiguration"]
+      "required": ["layout", "renderWindows"]
     },
 
-    "widgetsAnnotationTool": {
-      "$id": "#widgetsAnnotationTool",
+    "widgetsTool": {
+      "$id": "#widgetsTool",
       "description": "Widget for the annotation tool.",
       "type": "object",
       "properties": {
@@ -419,6 +294,62 @@
       ]
     },
 
+    "bindingToolInputToViewerInput":{
+      "$id": "#bindinToolInputToViewerInput",
+      "description": "Mapping a tool input to a viewer input",
+      "type": "object",
+      "properties": {
+        "inputTool": {
+          "description": "Key-name of the input to be connected to an input of a viewer",
+          "type": "string"
+        },
+        "inputViewer": {
+          "description": "Object defining the input for a viewer",
+          "type": "object",
+          "properties":{
+            "viewerId":{
+              "description":"Key-name of the viewer",
+              "type":"string"
+            },
+            "property":{
+              "description":"Property of the viewer to be connected to the input of the tool",
+              "$ref": "viewer.schema.json#/definitions/viewerProperty" 
+            }
+          },
+          "required": ["viewerId", "property"]
+        }
+      },
+      "required": ["inputTool", "inputViewer"]
+    },
+
+    "bindingViewerOutputToToolOutput":{
+      "$id": "#bindinViewerOutputToToolOutput",
+      "description": "Mapping a viewer output to a tool output",
+      "type": "object",
+      "properties": {
+        "outputTool": {
+          "description": "Key-name of the tool output to be connected to an output of a viewer",
+          "type": "string"
+        },
+        "outputViewer": {
+          "description": "Object defining the output for a viewer",
+          "type": "object",
+          "properties":{
+            "viewerId":{
+              "description":"Key-name of the viewer",
+              "type":"string"
+            },
+            "property":{
+              "description":"Property of the viewer to be connected to the output of the tool",
+              "$ref": "viewer.schema.json#/definitions/viewerProperty" 
+            }
+          },
+          "required": ["viewerId", "property"]
+        }
+      },
+      "required": ["outputTool", "outputViewer"]
+    },
+
     "toolBasicProperties": {
       "$id": "#toolBasicProperties",
       "type": "object",
@@ -435,18 +366,13 @@
             "description": "Version of the annotation tool.",
             "type": "string"      
           },
-          "owner": {
-            "description": "Owner of the annotation tool.",
-            "type": "string"      
-          },
           "privacy": {
             "description": "Privacy of the tool.",
-            "type": "string",
-            "enum":["PUBLIC","PRIVATE"]
+            "$ref": "core.schema.json#/definitions/privacy"
           },
-          "creationDate": {
-            "description": "Creation date of the annotation tool.",
-            "type": "string"      
+          "type": {
+            "description": "This defines the type of tool. This is mostly used in the front-end to define what the tool outputs.",
+            "$ref": "#/definitions/toolType"          
           },
           "annotationTables": {
             "description": "Configuration of the ROIs for the annotation tool.",
@@ -460,11 +386,18 @@
             "description": "Object with the outputs of the tool",
             "$ref":"#/definitions/outputsAnnotationTool"
           },
-          "mappingFunctions": {
-            "description": "List of mapping fuctions inside the tool. A tool can have many mapping functions. This will allow to define different types of mapping functions, even new ones coming in the future.",
+          "bindingToolInputsToViewerInputs": {
+            "description": "Binding of tool inputs to the viewer inputs",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/mappingFunction"
+              "$ref": "#/definitions/bindingToolInputToViewerInput"
+            }
+          },
+          "bindingViewerOutputsToViewesOutputs": {
+            "description": "Binding of viewer's inputs to tool outputs",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/bindingViewerOutputToToolOutput"
             }
           },
           "configuration":{
@@ -472,17 +405,38 @@
             "type": "object",
             "properties": {
               "viewers": {
-                "description": "Configuration of the viewers for the annotation tool.",
-                "$ref": "#/definitions/viewersAnnotationTool"
+                "description": "Configuration of the viewers for the tool.",
+                "$ref": "#/definitions/viewersTool"
               },
               "widgets": {
-                "description": "Configuration of the widgets for the annotation tool.",
-                "$ref": "#/definitions/widgetsAnnotationTool"
+                "description": "Configuration of the widgets for the tool.",
+                "$ref": "#/definitions/widgetsTool"
               }
             }
           }
         },
-        "required": ["name", "description", "version", "owner", "privacy", "creationDate", "annotationTables", "inputs", "outputs", "configuration"]
+        "required": ["name", "description", "version", "privacy", "type", "inputs", "outputs", "configuration"]
+    },
+
+    "tool_API_GET": {
+      "description": "Schema for reponse when using GET",
+      "allOf":[
+        {"$ref": "#toolBasicProperties"},
+        {
+          "type": "object",
+          "properties": {
+            "creationDate": {
+              "description": "Creation date of the annotation tool.",
+              "type": "string"
+            },
+            "owner": {
+              "description": "Owner of the annotation tool.",
+              "type": "string"      
+            }
+          },
+          "required":["creationDate", "owner"]
+        }
+      ]
     },
 
     "toolCreateAndAnnotateROI": {
