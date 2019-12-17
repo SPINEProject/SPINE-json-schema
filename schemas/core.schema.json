@@ -44,7 +44,7 @@
       "type": "string",
       "enum": ["String","Number","imageFileInOut","imageEntityInOut",
         "auxiliaryImageFile","lookupTableInOut","roiInOut","annotationInOut",
-        "roiWithAnnotationsInOut"]
+        "roiWithAnnotationsInOut","annotationTableDefinitionInOut"]
     },
 
     "inputOutput": {
@@ -156,6 +156,23 @@
             }
           },
           "required": ["type","imageFileInOut_Type","imageFileInOut_FileFormat"]
+        }
+      ]
+    },
+
+    "annotationTableDefinitionInOut": {
+      "$id": "#annotationTableDefinitionInOut",
+      "description": "Schema defining an annotation table definition as input output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["annotationTableDefinitionInOut"]
+            }
+          },
+          "required": ["type"]
         }
       ]
     },
@@ -370,7 +387,8 @@
         {"$ref": "#/definitions/String"},
         {"$ref": "#/definitions/Number"},
         {"$ref": "#/definitions/imageFileInOut"},
-        {"$ref": "#/definitions/lookupTableInOut"}
+        {"$ref": "#/definitions/lookupTableInOut"},
+        {"$ref": "#/definitions/annotationTableDefinitionInOut"}
       ]
     }
 
