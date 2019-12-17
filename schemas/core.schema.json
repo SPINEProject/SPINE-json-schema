@@ -177,6 +177,23 @@
       ]
     },
 
+    "annotationTableDataInOut": {
+      "$id": "#annotationTableDataInOut",
+      "description": "Schema defining an annotation table data as input output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["annotationTableDataInOut"]
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+
     "lookupTableInOut_FileFormat": {
       "$id" : "#lookupTableInOut_Type",
       "description": "File format for lookup tables",
@@ -388,7 +405,8 @@
         {"$ref": "#/definitions/Number"},
         {"$ref": "#/definitions/imageFileInOut"},
         {"$ref": "#/definitions/lookupTableInOut"},
-        {"$ref": "#/definitions/annotationTableDefinitionInOut"}
+        {"$ref": "#/definitions/annotationTableDefinitionInOut"},
+        {"$ref": "#/definitions/annotationTableDataInOut"}
       ]
     }
 
