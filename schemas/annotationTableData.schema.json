@@ -1,0 +1,56 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/annotationTableDefinition.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Annotation Table Data",
+  "description": "Schema an annotation table data",
+  "type": "object",
+  "properties": {
+    "lookAndFeel": {
+      "description": "References to other objects",
+      "type": "object",
+      "properties": {
+        "activeRoiId": {
+          "description":"ID of the active annotation",
+          "type":"string"
+        }
+      }
+    },
+    "reference": {
+      "description": "References to other objects",
+      "type": "object",
+      "properties": {
+        "annotationTableDefinitionId": {
+          "description":"ID of the annotation table definition",
+          "type":"string"
+        }
+      }
+    },
+    "data": {
+      "description": "The list of ROI and their annotations (content of the table)",
+      "type": "array",
+      "items": {
+        "type":"object"
+        "properties": {
+          "id": {
+            "description":"ID of the ROI",
+            "type":"string"
+          },
+          "roi": {
+            "type":"object",
+            "properties": {}
+          },
+          "annotations": {
+            "type":"object",
+            "patternProperties": {
+              ".*": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "required": ["id", "roi", "annotations"]
+      }
+    }
+  },
+  "required": ["lookAndFeel", "reference", "data"]
+  }
