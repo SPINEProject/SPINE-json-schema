@@ -1,5 +1,9 @@
 {
   "name": "SPINE-json-schema",
+  "author": "Alfredo Morales Pinzon",
+  "license": "MIT",
+  "keywords": ["SPINE", "schema", "model", "json", "Image Processing", "pipelines", "workflow"],
+  "description": "Set of JSON schemas for the SPINE Virtual Laboratory",
   "version": "1.0.0",
   "dependencies": {
     
