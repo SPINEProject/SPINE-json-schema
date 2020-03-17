@@ -13,9 +13,10 @@ If you make changes and tag this project make sure that the version of the ```pa
 ## Procedure after changes
   1. Update schema documents
   1. Update the version of the ```package.json``` file
-  1. Commit, Pull Request, and Merge the master branch
+  1. Commit, Pull Request, and Merge into the master branch
   1. Tag this repository according to the version in the ```package.json``` file
   1. In the SPINE repository change the version of this repository in the dependences in the ```package.json``` file
   1. In SPINE project run ```npm install```
   1. Create migration script for the database and save it the SPINE repository in the folder ```src/backedn/migrations_scripts/```
+  1. Create a release for SPINE project including migration instructions from previous releases. Please refer to the migration script in the commit messages.
   
