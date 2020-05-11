@@ -20,3 +20,17 @@ If you make changes and tag this project make sure that the version of the ```pa
   1. Create migration script for the database and save it the SPINE repository in the folder ```src/backedn/migrations_scripts/```. ***The migration script changes at least the document having the version of the json schema used.***
   1. Create a release for SPINE project including migration instructions from previous releases. Please refer to the migration script in the commit messages.
   
+## Testing with Jest and Ajv 
+All schemas should be validated with tests, based on Ajv library. Since Jest can’t 
+specify the error message, in order to display a meaningful error message, 
+we will have to create a custom matcher to show our own message, returned by Ajv.
+It is shown in [Example of matcher extension](/tests/jest.ajv.schema.test.js) 
+
+
+More "know-how" can be found here:
+ 
+[Test JSON schema with AJV and Jest](https://medium.com/@moshfeu/test-json-schema-with-ajv-and-jest-c1d2984234c9 )
+
+[Getting started with JEST](https://jestjs.io/docs/en/getting-started)
+
+[Getting started with Ajv](https://github.com/ajv-validator/ajv)
