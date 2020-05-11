@@ -1,5 +1,5 @@
 {
-  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/annotationForm.schema.json",
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/question.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Annotation Forms that describes the options for an annotation",
   "type": "object",

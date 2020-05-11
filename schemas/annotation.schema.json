@@ -4,7 +4,7 @@
   "title": "Annotation Schema",
   "type": "object",
   "TODOS": [
-    "Usually an annotation is a simple comment. In the future an annotation can be an image, for instance a probability mask."
+    "Usually an annotation is a simple comment. In the future an annotation can be an image, for instance a probability mask. This can be the answer to the question, what is the probability for every voxel to be part of the corpus callosum."
   ],
   "definitions": {
 
@@ -18,7 +18,7 @@
         "typeAnnotation": {
           "description": "",
           "type": "string",
-          "enum": ["TEXT","IMAGE","NUMBER","BOOLEAN"]
+          "enum": ["TEXT","IMAGE","NUMBER","BOOLEAN", "ARRAY"]
         },
         "status": {
           "description": "Status of the annotation: saved or submitted",
@@ -26,28 +26,53 @@
           "enum": ["SAVED","SUBMITTED"]
         },
         "reference": {
-          "roiId": {
-            "description": "Id of the ROI annotated by this annotation",
-            "type": "string"
+          "description": "References to main documents",
+          "type": "object",
+          "properties": {
+            "roiId": {
+              "description": "Id of the ROI annotated by this annotation",
+              "type": "string"
+            },
+            "materializedTaskId": {
+              "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
+              "type": "string"
+            },
+            "questionId":{
+              "description": "Id of the question related to this annotation. An annotation is an answer to a question.",
+              "type": "string"
+            }
           },
-          "materializedTaskId":{
-            "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
-            "type": "string"
-          }
+          "required": ["roiId", "materializedTaskId", "questionId"]
         },
         "properties": {
           "description": "Properties of the annotation. The list of properties depends in the type of annotation.",
           "type": "object",
-          "properties": {
-            "isOntologyBased":{
-              "description": "True if the annotation and its options are based on an ontology",
-              "type": "boolean"
+          "oneOf":[
+            {
+              "properties": {
+                "isOntologyBased": {
+                  "description": "True if the annotation and its options are based on an ontology",
+                  "type": "boolean",
+                  "enum": [true]
+                },
+                "ontologyId": {
+                  "description": "Id of the ontology where the value of the annotation is retrieved.",
+                  "type": "string"
+                }
+              },
+              "required": ["isOntologyBased", "ontologyId"]
             },
-            "ontologyId": {
-              "description": "Id of the ontology where the value of the annotation is retrieved.",
-              "type": "string"
+            {
+              "properties": {
+                "isOntologyBased": {
+                  "description": "True if the annotation and its options are based on an ontology",
+                  "type": "boolean",
+                  "enum": [false]
+                },
+                "required": ["isOntologyBased"]
+              }
             }
-          }
+          ]
         }
       },
       "required": ["typeAnnotationForm", "typeAnnotation", "status", "reference", "properties"]
