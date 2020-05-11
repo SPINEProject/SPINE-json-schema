@@ -12,13 +12,11 @@
       "$id": "#annotationBasic",
       "description": "Basic description of an annotation",
       "properties":{
-        "typeAnnotationForm":{
-          "$ref": "annotationForm.schema.json#/definitions/typeAnnotationForm"
+        "typeQuestion":{
+          "$ref": "question.schema.json#/definitions/typeQuestion"
         },
         "typeAnnotation": {
-          "description": "",
-          "type": "string",
-          "enum": ["TEXT","IMAGE","NUMBER","BOOLEAN", "ARRAY"]
+          "$ref": "question.schema.json#/definitions/typeAnnotationOptions"
         },
         "status": {
           "description": "Status of the annotation: saved or submitted",
@@ -31,6 +29,14 @@
           "properties": {
             "roiId": {
               "description": "Id of the ROI annotated by this annotation",
+              "type": "string"
+            },
+            "taskId": {
+              "description": "Id of the task used to produce this annotation",
+              "type": "string"
+            },
+            "workflowId": {
+              "description": "Id of the workflow used to produce this annotation",
               "type": "string"
             },
             "materializedTaskId": {
@@ -75,7 +81,7 @@
           ]
         }
       },
-      "required": ["typeAnnotationForm", "typeAnnotation", "status", "reference", "properties"]
+      "required": ["typeQuestion", "typeAnnotation", "status", "reference", "properties"]
     },
 
     "annotationMultipleChoiceMultipleAnswer":{

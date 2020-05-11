@@ -1,0 +1,196 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/question.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Annotation Forms that describes the options for an annotation",
+  "type": "object",
+  "TODOS": [
+    "Usually an annotation is a simple comment. In the future an annotation can be an image, for instance a probability mask.",
+    "Units for the value in an annotation should come from an ontology."
+  ],
+  "definitions":{
+
+    "optionInTree": {
+      "$id": "#optionInTree",
+      "description": "Options in a tree",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "Value of the actual option.",
+          "type": "string"
+        },
+        "valueToDisplay": {
+          "description": "Value to be shown to the user. For instance the value can be FMA.org/6758 but the preffered value is CorpusCallosum.",
+          "type": "string"
+        },
+        "suboptions": {
+          "description": "List of suboptions",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/optionInTree"
+          }
+        }
+      },
+      "required": ["value"]
+    },
+
+    "optionTree": {
+      "$id": "#optionTree",
+      "description": "Options for an annotation",
+      "type": "object",
+      "properties": {
+        "options": {
+          "description": "List of options",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/optionInTree"
+          }
+        }
+      }
+    },
+
+    "typeQuestion": {
+      "$id": "#typeQuestion",
+      "description": "Type of question.",
+      "type": "string",
+      "enum": [
+        "MULTIPLE_CHOICE_MULTIPLE_ANSWER",
+        "MULTIPLE_CHOICE_SINGLE_ANSWER",
+        "OPEN_ENDED"]
+    },
+
+    "typeAnnotationOptions": {
+      "$id": "#typeAnnotationOptions",
+      "description": "Type of options for an annotation.",
+      "type": "string",
+      "enum": [
+        "TEXT",
+        "NUMBER",
+        "BOOLEAN"]
+    },
+
+    "annotationExposedConcepts": {
+      "$id":"#annotationExposedConcepts",
+      "description": "Exposed concepts for a given annotation. In other words, all the possible values for a given annotation. Examples: a. Ontology FMA with possible concepts like Thalamus and corpus callosum. b. Ontology for physical measurement, with volume as possible concept.",
+      "type": "object",
+      "properties":{
+        "typeQuestion": {
+          "$ref": "#/definitions/typeQuestion"
+        },
+        "ontologyId": {
+          "description": "Id of the ontology where the value of the annotation is retrieved.",
+          "type": "string"
+        },
+        "conceptIds":{
+          "description": "Ids of concepts in the ontology that the menu exposes.",
+          "type": "array",
+          "items":{
+            "type":"string"
+          }
+        }
+      },
+      "required": ["typeQuestion", "ontologyId", "conceptIds"]
+    },
+
+    "annotationBasic": {
+      "$id": "#annotationBasic",
+      "description": "Basic definitions of an annotation.",
+      "type": "object",
+      "properties": {
+        "typeQuestion": {
+          "$ref": "#typeQuestion"
+        },
+        "propertiesAnnotation": {
+          "description": "Properties of the annotation. The list of properties depends in the type of annotation.",
+          "type": "object",
+          "properties": {
+            "isOntologyBased": {
+              "description": "True if the annotation and its options are based on an ontology",
+              "type": "boolean"
+            },
+            "typeAnnotationOptions": {
+              "$ref": "typeAnnotationOptions"
+            },
+            "ontologyId":{
+              "description": "Id of the ontology where the options of the annotation are retrieved.",
+              "type": "string"
+            },
+            "units": {
+              "description": "Units for the possible options/values of the annotation.",
+              "type": "string"
+            }
+          },
+          "required": ["typeAnnotationOptions"]
+        }
+      },
+      "required": ["typeQuestion", "status", "reference", "propertiesAnnotation"]
+    },
+
+    "questionMultipleChoiceSingleAnswer": {
+      "$id": "#questionMultipleChoiceSingleAnswer",
+      "description": "Specific annotation multiple choise and single answer",
+      "allOf": [
+        {"$id": "#annotationBasic"},
+        {
+          "properties":{
+            "typeQuestion": {
+              "enum": ["MULTIPLE_CHOICE_SINGLE_ANSWER"]
+            },
+            "propertiesAnnotation": {
+              "options": {
+                "$ref": "#/definitions/optionTree"
+              }
+            }
+          }
+        }
+      ]
+    },
+
+    "questionMultipleChoiceMultipleAnswer": {
+      "$id": "#questionMultipleChoiceMultipleAnswer",
+      "description": "Specific annotation multiple choise and multple answer",
+      "allOf": [
+        {"$id": "#annotationBasic"},
+        {
+          "properties":{
+            "typeQuestion": {
+              "enum": ["MULTIPLE_CHOICE_MULTIPLE_ANSWER"]
+            },
+            "propertiesAnnotation": {
+              "options": {
+                "$ref": "#/definitions/optionTree"
+              }
+            }
+          }
+        }
+      ]
+    },
+
+    "questionOpenEnded": {
+      "$id": "#questionOpenEnded",
+      "description": "Specific open-ended annotation",
+      "allOf": [
+        {"$id": "#annotationBasic"},
+        {
+          "properties":{
+            "typeQuestion": {
+              "enum": ["OPEN_ENDED"]
+            },
+            "propertiesAnnotation": {
+              "option": {
+                "description": "Title of the annotation, for instance Volume or Comments",
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    }
+
+  },
+  "oneOf": [
+    { "$ref": "#/definitions/questionMultipleChoiceSingleAnswer" },
+    { "$ref": "#/definitions/questionMultipleChoiceMultipleAnswer" },
+    { "$ref": "#/definitions/questionOpenEnded" }
+  ]
+
+}
