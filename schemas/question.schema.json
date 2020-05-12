@@ -102,6 +102,7 @@
         "propertiesAnnotation": {
           "description": "Properties of the annotation. The list of properties depends in the type of annotation.",
           "type": "object",
+          "required": ["typeAnnotationOptions","isOntologyBased"],
           "properties": {
             "isOntologyBased": {
               "description": "True if the annotation and its options are based on an ontology",
@@ -118,11 +119,10 @@
               "description": "Units for the possible options/values of the annotation.",
               "type": "string"
             }
-          },
-          "required": ["typeAnnotationOptions"]
+          }
         }
       },
-      "required": ["typeQuestion", "status", "reference", "propertiesAnnotation"]
+      "required": ["typeQuestion", "propertiesAnnotation"]
     },
 
     "questionMultipleChoiceSingleAnswer": {

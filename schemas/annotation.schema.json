@@ -74,9 +74,9 @@
                   "description": "True if the annotation and its options are based on an ontology",
                   "type": "boolean",
                   "enum": [false]
-                },
-                "required": ["isOntologyBased"]
-              }
+                }
+              },
+              "required": ["isOntologyBased"]
             }
           ]
         }
@@ -91,7 +91,7 @@
         { "$ref": "#/definitions/annotationBasic" },
         {
           "properties":{
-            "typeAnnotationForm": {
+            "typeQuestion": {
               "enum": ["MULTIPLE_CHOICE_MULTIPLE_ANSWER"]
             },
             "properties":{
@@ -103,7 +103,8 @@
                 }
               }
             }
-          }
+          },
+          "required": ["typeQuestion"]
         }
       ]
     },
@@ -115,7 +116,7 @@
         { "$ref": "#/definitions/annotationBasic" },
         {
           "properties":{
-            "typeAnnotationForm": {
+            "typeQuestion": {
               "enum": ["MULTIPLE_CHOICE_SINGLE_ANSWER"]
             },
             "properties":{
@@ -128,7 +129,8 @@
                 "type": "string"
               }
             }
-          }
+          },
+          "required": ["typeQuestion"]
         }
       ]
     },
@@ -140,7 +142,7 @@
         { "$ref": "#/definitions/annotationBasic" },
         {
           "properties":{
-            "typeAnnotationForm": {
+            "typeQuestion": {
               "enum": ["OPEN_ENDED"]
             },
             "properties":{
@@ -153,7 +155,8 @@
                 "type": "string"
               }
             }
-          }
+          },
+          "required": ["typeQuestion"]
         }
       ]
     }
@@ -163,6 +166,5 @@
     { "$ref": "#/definitions/annotationMultipleChoiceMultipleAnswer" },
     { "$ref": "#/definitions/annotationMultipleChoiceSingleAnswer" },
     { "$ref": "#/definitions/annotationOpenEnded" }
-
   ]
 }
