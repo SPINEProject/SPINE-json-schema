@@ -34,3 +34,6 @@ More "know-how" can be found here:
 [Getting started with JEST](https://jestjs.io/docs/en/getting-started)
 
 [Getting started with Ajv](https://github.com/ajv-validator/ajv)
+
+TODO:
+Set up coverage as in [Ajv-Istanbul](https://github.com/ajv-validator/ajv-istanbul)

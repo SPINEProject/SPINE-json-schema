@@ -1,5 +1,5 @@
-var Ajv = require('ajv');
-var ajv = new Ajv();
+// var Ajv = require('ajv');
+// var ajv = new Ajv();
 
 let { it, expect } = global;
 
@@ -8,10 +8,10 @@ const validateSecuredUrl = function (schema, uri) {
     return uri.indexOf('https://') === 0;
 };
 
-ajv.addKeyword('securedUrl', {
-    validate: validateSecuredUrl,
-    errors: true
-});
+// ajv.addKeyword('securedUrl', {
+//     validate: validateSecuredUrl,
+//     errors: true
+// });
 
 
 test(`should user's schema be valid`, () => {

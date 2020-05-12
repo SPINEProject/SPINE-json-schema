@@ -1,19 +1,36 @@
 const schema = require('../schemas/viewer.schema');
-const data = require( "../examples/viewer.example");
-let { test, expect ,it} = global;
+const data1 = require( "../examples/viewer/viewer.example");
+const data2 = require( "../examples/viewer/leptostep1middle.example");
+let { test, expect ,it, describe} = global;
 
-var Ajv = require('ajv');
-var ajv = new Ajv();
+// Uncomment below if you want to override ajv for some reasons!!!
+// var Ajv = require('ajv');
+// var ajv = new Ajv();
 
 
-test('viewer schema', () => {
-    const valid = ajv.validate(schema,data);
-    const errorMessage = (ajv.errors || []).map(error => {
-        try {
-            return `AJV error: keyword: ${error.keyword}\n message: ${error.message} \n data path: ${error.dataPath}\n schema path: ${error.schemaPath}\n`;
-        } catch (error) {
-            return error.message;
-        }
-    }).join('\n');
-    expect(valid).toBeValid(errorMessage);
+describe('Viewer schemas', () => {
+
+    test('Simple viewer', () => {
+        const valid = ajv.validate(schema, data1);
+        const errorMessage = (ajv.errors || []).map(error => {
+            try {
+                return `AJV error: keyword: ${error.keyword}\n message: ${error.message} \n data path: ${error.dataPath}\n schema path: ${error.schemaPath}\n`;
+            } catch (error) {
+                return error.message;
+            }
+        }).join('\n');
+        expect(valid).toBeValid(errorMessage);
+    });
+
+    test('Lepto project, step1, Middle viewer', () => {
+        const valid = ajv.validate(schema, data2);
+        const errorMessage = (ajv.errors || []).map(error => {
+            try {
+                return `AJV error: keyword: ${error.keyword}\n message: ${error.message} \n data path: ${error.dataPath}\n schema path: ${error.schemaPath}\n`;
+            } catch (error) {
+                return error.message;
+            }
+        }).join('\n');
+        expect(valid).toBeValid(errorMessage);
+    });
 });

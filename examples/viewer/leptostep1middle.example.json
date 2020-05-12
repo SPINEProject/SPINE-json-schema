@@ -1,23 +1,24 @@
 {
-  "name": "Sagittal viewer",
+  "name": "Middle viewer",
   "type": "2D",
+  "linkedControlVisible": false,
   "initialState": {
     "orientationAndSliceNumber": {
       "orientation": "AXIAL",
-      "strategy": "NUMBER",
-      "sliceValue": "middleSliceNumber_key"
+      "strategy": "DYNAMIC",
+      "dynamicSliceValue": "SUPERIORMOST"
     },
     "initialWindowLevel": {
-      "strategy": "DYNAMIC",
-      "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+      "strategy": "dynamic",
+      "value": "MIDDLE-FULL"
     }
   },
   "displayImages": {
     "possibleImagesToDisplay": [
-      "inputImage_key2"
+      "inputImage_key"
     ],
     "hasDefaultImageToDisplay": true,
-    "defaultImageToDisplay": "inputImage_key2"
+    "defaultImageToDisplay": "inputImage_key"
   },
   "displayControls": {
     "orientation": {
@@ -25,10 +26,19 @@
       "controlEnabled": false,
       "options": [
         {
+          "label": "Sagittal",
+          "value": "SAGITTAL"
+        },
+        {
+          "label": "Coronal",
+          "value": "CORONAL"
+        },
+        {
           "label": "Axial",
           "value": "AXIAL"
         }
-      ]
+      ],
+      "defaultValue": "AXIAL"
     },
     "smoothing": {
       "controlVisible": false,
@@ -40,14 +50,7 @@
       "controlEnabled": false
     }
   },
-  "lookAndFeel": {
-    "color": "#ff0000",
-    "hasControlPanel": false
-  },
-  "interactions": {
-    "activeViewer": {
-      "controlEnabled": false,
-      "defaultValue": false
-    }
+  "lookAndFeel":{
+    "color":"#fff967"
   }
 }

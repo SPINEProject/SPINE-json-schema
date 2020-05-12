@@ -17,6 +17,7 @@
     "ajv": "^6.12.2"
   },
   "devDependencies": {
+    "ajv-istanbul": "^0.1.0",
     "jest": "^26.0.1"
   },
   "scripts": {
@@ -27,6 +28,11 @@
     "coverageReporters": [
       "html"
     ],
-    "setupFilesAfterEnv": ["<rootDir>/tests/setupTests.js"]
+    "globals": {
+      "ajv": null
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setupTests.js"
+    ]
   }
 }
