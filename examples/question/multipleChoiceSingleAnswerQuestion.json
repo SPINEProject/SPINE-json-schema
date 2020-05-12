@@ -1,0 +1,18 @@
+{
+   "typeQuestion":"MULTIPLE_CHOICE_SINGLE_ANSWER",
+   "propertiesAnnotation": {
+     "typeAnnotationOptions":"TEXT",
+     "isOntologyBased": false
+   },
+   "options": [
+     {
+       "value": "Cerebrum"
+     },
+     {
+       "value": "Cerebellum"
+     },
+     {
+       "value": "Brainstem"
+     }
+   ]
+}

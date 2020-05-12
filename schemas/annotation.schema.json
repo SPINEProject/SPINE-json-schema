@@ -12,13 +12,11 @@
       "$id": "#annotationBasic",
       "description": "Basic description of an annotation",
       "properties":{
-        "typeAnnotationForm":{
-          "$ref": "annotationForm.schema.json#/definitions/typeAnnotationForm"
+        "typeQuestion":{
+          "$ref": "question.schema.json#/definitions/typeQuestion"
         },
         "typeAnnotation": {
-          "description": "",
-          "type": "string",
-          "enum": ["TEXT","IMAGE","NUMBER","BOOLEAN", "ARRAY"]
+          "$ref": "question.schema.json#/definitions/typeAnnotationOptions"
         },
         "status": {
           "description": "Status of the annotation: saved or submitted",
@@ -33,6 +31,14 @@
               "description": "Id of the ROI annotated by this annotation",
               "type": "string"
             },
+            "taskId": {
+              "description": "Id of the task used to produce this annotation",
+              "type": "string"
+            },
+            "workflowId": {
+              "description": "Id of the workflow used to produce this annotation",
+              "type": "string"
+            },
             "materializedTaskId": {
               "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
               "type": "string"
@@ -42,7 +48,8 @@
               "type": "string"
             }
           },
-          "required": ["roiId", "materializedTaskId", "questionId"]
+          "required": ["roiId", "materializedTaskId", "questionId"],
+          "additionalProperties": false
         },
         "properties": {
           "description": "Properties of the annotation. The list of properties depends in the type of annotation.",
@@ -68,14 +75,14 @@
                   "description": "True if the annotation and its options are based on an ontology",
                   "type": "boolean",
                   "enum": [false]
-                },
-                "required": ["isOntologyBased"]
-              }
+                }
+              },
+              "required": ["isOntologyBased"]
             }
           ]
         }
       },
-      "required": ["typeAnnotationForm", "typeAnnotation", "status", "reference", "properties"]
+      "required": ["typeQuestion", "typeAnnotation", "status", "reference", "properties"]
     },
 
     "annotationMultipleChoiceMultipleAnswer":{
@@ -85,7 +92,7 @@
         { "$ref": "#/definitions/annotationBasic" },
         {
           "properties":{
-            "typeAnnotationForm": {
+            "typeQuestion": {
               "enum": ["MULTIPLE_CHOICE_MULTIPLE_ANSWER"]
             },
             "properties":{
@@ -109,7 +116,7 @@
         { "$ref": "#/definitions/annotationBasic" },
         {
           "properties":{
-            "typeAnnotationForm": {
+            "typeQuestion": {
               "enum": ["MULTIPLE_CHOICE_SINGLE_ANSWER"]
             },
             "properties":{
@@ -134,7 +141,7 @@
         { "$ref": "#/definitions/annotationBasic" },
         {
           "properties":{
-            "typeAnnotationForm": {
+            "typeQuestion": {
               "enum": ["OPEN_ENDED"]
             },
             "properties":{
@@ -157,6 +164,5 @@
     { "$ref": "#/definitions/annotationMultipleChoiceMultipleAnswer" },
     { "$ref": "#/definitions/annotationMultipleChoiceSingleAnswer" },
     { "$ref": "#/definitions/annotationOpenEnded" }
-
   ]
 }
