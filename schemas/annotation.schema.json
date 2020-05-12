@@ -48,7 +48,8 @@
               "type": "string"
             }
           },
-          "required": ["roiId", "materializedTaskId", "questionId"]
+          "required": ["roiId", "materializedTaskId", "questionId"],
+          "additionalProperties": false
         },
         "properties": {
           "description": "Properties of the annotation. The list of properties depends in the type of annotation.",
@@ -103,8 +104,7 @@
                 }
               }
             }
-          },
-          "required": ["typeQuestion"]
+          }
         }
       ]
     },
@@ -129,8 +129,7 @@
                 "type": "string"
               }
             }
-          },
-          "required": ["typeQuestion"]
+          }
         }
       ]
     },
@@ -155,8 +154,7 @@
                 "type": "string"
               }
             }
-          },
-          "required": ["typeQuestion"]
+          }
         }
       ]
     }
