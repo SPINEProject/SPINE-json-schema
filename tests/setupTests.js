@@ -35,7 +35,12 @@ expect.extend({
         const valid = ajv.validate(schema, example);
         const errorMessage = (ajv.errors || []).map(error => {
             try {
-                return `AJV error: keyword: ${error.keyword}\n message: ${error.message} \n data path: ${error.dataPath}\n schema path: ${error.schemaPath}\n`;
+                const params = (Object.keys(error.params) || []).map(param => {return param.concat("=",error.params[param])}).join('\n');
+                return `AJV: keyword: ${error.keyword}\n`
+                    +`message: ${error.message} \n`
+                    +`data path: ${error.dataPath}\n`
+                    +`schema path: ${error.schemaPath}\n`
+                    +`parameters: ${params}\n`;
             } catch (error) {
                 return error.message;
             }
