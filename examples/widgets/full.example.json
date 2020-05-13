@@ -1,0 +1,84 @@
+{
+  "pinTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "properties": {
+      "markerSize": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 2
+      },
+      "fontSize":{
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 12
+      },
+      "clearAll":{
+        "controlVisible": true,
+        "controlEnabled": true
+      },
+      "subAnnotationsAvailable":{
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": false
+      },
+      "centering": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": true
+      },
+      "selectionOnly": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": false
+      },
+      "constraints":{
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": {"criterion_key1": {"controlElement":"viewer","property":"sliceNumber","operator": "==="},
+          "criterion_key2": {"controlElement":"viewer","property":"imageId","operator": "==="}
+        }
+      }
+    }
+  },
+  "projectionTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false,
+    "properties": {
+      "range": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 1
+      }
+    }
+  },
+  "pointerTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false,
+    "properties": {
+      "mode": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": "onClick"
+      }
+    }
+  },
+  "crossHairTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
+  },
+  "annotationTableTool": {
+    "controlVisible": false,
+    "controlEnabled": false,
+    "properties": {
+      "fullTable": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": false
+      }
+    }
+  }
+}

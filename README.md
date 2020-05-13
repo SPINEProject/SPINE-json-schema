@@ -24,10 +24,13 @@ If you make changes and tag this project make sure that the version of the ```pa
 All schemas should be validated with tests, based on Ajv library. Since Jest can’t 
 specify the error message, in order to display a meaningful error message, 
 we will have to create a custom matcher to show our own message, returned by Ajv.
-It is shown in [Example of matcher extension](/tests/jest.ajv.schema.test.js) 
+It is shown in [Example of matcher extension](/tests/jest.ajv.schema.test.js).
 
+### Test cases
+Examples used for testing are defined in "examples" subfolders. To identify weak tests 
+[Mutation tests](https://en.wikipedia.org/wiki/Mutation_testing) are applied (json files with _mutation._ prefix).
 
-More "know-how" can be found here:
+### Links:
  
 [Test JSON schema with AJV and Jest](https://medium.com/@moshfeu/test-json-schema-with-ajv-and-jest-c1d2984234c9 )
 

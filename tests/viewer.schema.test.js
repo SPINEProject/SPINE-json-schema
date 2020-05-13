@@ -11,26 +11,10 @@ let { test, expect ,it, describe} = global;
 describe('Viewer schemas', () => {
 
     test('Simple viewer', () => {
-        const valid = ajv.validate(schema, data1);
-        const errorMessage = (ajv.errors || []).map(error => {
-            try {
-                return `AJV error: keyword: ${error.keyword}\n message: ${error.message} \n data path: ${error.dataPath}\n schema path: ${error.schemaPath}\n`;
-            } catch (error) {
-                return error.message;
-            }
-        }).join('\n');
-        expect(valid).toBeValid(errorMessage);
+        expect(true).toBeAjvValid(schema, data1);
     });
 
     test('Lepto project, step1, Middle viewer', () => {
-        const valid = ajv.validate(schema, data2);
-        const errorMessage = (ajv.errors || []).map(error => {
-            try {
-                return `AJV error: keyword: ${error.keyword}\n message: ${error.message} \n data path: ${error.dataPath}\n schema path: ${error.schemaPath}\n`;
-            } catch (error) {
-                return error.message;
-            }
-        }).join('\n');
-        expect(valid).toBeValid(errorMessage);
+        expect(true).toBeAjvValid(schema, data2);
     });
 });

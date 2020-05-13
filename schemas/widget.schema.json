@@ -1,0 +1,70 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/widget.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Widget schema",
+  "description": "Schema for Widget Tools",
+  "type": "object",
+  "definitions":{
+    "toolbarControls": {
+      "$id": "#toolbarControls",
+      "description": "Boolean flags defining controls for a given widget.",
+      "$comment": "So far control components for widgets are implemented with Toggleable Buttons. Model can be extended by adding other complex controls, eg. sets of buttons, dropdown etc.",
+      "properties": {
+        "controlVisible": {
+          "type": "boolean",
+          "description": "Defines whether control component (eg. Button) is visible."
+        },
+        "controlEnabled": {
+          "type": "boolean",
+          "description": "Defines whether control component (eg. Button) is enabled, ie. can change a state. If not enabled, then  works only as indicator."
+        }
+      },
+      "required": ["controlEnabled", "controlVisible"]
+    },
+    "markerSize": {
+      "$id":"#markerSize",
+      "description": "Property defining size of pin (marker).",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "integer"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "fontSize": {
+      "$id":"#fontSize",
+      "description": "Property defining size of label for Pin.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "integer"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "pinToolProperties": {
+      "$id":"#pinToolProperties",
+      "description": "Set of properties for Pin Tool.",
+      "type": "object",
+      "properties": {
+        "markerSize": {"$ref": "#/definitions/markerSize"},
+        "fontSize":  {"$ref": "#/definitions/fontSize"}
+      },
+      "required": ["markerSize","fontSize"]
+    },
+    "pinTool": {
+      "$id": "#pinTool",
+      "description": "Tool for pin management.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/pinToolProperties"}
+      },
+      "required": ["properties"]
+    }
+  },
+  "properties": {
+    "pinTool":  { "$ref": "#/definitions/pinTool"}
+  }
+}
