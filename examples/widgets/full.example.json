@@ -162,5 +162,10 @@
     "controlVisible": true,
     "controlEnabled": true,
     "defaultValue": false
+  },
+  "linkAllTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
   }
 }

@@ -462,6 +462,17 @@
         }
       }
     },
+    "linkAllTool": {
+      "$id": "#linkAllTool",
+      "description": "Widget linking all viewers (slice change is applied to all viewers). Turning on means turning on 'linked' property in all viewers.  It can be implemented with toggleable button or checkbox.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
     "annotationOpacity": {
       "$id": "#annotationOpacity",
       "description": "Widget for control over annotation opacity.",
@@ -498,6 +509,7 @@
     "fillingTool": {"$ref": "#/definitions/fillingTool"},
     "labelmapUndoRedoTool": {"$ref": "#/definitions/labelmapUndoRedoTool"},
     "labelmapOpacity": {"$ref": "#/definitions/labelmapOpacity"},
+    "linkAllTool": {"$ref": "#/definitions/linkAllTool"},
     "annotationOpacity": {"$ref": "#/definitions/annotationOpacity"},
     "annotationTableTool": {"$ref": "#/definitions/annotationTableTool"}
   }
