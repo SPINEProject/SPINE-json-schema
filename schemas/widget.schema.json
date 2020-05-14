@@ -172,6 +172,30 @@
       },
       "required": ["defaultValue"]
     },
+    "pointerMode": {
+      "$id":"#pointerMode",
+      "description": "Property defining mode (type of interaction) of pointer tool.",
+      "$comment": "Modes are related to UI event types. There might be possible to define modeOptions in future.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "string",
+          "enum": ["onClick","onMove"]
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "brushSize": {
+      "$id":"#brushSize",
+      "description": "Property defining size of brush.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "integer"
+        }
+      },
+      "required": ["defaultValue"]
+    },
     "pinToolProperties": {
       "$id":"#pinToolProperties",
       "description": "Set of properties for Pin Tool.",
@@ -217,6 +241,29 @@
         }
       }
     },
+    "pointerToolProperties": {
+      "$id":"#pointerToolProperties",
+      "description": "Set of properties for Pointer Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/pointerMode"
+        }
+      }
+    },
+    "brushToolProperties": {
+      "$id":"#brushToolProperties",
+      "description": "Set of properties for Brush Tool.",
+      "$comment": "Properties as threshold, colormap LUT, layer are moved out from here.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/definitions/brushSize"
+        }
+      }
+    },
     "pinTool": {
       "$id": "#pinTool",
       "description": "Tool for pin management.",
@@ -244,11 +291,45 @@
       "properties": {
         "properties": { "$ref": "#/definitions/customCursorToolProperties"}
       }
+    },
+    "pointerTool": {
+      "$id": "#pointerTool",
+      "description": "Tool for pointer management. Pointer is changing slices in remaining viewers according to intersection of slices at pointed voxel.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/pointerToolProperties"}
+      }
+    },
+    "crossHairTool": {
+      "$id": "#crossHairTool",
+      "description": "Tool for displaying indication of slices.",
+      "$comment": "It can be defined in viewer's interaction schema with a different syntax.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "brushTool": {
+      "$id": "#brushTool",
+      "description": "Tool for drawing in segmentation layer.",
+      "$comment": "TODO Design inputs and widget to handle state of colormap LUT, thresholding intensities when drawing and layers. There will be missing props here!",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/brushToolProperties"}
+      }
     }
   },
   "properties": {
     "pinTool":  { "$ref": "#/definitions/pinTool"},
     "projectionTool":  { "$ref": "#/definitions/projectionTool"},
-    "customCursorTool":  { "$ref": "#/definitions/customCursorTool"}
+    "customCursorTool":  { "$ref": "#/definitions/customCursorTool"},
+    "pointerTool":  { "$ref": "#/definitions/pointerTool"},
+    "crossHairTool": {"$ref": "#/definitions/crossHairTool"},
+    "brushTool": {"$ref": "#/definitions/brushTool"}
   }
 }
