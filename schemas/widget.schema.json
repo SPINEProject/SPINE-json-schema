@@ -43,15 +43,179 @@
       },
       "required": ["defaultValue"]
     },
+    "clearAllPins": {
+      "$id":"#clearAllPins",
+      "description": "Property defining whether Button for clearing pins should be visible.",
+      "allOf": [{ "$ref": "#toolbarControls" }]
+    },
+    "subAnnotationsAvailable": {
+      "$id":"#subAnnotationsAvailable",
+      "description": "Property defining whether pins for subannotations should be visible.",
+      "$comment": "So far controlVisible/controlEnabled are ignored, since functionality can be set only in widget configuration. There is no control component in frontend to switch on/off.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "pinCentering": {
+      "$id":"#pinCentering",
+      "description": "Property defining whether view should be centered on an active pins when navigating forward/backward, or using ROI buttons in Annotation Table",
+      "$comment": "So far controlVisible/controlEnabled are ignored, since functionality can be set only in widget configuration. There is no control component in frontend to switch on/off.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "pinSelectionOnly": {
+      "$id":"#pinSelectionOnly",
+      "description": "Optional property defining whether pins are in read-only mode (selection). Default is false. If pins are in selectionOly mode, they cannot be added with mouse left click. This can be useful in situation when pinTool Toggle button is not visible, and tool is on.",
+      "$comment": "So far controlVisible/controlEnabled are ignored, since functionality can be set only in widget configuration. There is no control component in frontend to switch on/off.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "pinCriterion":{
+      "$id":"#pinCriterion",
+      "type": "object",
+      "description": "Single criterion used to constrain visibility of Pins.",
+      "$comment": "Can be reorganized in a way that control elements will have their own specific syntax and schema.",
+      "additionalProperties": false,
+      "properties": {
+        "controlElement": {
+          "type": "string",
+          "description": "Tool element which state is used to calculate criterion.",
+          "enum": ["viewer"],
+          "$comment": "So far it is defined for viewer only. In future can be extended for tools, widgets state, etc."
+        },
+        "property": {
+          "type": "string",
+          "description": "Property of control element which state is used to calculate criterion. For example viewer['sliceNumber'] can be calculated.",
+          "enum": ["sliceNumber","imageId","orientation"],
+          "$comment": "Can be easily extended to other viewer state properties."
+        },
+        "operator": {
+          "type": "string",
+          "description": "Operator used to calculate Predicate.",
+          "enum": ["==="],
+          "$comment": "Should be merged with Experiment.schema definitions."
+        }
+      }
+    },
+    "pinCriteria": {
+      "$id":"#pinCriteria",
+      "type": "object",
+      "patternProperties" : {
+        ".*" : {
+          "type": "object",
+          "$ref": "#/definitions/pinCriterion"
+        }
+      },
+      "examples": [
+        {
+          "criterion_key1": {"controlElement":"viewer","property":"sliceNumber","operator": "==="},
+          "criterion_key2": {"controlElement":"viewer","property":"imageId","operator": "==="}
+        }
+      ]
+    },
+    "pinConstraints": {
+      "$id":"#pinConstraints",
+      "description": "Optional property defining additional conditions for displaying pins. Default is turned off. See example below.",
+      "$comment": "So far controlVisible/controlEnabled are ignored, since functionality can be set only in widget configuration. There is no control component in frontend to switch on/off.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {"$ref": "#pinCriteria"}
+      },
+      "required": ["defaultValue"]
+    },
+    "projectionRange": {
+      "$id":"#projectionRange",
+      "description": "Optional property defining range of projection, as number of surrounding slices.",
+      "$comment": "So far controlVisible/controlEnabled are ignored, since functionality can be set only in widget configuration. There is no control component in frontend to switch on/off.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {"type": "integer"}
+      },
+      "required": ["defaultValue"]
+    },
+    "customCursorType": {
+      "$id":"#customCursorType",
+      "description": "Property defining type of cursor.",
+      "$comment": "Custom cursor might have different shape and implementation.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "string",
+          "enum": ["crosshair","circle","whiskers","checkered","twoEllipses","animatedEllipse","rotatedEllipse","fixedCrosshairRelativeCircle","dottedCrosshair"]
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "customCursorDiameter": {
+      "$id":"#customCursorDiameter",
+      "description": "Property defining diameter of cursor.",
+      "$comment": "This does not have to apply to all of the shapes.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "integer"
+        }
+      },
+      "required": ["defaultValue"]
+    },
     "pinToolProperties": {
       "$id":"#pinToolProperties",
       "description": "Set of properties for Pin Tool.",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "markerSize": {"$ref": "#/definitions/markerSize"},
-        "fontSize":  {"$ref": "#/definitions/fontSize"}
+        "fontSize":  {"$ref": "#/definitions/fontSize"},
+        "clearAll": {"$ref":"#/definitions/clearAllPins"},
+        "selectionOnly": {"$ref":"#/definitions/pinSelectionOnly"},
+        "subAnnotationsAvailable": {"$ref":"#/definitions/subAnnotationsAvailable"},
+        "centering": {"$ref":"#/definitions/pinCentering"},
+        "constraints": {"$ref": "#/definitions/pinConstraints"}
       },
-      "required": ["markerSize","fontSize"]
+      "required": ["markerSize","fontSize","clearAll"]
+    },
+    "projectionToolProperties": {
+      "$id":"#projectionToolProperties",
+      "description": "Set of properties for Projection Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "range": {
+          "$ref": "#/definitions/projectionRange"
+        },
+        "rangeForKey":  {
+          "$ref": "#/definitions/projectionRange",
+          "description": "As in /projectionRange description, with difference that applied only to set range when 'P' key is pressed."
+        }
+      }
+    },
+    "customCursorToolProperties": {
+      "$id":"#customCursorToolProperties",
+      "description": "Set of properties for Custom Cursor Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/customCursorType"
+        },
+        "diameter":  {
+          "$ref": "#/definitions/customCursorDiameter"
+        }
+      }
     },
     "pinTool": {
       "$id": "#pinTool",
@@ -62,9 +226,29 @@
         "properties": { "$ref": "#/definitions/pinToolProperties"}
       },
       "required": ["properties"]
+    },
+    "projectionTool": {
+      "$id": "#projectionTool",
+      "description": "Tool for projection management.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/projectionToolProperties"}
+      }
+    },
+    "customCursorTool": {
+      "$id": "#customCursorTool",
+      "description": "Tool for custom cursor management.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/customCursorToolProperties"}
+      }
     }
   },
   "properties": {
-    "pinTool":  { "$ref": "#/definitions/pinTool"}
+    "pinTool":  { "$ref": "#/definitions/pinTool"},
+    "projectionTool":  { "$ref": "#/definitions/projectionTool"},
+    "customCursorTool":  { "$ref": "#/definitions/customCursorTool"}
   }
 }

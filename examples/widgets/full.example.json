@@ -35,7 +35,8 @@
       "constraints":{
         "controlVisible": false,
         "controlEnabled": false,
-        "defaultValue": {"criterion_key1": {"controlElement":"viewer","property":"sliceNumber","operator": "==="},
+        "defaultValue": {
+          "criterion_key1": {"controlElement":"viewer","property":"sliceNumber","operator": "==="},
           "criterion_key2": {"controlElement":"viewer","property":"imageId","operator": "==="}
         }
       }
@@ -50,6 +51,28 @@
         "controlVisible": true,
         "controlEnabled": true,
         "defaultValue": 1
+      },
+      "rangeForKey": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": 5
+      }
+    }
+  },
+  "customCursorTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false,
+    "properties": {
+      "type": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": "whiskers"
+      },
+      "diameter": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 3
       }
     }
   },
