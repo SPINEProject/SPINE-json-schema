@@ -157,5 +157,10 @@
         "controlEnabled": false
       }
     }
+  },
+  "echoTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
   }
 }

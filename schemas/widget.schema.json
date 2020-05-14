@@ -402,6 +402,18 @@
         "properties": { "$ref": "#/definitions/brushToolProperties"}
       }
     },
+    "echoTool": {
+      "$id": "#echoTool",
+      "description": "Widget adding cursor echoes on remaining fields. Widget controls camera too - centering and zooming are projected fro main viewer to others.",
+      "$comment": "Widget works properly only if viewers are set in the same orientation and displaying co-registered images.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
     "eraserTool": {
       "$id": "#eraserTool",
       "description": "Tool for erasing in segmentation layer. By default it uses 0 to fill erased voxels.",
@@ -481,6 +493,7 @@
     "pointerTool":  { "$ref": "#/definitions/pointerTool"},
     "crossHairTool": {"$ref": "#/definitions/crossHairTool"},
     "brushTool": {"$ref": "#/definitions/brushTool"},
+    "echoTool": {"$ref": "#/definitions/echoTool"},
     "eraserTool": {"$ref": "#/definitions/eraserTool"},
     "fillingTool": {"$ref": "#/definitions/fillingTool"},
     "labelmapUndoRedoTool": {"$ref": "#/definitions/labelmapUndoRedoTool"},
