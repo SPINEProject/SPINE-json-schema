@@ -1,0 +1,33 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/annotationTableDefinition.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Annotation Table Definition",
+  "description": "Schema an annotation table definition",
+  "type": "object",
+  "properties": {
+    "columns": {
+      "description": "Columns of the annotation table",
+      "type": "object",
+      "patternProperties" : {
+        ".*" : {
+          "properties": {
+            "type":{
+              "description":"Type of the column",
+              "type":"string"
+            },
+            "name": {
+              "description":"Name of the column",
+              "type":"string"
+            },
+            "value": {
+              "description":"Default value for the column",
+              "type":"string"
+            }
+          },
+          "required":["type", "name", "value"]
+        }
+      }
+    }
+  },
+  "required": ["columns"]
+  }
