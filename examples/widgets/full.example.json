@@ -172,5 +172,32 @@
     "controlVisible": true,
     "controlEnabled": true,
     "defaultValue": false
+  },
+  "fiducialTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false,
+    "properties": {
+      "type": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": "circle"
+      },
+      "diameter": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": 5
+      },
+      "rotation": {
+        "controlVisible": false,
+        "controlEnabled": true,
+        "defaultValue": 0
+      },
+      "adjustableZoom": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 4
+      }
+    }
   }
 }

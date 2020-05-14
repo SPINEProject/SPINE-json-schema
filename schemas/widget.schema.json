@@ -163,7 +163,7 @@
     },
     "customCursorDiameter": {
       "$id":"#customCursorDiameter",
-      "description": "Property defining diameter of cursor.",
+      "description": "Property defining diameter of cursor in millimeters. Size is calculated in image (real world) space.",
       "$comment": "This does not have to apply to all of the shapes.",
       "allOf": [{ "$ref": "#toolbarControls" }],
       "properties": {
@@ -239,6 +239,42 @@
         },
         "diameter":  {
           "$ref": "#/definitions/customCursorDiameter"
+        }
+      }
+    },
+    "fiducialToolProperties": {
+      "$id":"#customCursorToolProperties",
+      "description": "Set of properties for Custom Cursor Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/customCursorType",
+          "$comment": "identical as in custom cursor"
+        },
+        "diameter":  {
+          "$ref": "#/definitions/customCursorDiameter",
+          "$comment": "identical as in custom cursor"
+        },
+        "rotation": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "properties": {
+            "defaultValue": {
+              "type": "integer",
+              "description": "Fiducial rotation in degrees.",
+              "minimum": 0
+            }
+          }
+        },
+        "adjustableZoom": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "description": "Ratio between display and fiducial size. Diameter of fiducial is equal to display width for ratio = 0.5",
+              "minimum": 0.01
+            }
+          }
         }
       }
     },
@@ -506,6 +542,16 @@
           "type": "boolean"
         }
       }
+    },
+    "fiducialTool": {
+      "$id": "#fiducialTool",
+      "description": "Widget for responsible for displaying fiducial and modifying behavior of roi navigation. Widget 'on' causes that viewer is centered on image",
+      "$comment": "This widget is based on custom cursor.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/fiducialToolProperties"}
+      }
     }
   },
   "properties": {
@@ -516,6 +562,7 @@
     "crossHairTool": {"$ref": "#/definitions/crossHairTool"},
     "brushTool": {"$ref": "#/definitions/brushTool"},
     "echoTool": {"$ref": "#/definitions/echoTool"},
+    "fiducialTool": {"$ref": "#/definitions/fiducialTool"},
     "eraserTool": {"$ref": "#/definitions/eraserTool"},
     "fillingTool": {"$ref": "#/definitions/fillingTool"},
     "labelmapUndoRedoTool": {"$ref": "#/definitions/labelmapUndoRedoTool"},
