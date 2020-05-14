@@ -167,5 +167,10 @@
     "controlVisible": true,
     "controlEnabled": true,
     "defaultValue": false
+  },
+  "smoothingAllTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
   }
 }

@@ -495,6 +495,17 @@
       "properties": {
         "properties": { "$ref": "#/definitions/annotationTableProperties"}
       }
+    },
+    "smoothingAllTool": {
+      "$id": "#smoothingAllTool",
+      "description": "Widget turning on/off smoothing in all viewers. It can be implemented with toggleable button or checkbox.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "properties": {
@@ -511,6 +522,7 @@
     "labelmapOpacity": {"$ref": "#/definitions/labelmapOpacity"},
     "linkAllTool": {"$ref": "#/definitions/linkAllTool"},
     "annotationOpacity": {"$ref": "#/definitions/annotationOpacity"},
-    "annotationTableTool": {"$ref": "#/definitions/annotationTableTool"}
+    "annotationTableTool": {"$ref": "#/definitions/annotationTableTool"},
+    "smoothingAllTool": {"$ref": "#/definitions/smoothingAllTool"}
   }
 }
