@@ -197,6 +197,34 @@
       },
       "required": ["defaultValue"]
     },
+    "labelmapItem":{
+      "$id":"#labelmapItem",
+      "type": "object",
+      "description": "Definition of labelmap value.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "integer",
+          "description": "Value assigned to voxel"
+        },
+        "label": {
+          "type": "string",
+          "description": "Name to display. Can be a name of annotated region, pathological change, etc. Examples: lesion, tumor, medulla oblongata."
+        },
+        "iri": {
+          "type": "string",
+          "description": "If segmentation refers to real world entity, iri should refer to Ontology Id, defined as IRI address.",
+          "format": "uri"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color in RGB space.",
+          "$comment": "Notation with 3 and six positions can be used.",
+          "pattern": "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
+        }
+      },
+      "required": ["color","value","label"]
+    },
     "pinToolProperties": {
       "$id":"#pinToolProperties",
       "description": "Set of properties for Pin Tool.",
@@ -310,6 +338,20 @@
         "size": {
           "$ref": "#/definitions/brushSize",
           "$comment": "Identical to brush size property."
+        }
+      }
+    },
+    "labelmapLUTProperties": {
+      "$id":"#labelmapLUTProperties",
+      "description": "Set of properties for labelmap.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/labelmapItem"
+          }
         }
       }
     },
@@ -504,6 +546,21 @@
         }
       }
     },
+    "labelmapLUT": {
+      "$id": "#labelmapLUT",
+      "description": "Tool defining labelmap.",
+      "$comment": "TODO Labelmap should be provided by input",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "integer",
+          "description": "Parameter defining labelmap value to use when view is initialised.",
+          "default": false
+        },
+        "properties": { "$ref": "#/definitions/labelmapLUTProperties"}
+      }
+    },
     "linkAllTool": {
       "$id": "#linkAllTool",
       "description": "Widget linking all viewers (slice change is applied to all viewers). Turning on means turning on 'linked' property in all viewers.  It can be implemented with toggleable button or checkbox.",
@@ -571,6 +628,7 @@
     "fiducialTool": {"$ref": "#/definitions/fiducialTool"},
     "eraserTool": {"$ref": "#/definitions/eraserTool"},
     "fillingTool": {"$ref": "#/definitions/fillingTool"},
+    "labelmapLUT": {"$ref": "#/definitions/labelmapLUT"},
     "labelmapUndoRedoTool": {"$ref": "#/definitions/labelmapUndoRedoTool"},
     "labelmapOpacity": {"$ref": "#/definitions/labelmapOpacity"},
     "linkAllTool": {"$ref": "#/definitions/linkAllTool"},

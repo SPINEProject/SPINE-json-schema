@@ -203,5 +203,40 @@
   "pinUndoRedoTool":{
     "controlVisible":true,
     "controlEnabled":true
+  },
+  "labelmapLUT": {
+    "controlVisible": false,
+    "controlEnabled": false,
+    "defaultValue": 1,
+    "properties": {
+      "options": [
+        {
+          "value": 1,
+          "label": "Lesion",
+          "color": "#f00",
+          "iri": "http://moj.kod"
+        },
+        {
+          "value": 2,
+          "label": "Plaque",
+          "color": "#0f0909"
+        },
+        {
+          "value": 3,
+          "label": "Toxin",
+          "color": "#00f"
+        },
+        {
+          "value": 4,
+          "label": "Tumor",
+          "color": "#f8f"
+        },
+        {
+          "value": 5,
+          "label": "Aging",
+          "color": "#8ff"
+        }
+      ]
+    }
   }
 }
