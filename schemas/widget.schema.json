@@ -450,6 +450,20 @@
         }
       }
     },
+    "annotationOpacity": {
+      "$id": "#annotationOpacity",
+      "description": "Widget for control over annotation opacity.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "number",
+          "description": "Opacity value.",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
     "annotationTableTool": {
       "$id": "#annotationTableTool",
       "description": "Widget for control over annotation table component",
@@ -471,6 +485,7 @@
     "fillingTool": {"$ref": "#/definitions/fillingTool"},
     "labelmapUndoRedoTool": {"$ref": "#/definitions/labelmapUndoRedoTool"},
     "labelmapOpacity": {"$ref": "#/definitions/labelmapOpacity"},
+    "annotationOpacity": {"$ref": "#/definitions/annotationOpacity"},
     "annotationTableTool": {"$ref": "#/definitions/annotationTableTool"}
   }
 }

@@ -129,6 +129,11 @@
     "controlEnabled": true,
     "defaultValue": 1
   },
+  "annotationOpacity": {
+    "controlVisible": false,
+    "controlEnabled": false,
+    "defaultValue": 1
+  },
   "annotationTableTool": {
     "controlVisible": true,
     "controlEnabled": true,
