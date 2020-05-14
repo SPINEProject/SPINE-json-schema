@@ -48,9 +48,9 @@
       }
     },
 
-    "typeAnnotationForm": {
-      "$id": "#typeAnnotationForm",
-      "description": "Type of annotation.",
+    "typeQuestion": {
+      "$id": "#typeQuestion",
+      "description": "Type of question.",
       "type": "string",
       "enum": [
         "MULTIPLE_CHOICE_MULTIPLE_ANSWER",
@@ -73,8 +73,8 @@
       "description": "Exposed concepts for a given annotation. In other words, all the possible values for a given annotation. Examples: a. Ontology FMA with possible concepts like Thalamus and corpus callosum. b. Ontology for physical measurement, with volume as possible concept.",
       "type": "object",
       "properties":{
-        "typeAnnotationForm": {
-          "$ref": "#/definitions/typeAnnotationForm"
+        "typeQuestion": {
+          "$ref": "#/definitions/typeQuestion"
         },
         "ontologyId": {
           "description": "Id of the ontology where the value of the annotation is retrieved.",
@@ -88,7 +88,7 @@
           }
         }
       },
-      "required": ["typeAnnotationForm", "ontologyId", "conceptIds"]
+      "required": ["typeQuestion", "ontologyId", "conceptIds"]
     },
 
     "annotationBasic": {
@@ -96,12 +96,13 @@
       "description": "Basic definitions of an annotation.",
       "type": "object",
       "properties": {
-        "typeAnnotationForm": {
-          "$ref": "#typeAnnotationForm"
+        "typeQuestion": {
+          "$ref": "#typeQuestion"
         },
         "propertiesAnnotation": {
           "description": "Properties of the annotation. The list of properties depends in the type of annotation.",
           "type": "object",
+          "required": ["typeAnnotationOptions","isOntologyBased"],
           "properties": {
             "isOntologyBased": {
               "description": "True if the annotation and its options are based on an ontology",
@@ -118,21 +119,20 @@
               "description": "Units for the possible options/values of the annotation.",
               "type": "string"
             }
-          },
-          "required": ["typeAnnotationOptions"]
+          }
         }
       },
-      "required": ["typeAnnotationForm", "status", "reference", "propertiesAnnotation"]
+      "required": ["typeQuestion", "propertiesAnnotation"]
     },
 
-    "annotationFormMultipleChoiceSingleAnswer": {
-      "$id": "#annotationFormMultipleChoiceSingleAnswer",
+    "questionMultipleChoiceSingleAnswer": {
+      "$id": "#questionMultipleChoiceSingleAnswer",
       "description": "Specific annotation multiple choise and single answer",
       "allOf": [
         {"$id": "#annotationBasic"},
         {
           "properties":{
-            "typeAnnotationForm": {
+            "typeQuestion": {
               "enum": ["MULTIPLE_CHOICE_SINGLE_ANSWER"]
             },
             "propertiesAnnotation": {
@@ -145,14 +145,14 @@
       ]
     },
 
-    "annotationFormMultipleChoiceMultipleAnswer": {
-      "$id": "#annotationFormMultipleChoiceMultipleAnswer",
+    "questionMultipleChoiceMultipleAnswer": {
+      "$id": "#questionMultipleChoiceMultipleAnswer",
       "description": "Specific annotation multiple choise and multple answer",
       "allOf": [
         {"$id": "#annotationBasic"},
         {
           "properties":{
-            "typeAnnotationForm": {
+            "typeQuestion": {
               "enum": ["MULTIPLE_CHOICE_MULTIPLE_ANSWER"]
             },
             "propertiesAnnotation": {
@@ -165,14 +165,14 @@
       ]
     },
 
-    "annotationFormOpenEnded": {
-      "$id": "#annotationFormOpenEnded",
+    "questionOpenEnded": {
+      "$id": "#questionOpenEnded",
       "description": "Specific open-ended annotation",
       "allOf": [
         {"$id": "#annotationBasic"},
         {
           "properties":{
-            "typeAnnotationForm": {
+            "typeQuestion": {
               "enum": ["OPEN_ENDED"]
             },
             "propertiesAnnotation": {
@@ -188,9 +188,9 @@
 
   },
   "oneOf": [
-    { "$ref": "#/definitions/annotationFormMultipleChoiceSingleAnswer" },
-    { "$ref": "#/definitions/annotationFormMultipleChoiceMultipleAnswer" },
-    { "$ref": "#/definitions/annotationFormOpenEnded" }
+    { "$ref": "#/definitions/questionMultipleChoiceSingleAnswer" },
+    { "$ref": "#/definitions/questionMultipleChoiceMultipleAnswer" },
+    { "$ref": "#/definitions/questionOpenEnded" }
   ]
 
 }

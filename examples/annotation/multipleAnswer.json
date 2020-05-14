@@ -1,0 +1,18 @@
+{
+   "status": "SAVED",
+   "reference": {
+       "roiId": "7ba82ae63c95754352706fcca5039e1b",
+       "materializedTaskId": "7ba82ae63c95754352706fcca5037a66",
+       "taskId": "7ba82ae63c95754352706fcca5039e1b",
+       "workflowId": "7ba82ae63c95754352706fcca5037a66",
+       "questionId": "7ba82ae63c95754352706fcca5037a66"
+   },
+   "typeQuestion":"MULTIPLE_CHOICE_MULTIPLE_ANSWER",
+   "typeAnnotation": "TEXT",
+   "properties": {
+       "values": [
+           "Identification uncertain"
+       ],
+       "isOntologyBased": false
+   }
+}
