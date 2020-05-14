@@ -104,14 +104,52 @@
       }
     }
   },
+  "fillingTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
+  },
+  "eraserTool":{
+    "controlVisible":true,
+    "controlEnabled":true,
+    "properties":{
+      "size":{
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 1
+      }
+    }
+  },
+  "labelmapUndoRedoTool": {
+    "controlVisible": true,
+    "controlEnabled": true
+  },
+  "labelmapOpacity": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": 1
+  },
   "annotationTableTool": {
-    "controlVisible": false,
-    "controlEnabled": false,
+    "controlVisible": true,
+    "controlEnabled": true,
     "properties": {
       "fullTable": {
-        "controlVisible": false,
-        "controlEnabled": false,
+        "controlVisible": true,
+        "controlEnabled": true,
         "defaultValue": false
+      },
+      "editableROI": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": true
+      },
+      "subAnnotationColumn":{
+        "controlVisible": true,
+        "controlEnabled": false
+      },
+      "csvExport": {
+        "controlVisible": false,
+        "controlEnabled": false
       }
     }
   }

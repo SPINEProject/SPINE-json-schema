@@ -4,6 +4,7 @@
   "title": "Widget schema",
   "description": "Schema for Widget Tools",
   "type": "object",
+  "additionalProperties": false,
   "definitions":{
     "toolbarControls": {
       "$id": "#toolbarControls",
@@ -187,7 +188,7 @@
     },
     "brushSize": {
       "$id":"#brushSize",
-      "description": "Property defining size of brush.",
+      "description": "Property defining size. Can be used to define brush or eraser tool size.",
       "allOf": [{ "$ref": "#toolbarControls" }],
       "properties": {
         "defaultValue": {
@@ -264,6 +265,79 @@
         }
       }
     },
+    "eraserToolProperties": {
+      "$id":"#eraserToolProperties",
+      "description": "Set of properties for Eraser Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/definitions/brushSize",
+          "$comment": "Identical to brush size property."
+        }
+      }
+    },
+    "annotationTableProperties": {
+      "$id":"#annotationTableProperties",
+      "description": "Set of properties for annotation table component.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fullTable": {
+          "description": "Property defining whether 'full table mode' should be visible initially. Full table mode shows both 'active row' and full table with annotations.",
+          "$comment": "Control enabled/visible properties define whether full table can be displayed. If they set to false,and defaultValue is false, then full table is not visible.",
+          "allOf": [
+            {
+              "$ref": "#toolbarControls"
+            }
+          ],
+          "properties": {
+            "defaultValue": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "defaultValue"
+          ]
+        },
+        "editableROI": {
+          "description": "Property defining whether rows can be modified/deleted.",
+          "$comment": "If property not defined, default is true. Control visible/enabled defined but not used here.",
+          "allOf": [
+            {
+              "$ref": "#toolbarControls"
+            }
+          ],
+          "properties": {
+            "defaultValue": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "required": [
+            "defaultValue"
+          ]
+        },
+        "subAnnotationColumn": {
+          "description": "Property defining whether column to set active roi to generate subannotations with mouse left click should be visible.",
+          "$comment": "controlVisible/enabled define full control here.",
+          "allOf": [
+            {
+              "$ref": "#toolbarControls"
+            }
+          ]
+        },
+        "csvExport": {
+          "description": "Property defining whether button with CSV Export functionality should be rendered and working.",
+          "$comment": "controlVisible/enabled define full control here.",
+          "allOf": [
+            {
+              "$ref": "#toolbarControls"
+            }
+          ]
+        }
+      }
+    },
     "pinTool": {
       "$id": "#pinTool",
       "description": "Tool for pin management.",
@@ -320,7 +394,69 @@
       "type": "object",
       "allOf": [{ "$ref": "#toolbarControls" }],
       "properties": {
+        "defaultValue": {
+          "type": "boolean",
+          "description": "Optional parameter defining whether widget should be on when view is initialised. This can be overwritten by other elements - brushTool, fillingTool, eraserTool are mutually exclusive - only one of them can be on at te same time.",
+          "default": false
+        },
         "properties": { "$ref": "#/definitions/brushToolProperties"}
+      }
+    },
+    "eraserTool": {
+      "$id": "#eraserTool",
+      "description": "Tool for erasing in segmentation layer. By default it uses 0 to fill erased voxels.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean",
+          "description": "Optional parameter defining whether widget should be on when view is initialised. This can be overwritten by other elements - brushTool, fillingTool, eraserTool are mutually exclusive - only one of them can be on at te same time.",
+          "default": false
+        },
+        "properties": { "$ref": "#/definitions/eraserToolProperties"}
+      }
+    },
+    "fillingTool": {
+      "$id": "#fillingTool",
+      "description": "Tool for filling in closed shapes in segmentation layer.",
+      "$comment": "Comments as in #brushTool.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean",
+          "description": "Optional parameter defining whether widget should be on when view is initialised. This can be overwritten by other elements - brushTool, fillingTool, eraserTool are mutually exclusive - only one of them can be on at te same time.",
+          "default": false
+        }
+      }
+    },
+    "labelmapUndoRedoTool": {
+      "$id": "#labelmapUndoRedoTool",
+      "description": "Widget displaying history controls for segmentation.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }]
+    },
+    "labelmapOpacity": {
+      "$id": "#labelmapOpacity",
+      "description": "Widget for control over labelmap opacity.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "number",
+          "description": "Opacity value.",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "annotationTableTool": {
+      "$id": "#annotationTableTool",
+      "description": "Widget for control over annotation table component",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/annotationTableProperties"}
       }
     }
   },
@@ -330,6 +466,11 @@
     "customCursorTool":  { "$ref": "#/definitions/customCursorTool"},
     "pointerTool":  { "$ref": "#/definitions/pointerTool"},
     "crossHairTool": {"$ref": "#/definitions/crossHairTool"},
-    "brushTool": {"$ref": "#/definitions/brushTool"}
+    "brushTool": {"$ref": "#/definitions/brushTool"},
+    "eraserTool": {"$ref": "#/definitions/eraserTool"},
+    "fillingTool": {"$ref": "#/definitions/fillingTool"},
+    "labelmapUndoRedoTool": {"$ref": "#/definitions/labelmapUndoRedoTool"},
+    "labelmapOpacity": {"$ref": "#/definitions/labelmapOpacity"},
+    "annotationTableTool": {"$ref": "#/definitions/annotationTableTool"}
   }
 }
