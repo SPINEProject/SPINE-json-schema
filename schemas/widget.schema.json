@@ -484,6 +484,12 @@
       "type": "object",
       "allOf": [{ "$ref": "#toolbarControls" }]
     },
+    "pinUndoRedoTool": {
+      "$id": "#pinUndoRedoTool",
+      "description": "Widget displaying history controls for pins. Save creating, deleting and selecting actions.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }]
+    },
     "labelmapOpacity": {
       "$id": "#labelmapOpacity",
       "description": "Widget for control over labelmap opacity.",
@@ -570,6 +576,7 @@
     "linkAllTool": {"$ref": "#/definitions/linkAllTool"},
     "annotationOpacity": {"$ref": "#/definitions/annotationOpacity"},
     "annotationTableTool": {"$ref": "#/definitions/annotationTableTool"},
-    "smoothingAllTool": {"$ref": "#/definitions/smoothingAllTool"}
+    "smoothingAllTool": {"$ref": "#/definitions/smoothingAllTool"},
+    "pinUndoRedoTool": {"$ref": "#/definitions/pinUndoRedoTool"}
   }
 }

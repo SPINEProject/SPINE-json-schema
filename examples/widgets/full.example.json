@@ -199,5 +199,9 @@
         "defaultValue": 4
       }
     }
+  },
+  "pinUndoRedoTool":{
+    "controlVisible":true,
+    "controlEnabled":true
   }
 }
