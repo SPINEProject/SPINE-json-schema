@@ -9,6 +9,7 @@
     "toolbarControls": {
       "$id": "#toolbarControls",
       "description": "Boolean flags defining controls for a given widget.",
+      "type": "object",
       "$comment": "So far control components for widgets are implemented with Toggleable Buttons. Model can be extended by adding other complex controls, eg. sets of buttons, dropdown etc.",
       "properties": {
         "controlVisible": {
@@ -613,6 +614,12 @@
       "type": "object",
       "allOf": [{ "$ref": "#toolbarControls" }],
       "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean",
+          "description": "Optional parameter defining whether widget should be on when view is initialised."
+        },
         "properties": { "$ref": "#/definitions/fiducialToolProperties"}
       }
     }
