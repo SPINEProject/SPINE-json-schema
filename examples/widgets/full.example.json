@@ -238,5 +238,10 @@
         }
       ]
     }
+  },
+  "windowLevelAllTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
   }
 }

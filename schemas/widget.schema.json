@@ -622,6 +622,20 @@
         },
         "properties": { "$ref": "#/definitions/fiducialToolProperties"}
       }
+    },
+    "windowLevelAllTool": {
+      "$id": "#windowLevelAllTool",
+      "description": "Widget linking all viewers for Window Level synchronization.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "properties": {
@@ -642,6 +656,7 @@
     "annotationOpacity": {"$ref": "#/definitions/annotationOpacity"},
     "annotationTableTool": {"$ref": "#/definitions/annotationTableTool"},
     "smoothingAllTool": {"$ref": "#/definitions/smoothingAllTool"},
-    "pinUndoRedoTool": {"$ref": "#/definitions/pinUndoRedoTool"}
+    "pinUndoRedoTool": {"$ref": "#/definitions/pinUndoRedoTool"},
+    "windowLevelAllTool": {"$ref": "#/definitions/windowLevelAllTool"}
   }
 }
