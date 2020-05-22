@@ -14,6 +14,10 @@ describe('Viewer schemas', () => {
         expect(true).toBeAjvValid(schema, data1);
     });
 
+    test('Full example viewer', () => {
+        expect(true).toBeAjvValid(schema, data1);
+    });
+
     test('Lepto project, step1, Middle viewer', () => {
         expect(true).toBeAjvValid(schema, data2);
     });
