@@ -1,0 +1,10 @@
+{
+   "questionProperties": {
+     "answerFormat":"TEXT"
+   },
+   "questionText": "What is the location?",
+   "ontologies": [
+       "ontologyId1", 
+       "ontologyId2"
+    ]
+}
