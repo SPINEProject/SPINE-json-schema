@@ -52,7 +52,7 @@
               "type": "string"
             }
           },
-          oneOf:[
+          "oneOf":[
             { "required": ["roiId", "taskId", "workflowId", "materializedTaskId", "workflowExecutorId", "questionId"] },
             { "required": ["roiId", "workflowId", "workflowExecutorId", "questionId"] }
           ],
