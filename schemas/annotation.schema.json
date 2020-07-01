@@ -12,11 +12,13 @@
       "$id": "#annotationBasic",
       "description": "Basic description of an annotation",
       "properties":{
-        "typeQuestion":{
-          "$ref": "question.schema.json#/definitions/typeQuestion"
+        "answerFormat": {
+          "type": "string",
+          "enum": ["TEXT","NUMBER"]
         },
-        "typeAnnotation": {
-          "$ref": "question.schema.json#/definitions/typeAnnotationOptions"
+        "hasAnswer": {
+          "description": "If no answer then there are no annotation properties",
+          "type": "boolean"
         },
         "status": {
           "description": "Status of the annotation: saved or submitted",
@@ -57,39 +59,9 @@
             { "required": ["roiId", "workflowId", "workflowExecutorId", "questionId"] }
           ],
           "additionalProperties": false
-        },
-        "properties": {
-          "description": "Properties of the annotation. The list of properties depends in the type of annotation.",
-          "type": "object",
-          "oneOf":[
-            {
-              "properties": {
-                "isOntologyBased": {
-                  "description": "True if the annotation and its options are based on an ontology",
-                  "type": "boolean",
-                  "enum": [true]
-                },
-                "ontologyId": {
-                  "description": "Id of the ontology where the value of the annotation is retrieved.",
-                  "type": "string"
-                }
-              },
-              "required": ["isOntologyBased", "ontologyId"]
-            },
-            {
-              "properties": {
-                "isOntologyBased": {
-                  "description": "True if the annotation and its options are based on an ontology",
-                  "type": "boolean",
-                  "enum": [false]
-                }
-              },
-              "required": ["isOntologyBased"]
-            }
-          ]
         }
       },
-      "required": ["typeQuestion", "typeAnnotation", "status", "reference", "properties"]
+      "required": ["typeQuestion", "typeAnnotation", "status", "reference"]
     },
 
     "annotationMultipleChoiceMultipleAnswer":{
@@ -99,15 +71,20 @@
         { "$ref": "#/definitions/annotationBasic" },
         {
           "properties":{
-            "typeQuestion": {
+            "answerType": {
               "enum": ["MULTIPLE_CHOICE_MULTIPLE_ANSWER"]
             },
-            "properties":{
+            "annotationProperties":{
               "values": {
                 "description": "List of multiple values selected.",
                 "type": "array",
                 "items": {
-                  "type": "string"
+                  "type": "object",
+                  "properties":{
+                    "label": { "type":"string" },
+                    "ontologyId": { "type":"string" },
+                    "ontologyClassIri": { "type":"string" }
+                  }
                 }
               }
             }
@@ -123,17 +100,18 @@
         { "$ref": "#/definitions/annotationBasic" },
         {
           "properties":{
-            "typeQuestion": {
+            "answerType": {
               "enum": ["MULTIPLE_CHOICE_SINGLE_ANSWER"]
             },
-            "properties":{
+            "annotationProperties":{
               "value": {
-                "description": "Selected value.",
-                "type": "string"
-              },
-              "valueToDisplay": {
-                "description": "Value to be shown to the user. For instance the value can be FMA.org/6758 but the preffered value is CorpusCallosum.",
-                "type": "string"
+                "description": "List of multiple values selected.",
+                "type": "object",
+                "properties":{
+                  "label": { "type":"string" },
+                  "ontologyId": { "type":"string" },
+                  "ontologyClassIri": { "type":"string" }
+                }
               }
             }
           }
@@ -148,17 +126,13 @@
         { "$ref": "#/definitions/annotationBasic" },
         {
           "properties":{
-            "typeQuestion": {
+            "answerType": {
               "enum": ["OPEN_ENDED"]
             },
-            "properties":{
-              "concept":{
-                "description": "Concept of the value. For instance Volume.",
-                "type": "string"
-              },
+            "annotationProperties":{
               "value": {
-                "description": "Value of the annotation.",
-                "type": "string"
+                "description": "Text in the open-ended question.",
+                "type": "string",
               }
             }
           }
