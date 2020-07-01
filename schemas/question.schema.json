@@ -22,11 +22,27 @@
         },
         "lowerLimit": {
           "description":"If number, the minimum value",
-          "type": "number"       
+          "type": "object",
+          "properties":{
+            "value":{
+              "type":"number"
+            },
+            "inclusive":{
+              "type": "boolean"
+            }
+          }
         },
         "upperLimit": {
           "description":"If number, is the maximum value",
-          "type": "number"         
+          "type": "object",
+          "properties":{
+            "value":{
+              "type":"number"
+            },
+            "inclusive":{
+              "type": "boolean"
+            }
+          }         
         }
       },
       "required": ["answerFormat"],
