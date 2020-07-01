@@ -43,6 +43,10 @@
               "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
               "type": "string"
             },
+            "workflowExecutorId": {
+              "description": "Id of the workflow executor used to created the ROI. This is used in case the workflow has not been run inside SPINE, thus there is no materialized task associated.",
+              "type": "string"
+            },
             "questionId":{
               "description": "Id of the question related to this annotation. An annotation is an answer to a question.",
               "type": "string"
