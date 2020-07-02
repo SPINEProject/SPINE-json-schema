@@ -12,13 +12,13 @@
       "$id": "#annotationBasic",
       "description": "Basic description of an annotation",
       "properties":{
-        "answerFormat": {
-          "type": "string",
-          "enum": ["TEXT","NUMBER"]
-        },
         "hasAnswer": {
           "description": "If no answer then there are no annotation properties",
           "type": "boolean"
+        },
+        "answerFormat": {
+          "type": "string",
+          "enum": ["TEXT","NUMBER"]
         },
         "status": {
           "description": "Status of the annotation: saved or submitted",
@@ -28,40 +28,59 @@
         "reference": {
           "description": "References to main documents",
           "type": "object",
-          "properties": {
-            "roiId": {
-              "description": "Id of the ROI annotated by this annotation",
-              "type": "string"
+          "oneOf": [
+            {
+              "properties": {
+                "roiId": {
+                  "description": "Id of the ROI annotated by this annotation",
+                  "type": "string"
+                },
+                "workflowId": {
+                  "description": "Id of the workflow used to produce this annotation",
+                  "type": "string"
+                },
+                "workflowExecutorId": {
+                  "description": "Id of the workflow executor used to created the ROI. This is used in case the workflow has not been run inside SPINE, thus there is no materialized task associated.",
+                  "type": "string"
+                },
+                "questionId":{
+                  "description": "Id of the question related to this annotation. An annotation is an answer to a question.",
+                  "type": "string"
+                }
+              },
+              "required": ["roiId", "workflowId", "workflowExecutorId", "questionId"],
+              "additionalProperties": false
             },
-            "taskId": {
-              "description": "Id of the task used to produce this annotation",
-              "type": "string"
-            },
-            "workflowId": {
-              "description": "Id of the workflow used to produce this annotation",
-              "type": "string"
-            },
-            "materializedTaskId": {
-              "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
-              "type": "string"
-            },
-            "workflowExecutorId": {
-              "description": "Id of the workflow executor used to created the ROI. This is used in case the workflow has not been run inside SPINE, thus there is no materialized task associated.",
-              "type": "string"
-            },
-            "questionId":{
-              "description": "Id of the question related to this annotation. An annotation is an answer to a question.",
-              "type": "string"
+            {
+              "properties": {
+                "roiId": {
+                  "description": "Id of the ROI annotated by this annotation",
+                  "type": "string"
+                },
+                "taskId": {
+                  "description": "Id of the task used to produce this annotation",
+                  "type": "string"
+                },
+                "workflowId": {
+                  "description": "Id of the workflow used to produce this annotation",
+                  "type": "string"
+                },
+                "materializedTaskId": {
+                  "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
+                  "type": "string"
+                },
+                "questionId":{
+                  "description": "Id of the question related to this annotation. An annotation is an answer to a question.",
+                  "type": "string"
+                }
+              },
+              "required": ["roiId", "workflowId", "materializedTaskId", "taskId", "questionId"],
+              "additionalProperties": false
             }
-          },
-          "oneOf":[
-            { "required": ["roiId", "taskId", "workflowId", "materializedTaskId", "workflowExecutorId", "questionId"] },
-            { "required": ["roiId", "workflowId", "workflowExecutorId", "questionId"] }
-          ],
-          "additionalProperties": false
+          ]
         }
       },
-      "required": ["typeQuestion", "typeAnnotation", "status", "reference"]
+      "required": ["hasAnswer", "status", "reference"]
     },
 
     "annotationMultipleChoiceMultipleAnswer":{
@@ -74,21 +93,29 @@
             "answerType": {
               "enum": ["MULTIPLE_CHOICE_MULTIPLE_ANSWER"]
             },
+            "hasAnswer": {
+              "enum": [true]
+            },
             "annotationProperties":{
-              "values": {
-                "description": "List of multiple values selected.",
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties":{
-                    "label": { "type":"string" },
-                    "ontologyId": { "type":"string" },
-                    "ontologyClassIri": { "type":"string" }
+              "properties": {
+                "values": {
+                  "description": "List of multiple values selected.",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties":{
+                      "label": { "type":"string" },
+                      "ontologyId": { "type":"string" },
+                      "ontologyClassIri": { "type":"string" }
+                    },
+                    "required": ["label","ontologyClassIri","ontologyId"]
                   }
                 }
-              }
+              },
+              "required": ["values"]
             }
-          }
+          },
+          "required": ["answerType", "hasAnswer", "annotationProperties"]
         }
       ]
     },
@@ -103,18 +130,26 @@
             "answerType": {
               "enum": ["MULTIPLE_CHOICE_SINGLE_ANSWER"]
             },
+            "hasAnswer": {
+              "enum": [true]
+            },
             "annotationProperties":{
-              "value": {
-                "description": "List of multiple values selected.",
-                "type": "object",
-                "properties":{
-                  "label": { "type":"string" },
-                  "ontologyId": { "type":"string" },
-                  "ontologyClassIri": { "type":"string" }
+              "properties": {
+                "value": {
+                  "description": "List of multiple values selected.",
+                  "type": "object",
+                  "properties":{
+                    "label": { "type":"string" },
+                    "ontologyId": { "type":"string" },
+                    "ontologyClassIri": { "type":"string" }
+                  },
+                  "required": ["label","ontologyClassIri","ontologyId"]
                 }
-              }
+              },
+              "required": ["value"]
             }
-          }
+          },
+          "required": ["answerType", "hasAnswer", "annotationProperties"]
         }
       ]
     },
@@ -129,21 +164,104 @@
             "answerType": {
               "enum": ["OPEN_ENDED"]
             },
+            "hasAnswer": {
+              "enum": [true]
+            },
             "annotationProperties":{
-              "value": {
-                "description": "Text in the open-ended question.",
-                "type": "string",
-              }
+              "properties": {
+                "value": {
+                  "description": "Text in the open-ended question.",
+                  "type": "string"
+                }
+              },
+              "required": ["value"]
             }
-          }
+          },
+          "required": ["answerType", "hasAnswer", "annotationProperties"]
         }
       ]
+    },
+    
+    "annotationNoAnswer":{
+      "$id": "#annotationNoAnswer",
+      "description": "Description an annotation with no answer",
+      "properties":{
+        "answerType": {
+          "enum": ["OPEN_ENDED","MULTIPLE_CHOICE_MULTIPLE_ANSWER","MULTIPLE_CHOICE_SINGLE_ANSWER"]
+        },
+        "hasAnswer": {
+          "type": "boolean",
+          "enum": [false]
+        },
+        "status": {
+          "description": "Status of the annotation: saved or submitted",
+          "type": "string",
+          "enum": ["SAVED","SUBMITTED"]
+        },
+        "reference": {
+          "description": "References to main documents",
+          "type": "object",
+          "oneOf": [
+            {
+              "properties": {
+                "roiId": {
+                  "description": "Id of the ROI annotated by this annotation",
+                  "type": "string"
+                },
+                "workflowId": {
+                  "description": "Id of the workflow used to produce this annotation",
+                  "type": "string"
+                },
+                "workflowExecutorId": {
+                  "description": "Id of the workflow executor used to created the ROI. This is used in case the workflow has not been run inside SPINE, thus there is no materialized task associated.",
+                  "type": "string"
+                },
+                "questionId":{
+                  "description": "Id of the question related to this annotation. An annotation is an answer to a question.",
+                  "type": "string"
+                }
+              },
+              "required": ["roiId", "workflowId", "workflowExecutorId", "questionId"],
+              "additionalProperties": false
+            },
+            {
+              "properties": {
+                "roiId": {
+                  "description": "Id of the ROI annotated by this annotation",
+                  "type": "string"
+                },
+                "taskId": {
+                  "description": "Id of the task used to produce this annotation",
+                  "type": "string"
+                },
+                "workflowId": {
+                  "description": "Id of the workflow used to produce this annotation",
+                  "type": "string"
+                },
+                "materializedTaskId": {
+                  "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
+                  "type": "string"
+                },
+                "questionId":{
+                  "description": "Id of the question related to this annotation. An annotation is an answer to a question.",
+                  "type": "string"
+                }
+              },
+              "required": ["roiId", "workflowId", "materializedTaskId", "taskId", "questionId"],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": ["answerType", "hasAnswer","reference","status"],
+      "additionalProperties": false
     }
 
   },
   "oneOf": [
     { "$ref": "#/definitions/annotationMultipleChoiceMultipleAnswer" },
     { "$ref": "#/definitions/annotationMultipleChoiceSingleAnswer" },
-    { "$ref": "#/definitions/annotationOpenEnded" }
+    { "$ref": "#/definitions/annotationOpenEnded" },
+    { "$ref": "#/definitions/annotationNoAnswer" }
   ]
 }
