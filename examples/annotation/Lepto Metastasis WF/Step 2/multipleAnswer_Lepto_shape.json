@@ -12,12 +12,12 @@
    "annotationProperties": {
        "values":[
           {
-            "label": "Location",
+            "label": "Nodular",
             "ontologyId": "",
             "ontologyClassIri": ""
           },
           {
-            "label": "Size",
+            "label": "Linear or curvilinear",
             "ontologyId": "",
             "ontologyClassIri": ""
           }

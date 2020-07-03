@@ -12,12 +12,12 @@
    "annotationProperties": {
        "values":[
           {
-            "label": "Location",
+            "label": "Cerebrum",
             "ontologyId": "",
             "ontologyClassIri": ""
           },
           {
-            "label": "Size",
+            "label": "Cerebellum",
             "ontologyId": "",
             "ontologyClassIri": ""
           }

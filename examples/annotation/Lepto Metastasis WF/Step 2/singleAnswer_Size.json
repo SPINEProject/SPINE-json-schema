@@ -1,5 +1,5 @@
 {
-   "answerType":"MULTIPLE_CHOICE_MULTIPLE_ANSWER",
+   "answerType":"MULTIPLE_CHOICE_SINGLE_ANSWER",
    "status": "SUBMITTED",
    "hasAnswer": true,
    "reference": {
@@ -10,17 +10,11 @@
      "questionId": ""
    },
    "annotationProperties": {
-       "values":[
+       "value":
           {
-            "label": "Location",
-            "ontologyId": "",
-            "ontologyClassIri": ""
-          },
-          {
-            "label": "Size",
+            "label": "yes",
             "ontologyId": "",
             "ontologyClassIri": ""
           }
-        ]
    }
 }
