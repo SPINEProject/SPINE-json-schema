@@ -86,80 +86,127 @@
         "materializedTaskId":{
           "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
           "type": "string"
+        },
+        "userId":{
+          "description": "User submitting the ROI",
+          "type": "string"
         }
       },
-      "required":["imageEntityId", "materializedTaskId"]
+      "required":["imageEntityId", "materializedTaskId","userId"],
+      "additionalProperties": false
     },
     "properties": {
       "description": "Properties of the ROI.",
       "type":"object",
-      "properties": {
-        "implicit":{
-          "description": "Object having all the implicit properties.",
-          "type": "object",
-          "properties":{
-            "implicitRelationWithRoi": {
-              "$ref": "#implicitRelationWithRoi"
-            },
-            "implicitGeometryPointer": {
-              "$ref": "#implicitGeometryPointer"
-            },
-            "roiProperties": {
-              "description": "Properties for a point in implicit pointer. If the implicitGemetryPointer is POINT.",
+      "oneOf":[
+        {
+          "properties": {
+            "implicit":{
+              "description": "Object having all the implicit properties",
               "type": "object",
-              "properties": {
-                "worldCoordinates": {
-                  "description": "World coordinates of the point, also called XYZ coordinates.",
-                  "type": "object",
-                  "properties": {
-                    "x": { "type": "number" },
-                    "y": { "type": "number" },
-                    "z": { "type": "number" }
+              "oneOf": [
+                {
+                  "properties":{
+                    "implicitRelationWithRoi": {
+                      "$ref": "#implicitRelationWithRoi"
+                    },
+                    "implicitGeometryPointer": {
+                      "enum": ["POINT"]
+                    },
+                    "roiProperties": {
+                      "description": "Properties for a point in implicit pointer. If the implicitGemetryPointer is POINT.",
+                      "type": "object",
+                      "properties": {
+                        "worldCoordinates": {
+                          "description": "World coordinates of the point, also called XYZ coordinates.",
+                          "type": "object",
+                          "properties": {
+                            "x": { "type": "number" },
+                            "y": { "type": "number" },
+                            "z": { "type": "number" }
+                          },
+                          "required": ["x", "y", "z"]
+                        },
+                        "imageCoordinates": {
+                          "description": "Images coordinates of the point, also called IJK coordinates.",
+                          "type": "object",
+                          "properties": {
+                            "i": { "type": "number" },
+                            "j": { "type": "number" },
+                            "k": { "type": "number" }
+                          },
+                          "required": ["i", "j", "k"]
+                        }
+                      },
+                      "required": ["worldCoordinates", "imageCoordinates"],
+                      "additionalProperties": false
+                    }
                   },
-                  "required": ["x", "y", "z"]
+                  "required": ["implicitRelationWithRoi", "implicitGeometryPointer", "roiProperties"],
+                  "additionalProperties": false
                 },
-                "imageCoordinates": {
-                  "description": "Images coordinates of the point, also called IJK coordinates.",
-                  "type": "object",
-                  "properties": {
-                    "i": { "type": "number" },
-                    "j": { "type": "number" },
-                    "k": { "type": "number" }
+                {
+                  "properties":{
+                    "implicitRelationWithRoi": {
+                      "$ref": "#implicitRelationWithRoi"
+                    },
+                    "implicitGeometryPointer": {
+                      "enum": ["SLICE"]
+                    },
+                    "planeProperties": {
+                      "description": "Properties for a point in implicit pointer. If the implicitGemetryPointer is SLICE.",
+                      "type": "object",
+                      "properties": {
+                        "anatomicalDirection": {
+                          "description": "The slice direction",
+                          "type": "string"
+                        },
+                        "planeSliceNumberInAnatomicalDirection": {
+                          "description": "The slice number",
+                          "type": "number"
+                        }
+                      },
+                      "required": ["anatomicalDirection", "planeSliceNumberInAnatomicalDirection"],
+                      "additionalProperties": false
+                    }
                   },
-                  "required": ["i", "j", "k"]
+                  "required": ["implicitRelationWithRoi", "implicitGeometryPointer", "planeProperties"],
+                  "additionalProperties": false
                 }
-              },
-              "required": ["worldCoordinates", "imageCoordinates"]
+              ]  
             }
-          }
+          },
+          "additionalProperties": false
         },
-        "explicit":{
-          "description": "Object having all the implicit properties.",
-          "type": "object",
-          "properties":{
-            "labelMap":{
-              "description": "Object having the properties of the label map where the ROI was defined. For instance when a segmentation is done using paint brush.",
+        {
+          "properties": {
+            "explicit":{
+              "description": "Object having all the explicit properties.",
               "type": "object",
               "properties":{
-                "imageEntityId": {
-                  "description": "Id of the label map. A label map is an image in SPINE.",
-                  "type": "string"
-                },
-                "labelIntensity":{
-                  "description": "Intensity in the label map assigned to the ROI. For instance 1. Usually the background is represented by 0.",
-                  "type": "number"
+                "labelMap":{
+                  "description": "Object having the properties of the label map where the ROI was defined. For instance when a segmentation is done using paint brush.",
+                  "type": "object",
+                  "properties":{
+                    "imageEntityId": {
+                      "description": "Id of the label map. A label map is an image in SPINE.",
+                      "type": "string"
+                    },
+                    "labelIntensity":{
+                      "description": "Intensity in the label map assigned to the ROI. For instance 1. Usually the background is represented by 0.",
+                      "type": "number"
+                    }
+                  },
+                  "required": ["imageEntityId", "labelIntensity"]
                 }
-              },
-              "required": ["imageEntityId", "labelIntensity"]
+              }
             }
-          }
+          },
+          "additionalProperties": false
         }
-      },
-      "oneOf":[
-        {"required": ["implicit"]},
-        {"required": ["explicit"]}
       ]
     }
   },
+  "additionalProperties": false,
   "required": ["typeROI", "status", "reference", "properties"]
 }
