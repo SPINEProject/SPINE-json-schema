@@ -176,6 +176,7 @@
               ]  
             }
           },
+          "required": ["implicit"],
           "additionalProperties": false
         },
         {
@@ -197,11 +198,15 @@
                       "type": "number"
                     }
                   },
-                  "required": ["imageEntityId", "labelIntensity"]
+                  "required": ["imageEntityId", "labelIntensity"],
+                  "additionalProperties": false
                 }
-              }
+              },
+              "required": ["labelMap"],
+              "additionalProperties": false
             }
           },
+          "required": ["explicit"],
           "additionalProperties": false
         }
       ]
