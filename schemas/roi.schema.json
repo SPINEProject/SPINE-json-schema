@@ -101,6 +101,9 @@
       "oneOf":[
         {
           "properties": {
+            "isSubROI": {
+              "type":"boolean"
+            },
             "implicit":{
               "description": "Object having all the implicit properties",
               "type": "object",
@@ -142,7 +145,7 @@
                       "additionalProperties": false
                     }
                   },
-                  "required": ["implicitRelationWithRoi", "implicitGeometryPointer", "roiProperties"],
+                  "required": ["implicitGeometryPointer", "roiProperties", "implicitRelationWithRoi"],
                   "additionalProperties": false
                 },
                 {
@@ -154,7 +157,7 @@
                       "enum": ["SLICE"]
                     },
                     "planeProperties": {
-                      "description": "Properties for a point in implicit pointer. If the implicitGemetryPointer is SLICE.",
+                      "description": "Properties for a slice in implicit pointer. If the implicitGemetryPointer is SLICE.",
                       "type": "object",
                       "properties": {
                         "anatomicalDirection": {
@@ -170,7 +173,7 @@
                       "additionalProperties": false
                     }
                   },
-                  "required": ["implicitRelationWithRoi", "implicitGeometryPointer", "planeProperties"],
+                  "required": ["implicitGeometryPointer", "planeProperties", "implicitRelationWithRoi"],
                   "additionalProperties": false
                 }
               ]  
@@ -181,6 +184,9 @@
         },
         {
           "properties": {
+            "isSubROI": {
+              "type":"boolean"
+            },
             "explicit":{
               "description": "Object having all the explicit properties.",
               "type": "object",
