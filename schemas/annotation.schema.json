@@ -153,6 +153,40 @@
         }
       ]
     },
+    
+    "annotationSingleChoiceSingleAnswer":{
+      "$id": "#annotationSingleChoiceSingleAnswer",
+      "description": "Description an annotation with a single answers.",
+      "allOf": [
+        { "$ref": "#/definitions/annotationBasic" },
+        {
+          "properties":{
+            "answerType": {
+              "enum": ["SINGLE_CHOICE_SINGLE_ANSWER"]
+            },
+            "hasAnswer": {
+              "enum": [true]
+            },
+            "annotationProperties":{
+              "properties": {
+                "value": {
+                  "description": "List of multiple values selected.",
+                  "type": "object",
+                  "properties":{
+                    "label": { "type":"string" },
+                    "ontologyId": { "type":"string" },
+                    "ontologyClassIri": { "type":"string" }
+                  },
+                  "required": ["label","ontologyClassIri","ontologyId"]
+                }
+              },
+              "required": ["value"]
+            }
+          },
+          "required": ["answerType", "hasAnswer", "annotationProperties"]
+        }
+      ]
+    },
 
     "annotationOpenEnded":{
       "$id": "#annotationOpenEnded",
@@ -261,6 +295,7 @@
   "oneOf": [
     { "$ref": "#/definitions/annotationMultipleChoiceMultipleAnswer" },
     { "$ref": "#/definitions/annotationMultipleChoiceSingleAnswer" },
+    { "$ref": "#/definitions/annotationSingleChoiceSingleAnswer" },
     { "$ref": "#/definitions/annotationOpenEnded" },
     { "$ref": "#/definitions/annotationNoAnswer" }
   ]
