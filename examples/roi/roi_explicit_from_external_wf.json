@@ -1,0 +1,19 @@
+{
+  "_id": "22340bb7-24fc-435b-945e-632c26a304c6",
+  "reference": {
+    "userId": "someuser",
+    "workflowExecutionId": "2f42383f-72be-4333-98b2-2616958883b7",
+    "imageEntityId": "someimage"
+  },
+  "status": "SUBMITTED",
+  "typeROI": "EXPLICIT",
+  "properties": {
+    "explicit": {
+      "labelMap": {
+        "imageEntityId": "segmentationimageuuid",
+        "labelIntensity": 1
+      }
+    }
+  },
+  "docType": "roi"
+}
