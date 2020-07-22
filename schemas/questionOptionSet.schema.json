@@ -1,0 +1,145 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/questionOptionSet.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Annotation Forms that describes the options for an annotation",
+  "type": "object",
+  "TODOS": [
+    "Usually an annotation is a simple comment. In the future an annotation can be an image, for instance a probability mask.",
+    "Units for the value in an annotation should come from an ontology."
+  ],
+  "definitions":{
+
+    "optionInTree": {
+      "$id": "#optionInTree",
+      "description": "Options in a tree",
+      "type": "object",
+      "properties": {
+        "ontologyClassIri": {
+          "description": "Value of the actual option.",
+          "type": "string"
+        },
+        "ontologyId": {
+          "description": "Ontology ID",
+          "type": "string"
+        },
+        "label": {
+          "description": "Value to be shown to the user. For instance the value can be FMA.org/6758 but the preffered value is CorpusCallosum.",
+          "type": "string"
+        },
+        "suboptions": {
+          "description": "List of suboptions",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/optionInTree"
+          }
+        }
+      },
+      "required": ["ontologyClassIri","label","ontologyId"]
+    },
+
+
+    "questionMultipleChoiceSingleAnswer": {
+      "$id": "#questionMultipleChoiceSingleAnswer",
+      "description": "Specific annotation multiple choise and single answer",
+      "type": "object",
+      "properties":{
+        "answerType": {
+          "description": "Type of answer.",
+          "type": "string",
+          "enum": ["MULTIPLE_CHOICE_SINGLE_ANSWER"]
+        },
+        "value": {
+            "type": "string",
+            "description": "Ontology class corresponding to the question"
+        },
+        "reference": {
+            "type": "object",
+            "properties": {
+              "questionId": {
+                  "type": "string",
+                  "description": "UUID of the question"
+              }
+            }
+        },
+        "options": {
+          "description": "List of options",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/optionInTree"
+          }
+        }
+      },
+      "required": ["answerType", "reference","options"],
+      "additionalProperties": false
+    },
+
+    "questionMultipleChoiceMultipleAnswer": {
+      "$id": "#questionMultipleChoiceMultipleAnswer",
+      "description": "Specific annotation multiple choise and multple answer",
+      "type": "object",
+      "properties":{
+        "answerType": {
+          "description": "Type of answer.",
+          "type": "string",
+          "enum": ["MULTIPLE_CHOICE_MULTIPLE_ANSWER"]
+        },
+        "value": {
+            "type": "string",
+            "description": "Ontology class corresponding to the question"
+        },
+        "reference": {
+            "type": "object",
+            "properties": {
+              "questionId": {
+                  "type": "string",
+                  "description": "UUID of the question"
+              }
+            }
+        },
+        "options": {
+          "description": "List of options",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/optionInTree"
+          }
+        }
+      },
+      "required": ["answerType", "reference","options"],
+      "additionalProperties": false
+    },
+
+    "questionOpenEnded": {
+      "$id": "#questionOpenEnded",
+      "description": "Specific open-ended annotation",
+      "properties": {
+        "answerType": {
+          "description": "Type of answer.",
+          "type": "string",
+          "enum": ["OPEN_ENDED"]
+        },
+        "value": {
+            "type": "string",
+            "description": "Ontology class corresponding to the question"
+        },
+        "reference": {
+            "type": "object",
+            "properties": {
+              "questionId": {
+                  "type": "string",
+                  "description": "UUID of the question"
+              }
+            }
+        }
+      },
+      "required": ["answerType", "reference"],
+      "additionalProperties": false
+    }
+
+  },
+  "oneOf": [
+    { "$ref": "#/definitions/questionMultipleChoiceSingleAnswer" },
+    { "$ref": "#/definitions/questionMultipleChoiceMultipleAnswer" },
+    { "$ref": "#/definitions/questionOpenEnded" }
+  ]
+
+}

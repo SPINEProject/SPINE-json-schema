@@ -1,0 +1,32 @@
+{
+  "questionOpenSets": {
+    "column1": 
+    {
+        "questionOptionSetId":"9e4ddcde23a9bc3a2c8516b1f20035a6",
+        "isAnswerRequired": false,
+        "type": "checkbox",
+        "name": "Location"
+    },
+    "column2": 
+    {
+        "questionOptionSetId":"9e4ddcde23a9bc3a2c8516b1f20035a6",
+        "isAnswerRequired": true,
+        "type": "simple-dropdown",
+        "name": "Location"
+    },
+    "column3": 
+    {
+        "questionOptionSetId":"9e4ddcde23a9bc3a2c8516b1f20035a6",
+        "isAnswerRequired": false,
+        "type": "textbox",
+        "name": "Location"
+    },
+    "column4": 
+    {
+        "questionOptionSetId":"9e4ddcde23a9bc3a2c8516b1f20035a6",
+        "isAnswerRequired": false,
+        "type": "radiobutton",
+        "name": "Location"
+    }
+  }
+}

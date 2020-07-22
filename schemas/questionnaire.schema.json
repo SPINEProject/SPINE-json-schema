@@ -1,0 +1,37 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/questionnaire.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "A questionnaire is a list of question option sets",
+  "type": "object",
+  "properties":{
+    "questionOpenSets": {
+      "type": "object",
+      "description": "The list of question option set",
+      "patternProperties" : {
+        ".*" : {
+          "type": "object",
+          "properties": {
+            "questionOptionSetId":{
+              "type": "string"
+            },
+            "isAnswerRequired": {
+              "type": "boolean"
+            },
+            "type": {
+              "type": "string",
+              "enum": ["checkbox","simple-dropdown","radiobutton","textbox"]
+            },
+            "name": {
+              "type": "string",
+              "description": "a label for the question option set"
+            }
+          },
+          "required": ["questionOptionSetId", "type","name"],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "required": ["questionOpenSets"],
+  "additionalProperties": false
+}

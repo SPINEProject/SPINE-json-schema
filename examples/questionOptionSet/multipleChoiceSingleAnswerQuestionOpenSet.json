@@ -1,0 +1,14 @@
+{
+   "reference": {
+       "questionId": "uuid"
+   },
+    "answerType": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+    "value": "",
+    "options": [                    
+      {
+        "label": "Hypointense",
+        "ontologyId": "uuid",
+        "ontologyClassIri": "Hypointense" 
+      }
+    ]
+}

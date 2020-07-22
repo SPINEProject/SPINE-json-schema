@@ -1,0 +1,26 @@
+{
+   "answerType":"MULTIPLE_CHOICE_MULTIPLE_ANSWER",
+   "status": "SUBMITTED",
+   "hasAnswer": true,
+   "reference": {
+     "roiId": "",
+     "materializedTaskId": "",
+     "taskId": "",
+     "workflowId": "",
+     "questionId": ""
+   },
+   "annotationProperties": {
+       "values":[
+          {
+            "label": "Cerebrum",
+            "ontologyId": "",
+            "ontologyClassIri": ""
+          },
+          {
+            "label": "Cerebellum",
+            "ontologyId": "",
+            "ontologyClassIri": ""
+          }
+        ]
+   }
+}
