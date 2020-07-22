@@ -1,0 +1,64 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/question.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Annotation Forms that describes the options for an annotation",
+  "type": "object",
+  "TODOS": [
+    "Usually an annotation is a simple comment. In the future an annotation can be an image, for instance a probability mask.",
+    "Units for the value in an annotation should come from an ontology."
+  ],
+  "properties":{
+    "questionProperties":{
+      "type": "object",
+      "properties": {
+        "answerFormat": {
+          "type":"string",
+          "description":"Format of the answer",
+          "enum": ["TEXT", "NUMBER"]
+        },
+        "isInteger": {
+          "description":"If number, is the answer an integer",
+          "type": "boolean"
+        },
+        "lowerLimit": {
+          "description":"If number, the minimum value",
+          "type": "object",
+          "properties":{
+            "value":{
+              "type":"number"
+            },
+            "inclusive":{
+              "type": "boolean"
+            }
+          }
+        },
+        "upperLimit": {
+          "description":"If number, is the maximum value",
+          "type": "object",
+          "properties":{
+            "value":{
+              "type":"number"
+            },
+            "inclusive":{
+              "type": "boolean"
+            }
+          }         
+        }
+      },
+      "required": ["answerFormat"],
+      "additionalProperties": false
+    },
+    "questionText": {
+      "type":"string",
+      "description":"A text label for the question"
+    },
+    "ontologies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["questionText", "ontologies"],
+  "additionalProperties": false
+}

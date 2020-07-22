@@ -1,0 +1,16 @@
+{
+   "answerType":"OPEN_ENDED",
+   "status": "SUBMITTED",
+   "hasAnswer": true,
+   "reference": {
+     "roiId": "",
+     "materializedTaskId": "",
+     "taskId": "",
+     "workflowId": "",
+     "questionId": ""
+   },
+   "answerFormat": "NUMBER",
+   "annotationProperties": {
+       "value": 0.5
+   }
+}
