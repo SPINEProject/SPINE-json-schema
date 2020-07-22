@@ -76,24 +76,46 @@
       "enum": ["SAVED","SUBMITTED"]
     },
     "reference": {
-      "description": "References of the ROI",
+      "description": "References of the ROI. Two schemas : for ROI coming from workflow executed inside of SPINE or outside of SPINE",
       "type": "object",
-      "properties": {
-        "imageEntityId": {
-          "description": "Id of the image the ROI belongs to",
-          "type": "string"
+      "oneOf": [
+        {
+          "properties": {
+            "imageEntityId": {
+              "description": "Id of the image the ROI belongs to",
+              "type": "string"
+            },
+            "materializedTaskId":{
+              "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
+              "type": "string"
+            },
+            "userId":{
+              "description": "User submitting the ROI",
+              "type": "string"
+            }
+          },
+          "required":["imageEntityId", "materializedTaskId","userId"],
+          "additionalProperties": false
         },
-        "materializedTaskId":{
-          "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
-          "type": "string"
-        },
-        "userId":{
-          "description": "User submitting the ROI",
-          "type": "string"
+        {
+          "properties": {
+            "imageEntityId": {
+              "description": "Id of the image the ROI belongs to",
+              "type": "string"
+            },
+            "workflowExecutionId":{
+              "description": "Id of the workflow execution UUID for external workflow",
+              "type": "string"
+            },
+            "userId":{
+              "description": "User submitting the ROI",
+              "type": "string"
+            }
+          },
+          "required":["imageEntityId", "workflowExecutionId","userId"],
+          "additionalProperties": false
         }
-      },
-      "required":["imageEntityId", "materializedTaskId","userId"],
-      "additionalProperties": false
+      ]
     },
     "properties": {
       "description": "Properties of the ROI.",
