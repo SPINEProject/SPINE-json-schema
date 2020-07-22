@@ -8,7 +8,7 @@
   "properties":{
     "implicit":{
       "implicitRelationWithRoi": "INSIDE",
-      "implicitGemetryPointer": "POINT",
+      "implicitGeometryPointer": "POINT",
       "roiProperties":{
         "worldCoordinates":{
           "x": 10.45,
