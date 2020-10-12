@@ -1,0 +1,20 @@
+{
+   "answerType":"MULTIPLE_CHOICE_SINGLE_ANSWER",
+   "status": "SUBMITTED",
+   "hasAnswer": true,
+   "reference": {
+     "roiId": "",
+     "materializedTaskId": "",
+     "taskId": "",
+     "workflowId": "",
+     "questionId": ""
+   },
+   "annotationProperties": {
+       "value":
+          {
+            "label": "Metastasis",
+            "ontologyId": "fma_uuid",
+            "ontologyClassIri": "http://purl.bioontology.org/ontology/SNOMEDCT/14799000"
+          }
+   }
+}

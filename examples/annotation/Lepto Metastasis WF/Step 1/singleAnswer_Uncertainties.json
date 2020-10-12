@@ -1,0 +1,20 @@
+{
+   "answerType":"MULTIPLE_CHOICE_SINGLE_ANSWER",
+   "status": "SUBMITTED",
+   "hasAnswer": true,
+   "reference": {
+     "roiId": "",
+     "materializedTaskId": "",
+     "taskId": "",
+     "workflowId": "",
+     "questionId": ""
+   },
+   "annotationProperties": {
+       "value":
+          {
+            "label": "Leptomeninges",
+            "ontologyId": "fma_uuid",
+            "ontologyClassIri": "http://purl.org/sig/ont/fma/fma231515"
+          }
+   }
+}
