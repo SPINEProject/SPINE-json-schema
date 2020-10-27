@@ -69,6 +69,14 @@
                 "description":"State of the transition",
                 "type":"string",
                 "enum":  ["WAITING", "FIRED"]
+              },
+              "from":{
+                "description":"from",
+                "type":"array"
+              },
+              "to":{
+                "description":"to",
+                "type":"array"
               }
             }
           }
