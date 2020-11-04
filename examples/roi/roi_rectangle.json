@@ -1,0 +1,41 @@
+{
+  "reference": {
+    "userId": "someuser",
+    "materializedTaskId": "2f42383f-72be-4333-98b2-2616958883b7",
+    "imageEntityId": "someimage"
+  },
+  "status": "SUBMITTED",
+  "typeROI": "IMPLICIT",
+  "properties": {
+    "implicit": {
+      "implicitGeometryPointer": "RECTANGLE",
+      "rectangleProperties": {
+        "pointA":{
+        "worldCoordinates": {
+          "x": 25.9611667879175,
+          "y": -19.400524934414275,
+          "z": 9.678198019392767
+        },
+        "imageCoordinates": {
+          "i": 55,
+          "j": 114,
+          "k": 127
+        }
+      },
+      "pointB":{
+        "worldCoordinates": {
+          "x": 25.9611667879175,
+          "y": -19.400524934414275,
+          "z": 9.678198019392767
+        },
+        "imageCoordinates": {
+          "i": 55,
+          "j": 114,
+          "k": 127
+        }
+      }
+    }
+  }
+}
+}
+}

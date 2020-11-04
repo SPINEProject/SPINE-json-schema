@@ -176,45 +176,10 @@
           "required":["fromTask", "toTask"]
         }
       }
-    },
-    "transitions":{
-      "description": "State transitions in the workflow. A transition with only 'to' means that it comes from the inputs of the workflow, a transition with only 'from' means that the results transit to the outputs of the workflow",
-      "type": "object",
-      "patternProperties" : {
-        ".*": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "to": {
-              "description": "Targeted task, just the names, to be fired when the by the transition.",
-              "type": "array",
-              "items":{
-                "type":"string"
-              }
-            },
-            "from": {
-              "description": "Source task, when all the source task are done, the transition is fired.",
-              "type": "array",
-              "items":{
-                "type":"string"
-              }
-            }
-          },
-          "anyOf": [
-            {
-              "required":["to"]
-            },
-            {
-              "required":["from"]
-            }
-          ]
-        }
-      }
     }
   },
   "required": ["name","uuid","description","version","owner","privacy",
     "creationDate","inputs","outputs", "constants",
-    "tasks","connectionsBetweenWorkflowAndTasks","connectionsBetweenTasks",
-  "transitions"],
+    "tasks","connectionsBetweenWorkflowAndTasks","connectionsBetweenTasks"],
   "additionalProperties": false
 }
