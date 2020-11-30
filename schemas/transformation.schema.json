@@ -1,0 +1,181 @@
+{
+  "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/task.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Task",
+  "TODOS": [
+    "TODO #1. spineInputsTask - Insert restrictions for the use of filter and idInDescriptor.",
+    "TODO #2. spineInputsTask - Insert restrictions for the use of idInDescriptor.",
+    "TODO #3. spineOutputsTask - Define the output metadata for the spine types that we have. This allows us to know what to expect in each case."
+  ],
+  "definitions":{
+
+    "spineInputsTask": {
+      "$id" : "#spineInputsTask",
+      "description": "Inputs for tasks and workflows. It extends the definition of spineInputOuput because it might need filters associated with the inputs.",
+      "type": "object",
+      "patternProperties" : {
+        ".*" : {
+          "properties": {
+            "filter":{
+              "$ref":"core.schema.json#/definitions/filter"
+            },
+            "idInDescriptor": {
+              "description":"Id of the Input/Output in the descriptor. This is required for automatic tasks, for now wraped using boutiques.",
+              "type":"string"
+            }
+          },
+          "allOf":[
+            {"$ref": "core.schema.json#/definitions/spineInputOuput"}
+          ]
+        }
+      }
+    },
+
+    "spineOutputsTask": {
+      "$id" : "#spineOutputsTask",
+      "description": "Outputs for tasks and workflows.",
+      "type": "object",
+      "patternProperties" : {
+        ".*" : {
+          "properties": {
+            "idInDescriptor": {
+              "description":"Id of the Input/Output in the descriptor. This is required for automatica tasks, for now wraped using boutiques.",
+              "type":"string"
+            },
+            "metadata": {
+              "description":"Metadata to add to the output",
+              "type":"object"
+            },
+            "reference": {
+              "description":"Reference to add to the output",
+              "type":"object"
+            }
+          },
+          "allOf":[
+            {"$ref": "core.schema.json#/definitions/spineInputOuput"}
+          ]
+        }
+      }
+    }
+
+  },
+  "properties": {
+    "uuid": {
+      "description": "Task UUID",
+      "type": "string"
+    },
+    "name": {
+      "description": "Task name",
+      "type": "string"
+    },
+    "description": {
+      "description": "Task description",
+      "type": "string"
+    },
+    "version": {
+      "description": "Task version",
+      "type": "string"
+    },
+    "owner": {
+      "description": "Task owner",
+      "type": "string"
+    },
+    "privacy": {
+      "description": "Task privacy",
+      "type": "string",
+      "enum": [
+        "PUBLIC",
+        "PRIVATE"
+      ]
+    },
+    "creationDate": {
+      "description": "Task date of creation",
+      "type": "string"
+    },
+    "process": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Process type",
+          "type": "string",
+          "enum": [
+            "auto",
+            "manual"
+          ]
+        },
+        "execution": {
+          "type": "object",
+          "properties": {
+            "executor": {
+              "description": "Process executor. Currently ",
+              "type": "string",
+              "enum": [
+                "bosh",
+                "SPINE",
+                "SPINEGame"
+              ]
+            },
+            "descriptorId": {
+              "description": "Process descriptor ID. If the task is automatic, then this corresponds to the boutiques uuid, if manual then it corresponds to the tool uuid.",
+              "type": "string"
+            }
+          }
+        },
+        "contributionType": {
+          "description": "Type of contribution",
+          "type": "string",
+          "enum": [
+            "SINGLE_USER",
+            "MULTIPLE_USER",
+            "CROWDSOURCING"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "execution"
+      ]
+    },
+    "inputs": {
+      "description": "Object with the inputs of the Workflow",
+      "$ref": "#/definitions/spineInputsTask"
+    },
+    "constants": {
+      "description": "Object with the constant inputs of the Workflow",
+      "$ref": "#/definitions/spineInputsTask"
+    },
+    "outputs": {
+      "description": "Object with the outputs of the Workflow",
+      "$ref": "#/definitions/spineOutputsTask"
+    },
+    "helpFile" : {
+      "description": "Help file for an interactive task",
+      "type":"object",
+      "properties": {
+        "text":{
+          "description":"Text to help the user performing the task. Markdown format.",
+          "type":"string"
+        },
+        "video":{
+          "description":"Tutorial video",
+          "type":"string"
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "uuid",
+    "description",
+    "version",
+    "owner",
+    "privacy",
+    "creationDate",
+    "process",
+    "inputs",
+    "outputs",
+    "constants"
+  ],
+  "additionalProperties": false
+}
