@@ -452,10 +452,7 @@
             },
             "exposedAnnotationConcepts": {
               "description": "All the exposed annotations concepts for a given ROI in the output",
-              "type": "array",
-              "items": {
-                "$ref": "annotationForm.schema.json#/definitions/annotationExposedConcepts"
-              }
+              "type": "array"
             }
           }
         }
