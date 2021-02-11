@@ -1,0 +1,56 @@
+{
+  "name": "Middle viewer",
+  "type": "2D",
+  "linkedControlVisible": false,
+  "initialState": {
+    "orientationAndSliceNumber": {
+      "orientation": "AXIAL",
+      "strategy": "DYNAMIC",
+      "dynamicSliceValue": "SUPERIORMOST"
+    },
+    "initialWindowLevel": {
+      "strategy": "dynamic",
+      "value": "MIDDLE-FULL"
+    }
+  },
+  "displayImages": {
+    "possibleImagesToDisplay": [
+      "inputImage_key"
+    ],
+    "hasDefaultImageToDisplay": true,
+    "defaultImageToDisplay": "inputImage_key"
+  },
+  "displayControls": {
+    "orientation": {
+      "controlVisible": false,
+      "controlEnabled": false,
+      "options": [
+        {
+          "label": "Sagittal",
+          "value": "SAGITTAL"
+        },
+        {
+          "label": "Coronal",
+          "value": "CORONAL"
+        },
+        {
+          "label": "Axial",
+          "value": "AXIAL"
+        }
+      ],
+      "defaultValue": "AXIAL"
+    },
+    "smoothing": {
+      "controlVisible": false,
+      "controlEnabled": false,
+      "defaultValue": false
+    },
+    "sequence": {
+      "controlVisible": false,
+      "controlEnabled": false
+    }
+  },
+  "lookAndFeel":{
+    "color":"#fff967"
+  }
+}

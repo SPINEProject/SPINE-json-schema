@@ -1,0 +1,247 @@
+{
+  "pinTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "properties": {
+      "markerSize": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 2
+      },
+      "fontSize":{
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 12
+      },
+      "clearAll":{
+        "controlVisible": true,
+        "controlEnabled": true
+      },
+      "subAnnotationsAvailable":{
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": false
+      },
+      "centering": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": true
+      },
+      "selectionOnly": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": false
+      },
+      "constraints":{
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": {
+          "criterion_key1": {"controlElement":"viewer","property":"sliceNumber","operator": "==="},
+          "criterion_key2": {"controlElement":"viewer","property":"imageId","operator": "==="}
+        }
+      }
+    }
+  },
+  "projectionTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false,
+    "properties": {
+      "range": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 1
+      },
+      "rangeForKey": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": 5
+      }
+    }
+  },
+  "customCursorTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false,
+    "properties": {
+      "type": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": "whiskers"
+      },
+      "diameter": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 3
+      }
+    }
+  },
+  "pointerTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false,
+    "properties": {
+      "mode": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": "onClick"
+      }
+    }
+  },
+  "crossHairTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
+  },
+  "brushTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "properties": {
+      "size": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 1
+      }
+    }
+  },
+  "fillingTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
+  },
+  "eraserTool":{
+    "controlVisible":true,
+    "controlEnabled":true,
+    "properties":{
+      "size":{
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 1
+      }
+    }
+  },
+  "labelmapUndoRedoTool": {
+    "controlVisible": true,
+    "controlEnabled": true
+  },
+  "labelmapOpacity": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": 1
+  },
+  "annotationOpacity": {
+    "controlVisible": false,
+    "controlEnabled": false,
+    "defaultValue": 1
+  },
+  "annotationTableTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "properties": {
+      "fullTable": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": false
+      },
+      "editableROI": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": true
+      },
+      "subAnnotationColumn":{
+        "controlVisible": true,
+        "controlEnabled": false
+      },
+      "csvExport": {
+        "controlVisible": false,
+        "controlEnabled": false
+      }
+    }
+  },
+  "echoTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
+  },
+  "linkAllTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
+  },
+  "smoothingAllTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
+  },
+  "fiducialTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false,
+    "properties": {
+      "type": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": "circle"
+      },
+      "diameter": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": 5
+      },
+      "rotation": {
+        "controlVisible": false,
+        "controlEnabled": true,
+        "defaultValue": 0
+      },
+      "adjustableZoom": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 4
+      }
+    }
+  },
+  "pinUndoRedoTool":{
+    "controlVisible":true,
+    "controlEnabled":true
+  },
+  "labelmapLUT": {
+    "controlVisible": false,
+    "controlEnabled": false,
+    "defaultValue": 1,
+    "properties": {
+      "options": [
+        {
+          "value": 1,
+          "label": "Lesion",
+          "color": "#f00",
+          "iri": "http://moj.kod"
+        },
+        {
+          "value": 2,
+          "label": "Plaque",
+          "color": "#0f0909"
+        },
+        {
+          "value": 3,
+          "label": "Toxin",
+          "color": "#00f"
+        },
+        {
+          "value": 4,
+          "label": "Tumor",
+          "color": "#f8f"
+        },
+        {
+          "value": 5,
+          "label": "Aging",
+          "color": "#8ff"
+        }
+      ]
+    }
+  },
+  "windowLevelAllTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
+  }
+}
