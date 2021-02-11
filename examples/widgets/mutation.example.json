@@ -1,0 +1,13 @@
+{
+  "pinTool": {
+    "controlVisible": true,
+    "controlEnable": true,
+    "properties": {
+      "markerSize": {
+        "controlVisible": "true",
+        "controlEnabled": true,
+        "defaultValue": "4"
+      }
+    }
+  }
+}

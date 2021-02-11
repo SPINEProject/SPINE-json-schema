@@ -1,0 +1,8 @@
+{
+  "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/helpPanel.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$comment": "TODO Finish me!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11",
+  "title": "Help Panel Schema",
+  "description": "Schema of help panel data TODO Finish me",
+  "type": "object"
+}
