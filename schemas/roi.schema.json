@@ -93,6 +93,10 @@
             "userId":{
               "description": "User submitting the ROI",
               "type": "string"
+            },
+            "mainRoiId":{
+              "description": "UUID of parent roi",
+              "type": "string"
             }
           },
           "required":["imageEntityId", "materializedTaskId","userId"],
