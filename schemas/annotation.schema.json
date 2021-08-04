@@ -75,7 +75,7 @@
                 }
               },
               "required": ["roiId", "workflowId", "materializedTaskId", "taskId", "questionId"],
-              "additionalProperties": false
+              "additionalProperties": true
             }
           ]
         }
