@@ -40,7 +40,7 @@
       "$id": "#layoutViewersType",
       "description": "Type of viewers layout.",
       "type": "string",
-      "enum": ["SINGLE", "FOUR_IN_A_ROW", "THREE_IRREGULAR", "GRID"]
+      "enum": ["SINGLE","1M1R_IN_ROW","SINGLE_WITH_WIDGET_PANEL", "1M4R", "1M2R", "1M2R_WIDGETS","1M1R_ARROWS", "ROW"]
     },
 
     "possibleValueInAnnotationTable": {

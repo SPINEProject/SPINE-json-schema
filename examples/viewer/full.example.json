@@ -27,7 +27,7 @@
     "defaultImageToDisplay": "inputImage_key2"
   },
   "displayControls": {
-    "orientations": {
+    "orientation": {
       "controlVisible": false,
       "controlEnabled": false,
       "options": [
