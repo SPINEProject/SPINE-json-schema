@@ -5,7 +5,7 @@ const taskSchema = require ("../schemas/task.schema");
 const coreSchema = require ("../schemas/core.schema");
 const viewerSchema = require ("../schemas/viewer.schema");
 const annotationSchema  = require ("../schemas/annotation.schema");
-const annotationForm = require ("../schemas/annotationForm.schema");
+// const annotationForm = require ("../schemas/annotationForm.schema");
 const roiSchema =  require ("../schemas/roi.schema");
 const toolSchema = require('../schemas/tool.schema');
 
@@ -66,7 +66,7 @@ beforeAll(() => {
     ajv.addSchema(coreSchema,'coreSchema');
     ajv.addSchema(taskSchema,'taskSchema');
     ajv.addSchema(annotationSchema,'annotationSchema');
-    ajv.addSchema(annotationForm,'annotationForm');
+    // ajv.addSchema(annotationForm,'annotationForm');
     ajv.addSchema(roiSchema,'roiSchema');
     ajv.addSchema(toolSchema,'toolSchema');
     ajv.addSchema(viewerSchema,'viewerSchema');
