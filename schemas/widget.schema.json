@@ -417,6 +417,218 @@
         }
       }
     },
+    "samplerToolInteraction": {
+      "$id":"#samplerToolInteraction",
+      "description": "Definition of tool that is using sampled statistics calculated with sampler tool.",
+      "additionalProperties": false,
+      "required": ["type", "tool","property","value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["widget"],
+          "$comment": "One option so far",
+          "description": "Type of interacting tool. If widget, other widget definition is required. TODO define interaction"
+        },
+        "tool": {
+          "type": "string",
+          "enum": ["intensityFilterTool"],
+          "$comment": "One option so far",
+          "description": "Widget id."
+        },
+        "property": {
+          "type": "string",
+          "enum": ["maxValue","minValue"],
+          "$comment": "This definition requires extension to other tools props.",
+          "description": "Name of property in destination tool (eg. intensityFilterTool.maxValue)"
+        },
+        "value": {
+          "type": "string",
+          "enum": ["midPoint"],
+          "$comment": "One option so far. Needs to be expanded in code to others, ie. threshols, stats.minimum, stats. maximum, etc.",
+          "description": "Name of statistics calculated with sampler tool"
+        }
+      }
+    },
+    "samplerToolProperties": {
+      "$id":"#samplerToolProperties",
+      "description": "Set of properties for Sampler Tool (Data Probe).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "interactions": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Defines other tools that can be affected by sampler. For example, filter intensities can use statistics from sample like minimum, maximum, mid value etc.",
+          "$comment": "Control visible/enabled defined but not used here.",
+          "properties": {
+            "defaultValue": {
+              "maxProperties": 1,
+              "minProperties": 1,
+              "$comment": "Only one interaction is defined so far. FUTURE RELEASES: add another widgets into properties section if implemented.",
+              "properties": {
+                "intensityFilterTool": {
+                  "type": "object",
+                  "$ref": "#samplerToolInteraction"
+                }
+              }
+            }
+          }
+        },
+        "histogram": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The control over displaying histogram. If visible, then button for displaying histogram in Widget Toolbar is displayed.",
+          "properties": {
+            "defaultValue": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        },
+        "onComplete":  {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "$comment": "Control visible/enabled defined but not used here.",
+          "description": "Property defining what action should take place after setting the sample rectangle. For  example, displaying histogram.",
+          "properties": {
+            "defaultValue": {
+              "type": "string",
+              "enum": ["SHOW_HISTOGRAM"],
+              "$comment": "One option so far."
+            }
+          }
+        },
+        "bucketing": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Optional property defining the algorithm to be used for initialization of histogram bins.",
+          "$comment": "If not defined, number of bins is equal to  256.",
+          "properties": {
+            "defaultValue": {
+              "type": "string",
+              "enum": ["SQRT","STURGES","FREEDMAN-DIACONIS","RICE","SCOTT"],
+              "$comment": "Other options are available. This definition needs to be expanded with regular expressions. TODO"
+            }
+          }
+        }
+      }
+    },
+    "intensityFilterToolProperties": {
+      "$id":"#intensityFilterToolProperties",
+      "description": "Set of properties for Intensity Filter",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minValue": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The initial value for lower boundary of filter",
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "default": 0
+            }
+          }
+        },
+        "maxValue": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The initial value for upper boundary of filter",
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "default": 4294967295
+            }
+          }
+        },
+        "showMask": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The initial label value (to use with LUT) to display mask.",
+          "$comment": "Not implemented yet.",
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "default": 0
+            }
+          }
+        },
+        "clear": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Control button for clearing fields"
+        }
+
+      }
+    },
+    "levelTracingToolProperties": {
+      "$id":"#levelTracingToolProperties",
+      "description": "Set of properties for Level Tracing Tool",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "levelFunction": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The type of  level function",
+          "properties": {
+            "defaultValue": {
+              "type": "string",
+              "enum": ["DARKER","BRIGHTER","DARKER_WITH_MARGIN","BRIGHTER_WITH_MARGIN"]
+            }
+          }
+        },
+        "levelFunctionMargin": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The optional margin of tolerance for level function",
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "default": 25
+            }
+          }
+        },
+        "lineWidth": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The line width for the contour renderer.",
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "default": 0.1
+            }
+          }
+        }
+      }
+    },
+    "infoToolProperties": {
+      "$id":"#infoToolProperties",
+      "description": "Set of properties for Info Tool",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "showIntensity": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Defines whether intensity pointed by mouse cursor should be displayed",
+          "properties": {
+            "defaultValue": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "showWL": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Defines whether Window/Level range should be displayed",
+          "properties": {
+            "defaultValue": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "showPosition": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Defines whether position of cursor in image space IJK and real world space XYZ should be displayed",
+          "properties": {
+            "defaultValue": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        }
+      }
+    },
     "pinTool": {
       "$id": "#pinTool",
       "description": "Tool for pin management.",
@@ -636,6 +848,159 @@
           "type": "boolean"
         }
       }
+    },
+    "samplerTool": {
+      "$id": "#samplerTool",
+      "description": "Widget for sampling intensities in a given region in image. This tool is calculating statistics for a set of voxel intensities located inside red rectangle rendered in image slice. Optionally pixel histogram can be visualized",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        },
+        "properties": { "$ref": "#/definitions/samplerToolProperties"}
+      }
+    },
+    "intensityFilterTool": {
+      "$id": "#intensityFilterTool",
+      "description": "Widget for filtering voxel intensities during drawing (brush, filling tool, drawer, level tracing, etc.) and erasing. Can be interacting with sampler. ",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        },
+        "properties": { "$ref": "#/definitions/intensityFilterToolProperties"}
+      }
+    },
+    "hideContoursTool": {
+      "$id": "#hideContoursTool",
+      "description": "Widget for hiding the contours.",
+      "$comment": "This is out-dated",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "description": {
+          "type": "string",
+          "description": "This property can be used to describe tool."
+        },
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "hideLabelmapsTool": {
+      "$id": "#hideLabelmapsTool",
+      "description": "This is an optional widget for hiding segmentations functionality (shortcut to hide segmentations is alwasy on - optional widget is just for additional button in Widget Toolbar).",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "description": {
+          "type": "string",
+          "description": "This property can be used to describe tool."
+        },
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "levelTracingTool": {
+      "$id": "#levelTracingTool",
+      "description": "This is an optional widget for Level Tracing Tool.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        },
+        "properties": { "$ref": "#/definitions/levelTracingToolProperties"}
+      }
+    },
+    "infoTool": {
+      "$id": "#infoTool",
+      "description": "Widget displaying information about WL parameters and intensity of voxel pointed by mouse cursor. In case of multiple primary images, the information is provided for active (in control) layer only.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        },
+        "properties": { "$ref": "#/definitions/infoToolProperties"}
+      }
+    },
+    "spawnViewersWindowTool": {
+      "$id": "#spawnViewersWindowTool",
+      "description": "Widget for displaying viewers in separate (spawned) window which can be moved to any monitor.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "exportAnnotationsToServerTool": {
+      "$id": "#exportAnnotationsToServerTool",
+      "description": "Widget for saving temporary annotations to server.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "exportAnnotationsToDiskTool": {
+      "$id": "#exportAnnotationsToDiskTool",
+      "description": "Widget for saving temporary annotations to local disk as json file.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "importAnnotationsFromDiskTool": {
+      "$id": "#importAnnotationsFromDiskTool",
+      "description": "Widget for loading temporary annotations from local disk as json file.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "properties": {
@@ -657,6 +1022,16 @@
     "annotationTableTool": {"$ref": "#/definitions/annotationTableTool"},
     "smoothingAllTool": {"$ref": "#/definitions/smoothingAllTool"},
     "pinUndoRedoTool": {"$ref": "#/definitions/pinUndoRedoTool"},
-    "windowLevelAllTool": {"$ref": "#/definitions/windowLevelAllTool"}
+    "windowLevelAllTool": {"$ref": "#/definitions/windowLevelAllTool"},
+    "samplerTool": {"$ref": "#/definitions/samplerTool"},
+    "intensityFilterTool": {"$ref": "#/definitions/intensityFilterTool"},
+    "hideContoursTool": {"$ref": "#/definitions/hideContoursTool"},
+    "hideLabelmapsTool": {"$ref": "#/definitions/hideLabelmapsTool"},
+    "levelTracingTool": {"$ref": "#/definitions/levelTracingTool"},
+    "infoTool": {"$ref": "#/definitions/infoTool"},
+    "spawnViewersWindowTool": {"$ref": "#/definitions/spawnViewersWindowTool"},
+    "exportAnnotationsToServerTool": {"$ref": "#/definitions/exportAnnotationsToServerTool"},
+    "exportAnnotationsToDiskTool": {"$ref": "#/definitions/exportAnnotationsToDiskTool"},
+    "importAnnotationsFromDiskTool": {"$ref": "#/definitions/importAnnotationsFromDiskTool"}
   }
 }
