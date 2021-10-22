@@ -9,6 +9,24 @@
   ],
   "definitions":{
 
+    "toolbarControls": {
+      "$id": "#toolbarControls",
+      "description": "Boolean flags defining controls for a given property.",
+      "type": "object",
+      "$comment": "This defines control components for viewers.",
+      "properties": {
+        "controlVisible": {
+          "type": "boolean",
+          "description": "Defines whether control component (eg. Button) is visible."
+        },
+        "controlEnabled": {
+          "type": "boolean",
+          "description": "Defines whether control component (eg. Button) is enabled, ie. can change a state. If not enabled, then  works only as indicator."
+        }
+      },
+      "required": ["controlEnabled", "controlVisible"]
+    },
+
     "orientationType":{
       "$id": "#orientationType",
       "description": "Type of orientations",
@@ -213,39 +231,65 @@
       "description": "Display controls of the viewer.",
       "type": "object",
       "properties":{
-    	  "orientations": {
-    	    "description": "Possible orientations of the images",
-    	    "type": "array",
-    	    "items": {
-  	  	    "type": "string",
-  	  	    "enum": ["axial", "sagittal", "coronal"]
-  	      },
-  	      "minItems": 1
+    	  "orientation": {
+    	    "description": "Orientation settings",
+    	    "type": "object",
+            "allOf": [{ "$ref": "#toolbarControls" }],
+            "properties": {
+              "controlVisible": {},
+              "controlEnabled": {},
+              "options":{
+                "description": "Orientation options for the viewer control components",
+                "type": "array",
+                "minItems": 1
+              },
+              "defaultValue": {
+                "description": "Default orientation of the viewer",
+                "type": "string",
+                "enum":["SAGITTAL","CORONAL","AXIAL"]
+              }
+            },
+            "required": ["defaultValue", "controlVisible","controlEnabled"]
         },
-    	  "defaultOrientation": {
-    	    "description": "Default orientation of the images",
-          "type": "string",
-          "enum": ["axial", "sagittal", "coronal"]
-  	    },
   	    "smoothing":{
   	      "description": "Smoothing control for the images",
   	      "type": "object",
+          "additionalProperties": false,
+          "allOf": [{ "$ref": "#toolbarControls" }],
   	      "properties":{
-  	        "smoothingControl": {
-  	      	  "description": "Smoothing control for the viewer",
-          	  "type": "boolean",
-          	  "default": true
-  	        },
-  	        "smoothingDefault":{
-  	      	  "description": "Smoothing default value for the viewer",
-          	  "type": "boolean",
-          	  "default": false
-  	        }
+            "controlVisible": {},
+            "controlEnabled": {},
+            "defaultValue": {
+              "type": "boolean",
+              "description": "Initial setting (whether smoothing is on or off)"
+            }
   	      },
-          "required": ["smoothingControl", "smoothingDefault"]
-  	    }
+          "required": ["defaultValue", "controlVisible","controlEnabled"]
+  	    },
+        "sequence":{
+          "description": "Control for change of the main image in viewer",
+          "type": "object",
+          "additionalProperties": false,
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "properties":{
+            "controlVisible": {},
+            "controlEnabled": {}
+          },
+          "required": ["controlVisible","controlEnabled"]
+        },
+        "linked":{
+          "description": "Control for linking of viewers",
+          "type": "object",
+          "additionalProperties": false,
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "properties":{
+            "controlVisible": {},
+            "controlEnabled": {}
+          },
+          "required": ["controlVisible","controlEnabled"]
+        }
       },
-      "required": ["orientations", "defaultOrientation", "smoothing"]
+      "required": ["orientation",  "smoothing"]
     }
   },
   "required":["name", "type", "initialState"]

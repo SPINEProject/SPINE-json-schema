@@ -132,15 +132,41 @@
       	    "possibleImagesToDisplay": ["imagesA"],
             "hasDefaultImageToDisplay": false
       	  },
-      	  "displayControls":{
-      	  	"orientations": ["axial", "sagittal", "coronal"],
-      	  	"defaultOrientation": "axial",
-      	  	"smoothing": {
-      	  	  "smoothingControl": true,
-      	  	  "smoothingDefault": false
-      	  	}
-      	  }
-      	}
+          "displayControls": {
+            "orientation": {
+              "controlVisible": false,
+              "controlEnabled": false,
+              "options": [
+                {
+                  "label": "Sagittal",
+                  "value": "SAGITTAL"
+                },
+                {
+                  "label": "Coronal",
+                  "value": "CORONAL"
+                },
+                {
+                  "label": "Axial",
+                  "value": "AXIAL"
+                }
+              ],
+              "defaultValue": "AXIAL"
+            },
+            "smoothing": {
+              "controlVisible": false,
+              "controlEnabled": false,
+              "defaultValue": false
+            },
+            "sequence": {
+              "controlVisible": true,
+              "controlEnabled": true
+            },
+            "linked": {
+              "controlVisible": false,
+              "controlEnabled": false
+            }
+          }
+        }
       }
     },
 

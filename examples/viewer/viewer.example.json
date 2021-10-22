@@ -20,7 +20,7 @@
     "defaultImageToDisplay": "inputImage_key2"
   },
   "displayControls": {
-    "orientations": {
+    "orientation": {
       "controlVisible": false,
       "controlEnabled": false,
       "options": [
@@ -28,7 +28,8 @@
           "label": "Axial",
           "value": "AXIAL"
         }
-      ]
+      ],
+      "defaultValue": "AXIAL"
     },
     "smoothing": {
       "controlVisible": false,
