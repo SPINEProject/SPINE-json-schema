@@ -241,7 +241,22 @@
               "options":{
                 "description": "Orientation options for the viewer control components",
                 "type": "array",
-                "minItems": 1
+                "minItems": 1,
+                "maxItems": 3,
+                "items": {
+                  "type": "object",
+                  "description": "Orientation option has mandatory enumerated value and mandatory label of any value",
+                  "properties":{
+                    "label": {
+                      "type":"string"
+                    },
+                    "value": {
+                      "type":"string",
+                      "enum": ["SAGITTAL","CORONAL","AXIAL"]
+                    }
+                  },
+                  "required": ["label","value"]
+                }
               },
               "defaultValue": {
                 "description": "Default orientation of the viewer",
