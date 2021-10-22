@@ -31,7 +31,9 @@
       "$id": "#toolType",
       "description": "Type of tool. This defines the layout to be used. SLICE_SELECTOR_TOOL refers to a tool where a slice is selected. SEGMENTATION_TOOL refers to a tool where a segmentation is created. CONFIRMATION_TOOL refers to a tool to confirm results, the output is only true/false without need for binding to anything.",
       "type": "string",
-      "enum": ["SLICE_SELECTOR_TOOL", "SEGMENTATION_TOOL", "CONFIRMATION_TOOL"]
+      "enum": ["SLICE_SELECTOR_TOOL", "SEGMENTATION_TOOL", "CONFIRMATION_TOOL", "ANNOTATION_TOOL",
+        "IDENTIFICATION_TOOL", "CHARACTERIZATION_TOOL", "SLICE_SELECTOR_PICKER_TOOL", "SLICE_SELECTOR_TOOL_RANGED",
+        "SLICE_SELECTOR_WITH_PICKER", "VISUALIZATION_TOOL"]
     },
 
     "layoutViewersType":{
