@@ -205,6 +205,12 @@
               "type": "string",
               "enum": ["annotationTableDataInOut"]
             }
+            "referenceInputKey":{
+              "type": "string"
+            },
+            "referenceAnnotationTableInputKey":{
+              "type": "string"
+            }
           },
           "required": ["type"]
         }
