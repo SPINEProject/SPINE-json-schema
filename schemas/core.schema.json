@@ -326,7 +326,7 @@
               "$ref": "#/definitions/roiInOut_FileFormat"
             }
           },
-          "required": ["type","schema","roiInOut_FileFormat"]
+          "required": ["type"]
         }
       ]
     },
