@@ -43,8 +43,9 @@
       "description": "SPINE Type",
       "type": "string",
       "enum": ["String","Number","imageFileInOut","imageEntityInOut",
-        "auxiliaryImageFile","lookupTableInOut","roiInOut","annotationInOut",
-        "roiWithAnnotationsInOut","annotationTableDefinitionInOut"]
+        "auxiliaryImageFile","lookUpTable","lookUpTableDescription","roiInOut","annotationInOut",
+        "roiWithAnnotationsInOut","annotationTableDefinitionInputOutput", "annotationFormDefinitionInputOutput",
+        "annotationTableDataInOut", "annotationFormDataInOut"]
     },
 
     "inputOutput": {
@@ -160,6 +161,23 @@
       ]
     },
 
+    "annotationFormDefinitionInOut": {
+      "$id": "#annotationFormDefinitionInOut",
+      "description": "Schema defining an annotation form definition as input output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["annotationFormDefinitionInputOutput"]
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    
     "annotationTableDefinitionInOut": {
       "$id": "#annotationTableDefinitionInOut",
       "description": "Schema defining an annotation table definition as input output",
@@ -169,7 +187,7 @@
           "properties": {
             "type":{
               "type": "string",
-              "enum": ["annotationTableDefinitionInOut"]
+              "enum": ["annotationTableDefinitionInputOutput"]
             }
           },
           "required": ["type"]
@@ -187,6 +205,12 @@
             "type":{
               "type": "string",
               "enum": ["annotationTableDataInOut"]
+            },
+            "referenceInputKey":{
+              "type": "string"
+            },
+            "referenceAnnotationTableInputKey":{
+              "type": "string"
             }
           },
           "required": ["type"]
@@ -194,6 +218,29 @@
       ]
     },
 
+    "annotationFormDataInOut": {
+      "$id": "#annotationFormDataInOut",
+      "description": "Schema defining an annotation form data as input output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["annotationFormDataInOut"]
+            },
+            "referenceInputKey":{
+              "type": "string"
+            },
+            "referenceAnnotationTableInputKey":{
+              "type": "string"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+  
     "lookupTableInOut_FileFormat": {
       "$id" : "#lookupTableInOut_Type",
       "description": "File format for lookup tables",
@@ -210,13 +257,30 @@
           "properties": {
             "type":{
               "type": "string",
-              "enum": ["lookupTableInOut"]
+              "enum": ["lookUpTable"]
             },
             "lookupTableInOut_FileFormat": {
               "$ref": "#/definitions/lookupTableInOut_FileFormat"
             }
           },
-          "required": ["type","lookupTableInOut_FileFormat"]
+          "required": ["type"]
+        }
+      ]
+    },
+    
+    "lookUpTableDescriptionInOut": {
+      "$id": "#lookUpTableDescriptionInOut",
+      "description": "Schema defining an lookup table description as input or output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["lookUpTableDescription"]
+            }
+          },
+          "required": ["type"]
         }
       ]
     },
@@ -326,7 +390,7 @@
               "$ref": "#/definitions/roiInOut_FileFormat"
             }
           },
-          "required": ["type","schema","roiInOut_FileFormat"]
+          "required": ["type"]
         }
       ]
     },
@@ -399,8 +463,11 @@
         {"$ref": "#/definitions/Number"},
         {"$ref": "#/definitions/imageFileInOut"},
         {"$ref": "#/definitions/lookupTableInOut"},
+        {"$ref": "#/definitions/lookUpTableDescriptionInOut"},
         {"$ref": "#/definitions/annotationTableDefinitionInOut"},
-        {"$ref": "#/definitions/annotationTableDataInOut"}
+        {"$ref": "#/definitions/annotationTableDataInOut"},
+        {"$ref": "#/definitions/annotationFormDefinitionInOut"},
+        {"$ref": "#/definitions/annotationFormDataInOut"}
       ]
     }
 
