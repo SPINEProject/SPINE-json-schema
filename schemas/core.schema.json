@@ -43,7 +43,7 @@
       "description": "SPINE Type",
       "type": "string",
       "enum": ["String","Number","imageFileInOut","imageEntityInOut",
-        "auxiliaryImageFile","lookupTableInOut","roiInOut","annotationInOut",
+        "auxiliaryImageFile","lookupTable","lookUpTableDescription","roiInOut","annotationInOut",
         "roiWithAnnotationsInOut","annotationTableDefinitionInputOutput", "annotationFormDefinitionInputOutput"]
     },
 
@@ -227,13 +227,30 @@
           "properties": {
             "type":{
               "type": "string",
-              "enum": ["lookupTableInOut"]
+              "enum": ["lookupTable"]
             },
             "lookupTableInOut_FileFormat": {
               "$ref": "#/definitions/lookupTableInOut_FileFormat"
             }
           },
-          "required": ["type","lookupTableInOut_FileFormat"]
+          "required": ["type"]
+        }
+      ]
+    },
+    
+    "lookUpTableDescriptionInOut": {
+      "$id": "#lookUpTableDescriptionInOut",
+      "description": "Schema defining an lookup table description as input or output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["lookUpTableDescription"]
+            }
+          },
+          "required": ["type"]
         }
       ]
     },
@@ -416,6 +433,7 @@
         {"$ref": "#/definitions/Number"},
         {"$ref": "#/definitions/imageFileInOut"},
         {"$ref": "#/definitions/lookupTableInOut"},
+        {"$ref": "#/definitions/lookUpTableDescriptionInOut"},
         {"$ref": "#/definitions/annotationTableDefinitionInOut"},
         {"$ref": "#/definitions/annotationTableDataInOut"},
         {"$ref": "#/definitions/annotationFormDefinitionInOut"}
