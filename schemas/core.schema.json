@@ -204,7 +204,7 @@
             "type":{
               "type": "string",
               "enum": ["annotationTableDataInOut"]
-            }
+            },
             "referenceInputKey":{
               "type": "string"
             },
@@ -227,7 +227,7 @@
             "type":{
               "type": "string",
               "enum": ["annotationFormDataInOut"]
-            }
+            },
             "referenceInputKey":{
               "type": "string"
             },
