@@ -44,7 +44,8 @@
       "type": "string",
       "enum": ["String","Number","imageFileInOut","imageEntityInOut",
         "auxiliaryImageFile","lookUpTable","lookUpTableDescription","roiInOut","annotationInOut",
-        "roiWithAnnotationsInOut","annotationTableDefinitionInputOutput", "annotationFormDefinitionInputOutput"]
+        "roiWithAnnotationsInOut","annotationTableDefinitionInputOutput", "annotationFormDefinitionInputOutput",
+        "annotationTableDataInOut", "annotationFormDataInOut"]
     },
 
     "inputOutput": {
