@@ -217,6 +217,29 @@
       ]
     },
 
+    "annotationFormDataInOut": {
+      "$id": "#annotationFormDataInOut",
+      "description": "Schema defining an annotation form data as input output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["annotationFormDataInOut"]
+            }
+            "referenceInputKey":{
+              "type": "string"
+            },
+            "referenceAnnotationTableInputKey":{
+              "type": "string"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+  
     "lookupTableInOut_FileFormat": {
       "$id" : "#lookupTableInOut_Type",
       "description": "File format for lookup tables",
@@ -442,7 +465,8 @@
         {"$ref": "#/definitions/lookUpTableDescriptionInOut"},
         {"$ref": "#/definitions/annotationTableDefinitionInOut"},
         {"$ref": "#/definitions/annotationTableDataInOut"},
-        {"$ref": "#/definitions/annotationFormDefinitionInOut"}
+        {"$ref": "#/definitions/annotationFormDefinitionInOut"},
+        {"$ref": "#/definitions/annotationFormDataInOut"}
       ]
     }
 
