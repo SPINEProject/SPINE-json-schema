@@ -50,7 +50,7 @@
 
     "strategyInitialWindowLevel":{
       "$id": "#strategyInitialWindowLevel",
-      "description": "Strategy to define initial window/level. DYNAMIC uses the intensity ranges of the image to dynamicall set the window/level values. NUMBER uses predefined values.",
+      "description": "Strategy to define initial window/level. DYNAMIC uses the intensity ranges of the image to dynamically set the window/level values. NUMBER uses predefined values.",
       "type": "string",
       "enum": ["DYNAMIC", "NUMBER"]
     },
