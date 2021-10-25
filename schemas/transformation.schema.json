@@ -1,0 +1,68 @@
+{
+  "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/transformation.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Transformation",
+  "properties": {
+    "fromSpace": {
+      "description": "UUID of original space",
+      "type": "string"
+    },
+    "toSpace": {
+      "description": "UUID of target space",
+      "type": "string"
+    },
+    "transformation": {
+      "description": "Type of transformation",
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "transformationList": {
+              "description": "List of transformation",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["transformationList"]
+        },
+        {
+          "properties": {
+            "transformationType": {
+              "description": "List of transformation",
+              "type": "string",
+              "enum": ["RIGID", "AFFINE", "NONRIGID"]
+            }
+          },
+          "required": ["transformationType"]
+        }
+      ]
+    },
+    "pathToFile": {
+      "description": "Path to transformation in filesystem",
+      "type": "string"
+    },
+    "reference": {
+      "description": "References of the ROI. Two schemas : for ROI coming from workflow executed inside of SPINE or outside of SPINE",
+      "type": "object",
+      "properties": {
+        "materializedTask": {
+          "description": "UUID of the materialized tatk produced this transformation",
+          "type": "string"
+        }
+      },
+      "required":["materializedTask"],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "reference",
+    "pathToFile",
+    "transformation",
+    "toSpace",
+    "fromSpace"
+  ],
+  "additionalProperties": false
+}

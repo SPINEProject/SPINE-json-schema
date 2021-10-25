@@ -75,7 +75,7 @@
                 }
               },
               "required": ["roiId", "workflowId", "materializedTaskId", "taskId", "questionId"],
-              "additionalProperties": false
+              "additionalProperties": true
             }
           ]
         }
@@ -204,8 +204,7 @@
             "annotationProperties":{
               "properties": {
                 "value": {
-                  "description": "Text in the open-ended question.",
-                  "type": "string"
+                  "description": "Text in the open-ended question."
                 }
               },
               "required": ["value"]

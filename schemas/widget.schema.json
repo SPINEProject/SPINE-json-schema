@@ -1,0 +1,1037 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/widget.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Widget schema",
+  "description": "Schema for Widget Tools",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions":{
+    "toolbarControls": {
+      "$id": "#toolbarControls",
+      "description": "Boolean flags defining controls for a given widget.",
+      "type": "object",
+      "$comment": "So far control components for widgets are implemented with Toggleable Buttons. Model can be extended by adding other complex controls, eg. sets of buttons, dropdown etc.",
+      "properties": {
+        "controlVisible": {
+          "type": "boolean",
+          "description": "Defines whether control component (eg. Button) is visible."
+        },
+        "controlEnabled": {
+          "type": "boolean",
+          "description": "Defines whether control component (eg. Button) is enabled, ie. can change a state. If not enabled, then  works only as indicator."
+        }
+      },
+      "required": ["controlEnabled", "controlVisible"]
+    },
+    "markerSize": {
+      "$id":"#markerSize",
+      "description": "Property defining size of pin (marker).",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "integer"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "fontSize": {
+      "$id":"#fontSize",
+      "description": "Property defining size of label for Pin.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "integer"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "clearAllPins": {
+      "$id":"#clearAllPins",
+      "description": "Property defining whether Button for clearing pins should be visible.",
+      "allOf": [{ "$ref": "#toolbarControls" }]
+    },
+    "subAnnotationsAvailable": {
+      "$id":"#subAnnotationsAvailable",
+      "description": "Property defining whether pins for subannotations should be visible.",
+      "$comment": "So far controlVisible/controlEnabled are ignored, since functionality can be set only in widget configuration. There is no control component in frontend to switch on/off.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "pinCentering": {
+      "$id":"#pinCentering",
+      "description": "Property defining whether view should be centered on an active pins when navigating forward/backward, or using ROI buttons in Annotation Table",
+      "$comment": "So far controlVisible/controlEnabled are ignored, since functionality can be set only in widget configuration. There is no control component in frontend to switch on/off.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "pinSelectionOnly": {
+      "$id":"#pinSelectionOnly",
+      "description": "Optional property defining whether pins are in read-only mode (selection). Default is false. If pins are in selectionOly mode, they cannot be added with mouse left click. This can be useful in situation when pinTool Toggle button is not visible, and tool is on.",
+      "$comment": "So far controlVisible/controlEnabled are ignored, since functionality can be set only in widget configuration. There is no control component in frontend to switch on/off.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "pinCriterion":{
+      "$id":"#pinCriterion",
+      "type": "object",
+      "description": "Single criterion used to constrain visibility of Pins.",
+      "$comment": "Can be reorganized in a way that control elements will have their own specific syntax and schema.",
+      "additionalProperties": false,
+      "properties": {
+        "controlElement": {
+          "type": "string",
+          "description": "Tool element which state is used to calculate criterion.",
+          "enum": ["viewer"],
+          "$comment": "So far it is defined for viewer only. In future can be extended for tools, widgets state, etc."
+        },
+        "property": {
+          "type": "string",
+          "description": "Property of control element which state is used to calculate criterion. For example viewer['sliceNumber'] can be calculated.",
+          "enum": ["sliceNumber","imageId","orientation"],
+          "$comment": "Can be easily extended to other viewer state properties."
+        },
+        "operator": {
+          "type": "string",
+          "description": "Operator used to calculate Predicate.",
+          "enum": ["==="],
+          "$comment": "Should be merged with Experiment.schema definitions."
+        }
+      }
+    },
+    "pinCriteria": {
+      "$id":"#pinCriteria",
+      "type": "object",
+      "patternProperties" : {
+        ".*" : {
+          "type": "object",
+          "$ref": "#/definitions/pinCriterion"
+        }
+      },
+      "examples": [
+        {
+          "criterion_key1": {"controlElement":"viewer","property":"sliceNumber","operator": "==="},
+          "criterion_key2": {"controlElement":"viewer","property":"imageId","operator": "==="}
+        }
+      ]
+    },
+    "pinConstraints": {
+      "$id":"#pinConstraints",
+      "description": "Optional property defining additional conditions for displaying pins. Default is turned off. See example below.",
+      "$comment": "So far controlVisible/controlEnabled are ignored, since functionality can be set only in widget configuration. There is no control component in frontend to switch on/off.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {"$ref": "#pinCriteria"}
+      },
+      "required": ["defaultValue"]
+    },
+    "projectionRange": {
+      "$id":"#projectionRange",
+      "description": "Optional property defining range of projection, as number of surrounding slices.",
+      "$comment": "So far controlVisible/controlEnabled are ignored, since functionality can be set only in widget configuration. There is no control component in frontend to switch on/off.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {"type": "integer"}
+      },
+      "required": ["defaultValue"]
+    },
+    "customCursorType": {
+      "$id":"#customCursorType",
+      "description": "Property defining type of cursor.",
+      "$comment": "Custom cursor might have different shape and implementation.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "string",
+          "enum": ["crosshair","circle","whiskers","checkered","twoEllipses","animatedEllipse","rotatedEllipse","fixedCrosshairRelativeCircle","dottedCrosshair"]
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "customCursorDiameter": {
+      "$id":"#customCursorDiameter",
+      "description": "Property defining diameter of cursor in millimeters. Size is calculated in image (real world) space.",
+      "$comment": "This does not have to apply to all of the shapes.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "integer"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "pointerMode": {
+      "$id":"#pointerMode",
+      "description": "Property defining mode (type of interaction) of pointer tool.",
+      "$comment": "Modes are related to UI event types. There might be possible to define modeOptions in future.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "string",
+          "enum": ["onClick","onMove"]
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "brushSize": {
+      "$id":"#brushSize",
+      "description": "Property defining size. Can be used to define brush or eraser tool size.",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "integer"
+        }
+      },
+      "required": ["defaultValue"]
+    },
+    "labelmapItem":{
+      "$id":"#labelmapItem",
+      "type": "object",
+      "description": "Definition of labelmap value.",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "integer",
+          "description": "Value assigned to voxel"
+        },
+        "label": {
+          "type": "string",
+          "description": "Name to display. Can be a name of annotated region, pathological change, etc. Examples: lesion, tumor, medulla oblongata."
+        },
+        "iri": {
+          "type": "string",
+          "description": "If segmentation refers to real world entity, iri should refer to Ontology Id, defined as IRI address.",
+          "format": "uri"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color in RGB space.",
+          "$comment": "Notation with 3 and six positions can be used.",
+          "pattern": "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
+        }
+      },
+      "required": ["color","value","label"]
+    },
+    "pinToolProperties": {
+      "$id":"#pinToolProperties",
+      "description": "Set of properties for Pin Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "markerSize": {"$ref": "#/definitions/markerSize"},
+        "fontSize":  {"$ref": "#/definitions/fontSize"},
+        "clearAll": {"$ref":"#/definitions/clearAllPins"},
+        "selectionOnly": {"$ref":"#/definitions/pinSelectionOnly"},
+        "subAnnotationsAvailable": {"$ref":"#/definitions/subAnnotationsAvailable"},
+        "centering": {"$ref":"#/definitions/pinCentering"},
+        "constraints": {"$ref": "#/definitions/pinConstraints"}
+      },
+      "required": ["markerSize","fontSize","clearAll"]
+    },
+    "projectionToolProperties": {
+      "$id":"#projectionToolProperties",
+      "description": "Set of properties for Projection Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "range": {
+          "$ref": "#/definitions/projectionRange"
+        },
+        "rangeForKey":  {
+          "$ref": "#/definitions/projectionRange",
+          "description": "As in /projectionRange description, with difference that applied only to set range when 'P' key is pressed."
+        }
+      }
+    },
+    "customCursorToolProperties": {
+      "$id":"#customCursorToolProperties",
+      "description": "Set of properties for Custom Cursor Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/customCursorType"
+        },
+        "diameter":  {
+          "$ref": "#/definitions/customCursorDiameter"
+        }
+      }
+    },
+    "fiducialToolProperties": {
+      "$id":"#customCursorToolProperties",
+      "description": "Set of properties for Custom Cursor Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/customCursorType",
+          "$comment": "identical as in custom cursor"
+        },
+        "diameter":  {
+          "$ref": "#/definitions/customCursorDiameter",
+          "$comment": "identical as in custom cursor"
+        },
+        "rotation": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "properties": {
+            "defaultValue": {
+              "type": "integer",
+              "description": "Fiducial rotation in degrees.",
+              "minimum": 0
+            }
+          }
+        },
+        "adjustableZoom": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "description": "Ratio between display and fiducial size. Diameter of fiducial is equal to display width for ratio = 0.5",
+              "minimum": 0.01
+            }
+          }
+        }
+      }
+    },
+    "pointerToolProperties": {
+      "$id":"#pointerToolProperties",
+      "description": "Set of properties for Pointer Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/pointerMode"
+        }
+      }
+    },
+    "brushToolProperties": {
+      "$id":"#brushToolProperties",
+      "description": "Set of properties for Brush Tool.",
+      "$comment": "Properties as threshold, colormap LUT, layer are moved out from here.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/definitions/brushSize"
+        }
+      }
+    },
+    "eraserToolProperties": {
+      "$id":"#eraserToolProperties",
+      "description": "Set of properties for Eraser Tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/definitions/brushSize",
+          "$comment": "Identical to brush size property."
+        }
+      }
+    },
+    "labelmapLUTProperties": {
+      "$id":"#labelmapLUTProperties",
+      "description": "Set of properties for labelmap.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/labelmapItem"
+          }
+        }
+      }
+    },
+    "annotationTableProperties": {
+      "$id":"#annotationTableProperties",
+      "description": "Set of properties for annotation table component.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fullTable": {
+          "description": "Property defining whether 'full table mode' should be visible initially. Full table mode shows both 'active row' and full table with annotations.",
+          "$comment": "Control enabled/visible properties define whether full table can be displayed. If they set to false,and defaultValue is false, then full table is not visible.",
+          "allOf": [
+            {
+              "$ref": "#toolbarControls"
+            }
+          ],
+          "properties": {
+            "defaultValue": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "defaultValue"
+          ]
+        },
+        "editableROI": {
+          "description": "Property defining whether rows can be modified/deleted.",
+          "$comment": "If property not defined, default is true. Control visible/enabled defined but not used here.",
+          "allOf": [
+            {
+              "$ref": "#toolbarControls"
+            }
+          ],
+          "properties": {
+            "defaultValue": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "required": [
+            "defaultValue"
+          ]
+        },
+        "subAnnotationColumn": {
+          "description": "Property defining whether column to set active roi to generate subannotations with mouse left click should be visible.",
+          "$comment": "controlVisible/enabled define full control here.",
+          "allOf": [
+            {
+              "$ref": "#toolbarControls"
+            }
+          ]
+        },
+        "csvExport": {
+          "description": "Property defining whether button with CSV Export functionality should be rendered and working.",
+          "$comment": "controlVisible/enabled define full control here.",
+          "allOf": [
+            {
+              "$ref": "#toolbarControls"
+            }
+          ]
+        }
+      }
+    },
+    "samplerToolInteraction": {
+      "$id":"#samplerToolInteraction",
+      "description": "Definition of tool that is using sampled statistics calculated with sampler tool.",
+      "additionalProperties": false,
+      "required": ["type", "tool","property","value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["widget"],
+          "$comment": "One option so far",
+          "description": "Type of interacting tool. If widget, other widget definition is required. TODO define interaction"
+        },
+        "tool": {
+          "type": "string",
+          "enum": ["intensityFilterTool"],
+          "$comment": "One option so far",
+          "description": "Widget id."
+        },
+        "property": {
+          "type": "string",
+          "enum": ["maxValue","minValue"],
+          "$comment": "This definition requires extension to other tools props.",
+          "description": "Name of property in destination tool (eg. intensityFilterTool.maxValue)"
+        },
+        "value": {
+          "type": "string",
+          "enum": ["midPoint"],
+          "$comment": "One option so far. Needs to be expanded in code to others, ie. threshols, stats.minimum, stats. maximum, etc.",
+          "description": "Name of statistics calculated with sampler tool"
+        }
+      }
+    },
+    "samplerToolProperties": {
+      "$id":"#samplerToolProperties",
+      "description": "Set of properties for Sampler Tool (Data Probe).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "interactions": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Defines other tools that can be affected by sampler. For example, filter intensities can use statistics from sample like minimum, maximum, mid value etc.",
+          "$comment": "Control visible/enabled defined but not used here.",
+          "properties": {
+            "defaultValue": {
+              "maxProperties": 1,
+              "minProperties": 1,
+              "$comment": "Only one interaction is defined so far. FUTURE RELEASES: add another widgets into properties section if implemented.",
+              "properties": {
+                "intensityFilterTool": {
+                  "type": "object",
+                  "$ref": "#samplerToolInteraction"
+                }
+              }
+            }
+          }
+        },
+        "histogram": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The control over displaying histogram. If visible, then button for displaying histogram in Widget Toolbar is displayed.",
+          "properties": {
+            "defaultValue": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        },
+        "onComplete":  {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "$comment": "Control visible/enabled defined but not used here.",
+          "description": "Property defining what action should take place after setting the sample rectangle. For  example, displaying histogram.",
+          "properties": {
+            "defaultValue": {
+              "type": "string",
+              "enum": ["SHOW_HISTOGRAM"],
+              "$comment": "One option so far."
+            }
+          }
+        },
+        "bucketing": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Optional property defining the algorithm to be used for initialization of histogram bins.",
+          "$comment": "If not defined, number of bins is equal to  256.",
+          "properties": {
+            "defaultValue": {
+              "type": "string",
+              "enum": ["SQRT","STURGES","FREEDMAN-DIACONIS","RICE","SCOTT"],
+              "$comment": "Other options are available. This definition needs to be expanded with regular expressions. TODO"
+            }
+          }
+        }
+      }
+    },
+    "intensityFilterToolProperties": {
+      "$id":"#intensityFilterToolProperties",
+      "description": "Set of properties for Intensity Filter",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minValue": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The initial value for lower boundary of filter",
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "default": 0
+            }
+          }
+        },
+        "maxValue": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The initial value for upper boundary of filter",
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "default": 4294967295
+            }
+          }
+        },
+        "showMask": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The initial label value (to use with LUT) to display mask.",
+          "$comment": "Not implemented yet.",
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "default": 0
+            }
+          }
+        },
+        "clear": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Control button for clearing fields"
+        }
+
+      }
+    },
+    "levelTracingToolProperties": {
+      "$id":"#levelTracingToolProperties",
+      "description": "Set of properties for Level Tracing Tool",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "levelFunction": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The type of  level function",
+          "properties": {
+            "defaultValue": {
+              "type": "string",
+              "enum": ["DARKER","BRIGHTER","DARKER_WITH_MARGIN","BRIGHTER_WITH_MARGIN"]
+            }
+          }
+        },
+        "levelFunctionMargin": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The optional margin of tolerance for level function",
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "default": 25
+            }
+          }
+        },
+        "lineWidth": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "The line width for the contour renderer.",
+          "properties": {
+            "defaultValue": {
+              "type": "number",
+              "default": 0.1
+            }
+          }
+        }
+      }
+    },
+    "infoToolProperties": {
+      "$id":"#infoToolProperties",
+      "description": "Set of properties for Info Tool",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "showIntensity": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Defines whether intensity pointed by mouse cursor should be displayed",
+          "properties": {
+            "defaultValue": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "showWL": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Defines whether Window/Level range should be displayed",
+          "properties": {
+            "defaultValue": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "showPosition": {
+          "allOf": [{ "$ref": "#toolbarControls" }],
+          "description": "Defines whether position of cursor in image space IJK and real world space XYZ should be displayed",
+          "properties": {
+            "defaultValue": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        }
+      }
+    },
+    "pinTool": {
+      "$id": "#pinTool",
+      "description": "Tool for pin management.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/pinToolProperties"}
+      },
+      "required": ["properties"]
+    },
+    "projectionTool": {
+      "$id": "#projectionTool",
+      "description": "Tool for projection management.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/projectionToolProperties"}
+      }
+    },
+    "customCursorTool": {
+      "$id": "#customCursorTool",
+      "description": "Tool for custom cursor management.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/customCursorToolProperties"}
+      }
+    },
+    "pointerTool": {
+      "$id": "#pointerTool",
+      "description": "Tool for pointer management. Pointer is changing slices in remaining viewers according to intersection of slices at pointed voxel.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/pointerToolProperties"}
+      }
+    },
+    "crossHairTool": {
+      "$id": "#crossHairTool",
+      "description": "Tool for displaying indication of slices.",
+      "$comment": "It can be defined in viewer's interaction schema with a different syntax.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "brushTool": {
+      "$id": "#brushTool",
+      "description": "Tool for drawing in segmentation layer.",
+      "$comment": "TODO Design inputs and widget to handle state of colormap LUT, thresholding intensities when drawing and layers. There will be missing props here!",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean",
+          "description": "Optional parameter defining whether widget should be on when view is initialised. This can be overwritten by other elements - brushTool, fillingTool, eraserTool are mutually exclusive - only one of them can be on at te same time.",
+          "default": false
+        },
+        "properties": { "$ref": "#/definitions/brushToolProperties"}
+      }
+    },
+    "echoTool": {
+      "$id": "#echoTool",
+      "description": "Widget adding cursor echoes on remaining fields. Widget controls camera too - centering and zooming are projected fro main viewer to others.",
+      "$comment": "Widget works properly only if viewers are set in the same orientation and displaying co-registered images.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eraserTool": {
+      "$id": "#eraserTool",
+      "description": "Tool for erasing in segmentation layer. By default it uses 0 to fill erased voxels.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean",
+          "description": "Optional parameter defining whether widget should be on when view is initialised. This can be overwritten by other elements - brushTool, fillingTool, eraserTool are mutually exclusive - only one of them can be on at te same time.",
+          "default": false
+        },
+        "properties": { "$ref": "#/definitions/eraserToolProperties"}
+      }
+    },
+    "fillingTool": {
+      "$id": "#fillingTool",
+      "description": "Tool for filling in closed shapes in segmentation layer.",
+      "$comment": "Comments as in #brushTool.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean",
+          "description": "Optional parameter defining whether widget should be on when view is initialised. This can be overwritten by other elements - brushTool, fillingTool, eraserTool are mutually exclusive - only one of them can be on at te same time.",
+          "default": false
+        }
+      }
+    },
+    "labelmapUndoRedoTool": {
+      "$id": "#labelmapUndoRedoTool",
+      "description": "Widget displaying history controls for segmentation.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }]
+    },
+    "pinUndoRedoTool": {
+      "$id": "#pinUndoRedoTool",
+      "description": "Widget displaying history controls for pins. Save creating, deleting and selecting actions.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }]
+    },
+    "labelmapOpacity": {
+      "$id": "#labelmapOpacity",
+      "description": "Widget for control over labelmap opacity.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "number",
+          "description": "Opacity value.",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "labelmapLUT": {
+      "$id": "#labelmapLUT",
+      "description": "Tool defining labelmap.",
+      "$comment": "TODO Labelmap should be provided by input",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "integer",
+          "description": "Parameter defining labelmap value to use when view is initialised.",
+          "default": false
+        },
+        "properties": { "$ref": "#/definitions/labelmapLUTProperties"}
+      }
+    },
+    "linkAllTool": {
+      "$id": "#linkAllTool",
+      "description": "Widget linking all viewers (slice change is applied to all viewers). Turning on means turning on 'linked' property in all viewers.  It can be implemented with toggleable button or checkbox.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "annotationOpacity": {
+      "$id": "#annotationOpacity",
+      "description": "Widget for control over annotation opacity.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "number",
+          "description": "Opacity value.",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "annotationTableTool": {
+      "$id": "#annotationTableTool",
+      "description": "Widget for control over annotation table component",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "properties": { "$ref": "#/definitions/annotationTableProperties"}
+      }
+    },
+    "smoothingAllTool": {
+      "$id": "#smoothingAllTool",
+      "description": "Widget turning on/off smoothing in all viewers. It can be implemented with toggleable button or checkbox.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "fiducialTool": {
+      "$id": "#fiducialTool",
+      "description": "Widget for responsible for displaying fiducial and modifying behavior of roi navigation. Widget 'on' causes that viewer is centered on image",
+      "$comment": "This widget is based on custom cursor.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean",
+          "description": "Optional parameter defining whether widget should be on when view is initialised."
+        },
+        "properties": { "$ref": "#/definitions/fiducialToolProperties"}
+      }
+    },
+    "windowLevelAllTool": {
+      "$id": "#windowLevelAllTool",
+      "description": "Widget linking all viewers for Window Level synchronization.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "samplerTool": {
+      "$id": "#samplerTool",
+      "description": "Widget for sampling intensities in a given region in image. This tool is calculating statistics for a set of voxel intensities located inside red rectangle rendered in image slice. Optionally pixel histogram can be visualized",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        },
+        "properties": { "$ref": "#/definitions/samplerToolProperties"}
+      }
+    },
+    "intensityFilterTool": {
+      "$id": "#intensityFilterTool",
+      "description": "Widget for filtering voxel intensities during drawing (brush, filling tool, drawer, level tracing, etc.) and erasing. Can be interacting with sampler. ",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        },
+        "properties": { "$ref": "#/definitions/intensityFilterToolProperties"}
+      }
+    },
+    "hideContoursTool": {
+      "$id": "#hideContoursTool",
+      "description": "Widget for hiding the contours.",
+      "$comment": "This is out-dated",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "description": {
+          "type": "string",
+          "description": "This property can be used to describe tool."
+        },
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "hideLabelmapsTool": {
+      "$id": "#hideLabelmapsTool",
+      "description": "This is an optional widget for hiding segmentations functionality (shortcut to hide segmentations is alwasy on - optional widget is just for additional button in Widget Toolbar).",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "description": {
+          "type": "string",
+          "description": "This property can be used to describe tool."
+        },
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "levelTracingTool": {
+      "$id": "#levelTracingTool",
+      "description": "This is an optional widget for Level Tracing Tool.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        },
+        "properties": { "$ref": "#/definitions/levelTracingToolProperties"}
+      }
+    },
+    "infoTool": {
+      "$id": "#infoTool",
+      "description": "Widget displaying information about WL parameters and intensity of voxel pointed by mouse cursor. In case of multiple primary images, the information is provided for active (in control) layer only.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        },
+        "properties": { "$ref": "#/definitions/infoToolProperties"}
+      }
+    },
+    "spawnViewersWindowTool": {
+      "$id": "#spawnViewersWindowTool",
+      "description": "Widget for displaying viewers in separate (spawned) window which can be moved to any monitor.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "exportAnnotationsToServerTool": {
+      "$id": "#exportAnnotationsToServerTool",
+      "description": "Widget for saving temporary annotations to server.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "exportAnnotationsToDiskTool": {
+      "$id": "#exportAnnotationsToDiskTool",
+      "description": "Widget for saving temporary annotations to local disk as json file.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    },
+    "importAnnotationsFromDiskTool": {
+      "$id": "#importAnnotationsFromDiskTool",
+      "description": "Widget for loading temporary annotations from local disk as json file.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "properties": {
+    "pinTool":  { "$ref": "#/definitions/pinTool"},
+    "projectionTool":  { "$ref": "#/definitions/projectionTool"},
+    "customCursorTool":  { "$ref": "#/definitions/customCursorTool"},
+    "pointerTool":  { "$ref": "#/definitions/pointerTool"},
+    "crossHairTool": {"$ref": "#/definitions/crossHairTool"},
+    "brushTool": {"$ref": "#/definitions/brushTool"},
+    "echoTool": {"$ref": "#/definitions/echoTool"},
+    "fiducialTool": {"$ref": "#/definitions/fiducialTool"},
+    "eraserTool": {"$ref": "#/definitions/eraserTool"},
+    "fillingTool": {"$ref": "#/definitions/fillingTool"},
+    "labelmapLUT": {"$ref": "#/definitions/labelmapLUT"},
+    "labelmapUndoRedoTool": {"$ref": "#/definitions/labelmapUndoRedoTool"},
+    "labelmapOpacity": {"$ref": "#/definitions/labelmapOpacity"},
+    "linkAllTool": {"$ref": "#/definitions/linkAllTool"},
+    "annotationOpacity": {"$ref": "#/definitions/annotationOpacity"},
+    "annotationTableTool": {"$ref": "#/definitions/annotationTableTool"},
+    "smoothingAllTool": {"$ref": "#/definitions/smoothingAllTool"},
+    "pinUndoRedoTool": {"$ref": "#/definitions/pinUndoRedoTool"},
+    "windowLevelAllTool": {"$ref": "#/definitions/windowLevelAllTool"},
+    "samplerTool": {"$ref": "#/definitions/samplerTool"},
+    "intensityFilterTool": {"$ref": "#/definitions/intensityFilterTool"},
+    "hideContoursTool": {"$ref": "#/definitions/hideContoursTool"},
+    "hideLabelmapsTool": {"$ref": "#/definitions/hideLabelmapsTool"},
+    "levelTracingTool": {"$ref": "#/definitions/levelTracingTool"},
+    "infoTool": {"$ref": "#/definitions/infoTool"},
+    "spawnViewersWindowTool": {"$ref": "#/definitions/spawnViewersWindowTool"},
+    "exportAnnotationsToServerTool": {"$ref": "#/definitions/exportAnnotationsToServerTool"},
+    "exportAnnotationsToDiskTool": {"$ref": "#/definitions/exportAnnotationsToDiskTool"},
+    "importAnnotationsFromDiskTool": {"$ref": "#/definitions/importAnnotationsFromDiskTool"}
+  }
+}

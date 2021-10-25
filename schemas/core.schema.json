@@ -373,15 +373,9 @@
             },
             "typeROI":{
               "$ref": "roi.schema.json#/definitions/typeROI"
-            },
-            "annotations":{
-              "type": "array",
-              "items": {
-                "$ref": "annotationForm.schema.json"
-              }
             }
           },
-          "required": ["type","typeROI","annotations"]
+          "required": ["type","typeROI"]
         }
       ]
     },

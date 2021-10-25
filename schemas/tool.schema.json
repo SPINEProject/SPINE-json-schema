@@ -31,14 +31,16 @@
       "$id": "#toolType",
       "description": "Type of tool. This defines the layout to be used. SLICE_SELECTOR_TOOL refers to a tool where a slice is selected. SEGMENTATION_TOOL refers to a tool where a segmentation is created. CONFIRMATION_TOOL refers to a tool to confirm results, the output is only true/false without need for binding to anything.",
       "type": "string",
-      "enum": ["SLICE_SELECTOR_TOOL", "SEGMENTATION_TOOL", "CONFIRMATION_TOOL"]
+      "enum": ["SLICE_SELECTOR_TOOL", "SEGMENTATION_TOOL", "CONFIRMATION_TOOL", "ANNOTATION_TOOL",
+        "IDENTIFICATION_TOOL", "CHARACTERIZATION_TOOL", "SLICE_SELECTOR_PICKER_TOOL", "SLICE_SELECTOR_TOOL_RANGED",
+        "SLICE_SELECTOR_WITH_PICKER", "VISUALIZATION_TOOL"]
     },
 
     "layoutViewersType":{
       "$id": "#layoutViewersType",
       "description": "Type of viewers layout.",
       "type": "string",
-      "enum": ["SINGLE", "FOUR_IN_A_ROW", "THREE_IRREGULAR", "GRID"]
+      "enum": ["SINGLE","1M1R_IN_ROW","SINGLE_WITH_WIDGET_PANEL", "1M4R", "1M2R", "1M2R_WIDGETS","1M1R_ARROWS", "ROW"]
     },
 
     "possibleValueInAnnotationTable": {
@@ -452,10 +454,7 @@
             },
             "exposedAnnotationConcepts": {
               "description": "All the exposed annotations concepts for a given ROI in the output",
-              "type": "array",
-              "items": {
-                "$ref": "annotationForm.schema.json#/definitions/annotationExposedConcepts"
-              }
+              "type": "array"
             }
           }
         }

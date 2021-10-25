@@ -1,0 +1,54 @@
+{
+  "name": "Sagittal viewer",
+  "type": "2D",
+  "initialState": {
+    "orientationAndSliceNumber": {
+      "orientation": "AXIAL",
+      "strategy": "DYNAMIC",
+      "dynamicSliceValue": "MIDDLE"
+    },
+    "initialWindowLevel": {
+      "strategy": "DYNAMIC",
+      "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+    }
+  },
+  "displayImages": {
+    "possibleImagesToDisplay": [
+      "inputImage_key2"
+    ],
+    "hasDefaultImageToDisplay": true,
+    "defaultImageToDisplay": "inputImage_key2"
+  },
+  "displayControls": {
+    "orientation": {
+      "controlVisible": false,
+      "controlEnabled": false,
+      "options": [
+        {
+          "label": "Axial",
+          "value": "AXIAL"
+        }
+      ],
+      "defaultValue": "AXIAL"
+    },
+    "smoothing": {
+      "controlVisible": false,
+      "controlEnabled": false,
+      "defaultValue": false
+    },
+    "sequence": {
+      "controlVisible": false,
+      "controlEnabled": false
+    }
+  },
+  "lookAndFeel": {
+    "color": "#ff0000",
+    "hasControlPanel": false
+  },
+  "interactions": {
+    "activeViewer": {
+      "controlEnabled": false,
+      "defaultValue": false
+    }
+  }
+}

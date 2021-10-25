@@ -34,7 +34,8 @@
       "enum": [
         "POINT",
         "CIRCLE",
-        "SLICE"
+        "SLICE",
+        "RECTANGLE"
       ]
     },
 
@@ -92,6 +93,10 @@
             "userId":{
               "description": "User submitting the ROI",
               "type": "string"
+            },
+            "mainRoiId":{
+              "description": "UUID of parent roi",
+              "type": "string"
             }
           },
           "required":["imageEntityId", "materializedTaskId","userId"],
@@ -138,11 +143,7 @@
                     "implicitGeometryPointer": {
                       "enum": ["POINT"]
                     },
-                    "
-          
-          
-          
-          ": {
+                    "roiProperties": {
                       "description": "Properties for a point in implicit pointer. If the implicitGemetryPointer is POINT.",
                       "type": "object",
                       "properties": {
@@ -171,7 +172,7 @@
                       "additionalProperties": false
                     }
                   },
-                  "required": ["implicitGeometryPointer", "roiProperties", "implicitRelationWithRoi"],
+                  "required": ["roiProperties"],
                   "additionalProperties": false
                 },
                 {
@@ -199,7 +200,83 @@
                       "additionalProperties": false
                     }
                   },
-                  "required": ["implicitGeometryPointer", "planeProperties", "implicitRelationWithRoi"],
+                  "required": ["planeProperties"],
+                  "additionalProperties": false
+                },
+                {
+                  "properties":{
+                    "implicitRelationWithRoi": {
+                      "$ref": "#implicitRelationWithRoi"
+                    },
+                    "implicitGeometryPointer": {
+                      "enum": ["RECTANGLE"]
+                    },
+                    "rectangleProperties": {
+                      "description": "Properties for a slice in implicit pointer. If the implicitGemetryPointer is RECTANLE.",
+                      "type": "object",
+                      "properties": {
+                        "pointA": {
+                          "description": "First point coordinates",
+                          "type": "object",
+                          "properties": {
+                            "worldCoordinates": {
+                              "description": "World coordinates of the point, also called XYZ coordinates.",
+                              "type": "object",
+                              "properties": {
+                                "x": { "type": "number" },
+                                "y": { "type": "number" },
+                                "z": { "type": "number" }
+                              },
+                              "required": ["x", "y", "z"]
+                            },
+                            "imageCoordinates": {
+                              "description": "Images coordinates of the point, also called IJK coordinates.",
+                              "type": "object",
+                              "properties": {
+                                "i": { "type": "number" },
+                                "j": { "type": "number" },
+                                "k": { "type": "number" }
+                              },
+                              "required": ["i", "j", "k"]
+                            }
+                          },
+                          "required": ["worldCoordinates", "imageCoordinates"],
+                          "additionalProperties": false
+                        },
+                        "pointB": {
+                          "description": "Second point coordinates",
+                          "type": "object",
+                          "properties": {
+                            "worldCoordinates": {
+                              "description": "World coordinates of the point, also called XYZ coordinates.",
+                              "type": "object",
+                              "properties": {
+                                "x": { "type": "number" },
+                                "y": { "type": "number" },
+                                "z": { "type": "number" }
+                              },
+                              "required": ["x", "y", "z"]
+                            },
+                            "imageCoordinates": {
+                              "description": "Images coordinates of the point, also called IJK coordinates.",
+                              "type": "object",
+                              "properties": {
+                                "i": { "type": "number" },
+                                "j": { "type": "number" },
+                                "k": { "type": "number" }
+                              },
+                              "required": ["i", "j", "k"]
+                            }
+                          },
+                          "required": ["worldCoordinates", "imageCoordinates"],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": ["pointA", "pointB"],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["rectangleProperties"],
                   "additionalProperties": false
                 }
               ]  
