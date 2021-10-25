@@ -43,7 +43,7 @@
       "description": "SPINE Type",
       "type": "string",
       "enum": ["String","Number","imageFileInOut","imageEntityInOut",
-        "auxiliaryImageFile","lookupTable","lookUpTableDescription","roiInOut","annotationInOut",
+        "auxiliaryImageFile","lookUpTable","lookUpTableDescription","roiInOut","annotationInOut",
         "roiWithAnnotationsInOut","annotationTableDefinitionInputOutput", "annotationFormDefinitionInputOutput"]
     },
 
@@ -227,7 +227,7 @@
           "properties": {
             "type":{
               "type": "string",
-              "enum": ["lookupTable"]
+              "enum": ["lookUpTable"]
             },
             "lookupTableInOut_FileFormat": {
               "$ref": "#/definitions/lookupTableInOut_FileFormat"
