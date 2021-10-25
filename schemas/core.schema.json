@@ -169,7 +169,7 @@
           "properties": {
             "type":{
               "type": "string",
-              "enum": ["annotationTableDefinitionInOut"]
+              "enum": ["annotationTableDefinitionInputOutput"]
             }
           },
           "required": ["type"]
