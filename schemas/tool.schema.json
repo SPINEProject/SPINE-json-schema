@@ -196,7 +196,10 @@
           "patternProperties": {
             ".*": {
               "description": "Configuration of a viewer",
-              "$ref": "viewer.schema.json"
+              "oneOf":[
+                {"$ref": "viewer.schema.json#/definitions/viewer2D"},
+                {"$ref": "viewer.schema.json#/definitions/viewer3D"}
+              ]
             }
           }
         }
