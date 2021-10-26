@@ -1,0 +1,487 @@
+{
+  "miniWorkflow": {
+    "currentTool": {
+      "id": "1dd174e57260e384c4f45e9c490004a9",
+      "name": "Annotation tool",
+      "description": "This tool is used to visualize a segmentation and check it.",
+      "version": "1.0.0",
+      "privacy": "PUBLIC",
+      "type": "ANNOTATION_TOOL",
+      "inputs": {
+        "inputImage_key":{
+          "name": "Input image",
+          "description": "Input image",
+          "isList": false,
+          "type": "imageEntityInOut",
+          "imageEntityInOut_Type": "ANATOMICAL",
+          "imageEntityInOut_FileFormat": "nii.gz",
+          "required": true
+        },
+        "inputImage_key2":{
+          "name": "Input image",
+          "description": "Input image",
+          "isList": false,
+          "type": "imageEntityInOut",
+          "imageEntityInOut_Type": "ANATOMICAL",
+          "imageEntityInOut_FileFormat": "nii.gz",
+          "required": true
+        },
+        "inputImage_key3":{
+          "name": "Input image",
+          "description": "Input image",
+          "isList": false,
+          "type": "imageEntityInOut",
+          "imageEntityInOut_Type": "ANATOMICAL",
+          "imageEntityInOut_FileFormat": "nii.gz",
+          "required": true
+        },
+        "inputLut_key1": {
+          "name": "Input LUT data",
+          "description": "Input LUT data for overlay displaying.",
+          "isList": false,
+          "type": "lookUpTable",
+          "required": true
+        },
+        "inputLutDescription_key1": {
+          "name": "Input description of LUT data",
+          "description": "Input LUT data for displaying options.",
+          "isList": false,
+          "type": "lookUpTableDescription",
+          "required": true
+        }
+      },
+      "outputs": {
+      },
+      "configuration":{
+        "luts": {
+          "lut_key1": {
+            "fromInputs": true,
+            "lutInputKey": "inputLut_key1"
+          }
+        },
+        "lutDescriptions": {
+          "lutDescription_key1": {
+            "fromInputs": true,
+            "lutDescriptionInputKey": "inputLutDescription_key1"
+          }
+        },
+        "rois": {
+          "overlays": {
+            "overlay_key_1": {
+              "fromInputs": false,
+              "lutKey": "lut_key1",
+              "lutDescriptionKey": "lutDescription_key1"
+            }
+          }
+        },
+        "scenes": {
+          "sceneKey1": {
+            "primaryImageInputKey": "inputImage_key",
+            "rois": {
+              "overlays": [
+                "overlay_key_1"
+              ]
+            }
+          },
+          "sceneKey2": {
+            "primaryImageInputKey": "inputImage_key2"
+          },
+          "sceneKey3": {
+            "primaryImageInputKey": "inputImage_key3"
+          }
+        },
+        "viewers": {
+          "layout": {
+            "type": "ROW",
+            "layoutOrder": {
+              "left": "0",
+              "middleLeft": "1",
+              "middleRight": "2",
+              "right": "3"
+            }
+          },
+          "renderWindows": {
+            "0": {
+              "name": "Sagittal viewer",
+              "type": "2D",
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "SAGITTAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1",
+                  "sceneKey2",
+                  "sceneKey3"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#ffa07a"
+              }
+            },
+            "1": {
+              "name": "Coronal viewer",
+              "type": "2D",
+              "linkedControlVisible": false,
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "CORONAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1",
+                  "sceneKey2",
+                  "sceneKey3"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "CORONAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#fff967"
+              }
+            },
+            "2": {
+              "name": "Coronal viewer",
+              "type": "2D",
+              "linkedControlVisible": false,
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "AXIAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1",
+                  "sceneKey2",
+                  "sceneKey3"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel": {
+                "color": "#90ee90"
+              }
+            },
+            "3": {
+              "name": "3D viewer",
+              "type": "3D",
+              "displayControls": {
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": true
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1",
+                  "sceneKey2",
+                  "sceneKey3"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayImageSlices": {
+                "0": {
+                  "fromState": true,
+                  "stateKey": "left"
+                },
+                "1": {
+                  "fromState": true,
+                  "stateKey": "middleLeft"
+                },
+                "2": {
+                  "fromState": true,
+                  "stateKey": "middleRight"
+                }
+              }
+            }
+          }
+        },
+        "widgets": {
+          "pointerTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "mode": {
+                "controlVisible": false,
+                "controlEnabled": true,
+                "defaultValue": "onClick"
+              }
+            }
+          },
+          "pinTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "properties": {
+              "markerSize": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 2
+              },
+              "fontSize":{
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 12
+              },
+              "clearAll":{
+                "controlVisible": true,
+                "controlEnabled": true
+              }
+            }
+          },
+          "projectionTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "range": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 1
+              }
+            }
+          },
+          "levelTracingTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "levelFunction": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": "DARKER"
+              },
+              "levelFunctionMargin": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 25
+              },
+              "lineWidth": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 0.1
+              },
+              "levelThreeD": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": false
+              }
+            }
+          },
+          "linkAllTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false
+          },
+          "crossHairTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false
+          },
+          "annotationOpacity": {
+            "controlVisible": true,
+            "controlEnabled": false,
+            "defaultValue": 1
+          },
+          "brushTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "properties": {
+              "radius": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 1
+              }
+            }
+          },
+          "fillingTool":{
+            "controlVisible": true,
+            "controlEnabled": true
+          },
+          "eraserTool":{
+            "controlVisible":true,
+            "controlEnabled":true,
+            "properties":{
+              "radius":{
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 1
+              }
+            }
+          },
+          "labelmapLUT": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": 1
+          },
+          "labelmapUndoRedoTool":{
+            "controlVisible":true,
+            "controlEnabled":true
+          },
+          "labelmapOpacity":{
+            "controlVisible":true,
+            "controlEnabled":true,
+            "defaultValue":1
+          }
+        }
+      }
+    },
+    "currentMaterializedTask": {
+      "label": "training-9c39728c-8ce8-419e-886d-8138ba68e96e",
+      "inputs": {
+        "inputImage_key": {
+          "value": "20c2d549136e928edffcdb64b902474d",
+          "label": "T1",
+          "format": "nii.gz"
+        },
+        "inputImage_key2": {
+          "value": "20c2d549136e928edffcdb64b902474d",
+          "label": "T2",
+          "format": "nii.gz"
+        },
+        "inputImage_key3": {
+          "value": "20c2d549136e928edffcdb64b902474d",
+          "label": "FLAIR",
+          "format": "nii.gz"
+        },
+        "inputLut_key1": {
+          "value": "c63c3c687bfeab4782a90290e1000260"
+        },
+        "inputLutDescription_key1": {
+          "value": "c63c3c687bfeab4782a90290e1003c40"
+        }
+      },
+      "status": "TODO",
+      "assignedTo": "gregory.bliault@u-bordeaux.fr",
+      "dueDate": "2019-09-28T22:43:29.728Z",
+      "miniWorkflow": "mw1",
+      "uuid": "53b643d3f55f98c38962b596530000d3"
+    },
+    "status": "notstarted"
+  },
+  "listOfCases": [
+    {
+      "caseNumber": "training-9c39728c-8ce8-419e-886d-8138ba68e96e",
+      "caseStatus": "notstarted"
+    }
+  ],
+  "currentCase": "training-9c39728c-8ce8-419e-886d-8138ba68e96e"
+}

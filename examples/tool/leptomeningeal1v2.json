@@ -1,0 +1,481 @@
+{
+  "miniWorkflow": {
+    "miniWorkflowPath": [
+      {
+        "stepKey": "annotation",
+        "stepName": "Identification of Leptomeningeal metastases"
+      },
+      {
+        "stepKey": "annotation",
+        "stepName": "Characterization of Leptomeningeal metastases"
+      }
+    ],
+    "currentStep": 0,
+    "currentTool": {
+      "id":"1dd174e57260e384c4f45e9c490004a9",
+      "name": "Pin tool",
+      "description": "This tool is used to characterize previously identified ROI's.",
+      "version": "1.0.0",
+      "privacy": "PUBLIC",
+      "type": "ANNOTATION_TOOL",
+      "inputs": {
+        "inputImage_key":{
+          "name": "Input image",
+          "description": "Input image",
+          "isList": false,
+          "type": "imageEntityInOut",
+          "imageEntityInOut_Type": "ANATOMICAL",
+          "imageEntityInOut_FileFormat": "nii.gz",
+          "required": true
+        },
+        "inputAnnotationTableDefinition_key1": {
+          "name": "Input annotations definition",
+          "description": "Input annotations definition for annotation table",
+          "isList": false,
+          "type": "annotationTableDefinitionInputOutput",
+          "required": true
+        }
+      },
+      "outputs": {
+        "outputAnnotationTableData_key": {
+          "name": "Output annotations data",
+          "description": "Output annotations data from annotation table",
+          "isList": false,
+          "type": "annotationTableDataInOut",
+          "required": true
+        }
+      },
+      "configuration":{
+        "scenes": {
+          "sceneKey1": {
+            "primaryImageInputKey": "inputImage_key",
+            "rois": {
+              "geometricalROIsInputKeys": [
+                "outputAnnotationTableData_key"
+              ]
+            }
+          }
+        },
+        "viewers": {
+          "layout": {
+            "type": "1M2R_WIDGETS",
+            "layoutOrder": {
+              "middle": "1",
+              "upperRight": "2",
+              "lowerRight": "0"
+            }
+          },
+          "renderWindows": {
+            "0": {
+              "name": "Sagittal viewer",
+              "type": "2D",
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "SAGITTAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": true,
+                  "controlEnabled": true,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                },
+                "linked": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#ffa07a"
+              }
+            },
+            "1": {
+              "name": "Middle viewer",
+              "type": "2D",
+              "linkedControlVisible": false,
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "AXIAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "SUPERIORMOST"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": true,
+                  "controlEnabled": true,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                },
+                "linked": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#fff967"
+              }
+            },
+            "2": {
+              "name": "Right viewer",
+              "type": "2D",
+              "linkedControlVisible": false,
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "CORONAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": true,
+                  "controlEnabled": true,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "CORONAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                },
+                "linked": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#90ee90"
+              }
+            }
+          }
+        },
+        "widgets":{
+          "casesControl": {
+            "controlVisible": false,
+            "controlEnabled": false,
+            "defaultValue": false
+          },
+          "pinTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "properties": {
+              "markerSize": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 2
+              },
+              "fontSize":{
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 12
+              },
+              "subAnnotationsAvailable":{
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": false
+              },
+              "clearAll":{
+                "controlVisible": true,
+                "controlEnabled": true
+              }
+            }
+          },
+          "projectionTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "range": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 1
+              }
+            }
+          },
+          "pointerTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "mode": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": "onClick"
+              }
+            }
+          },
+          "crossHairTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false
+          },
+          "customCursorTool": {
+            "controlVisible": false,
+            "controlEnabled": false,
+            "defaultValue": true,
+            "properties": {
+              "type": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": "fixedCrosshairRelativeCircle"
+              },
+              "diameter": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": 2
+              }
+            }
+          },
+          "annotationTableTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "properties": {
+              "fullTable": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": false
+              },
+              "editableROI": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": true
+              },
+              "subAnnotationColumn":{
+                "controlVisible": true,
+                "controlEnabled": false
+              },
+              "csvExport": {
+                "controlVisible": false,
+                "controlEnabled": false
+              }
+            }
+          },
+          "pinUndoRedoTool":{
+            "controlVisible":true,
+            "controlEnabled":true
+          }
+        }
+      }
+    },
+    "currentMaterializedTask": {
+      "navigationRules": {
+        "forwardConfirmationWindow": true,
+        "forwardConfirmationWindowMessage": "This is message",
+        "backwardConfirmationWindow": true,
+        "backwardConfirmationWindowMessage": "This is message"
+      },
+      "label": "training-9c39728c-8ce8-419e-886d-8138ba68e96e",
+      "inputs": {
+        "inputImage_key": {
+          "value": "75c919ef4923cd7eef878de2930001c3",
+          "label": "T1",
+          "format": "nii.gz"
+        },
+        "inputAnnotationTableDefinition_key1": {
+          "value": "22e8e7c87745251cf661c72342004595"
+        }
+      },
+      "status": "TODO",
+      "assignedTo": "gregory.bliault@u-bordeaux.fr",
+      "dueDate": "2019-09-28T22:43:29.728Z",
+      "miniWorkflow": "mw1",
+      "uuid": "53b643d3f55f98c38962b596530000d3"
+    },
+    "currentHelpPanel": {
+      "_main": {
+        "goalAndDefinition": "<p><strong>Goals</strong>: </p><p>- Identify each site of leptomeningeal metastasis (LM)\t</p><ul><li>To be considered one lesion, the enhancing area must be continuous (all components must demonstrate connection in at least one projection). </li></ul><p>-&nbsp;Select/pin each lesion only ONCE </p><ul><li>Leptomeningeal metastasis are 3-dimensional objects.</li><li>Do not select the same lesion on multiple slices or projections.</li><li>If a lesion is “diffuse” in nature, only pin the lesion in one place.&nbsp;</li></ul><p>-&nbsp;Pin each lesion at its approximate center point. </p><p>-&nbsp;If a lesion has both a linear and nodular component, pin the nodular component.&nbsp;&nbsp;</p><p><strong>Definitions: </strong></p><p>-<strong>&nbsp;Leptomeningeal enhancement: </strong>a continuous,<strong> </strong>c<span style=\"color: black;\">ontrast-enhancing lesions with less than 2 mm distance between the outer edge of the lesion and the leptomeninges.</span></p>",
+        "tools": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1HkVVlpY1r1p6YldlRhWmSYFqd5tDn1F-\">= Turn on/off pin tool</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1uyjb5n5ngjB9rzlKyyvbV_l9aWmiByx6\"> = Undo/redo the most recently placed annotation</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1pd4vioZcOgcCkZJNxMiSrYSRtjIvIg27\"> = Triangulate a focal area in all three projections</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1eHHxrtW3gMhlnT-m0fdyTodRazF3JCxq\"> = Display a 3D crosshair showing the position of the slices currently shown in all 3 viewer windows</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=11bfY3nu1E2iro8B-zac92sNI1AxXyUs9\">= Project annotations to adjacent slices</p><p>Neighborhood of projection = <span style=\"color: black;\">Number of adjacent slices onto which the annotations are projected</span></p><h2><br></h2>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=sBQKQ7t23mw&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=unxHdPwvoWs&feature=youtu.be"
+        },
+        "images": [
+          {
+            "name": "Definition of Leptomeningeal Metastasis (1/2)",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1nKNP9s822TF6qW4aHopWIY9ec1dh9sTT",
+            "_$visited": true
+          },
+          {
+            "name": "Definition of Leptomeningeal Metastasis (2/2)",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1tI2O7J4aTHFpDcJZ0U4kU2YIJ2iCKnN7",
+            "_$visited": true
+          },
+          {
+            "name": "Ventricular nodular enhancement (1/2)",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1YxGNw-AE_t0zPMwy5htz-7HDBcj7zsXa",
+            "_$visited": true
+          },
+          {
+            "name": "Ventricular nodular enhancement (2/2)",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1PDT29ASEmpajFHdadnDyAj90jAvl9p9R",
+            "_$visited": true
+          },
+          {
+            "name": "Cerebral nodular enhancement",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1We29fGlH25hYmedNUbw71F2un51vNCg2",
+            "_$visited": true
+          },
+          {
+            "name": "Cerebellar nodular enhancement",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1miRZ9CqAs_HnTSsG7kpFQ0jrww8iz5CV",
+            "_$visited": true
+          },
+          {
+            "name": "Leptomeningeal lesion with linear and nodular component",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1NxtOmbXfFbLYa0jyqI0Hwj8ghLgFAYnt",
+            "_$visited": true
+          },
+          {
+            "name": "Nodular enhancements in the lumbar spine (Sagittal View)",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=10Wq8oDibc_3CoAUfhjVvFMjVYyFt4Leg",
+            "_$visited": true
+          },
+          {
+            "name": "Diffuse enhancement in the cervical spine (Sagittal View)",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1D3hVp-BhN_-4OK5eZj9XBXgPlzq0QyuW",
+            "_$visited": true
+          }
+        ],
+        "combos": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Place pins (annotations) on image when pin tool is toggled</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1O8SkwIZgVGsD_U8JcdmKbg2tHKXtrj_h\">  = <span style=\"color: black;\">Move between slices</span></p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=19MENfpFJoHZ4qzseaUM9IBSLMvMx_vA2\"> = Move forward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=14LBXTLC1ycm5zIe71BeMU8i11k5wJ4OZ\"> = Move backward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1dV1dOBSZ8y5p1wnvRtlKK9WBxaO9uXKL\"> = Move image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1NFjNlFSbIEtXnf17mbq2c76GWyEXAOil\"> = Window image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1uEUpX97BuBrxOkord4Ee-dpkTga_9p69\"> = Window image when pin tool is toggled</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1dV1dOBSZ8y5p1wnvRtlKK9WBxaO9uXKL\"> = Move image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1_qdp5ozWi8MhCHIq1QIcDUSd2KQjajCV\"> = Zoom in/out</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1XxlCwfZPbMQZe45D7KXSwelbjbVJ10mN\"> = Zoom in/out when pin tool is toggled</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1ixDZqFAniMhJnDWc6oxuUQjPP4Qbf0XA\"> = Delete annotation</p>",
+        "annotations": "<h2><u>ANNOTATION TABLE</u></h2><p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Edit a cell</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=13brFCX5hbLAXS_wMaSjQNxetuVQpiqsI\"> =   Delete annotation</p>"
+      },
+      "Uncertainties":{
+        "goalAndDefinition": "<p><strong>Goal:</strong></p><ul><li><span style=\"color: black;\">please indicate if you are not certain whether an enhancement is indeed a leptomeningeal metastasis</span></li></ul>",
+        "tools": "<h2><u>ANNOTATION TABLE</u></h2><p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Edit a cell</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=13brFCX5hbLAXS_wMaSjQNxetuVQpiqsI\"> =   Delete annotation</p>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=hFHQcCYNp1M&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=unxHdPwvoWs&feature=youtu.be"
+        },
+        "images": []
+      },
+      "Comments": {
+        "goalAndDefinition": "<p><strong>Goal:</strong></p><p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"color: black;\">please enter any comments you may have separately for each leptomeningeal metastasis</span></p>",
+        "tools": "<h2><u>ANNOTATION TABLE</u></h2><p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Edit a cell</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=13brFCX5hbLAXS_wMaSjQNxetuVQpiqsI\"> =   Delete annotation</p>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=1qB00MCpEwQ&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=unxHdPwvoWs&feature=youtu.be"
+        },
+        "images": []
+      }
+    },
+    "status": "notstarted"
+  },
+  "listOfCases": [
+    {
+      "caseNumber": "LEPTO1",
+      "caseStatus": "notstarted"
+    },
+    {
+      "caseNumber": "LEPTO2",
+      "caseStatus": "notstarted"
+    }
+  ],
+  "currentCase": "LEPTO1"
+}

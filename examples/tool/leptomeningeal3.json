@@ -1,0 +1,404 @@
+{
+  "miniWorkflow": {
+    "miniWorkflowPath": [
+      {
+        "stepKey": "annotation",
+        "stepName": "Step1"
+      },
+      {
+        "stepKey": "annotation",
+        "stepName": "Step2"
+      }
+    ],
+    "currentStep": 1,
+    "currentTool": {
+      "id":"1dd174e57260e384c4f45e9c490004a9",
+      "name": "Characterization tool",
+      "description": "This tool is used to characterize previously identified ROI's.",
+      "version": "1.0.0",
+      "privacy": "PUBLIC",
+      "type": "CHARACTERIZATION_TOOL",
+      "inputs": {
+        "inputImage_key":{
+          "name": "Input image",
+          "description": "Input image",
+          "isList": false,
+          "type": "imageEntityInOut",
+          "imageEntityInOut_Type": "ANATOMICAL",
+          "imageEntityInOut_FileFormat": "nii.gz",
+          "required": true
+        },
+        "inputAnnotationFormDefinition_key1": {
+          "name": "Input annotations definition",
+          "description": "Input annotations definition for annotation table",
+          "isList": false,
+          "type": "annotationFormDefinitionInputOutput",
+          "required": true
+        },
+        "inputROIDataList_key1": {
+          "name": "Input ROis data",
+          "description": "Input ROI data for annotation table",
+          "isList": true,
+          "type": "roiInOut",
+          "typeROI": "IMPLICIT",
+          "required": true
+        }
+      },
+      "outputs": {
+        "outputAnnotationTableData_key": {
+          "name": "Output annotations data",
+          "description": "Output annotations data from annotation table",
+          "isList": false,
+          "type": "annotationTableDataInOut",
+          "required": true
+        },
+        "outputAnnotationFormData_key": {
+          "name": "Output annotations data",
+          "description": "Output annotations data from annotation form",
+          "isList": false,
+          "type": "annotationFormDataInOut",
+          "required": true
+        }
+      },
+      "configuration":{
+        "scenes": {
+          "sceneKey1": {
+            "primaryImageInputKey": "inputImage_key",
+            "rois": {
+              "geometricalROIsInputKeys": [
+                "inputROIDataList_key1"
+              ]
+            }
+          }
+        },
+        "viewers": {
+          "layout": {
+            "type": "ROW",
+            "layoutOrder": {
+              "left": "0",
+              "middle": "1",
+              "right": "2"
+            }
+          },
+          "renderWindows": {
+            "0": {
+              "name": "Sagittal viewer",
+              "type": "2D",
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "SAGITTAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                },
+                "linked": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#ffa07a"
+              }
+            },
+            "1": {
+              "name": "Middle viewer",
+              "type": "2D",
+              "linkedControlVisible": false,
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "AXIAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                },
+                "linked": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#fff967"
+              }
+            },
+            "2": {
+              "name": "Right viewer",
+              "type": "2D",
+              "linkedControlVisible": false,
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "CORONAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "CORONAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                },
+                "linked": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#90ee90"
+              }
+            }
+          }
+        },
+        "widgets":{
+          "pinTool": {
+            "controlVisible": false,
+            "controlEnabled": false,
+            "properties": {
+              "markerSize": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": 2
+              },
+              "fontSize":{
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": 12
+              },
+              "clearAll":{
+                "controlVisible": false,
+                "controlEnabled": false
+              },
+              "subAnnotationsAvailable":{
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": false
+              },
+              "centering": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": true
+              }
+            }
+          },
+          "pointerTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "mode": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": "onClick"
+              }
+            }
+          },
+          "projectionTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "range": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 1
+              }
+            }
+          },
+          "fiducialTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "type": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": "circle"
+              },
+              "diameter": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": 5
+              },
+              "rotation": {
+                "controlVisible": false,
+                "controlEnabled": true,
+                "defaultValue": 0
+              }
+            }
+          },
+          "crossHairTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false
+          },
+          "annotationTableTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "properties": {
+              "fullTable": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": false
+              },
+              "editableROI": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": false
+              },
+              "subAnnotationColumn":{
+                "controlVisible": true,
+                "controlEnabled": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "currentMaterializedTask": {
+      "label": "training-9c39728c-8ce8-419e-886d-8138ba68e96e",
+      "inputs": {
+        "inputImage_key": {
+          "value": "310a4fa25bb6c2e79dbc0b35c900614d",
+          "label": "T1",
+          "format": "nii.gz"
+        },
+        "inputAnnotationFormDefinition_key1": {
+          "value": "3d177f94c60db9b3157d356a9f002a58"
+        },
+        "inputROIDataList_key1": {
+          "value": ["e64e724ff6782f91b0ad792220007a97","e64e724ff6782f91b0ad7922200088a0","e64e724ff6782f91b0ad792220009d79","e64e724ff6782f91b0ad79222000ac2e","e64e724ff6782f91b0ad79222000c3ae"]
+        }
+      },
+      "status": "TODO",
+      "assignedTo": "gregory.bliault@u-bordeaux.fr",
+      "dueDate": "2019-09-28T22:43:29.728Z",
+      "miniWorkflow": "mw1",
+      "uuid": "53b643d3f55f98c38962b596530000d3"
+    },
+    "status": "notstarted"
+  },
+  "listOfCases": [
+    {
+      "caseNumber": "NMO1",
+      "caseStatus": "notstarted"
+    },
+    {
+      "caseNumber": "NMO2",
+      "caseStatus": "notstarted"
+    }
+  ],
+  "currentCase": "NMO1"
+}
