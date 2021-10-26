@@ -29,6 +29,8 @@ It is shown in [Example of matcher extension](/tests/jest.ajv.schema.test.js).
 ### Test cases
 Examples used for testing are defined in "examples" subfolders. To identify weak tests 
 [Mutation tests](https://en.wikipedia.org/wiki/Mutation_testing) are applied (json files with _mutation._ prefix).
+Manual tools definitions can be tested using  [automatic suite](/tests/tools2.schema.test.js) 
+
 
 ### Links:
  

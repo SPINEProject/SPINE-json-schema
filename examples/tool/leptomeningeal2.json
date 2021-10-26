@@ -1,0 +1,883 @@
+{
+  "miniWorkflow": {
+    "miniWorkflowPath": [
+      {
+        "stepKey": "annotation",
+        "stepName": "Identification of Leptomeningeal metastases"
+      },
+      {
+        "stepKey": "annotation",
+        "stepName": "Characterization of Leptomeningeal metastases"
+      }
+    ],
+    "currentStep": 1,
+    "currentTool": {
+      "id":"1dd174e57260e384c4f45e9c490004a9",
+      "name": "Characterization tool",
+      "description": "This tool is used to characterize previously identified ROI's.",
+      "version": "1.0.0",
+      "privacy": "PUBLIC",
+      "type": "CHARACTERIZATION_TOOL",
+      "inputs": {
+        "inputImage_key":{
+          "name": "Input image",
+          "description": "Input image",
+          "isList": false,
+          "type": "imageEntityInOut",
+          "imageEntityInOut_Type": "ANATOMICAL",
+          "imageEntityInOut_FileFormat": "nii.gz",
+          "required": true
+        },
+        "inputAnnotationTableDefinition_key1": {
+          "name": "Input annotations definition",
+          "description": "Input annotations definition for annotation table",
+          "isList": false,
+          "type": "annotationTableDefinitionInputOutput",
+          "required": true
+        },
+        "inputAnnotationFormDefinition_key1": {
+          "name": "Input annotations definition",
+          "description": "Input annotations definition for annotation table",
+          "isList": false,
+          "type": "annotationFormDefinitionInputOutput",
+          "required": true
+        },
+        "inputROIDataList_key1": {
+          "name": "Input ROis data",
+          "description": "Input ROI data for annotation table",
+          "isList": true,
+          "type": "roiInOut",
+          "typeROI": "IMPLICIT",
+          "required": true
+        }
+      },
+      "outputs": {
+        "outputAnnotationTableData_key": {
+          "name": "Output annotations data",
+          "description": "Output annotations data from annotation table",
+          "isList": false,
+          "type": "annotationTableDataInOut",
+          "required": true
+        },
+        "outputAnnotationFormData_key": {
+          "name": "Output annotations data",
+          "description": "Output annotations data from annotation form",
+          "isList": false,
+          "type": "annotationFormDataInOut",
+          "required": true
+        }
+      },
+      "configuration":{
+        "scenes": {
+          "sceneKey1": {
+            "primaryImageInputKey": "inputImage_key",
+            "rois": {
+              "geometricalROIsInputKeys": [
+                "inputROIDataList_key1"
+              ]
+            }
+          }
+        },
+        "viewers": {
+          "layout": {
+            "type": "ROW",
+            "layoutOrder": {
+              "left": "0",
+              "middle": "1",
+              "right": "2"
+            }
+          },
+          "renderWindows": {
+            "0": {
+              "name": "Sagittal viewer",
+              "type": "2D",
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "SAGITTAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                },
+                "linked": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#ffa07a"
+              }
+            },
+            "1": {
+              "name": "Middle viewer",
+              "type": "2D",
+              "linkedControlVisible": false,
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "AXIAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                },
+                "linked": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#fff967"
+              }
+            },
+            "2": {
+              "name": "Right viewer",
+              "type": "2D",
+              "linkedControlVisible": false,
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "CORONAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "CORONAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                },
+                "linked": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#90ee90"
+              }
+            }
+          }
+        },
+        "widgets":{
+          "casesControl": {
+            "controlVisible": false,
+            "controlEnabled": false,
+            "defaultValue": false
+          },
+          "pinTool": {
+            "controlVisible": false,
+            "controlEnabled": false,
+            "properties": {
+              "markerSize": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": 2
+              },
+              "fontSize":{
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": 12
+              },
+              "clearAll":{
+                "controlVisible": false,
+                "controlEnabled": false
+              },
+              "subAnnotationsAvailable":{
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": false
+              },
+              "centering": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": true
+              }
+            }
+          },
+          "pointerTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "mode": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": "onClick"
+              }
+            }
+          },
+          "projectionTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "range": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 1
+              }
+            }
+          },
+          "fiducialTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "type": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": "circle"
+              },
+              "diameter": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": 5
+              },
+              "rotation": {
+                "controlVisible": false,
+                "controlEnabled": true,
+                "defaultValue": 0
+              },
+              "adjustableZoom": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 4
+              }
+            }
+          },
+          "crossHairTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false
+          },
+          "annotationTableTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "properties": {
+              "fullTable": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": false
+              },
+              "editableROI": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": false
+              },
+              "subAnnotationColumn":{
+                "controlVisible": true,
+                "controlEnabled": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "currentMaterializedTask": {
+      "navigationRules": {
+        "forwardConfirmationWindow": true,
+        "backwardConfirmationWindow": true
+      },
+      "label": "training-9c39728c-8ce8-419e-886d-8138ba68e96e",
+      "inputs": {
+        "inputImage_key": {
+          "value": "75c919ef4923cd7eef878de2930001c3",
+          "label": "T1",
+          "format": "nii.gz"
+        },
+        "inputAnnotationTableDefinition_key1": {
+          "value": "7e0c58ae948decbb445f6c495e0042b6"
+        },
+        "inputAnnotationFormDefinition_key1": {
+          "value": "b7fc97eb044d96113b87f38b2d000d93"
+        },
+        "inputROIDataList_key1": {
+          "value": ["75c919ef4923cd7eef878de293001652", "75c919ef4923cd7eef878de293002c70","75c919ef4923cd7eef878de2930038e0"]
+        }
+      },
+      "status": "TODO",
+      "assignedTo": "gregory.bliault@u-bordeaux.fr",
+      "dueDate": "2019-09-28T22:43:29.728Z",
+      "miniWorkflow": "mw1",
+      "uuid": "53b643d3f55f98c38962b596530000d3"
+    },
+    "currentHelpPanel": {
+      "_main": {
+        "goalAndDefinition": "<p><strong>Goals</strong>: </p><ul><li>determine the location(s) of all leptomeningeal enhancements,</li><li><span style=\"color: black;\">if you believe the lesion crosses two brain locations, you may choose more than one location option. </span></li><li>if you are unsure about a lesion’s location, you will be able to indicate this in the uncertainties column.&nbsp;</li></ul><p><br></p><p><strong>Definitions:</strong></p><p><span style=\"color: black;\">Leptomeningeal enhancements can be seen in the following locations:</span></p><p class=\"ql-align-justify\">BRAIN:</p><ul><li class=\"ql-align-justify ql-indent-1\"><strong style=\"color: black;\">Cerebrum</strong><span style=\"color: black;\">: Lesion located within 2mm of the cerebral cortex. The lesion should involve a cerebral sulcus to ensure that it is leptomeningeal, rather than dural-based. &nbsp;</span></li><li class=\"ql-align-justify ql-indent-1\"><strong style=\"color: black;\">Cerebellum</strong><span style=\"color: black;\">: Lesion located within 2mm of the cerebellar cortex (along cerebellar folia). </span></li><li class=\"ql-align-justify ql-indent-1\"><strong style=\"color: black;\">Brainstem</strong><span style=\"color: black;\">: Lesion along the surface of the brainstem, within 2mm of the brainstem parenchyma.·</span></li><li class=\"ql-align-justify ql-indent-1\"><strong style=\"color: black;\">Ventricle</strong><span style=\"color: black;\">: Lesion located within the ventricular system (lateral ventricles, third ventricle, or fourth ventricle) or along the lining of a ventricle. A ventricular lesion may grow into the periventricular space, however the inner-most edge of the lesion should be less than 2mm from the ventricular border.</span></li><li class=\"ql-align-justify ql-indent-1\"><strong style=\"color: black;\">Cranial nerves</strong><span style=\"color: black;\">: Lesion surrounding a cranial nerve.</span> </li></ul><p>SPINE:</p><ul><li class=\"ql-indent-1\"><strong style=\"color: black;\">Cervical spine</strong><span style=\"color: black;\">: Intradural extramedullary lesion located in the spinal cord between the superior end plate of C1 and the superior end plate of T1.</span></li><li class=\"ql-indent-1\"><strong style=\"color: black;\">Thoracic spine</strong><span style=\"color: black;\">: Intradural extramedullary lesion located in the spinal cord between the superior end plate of T1 to the superior end plate of L1. </span></li><li class=\"ql-indent-1\"><strong style=\"color: black;\">Lumbar spine</strong><span style=\"color: black;\">: Lumbar spine will encompass the lumbosacral spine and will include remainder of the spinal cord extending below the superior end plate of L1. This will include intradural extramedullary lesions of the lower lumbar spinal cord/conus medullaris and cauda equina</span></li></ul><p><br></p><p><br></p><p><br></p>",
+        "tools": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1pd4vioZcOgcCkZJNxMiSrYSRtjIvIg27\"> = Triangulate a focal area in all three projections</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=11bfY3nu1E2iro8B-zac92sNI1AxXyUs9\"> = Project annotations to adjacent slices</p><p>Neighborhood of projection = <span style=\"color: black;\">Number of adjacent slices onto which the annotations are projected</span></p><p><span style=\"color: black;\"><img src=\"https://drive.google.com/uc?export=download&amp;id=1eHHxrtW3gMhlnT-m0fdyTodRazF3JCxq\"> = Display a 3D crosshair showing the position of the slices currently shown in all 3 viewer windows</span></p>",
+        "combos": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1O8SkwIZgVGsD_U8JcdmKbg2tHKXtrj_h\">  = Move between slices</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=19MENfpFJoHZ4qzseaUM9IBSLMvMx_vA2\">  = Move forward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=14LBXTLC1ycm5zIe71BeMU8i11k5wJ4OZ\"> = Move backward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1NFjNlFSbIEtXnf17mbq2c76GWyEXAOil\"> = Window image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1dV1dOBSZ8y5p1wnvRtlKK9WBxaO9uXKL\"> = Move image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1-fD1d4wTU4J4908BBQZ83vdLAFIOw2Pg\"> = Zoom in/out</p>",
+        "annotations": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Edit a cell</p>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=0kl5sOz7PEs&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=LcZ31mRQ7bg&feature=youtu.be"
+        },
+        "images": [
+          {
+            "name": "Cerebrum",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1EBsmK1qg-y2kU7mnrqi05E6g_T9u9bzr",
+            "_$visited": true
+          },
+          {
+            "name": "Cerebellum",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1kg1Y2gSJAKYLa9h9V01QcZtK4_5PVAfZ",
+            "_$visited": true
+          },
+          {
+            "name": "Cerebellum",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1C9CjjAGy8L0utDhJFjz182-awGC1QTw_",
+            "_$visited": true
+          },
+          {
+            "name": "Brainstem Midbrain",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=18Ksu2i4SoVUvjxqD40jEA3s7qvy1bfoY",
+            "_$visited": true
+          },
+          {
+            "name": "Brainstem Pons",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1-T07qu0PvZb7Nov0KPA772MdXSan4lzD",
+            "_$visited": true
+          },
+          {
+            "name": "Brainstem Medulla",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=172ZmQT05Wf6vBzOPlvadrAqhKN3J1uks",
+            "_$visited": true
+          },
+          {
+            "name": "Ventricle",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1Kvg0CNL0LVY1ISDOlBGAGRwnbcgD7jBX",
+            "_$visited": true
+          },
+          {
+            "name": "Ventricle",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=175gTnmem0gvNgSyP8YJQhpv-nmaAQqh1",
+            "_$visited": true
+          },
+          {
+            "name": "Ventricle",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=158tgwe7O1q_okBRIYa_7BHSBx_YFsEA9",
+            "_$visited": true
+          },
+          {
+            "name": "Cranial Nerve III",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=17CE85JuNWTwwaJWrkHp7_fK_GXTmV0ew",
+            "_$visited": true
+          },
+          {
+            "name": "Cranial Nerve V",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1kDjxWSCA9CuMXcwuRTXGiRa8hRMvMQ8I",
+            "_$visited": true
+          },
+          {
+            "name": "Cranial Nerve VII-VIII",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1AMHAgyBSGeyRY9ESIC-8ThH_-qh1uk0N",
+            "_$visited": true
+          },
+          {
+            "name": "Lesion involving the 4th ventricle and cerebellum",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1tbVv0ZmjsJM7Nlg-FI1UgTfqIzZBcsEi",
+            "_$visited": true
+          },
+          {
+            "name": "Cervical Spine",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1DuiZVwVEQWHd2uA9UkgkFj1rR6XCv3eW",
+            "_$visited": true
+          },
+          {
+            "name": "Thoracic Spine",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1XJDi9W-huc-NQsW7gwHdSdzhNFFpgCAB"
+          },
+          {
+            "name": "Lumbar Spine (Sagittal View)",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1hpw9nZbxzG_ri8DxjCre3TUkOiHxuCVv",
+            "_$visited": true
+          },
+          {
+            "name": "Lumbar Spine (Axial View through the Cauda Equina)",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1ILgs4FlonrFNZ15OFmG3Z7AFo527_8r9",
+            "_$visited": true
+          }
+        ]
+      },
+      "Location": {
+        "goalAndDefinition": "<p><strong>Goals</strong>: </p><ul><li>determine the location(s) of all leptomeningeal enhancements,</li><li><span style=\"color: black;\">if you believe the lesion crosses two brain locations, you may choose more than one location option. </span></li><li>if you are unsure about a lesion’s location, you will be able to indicate this in the uncertainties column.&nbsp;</li></ul><p><br></p><p><strong>Definitions:</strong></p><p><span style=\"color: black;\">Leptomeningeal enhancements can be seen in the following locations:</span></p><p class=\"ql-align-justify\">BRAIN:</p><ul><li class=\"ql-align-justify ql-indent-1\"><strong style=\"color: black;\">Cerebrum</strong><span style=\"color: black;\">: Lesion located within 2mm of the cerebral cortex. The lesion should involve a cerebral sulcus to ensure that it is leptomeningeal, rather than dural-based. &nbsp;</span></li><li class=\"ql-align-justify ql-indent-1\"><strong style=\"color: black;\">Cerebellum</strong><span style=\"color: black;\">: Lesion located within 2mm of the cerebellar cortex (along cerebellar folia). </span></li><li class=\"ql-align-justify ql-indent-1\"><strong style=\"color: black;\">Brainstem</strong><span style=\"color: black;\">: Lesion along the surface of the brainstem, within 2mm of the brainstem parenchyma.·</span></li><li class=\"ql-align-justify ql-indent-1\"><strong style=\"color: black;\">Ventricle</strong><span style=\"color: black;\">: Lesion located within the ventricular system (lateral ventricles, third ventricle, or fourth ventricle) or along the lining of a ventricle. A ventricular lesion may grow into the periventricular space, however the inner-most edge of the lesion should be less than 2mm from the ventricular border.</span></li><li class=\"ql-align-justify ql-indent-1\"><strong style=\"color: black;\">Cranial nerves</strong><span style=\"color: black;\">: Lesion surrounding a cranial nerve.</span> </li></ul><p>SPINE:</p><ul><li class=\"ql-indent-1\"><strong style=\"color: black;\">Cervical spine</strong><span style=\"color: black;\">: Intradural extramedullary lesion located in the spinal cord between the superior end plate of C1 and the superior end plate of T1.</span></li><li class=\"ql-indent-1\"><strong style=\"color: black;\">Thoracic spine</strong><span style=\"color: black;\">: Intradural extramedullary lesion located in the spinal cord between the superior end plate of T1 to the superior end plate of L1. </span></li><li class=\"ql-indent-1\"><strong style=\"color: black;\">Lumbar spine</strong><span style=\"color: black;\">: Lumbar spine will encompass the lumbosacral spine and will include remainder of the spinal cord extending below the superior end plate of L1. This will include intradural extramedullary lesions of the lower lumbar spinal cord/conus medullaris and cauda equina</span></li></ul><p><br></p><p><br></p><p><br></p>",
+        "tools": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1pd4vioZcOgcCkZJNxMiSrYSRtjIvIg27\"> = Triangulate a focal area in all three projections</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=11bfY3nu1E2iro8B-zac92sNI1AxXyUs9\"> = Project annotations to adjacent slices</p><p>Neighborhood of projection = <span style=\"color: black;\">Number of adjacent slices onto which the annotations are projected</span></p><p><span style=\"color: black;\"><img src=\"https://drive.google.com/uc?export=download&amp;id=1eHHxrtW3gMhlnT-m0fdyTodRazF3JCxq\"> = Display a 3D crosshair showing the position of the slices currently shown in all 3 viewer windows</span></p>",
+        "combos": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1O8SkwIZgVGsD_U8JcdmKbg2tHKXtrj_h\">  = Move between slices</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=19MENfpFJoHZ4qzseaUM9IBSLMvMx_vA2\">  = Move forward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=14LBXTLC1ycm5zIe71BeMU8i11k5wJ4OZ\"> = Move backward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1NFjNlFSbIEtXnf17mbq2c76GWyEXAOil\"> = Window image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1dV1dOBSZ8y5p1wnvRtlKK9WBxaO9uXKL\"> = Move image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1-fD1d4wTU4J4908BBQZ83vdLAFIOw2Pg\"> = Zoom in/out</p>",
+        "annotations": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Edit a cell</p>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=0kl5sOz7PEs&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=LcZ31mRQ7bg&feature=youtu.be"
+        },
+        "images": [
+          {
+            "name": "Cerebrum",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1EBsmK1qg-y2kU7mnrqi05E6g_T9u9bzr",
+            "_$visited": true
+          },
+          {
+            "name": "Cerebellum",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1kg1Y2gSJAKYLa9h9V01QcZtK4_5PVAfZ",
+            "_$visited": true
+          },
+          {
+            "name": "Cerebellum",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1C9CjjAGy8L0utDhJFjz182-awGC1QTw_",
+            "_$visited": true
+          },
+          {
+            "name": "Brainstem Midbrain",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=18Ksu2i4SoVUvjxqD40jEA3s7qvy1bfoY",
+            "_$visited": true
+          },
+          {
+            "name": "Brainstem Pons",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1-T07qu0PvZb7Nov0KPA772MdXSan4lzD",
+            "_$visited": true
+          },
+          {
+            "name": "Brainstem Medulla",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=172ZmQT05Wf6vBzOPlvadrAqhKN3J1uks",
+            "_$visited": true
+          },
+          {
+            "name": "Ventricle",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1Kvg0CNL0LVY1ISDOlBGAGRwnbcgD7jBX",
+            "_$visited": true
+          },
+          {
+            "name": "Ventricle",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=175gTnmem0gvNgSyP8YJQhpv-nmaAQqh1",
+            "_$visited": true
+          },
+          {
+            "name": "Ventricle",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=158tgwe7O1q_okBRIYa_7BHSBx_YFsEA9",
+            "_$visited": true
+          },
+          {
+            "name": "Cranial Nerve III",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=17CE85JuNWTwwaJWrkHp7_fK_GXTmV0ew",
+            "_$visited": true
+          },
+          {
+            "name": "Cranial Nerve V",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1kDjxWSCA9CuMXcwuRTXGiRa8hRMvMQ8I",
+            "_$visited": true
+          },
+          {
+            "name": "Cranial Nerve VII-VIII",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1AMHAgyBSGeyRY9ESIC-8ThH_-qh1uk0N",
+            "_$visited": true
+          },
+          {
+            "name": "Lesion involving the 4th ventricle and cerebellum",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1tbVv0ZmjsJM7Nlg-FI1UgTfqIzZBcsEi",
+            "_$visited": true
+          },
+          {
+            "name": "Cervical Spine",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1DuiZVwVEQWHd2uA9UkgkFj1rR6XCv3eW",
+            "_$visited": true
+          },
+          {
+            "name": "Thoracic Spine",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1XJDi9W-huc-NQsW7gwHdSdzhNFFpgCAB"
+          },
+          {
+            "name": "Lumbar Spine (Sagittal View)",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1hpw9nZbxzG_ri8DxjCre3TUkOiHxuCVv",
+            "_$visited": true
+          },
+          {
+            "name": "Lumbar Spine (Axial View through the Cauda Equina)",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1ILgs4FlonrFNZ15OFmG3Z7AFo527_8r9",
+            "_$visited": true
+          }
+        ]
+      },
+      "Comments": {
+        "goalAndDefinition": "<p><strong>Instructions</strong>:</p><ul><li><span style=\"color: black;\">please enter any comments you may have separately for each leptomeningeal metastasis</span></li></ul>",
+        "tools": "",
+        "combos": "",
+        "annotations": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Edit a cell</p>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=V3dcGsSfx-E&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=LcZ31mRQ7bg&feature=youtu.be"
+        },
+        "images": []
+      },
+      "Is hydrocephalus present?": {
+        "goalAndDefinition": "<p><strong>Instructions:</strong> </p><p>1. Record measurements that will be used to calculate the Evan’s Index (a quantitative tool to assess for ventriculomegaly). </p><p>2. Indicate whether there is qualitative hydrocephalus.</p><p><strong>&nbsp;</strong></p><p><strong>Definitions: </strong></p><p><br></p><p>1. <strong>Evan’s index measurements:</strong></p><p><img src=\"data:image/png;base64,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\"></p><p>Scroll through the <u>axial</u> images until you find the largest width of the frontal horns.&nbsp;Measure the largest frontal horn width in a plane that is perpendicular to midline (between the cerebral hemispheres). <u>On the same axial slice</u>, measure the largest left to right internal skull diameter (inner bone edge to inner bone edge). This measurement should also be perpendicular to midline. Enter these measurements into</p><p><br></p><p>2. <strong>Hydrocephalus:</strong> Subjective enlargement of the ventricles without proportional widening of the cortical sulci. Periventricular edema may be seen, but is not required.&nbsp;</p>",
+        "tools": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1pd4vioZcOgcCkZJNxMiSrYSRtjIvIg27\"> = Triangulate a focal area in all three projections</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1eHHxrtW3gMhlnT-m0fdyTodRazF3JCxq\"> = Display a 3D crosshair showing the position of the slices currently shown in all 3 viewer windows</p><p><br></p>",
+        "combos": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1O8SkwIZgVGsD_U8JcdmKbg2tHKXtrj_h\"> = Move between slices</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1NFjNlFSbIEtXnf17mbq2c76GWyEXAOil\"> = Window image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1dV1dOBSZ8y5p1wnvRtlKK9WBxaO9uXKL\"> = Move image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1-fD1d4wTU4J4908BBQZ83vdLAFIOw2Pg\"> = Zoom in/out</p>",
+        "annotations": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Click on “yes” or “no”&nbsp;button</p>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=mQB0-yzc60Q&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=LcZ31mRQ7bg&feature=youtu.be"
+        },
+        "images": [
+          {
+            "name": "Measurements for Evan’s Index",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=15bQgKjgVAjkXOupWeBPRbqqfjmmiVHIU",
+            "_$visited": true
+          },
+          {
+            "name": "Measurements for Evan’s Index",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1f1j7YqQpCAIhqbHSGOh2oOrUOobt48ZC",
+            "_$visited": true
+          },
+          {
+            "name": "Normal Ventricles",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1GpBcu4pAPk_wZTaszGpetrh5QwecMtIB",
+            "_$visited": true
+          },
+          {
+            "name": "Normal Ventricles",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1_Qy8vIMyJ4g_JDRdJZjECqMjXY_x8tbk",
+            "_$visited": true
+          },
+          {
+            "name": "Normal Ventrices",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1cy5IpurgfJAym_Lj4T-Wdsduo7Dr184a",
+            "_$visited": true
+          },
+          {
+            "name": "Unclear",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1lUqAO4xMrS_GC7w7nZ2iOvdnIR_VIF7-"
+          },
+          {
+            "name": "Unclear",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1GOIiS3c_7PiTMbB8qAIdmuvPAxZ8Czk1",
+            "_$visited": true
+          },
+          {
+            "name": "Hydrocephalus. Two axial slices from single brain MRI demonstrates enlarged ventricles (particularly in left temporal horn). There is periventricular edema which increases sensitivity",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=18O6s2mZW6cGdzaLU9tQHKneLQD-1a2Ie"
+          },
+          {
+            "name": "Hydrocephalus. Two axial slices from single brain MRI demonstrates enlarged ventricles (particularly in left temporal horn). There is periventricular edema which increases sensitivity",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1xxsIeIfdLWXIMuapXx_RCWrP2IlJiwFv"
+          }
+        ]
+      },
+      "Shape": {
+        "goalAndDefinition": "<p><strong>Goals</strong>: </p><ul><li class=\"ql-align-justify\">determine the shape (i.e., nodular versus linear/curvilinear) of all leptomeningeal enhancements.</li><li class=\"ql-align-justify\">if a lesion has both nodular and linear components, select both. </li></ul><p><strong>Definitions: </strong></p><p class=\"ql-align-justify\">-&nbsp;<strong>Nodular enhancement</strong>:<strong> </strong>mass with rounded or convex polygonal contour. </p><ul><li class=\"ql-align-justify\"><span style=\"color: black;\">a mass must have at least partially convex borders in three dimensions. </span></li><li class=\"ql-align-justify\"><span style=\"color: black;\">can be seen in the subarachnoid space, ventricles, periventricular areas and around the spinal cord</span></li></ul><p class=\"ql-align-justify\">-&nbsp;<strong>Linear</strong> <strong>enhancement</strong>: arranged along a straight or close-to-straight line</p><ul><li class=\"ql-align-justify\"><span style=\"color: black;\">in three dimensions, a linear lesion is often “sheet-like” </span></li><li><span style=\"color: black;\">can have a 2-D rounded/polygonal shape, but lacks convex borders in three dimensions.</span></li><li><span style=\"color: black;\">can be seen in cranial and spinal nerve roots, cerebellar folia, ventricles, cerebral sulci and around the spinal cord</span></li></ul>",
+        "tools": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1pd4vioZcOgcCkZJNxMiSrYSRtjIvIg27\"> = Triangulate a focal area in all three projections</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=11bfY3nu1E2iro8B-zac92sNI1AxXyUs9\"> = Project annotations to adjacent slices</p><p><span style=\"color: black;\">Neighborhood of projection = Number of adjacent slices onto which the annotations are projected</span></p><p><span style=\"color: black;\"><img src=\"https://drive.google.com/uc?export=download&amp;id=1eHHxrtW3gMhlnT-m0fdyTodRazF3JCxq\"> = Display a 3D crosshair showing the position of the slices currently shown in all 3 viewer windows</span></p>",
+        "combos": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1O8SkwIZgVGsD_U8JcdmKbg2tHKXtrj_h\"> = <span style=\"color: black;\">Move between slices</span></p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=19MENfpFJoHZ4qzseaUM9IBSLMvMx_vA2\">  = Move forward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=14LBXTLC1ycm5zIe71BeMU8i11k5wJ4OZ\"> = Move backward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1NFjNlFSbIEtXnf17mbq2c76GWyEXAOil\"> = Window image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1dV1dOBSZ8y5p1wnvRtlKK9WBxaO9uXKL\"> = Move image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1-fD1d4wTU4J4908BBQZ83vdLAFIOw2Pg\"> = Zoom in/out</p>",
+        "annotations": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Edit a cell</p>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=TClBtDEbQB4&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=LcZ31mRQ7bg&feature=youtu.be"
+        },
+        "images": [
+          {
+            "name": "Nodular enhancement in the subarachnoid space",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1lIPL9fXMkAQ-3jvnhQnB8UhZXarfUTL_",
+            "_$visited": true
+          },
+          {
+            "name": "Nodular enhancement in the fourth ventricle",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1lfnizK6wi5O72p5wGvpfoXMe9JqaXHaj",
+            "_$visited": true
+          },
+          {
+            "name": "Nodular enhancement in a periventricular area",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1tDI_RQco7TRa0Zbv-EPS5Qy6IWK8nqr_",
+            "_$visited": true
+          },
+          {
+            "name": "Nodular enhancement around the spinal cord",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=15KbCI-NUASoy-daAB_VP-f0w4OvkGAAa",
+            "_$visited": true
+          },
+          {
+            "name": "Linear/curvilinear enhancement in a cranial nerve root",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1-FTsHGD2AmHKMrif-Jb5xmVQ2RdnzYmT",
+            "_$visited": true
+          },
+          {
+            "name": "Linear/curvilinear enhancement along the cerebellar folia",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1IkG9InZ5xT4DqBtjd4CbZGddjY8BpBKD",
+            "_$visited": true
+          },
+          {
+            "name": "Linear “sheet-like” lesion, wrapping around the spinal cord",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1tDI_RQco7TRa0Zbv-EPS5Qy6IWK8nqr_",
+            "_$visited": true
+          },
+          {
+            "name": "Linear/curvilinear and nodular enhancement along the lining of a ventricle",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1MyX_mpEANpiOgzn9T82BFEMtWdHFitgX",
+            "_$visited": true
+          },
+          {
+            "name": "Linear/curvilinear enhancement along a cerebral sulcus",
+            "link": "",
+            "src": "https://drive.google.com/uc?export=download&id=1mrIu7sk3L5g-S_2LPAZfpA4mbpE0iiKD"
+          }
+        ]
+      },
+      "Size is > 5x5mm": {
+        "goalAndDefinition": "<p><strong>Goals</strong>: </p><ul><li>determine the size of all leptomeningeal enhancements using the fiducial tool <img src=\"data:image/png;base64,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\"></li><li class=\"ql-align-justify\">if an enhancement has both nodular and linear components, determine size based on the nodular component.</li><li class=\"ql-align-justify\">for a focal lesion with an irregular border, measure the largest sub-component without crossing normal tissue.</li></ul><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\"><strong>Definitions: </strong></p><ul><li class=\"ql-align-justify\">note that the diameter of the red fiducial circle is 5 mm. </li><li class=\"ql-align-justify\">if the diameter of an enhancement is greater than 5 mm in the two greatest perpendicular diameters in any 2D plane, please select “yes” under the “Size” column of the annotation table.</li><li class=\"ql-align-justify\">if the diameter of an enhancement is equal to or smaller than 5 mm in the two greatest perpendicular diameters in any 2D plane, please select “no” under the “Size” column of the annotation table</li></ul><p><br></p>",
+        "tools": "<p><img src=\"data:image/png;base64,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\"> = Turn on/off fiducial tool</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1pd4vioZcOgcCkZJNxMiSrYSRtjIvIg27\"> = Triangulate a focal area in all three projections</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=11bfY3nu1E2iro8B-zac92sNI1AxXyUs9\"> = Project annotations to adjacent slices</p><p><span style=\"color: black;\">Neighborhood of projection = Number of adjacent slices onto which the annotations are projected</span></p><p><span style=\"color: black;\"><img src=\"https://drive.google.com/uc?export=download&amp;id=1eHHxrtW3gMhlnT-m0fdyTodRazF3JCxq\"> = Display a 3D crosshair showing the position of the slices currently shown in all 3 viewer windows</span></p>",
+        "combos": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1O8SkwIZgVGsD_U8JcdmKbg2tHKXtrj_h\"> = <span style=\"color: black;\">Move between slices</span></p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=19MENfpFJoHZ4qzseaUM9IBSLMvMx_vA2\"> = Move forward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=14LBXTLC1ycm5zIe71BeMU8i11k5wJ4OZ\"> = Move backward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Window image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1dV1dOBSZ8y5p1wnvRtlKK9WBxaO9uXKL\"> = Move image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1-fD1d4wTU4J4908BBQZ83vdLAFIOw2Pg\"> = Zoom in/out</p>",
+        "annotations": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Edit a cell</p>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=dqDNTr2ACcw&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=LcZ31mRQ7bg&feature=youtu.be"
+        },
+        "images": [
+          {
+            "name": "Lesion with size > 5 mm in bi-diameter ",
+            "link": "",
+            "src": " https://drive.google.com/uc?export=download&id=1-SM18L11DD4ON-Wk19jailg4wQ2BwTfl",
+            "_$visited": true
+          },
+          {
+            "name": "Lesion with irregular border",
+            "link": "",
+            "src": " https://drive.google.com/uc?export=download&id=1VM1Aqidordd0XRWZKkVsNgc5nbZhvhey",
+            "_$visited": true
+          }
+        ]
+      },
+      "Spatial extension": {
+        "goalAndDefinition": "<p><strong>Goals</strong>: </p><ul><li>Determine the spatial extension (i.e., focal or diffuse) of all leptomeningeal enhancements.</li><li>If a lesion has both a focal and diffuse component, label this lesion as diffuse. The more focal component may be measurable (&gt;5x5 mm) even though the lesion is diffuse. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li></ul><p><strong>Definitions: </strong></p><p class=\"ql-align-justify\">-&nbsp;&nbsp;<strong>Focal enhancement: </strong>circumscribed area of enhancement with sharp boundaries. The lesion can be measured in two dimensions (one plane) without crossing normal brain. </p><p class=\"ql-align-justify\">-&nbsp;&nbsp;&nbsp;<strong>Diffuse enhancement:</strong> diffuse enhancement will encompass lesions with any of the following characteristics: </p><ul><li class=\"ql-align-justify\">A lesion without well-defined boundaries</li><li>A lesion is spatially spread out such that it cannot be measured in two dimensions (one plane) without crossing normal brain parenchyma.&nbsp;</li></ul>",
+        "tools": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1pd4vioZcOgcCkZJNxMiSrYSRtjIvIg27\"> = Triangulate a focal area in all three projections</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=11bfY3nu1E2iro8B-zac92sNI1AxXyUs9\"> = Project annotations to adjacent slices</p><p><span style=\"color: black;\">Neighborhood of projection = Number of adjacent slices onto which the annotations are projected</span></p><p><span style=\"color: black;\"><img src=\"https://drive.google.com/uc?export=download&amp;id=1eHHxrtW3gMhlnT-m0fdyTodRazF3JCxq\">Display a 3D crosshair showing the position of the slices currently shown in all 3 viewer windows</span></p>",
+        "combos": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=1O8SkwIZgVGsD_U8JcdmKbg2tHKXtrj_h\"> = <span style=\"color: black;\">Move between slices</span></p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=19MENfpFJoHZ4qzseaUM9IBSLMvMx_vA2\"> = Move forward between annotatio</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=14LBXTLC1ycm5zIe71BeMU8i11k5wJ4OZ\"> = Move backward between annotations</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1NFjNlFSbIEtXnf17mbq2c76GWyEXAOil\"> = Window image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1dV1dOBSZ8y5p1wnvRtlKK9WBxaO9uXKL\"> = Move image</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1-fD1d4wTU4J4908BBQZ83vdLAFIOw2Pg\"> = Zoom in/out</p><p><img src=\"https://drive.google.com/uc?export=download&amp;id=1ixDZqFAniMhJnDWc6oxuUQjPP4Qbf0XA\"> = Delete annotation</p>",
+        "annotations": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Edit a cell</p>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=Nta2Xg-KT_k&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=LcZ31mRQ7bg&feature=youtu.be"
+        },
+        "images": [
+          {
+            "name": "Cerebellar focal enhancement",
+            "link": "",
+            "src": " https://drive.google.com/uc?export=download&id=1SWzP5BbkuydkTCqRhnsvDhXe31OVt0tc",
+            "_$visited": true
+          },
+          {
+            "name": "Cerebellar focal enhancement ",
+            "link": "",
+            "src": " https://drive.google.com/uc?export=download&id=1Hsfi0zwxmC02FYImylWTpqjogxI6Bicv",
+            "_$visited": true
+          },
+          {
+            "name": "Cerebellar diffuse enhancement",
+            "link": "",
+            "src": " https://drive.google.com/uc?export=download&id=1b2iA6sK__mD9BZ2XlNL3Es7swWqOY379",
+            "_$visited": true
+          },
+          {
+            "name": "Focal",
+            "link": "",
+            "src": " https://drive.google.com/uc?export=download&id=1Sw15RAeSdoemxpBPN8q1XeXsJk_YSpWZ",
+            "_$visited": true
+          },
+          {
+            "name": "Focal",
+            "link": "",
+            "src": " https://drive.google.com/uc?export=download&id=1g6GPjslmnc345WfjG0rCaOdxW1BgiODp",
+            "_$visited": true
+          },
+          {
+            "name": "Diffuse",
+            "link": "",
+            "src": " https://drive.google.com/uc?export=download&id=1doy-Bh7V_N_9B4a9tvD8VVxRjXiOsCBS",
+            "_$visited": true
+          },
+          {
+            "name": "Diffuse",
+            "link": "",
+            "src": " https://drive.google.com/uc?export=download&id=1JZMUW7C5uzaS8Wjp11zgrx4zZNBvL02A"
+          }
+        ]
+      },
+      "Uncertainties": {
+        "goalAndDefinition": "<p><strong>Instructions:</strong></p><p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"color: black;\">please indicate if you are not certain regarding the location, size, shape, and/or spatial extension of a leptomeningeal enhancement</span></p>",
+        "tools": "",
+        "combos": "",
+        "annotations": "<p><img src=\"https://drive.google.com/uc?export=download&amp;id=115RChWVB5vzscoAC05B1QR2SMH5_nVI8\"> = Edit a cell</p>",
+        "videos": {
+          "goalAndDefinition": "https://www.youtube.com/watch?v=rOJdY34UFUs&feature=youtu.be",
+          "tools": "https://www.youtube.com/watch?v=LcZ31mRQ7bg&feature=youtu.be"
+        },
+        "images": []
+      }
+    },
+    "status": "notstarted"
+  },
+  "listOfCases": [
+    {
+      "caseNumber": "NMO1",
+      "caseStatus": "notstarted"
+    },
+    {
+      "caseNumber": "NMO2",
+      "caseStatus": "notstarted"
+    }
+  ],
+  "currentCase": "NMO1"
+}
