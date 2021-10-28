@@ -45,7 +45,7 @@
       "$id": "#dynamicValueInitialSlice",
       "description": "Value for initial slices calculated dynamically for a given image",
       "type": "string",
-      "enum": ["INFERIORMOST", "SUPERIORMOST", "LEFTMOST", "RIGHTMOST", "POSTERIORMOST", "ANTERIORMOST", "MIDDLE"]
+      "enum": ["INFERIORMOST", "SUPERIORMOST", "LEFTMOST", "RIGHTMOST", "POSTERIORMOST", "ANTERIORMOST", "MIDDLE","LABELMAP_COG"]
     },
 
     "strategyInitialWindowLevel":{
@@ -112,6 +112,7 @@
           "properties":{
             "orientationAndSliceNumber": {
               "description": "Initial orientation and slice number",
+              "$comment": "TODO: make patterns for property values, i.e.  strategy=number,  required sliceNumber",
               "type": "object",
               "properties":{
                 "orientation": {
@@ -128,6 +129,10 @@
                 "predefinedSliceNumber":{
                   "description": "Predefined slice number",
                   "type": "number"
+                },
+                "sliceNumber":{
+                  "description": "The reference key to input containing slice number value",
+                  "type": "string"
                 }
               },
               "oneOf":[
@@ -136,6 +141,9 @@
                 },
                 {
                   "required": ["orientation", "strategy", "predefinedSliceNumber"]
+                },
+                {
+                  "required": ["orientation", "strategy", "sliceValue"]
                 }
               ]
             },
@@ -264,12 +272,12 @@
                   }
                 },
                 "defaultValue": {
-                  "description": "Default orientation of the viewer",
+                  "description": "Default orientation of the viewer. It is not required since initial setting should be inherited from initial state of orientation. ",
                   "type": "string",
                   "enum":["SAGITTAL","CORONAL","AXIAL"]
                 }
               },
-              "required": ["defaultValue", "controlVisible","controlEnabled"]
+              "required": ["controlVisible","controlEnabled"]
             },
             "smoothing":{
               "description": "Smoothing control for the images",
