@@ -45,7 +45,7 @@
       "enum": ["String","Number","imageFileInOut","imageEntityInOut",
         "auxiliaryImageFile","lookUpTable","lookUpTableDescription","roiInOut","annotationInOut",
         "roiWithAnnotationsInOut","annotationTableDefinitionInputOutput", "annotationFormDefinitionInputOutput",
-        "annotationTableDataInOut", "annotationFormDataInOut"]
+        "annotationTableDataInOut", "annotationFormDataInOut","polyRoiInOut"]
     },
 
     "inputOutput": {
@@ -233,6 +233,25 @@
               "type": "string"
             },
             "referenceAnnotationTableInputKey":{
+              "type": "string"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "polyRoiInOut": {
+      "$id": "#polyRoiInOut",
+      "description": "Schema defining a polydata as input output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["polyRoiInOut"]
+            },
+            "dataEntityInOut_FileFormat":{
               "type": "string"
             }
           },
@@ -467,7 +486,8 @@
         {"$ref": "#/definitions/annotationTableDefinitionInOut"},
         {"$ref": "#/definitions/annotationTableDataInOut"},
         {"$ref": "#/definitions/annotationFormDefinitionInOut"},
-        {"$ref": "#/definitions/annotationFormDataInOut"}
+        {"$ref": "#/definitions/annotationFormDataInOut"},
+        {"$ref": "#/definitions/polyRoiInOut"}
       ]
     }
 

@@ -207,6 +207,170 @@
       "required": ["layout", "renderWindows"]
     },
 
+    "scenesConfiguration": {
+      "$id": "#scenesConfiguration",
+      "description": "Configuration of scene elements like original image, overlays (rois).",
+      "type": "object",
+      "properties": {
+        "primaryImageInputKey": {
+          "description": "The reference key to input image being used as reference image. All other images (eg. MRI, segmentations, attention maps) will use the space of original image. If overlays are of different size, they will be resampled and cut according to primary Image space (bounding box and origin).",
+          "type": "string"
+        },
+        "rois": {
+          "description": "The object defining all scene elements (rois) to be visualized.",
+          "type": "object",
+          "properties": {
+            "overlays": {
+              "description": "The array of reference keys that needs to be visualized in scene. The order is important - following layers can cover predecessors",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "masks": {
+              "description": "The array of reference keys that needs to be visualized in scene. The order is important - following layers can cover predecessors",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "geometricalROIs": {
+              "description": "The array of reference keys that needs to be visualized in scene. The order is important - following layers can cover predecessors",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "polydatas": {
+              "description": "The array of reference keys that needs to be visualized in scene. The order is important - following layers can cover predecessors",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": ["primaryImageInputKey"]
+    },
+
+    "lookupTableConfiguration": {
+      "$id": "#lookupTableConfiguration",
+      "description": "Configuration of lookup table",
+      "type": "object",
+      "properties": {
+        "fromInputs": {
+          "description": "Shall lookup table configuration be taken from file. If so, proper input should be created.",
+          "type": "boolean"
+        },
+        "lutInputKey": {
+          "description": "The key of input providing lookup table configuration (value).",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of LUT when not provided by input.",
+          "$comment": "TODO: Establish whether still in use",
+          "type": "string",
+          "enum": ["none"]
+        }
+      },
+      "additionalProperties": false,
+      "required": ["fromInputs"]
+    },
+    "lookupTableDescriptionConfiguration": {
+      "$id": "#lookupTableDescriptionConfiguration",
+      "description": "Configuration of lookup table description",
+      "type": "object",
+      "properties": {
+        "fromInputs": {
+          "description": "Shall lookup table description configuration be taken from file. If so, proper input should be created.",
+          "type": "boolean"
+        },
+        "lutDescriptionInputKey": {
+          "description": "The key of input providing lookup table configuration (value)."
+        },
+        "type": {
+          "description": "The type of LUT description when not provided by input.",
+          "$comment": "TODO: Establish whether still in use",
+          "type": "string",
+          "enum": ["none"]
+        }
+      },
+      "additionalProperties": false,
+      "required": ["fromInputs"]
+    },
+    "overlayConfiguration": {
+      "$id": "#overlayConfiguration",
+      "description": "Configuration of overlay (labelmap, segmentation) to be visualized in the tool.",
+      "type": "object",
+      "properties": {
+        "fromInputs": {
+          "description": "Shall overlay configuration be taken from file. If so, proper input should be created.",
+          "type": "boolean"
+        },
+        "lutKey": {
+          "description": "The reference key of lookup table that needs to be used to visualize label values with proper colors. Refers to lookup table configuration section.",
+          "type": "string"
+        },
+        "lutDescriptionKey": {
+          "description": "The reference key of lookup table description that needs to be used to provide legend for overlay. Refers to lookup table descriptions configuration section. ",
+          "type": "string"
+        },
+        "label": {
+          "description": "The label for an overlay to be displayed in legend (eg. 'Contribution of John Doe', 'Segmentation of Medulla Oblongata', etc.).",
+          "type": "string"
+        },
+        "imageInputKey": {
+          "description": "The optional reference key to the input providing overlay data (if 'fromInputs' is set to be true)",
+          "type": "string"
+        },
+        "onInit": {
+          "description": "The set of predefined conditions determining initial state of overlay",
+          "type": "object",
+          "properties": {
+            "visible": {
+              "description": "Shall overlay be visible when tool is initialized",
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["fromInputs","lutDescriptionKey","lutKey"]
+    },
+
+    "scalarTypeValueConfiguration": {
+      "$id": "#scalarTypeValueConfiguration",
+      "description": "Configuration of type and value properties for scalar",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Defines type of value ",
+          "type": "string",
+          "enum": ["scalar"]
+        },
+        "value": {
+          "description": "Defines value ",
+          "type": "number"
+        }
+      }
+    },
+    "vectorTypeValueConfiguration": {
+      "$id": "#vectorTypeValueConfiguration",
+      "description": "Configuration of type and value properties for vector",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Defines type of value ",
+          "type": "string",
+          "enum": ["vector"]
+        },
+        "value": {
+          "description": "Defines value ",
+          "type": "array"
+        }
+      }
+    },
     "widgetsTool": {
       "$id": "#widgetsTool",
       "description": "Widget for the annotation tool.",
@@ -410,6 +574,135 @@
             "description": "Configuration of the particular tool. For instance the particular configuration of an anotation tool.",
             "type": "object",
             "properties": {
+              "luts": {
+                "description": "Map of lookup table configurations",
+                "patternProperties" : {
+                  ".*" : {
+                    "allOf":[
+                      {"$ref": "#lookupTableConfiguration"}
+                    ]
+                  }
+                }
+              },
+              "lutDescriptions": {
+                "description": "Map of lookup table descriptions configurations",
+                "patternProperties" : {
+                  ".*" : {
+                    "allOf":[
+                      {"$ref": "#lookupTableDescriptionConfiguration"}
+                    ]
+                  }
+                }
+              },
+              "rois": {
+                "description": "Configuration of the regions of interests. Contains maps of different scene objects, like overlays, masks and geometrical ROIs",
+                "properties": {
+                  "overlays": {
+                    "description": "Map of overlays (labelmaps, segmentations) used in a tool.",
+                    "patternProperties" : {
+                      ".*" : {
+                        "allOf":[
+                          {"$ref": "#overlayConfiguration"}
+                        ],
+                        "properties": {
+                          "fromInputs": {},
+                          "lutKey": {},
+                          "lutDescriptionKey": {},
+                          "label": {},
+                          "imageInputKey": {},
+                          "onInit": {}
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "masks": {
+                    "description": "Map of overlays (labelmaps, segmentations) being used as masks in a tool.",
+                    "patternProperties" : {
+                      ".*" : {
+                        "allOf":[
+                          {"$ref": "#overlayConfiguration"}
+                        ],
+                        "properties": {
+                          "fromInputs": {},
+                          "lutKey": {},
+                          "lutDescriptionKey": {},
+                          "label": {},
+                          "imageInputKey": {},
+                          "onInit": {},
+                          "interactions": {
+                            "description": "The definition of interactions between mask and other elements of tool. This is property that really distinguishes mask from overlay",
+                            "type": "object",
+                            "properties": {
+                              "PREVENT_FROM_ADDING_PIN": {
+                                "description": "The interaction between mask and anotation tool preventing from adding pin in a voxel belonging to mask",
+                                "type": "object",
+                                "properties": {
+                                  "type": {},
+                                  "value": {}
+                                },
+                                "oneOf": [
+                                  {"$ref": "#scalarTypeValueConfiguration"},
+                                  {"$ref": "#vectorTypeValueConfiguration"}
+                                ],
+                                "additionalProperties": false
+                              },
+                              "PREVENT_FROM_CHANGING_VOXEL_VALUE": {
+                                "description": "The interaction between mask and painting tools preventing from changing a value of voxel being at the same location as voxel belonging to mask",
+                                "type": "object",
+                                "properties": {
+                                  "type": {},
+                                  "value": {}
+                                },
+                                "oneOf": [
+                                  {"$ref": "#scalarTypeValueConfiguration"},
+                                  {"$ref": "#vectorTypeValueConfiguration"}
+                                ],
+                                "additionalProperties": false
+                              }
+                            }
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "geometricalROIs": {
+                    "description": "Map of geometrical (implicit) ROIs to be used in tool. TODO: To be finished -  it is only a placeholder."
+                  },
+                  "polydatas": {
+                    "description": "Map of polydata ROIs to be used in a tool.",
+                    "$comment": "This needs to be extended",
+                    "patternProperties" : {
+                      ".*" : {
+                        "properties": {
+                          "fromInputs": {
+                            "description": "Shall polydata be taken from file. If so, proper input should be created.",
+                            "type": "boolean"
+                          },
+                          "dataInputKey": {
+                            "description": "The reference key to input providing polydata.",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "scenes": {
+                "description": "Configuration of the scenes to be displayed in viewers.",
+                "type": "object",
+                "patternProperties" : {
+                  ".*" : {
+                    "allOf":[
+                      {"$ref": "#/definitions/scenesConfiguration"}
+                    ]}
+                }
+              },
+              "annotationScenes": {
+                "description":  "Map of data bindings between ROIs and annotations with respect to scenes. TODO: To be finished -  it is only a placeholder."
+              },
               "viewers": {
                 "description": "Configuration of the viewers for the tool.",
                 "$ref": "#/definitions/viewersTool"
@@ -418,7 +711,9 @@
                 "description": "Configuration of the widgets for the tool.",
                 "$ref": "#/definitions/widgetsTool"
               }
-            }
+            },
+            "required": ["scenes", "viewers"],
+            "additionalProperties": false
           }
         },
         "required": ["name", "description", "version", "privacy", "type", "inputs", "outputs", "configuration"]
