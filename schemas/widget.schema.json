@@ -1001,6 +1001,21 @@
           "type": "boolean"
         }
       }
+    },
+    "roiTableTool": {
+      "$id": "#roiTableTool",
+      "description": "Widget displaying table of ROIs. To be used in visualization tool. Designed for input from experimental dataset only.",
+      "type": "object",
+      "allOf": [{ "$ref": "#toolbarControls" }],
+      "additionalProperties": false,
+      "properties": {
+        "controlVisible": {},
+        "controlEnabled": {},
+        "defaultValue": {
+          "description": "Flag indicating whether table should be visible on init",
+          "type": "boolean"
+        }
+      }
     }
   },
   "properties": {
@@ -1032,6 +1047,7 @@
     "spawnViewersWindowTool": {"$ref": "#/definitions/spawnViewersWindowTool"},
     "exportAnnotationsToServerTool": {"$ref": "#/definitions/exportAnnotationsToServerTool"},
     "exportAnnotationsToDiskTool": {"$ref": "#/definitions/exportAnnotationsToDiskTool"},
-    "importAnnotationsFromDiskTool": {"$ref": "#/definitions/importAnnotationsFromDiskTool"}
+    "importAnnotationsFromDiskTool": {"$ref": "#/definitions/importAnnotationsFromDiskTool"},
+    "roiTableTool": {"$ref": "#/definitions/roiTableTool"}
   }
 }
