@@ -1,0 +1,19 @@
+{
+  "uuid": "5ec47681-0872-4368-a53f-aaed3f8ac391",
+  "docType": "cohort",
+  "name": "EPVS MICCAI VALDO 2021",
+  "description": "EPVS dataset",
+  "creationDate": "2021-09-07T17:04:06.158040",
+  "privacy": "private",
+  "pi": "a60017ce-6be9-4054-9f84-06722d5166be",
+  "co-investigators": [
+    "0f8fc6f7-1361-4f55-9bfa-b8e70c3a5718"
+  ],
+  "logo": {
+    "type": "url",
+    "value": "https://www.miccai2021.org/files/images/layout/en/miccai2021-logo.png",
+    "url": "https://valdo.grand-challenge.org/Task3"
+  },
+  "relativePath": "EPVS_MICCAI_VALDO_2021",
+  "sourceSystem": "SPINE Insertion script"
+}

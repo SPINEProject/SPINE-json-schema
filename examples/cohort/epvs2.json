@@ -1,0 +1,30 @@
+{
+  "uuid": "8631a9d7-6247-412c-b921-a73769e16647",
+  "docType": "cohort",
+  "name": "EPVS MICCAI VALDO 2021",
+  "description": "EPVS dataset",
+  "creationDate": "2021-09-01T15:38:09.421140",
+  "privacy": "private",
+  "pi": "a60017ce-6be9-4054-9f84-06722d5166be",
+  "co-investigators": [
+    "0f8fc6f7-1361-4f55-9bfa-b8e70c3a5718"
+  ],
+  "diseases": [],
+  "keywords": [
+    {
+      "label": "Brain",
+      "iri": "http://purl.org/sig/ont/fma/fma50801"
+    },
+    {
+      "label": "MRI",
+      "iri": "http://purl.bioontology.org/ontology/SNOMEDCT/113091000"
+    }
+  ],
+  "relativePath": "EPVS_MICCAI_VALDO_2021",
+  "logo": {
+    "type": "url",
+    "value": "https://www.miccai2021.org/files/images/layout/en/miccai2021-logo.png",
+    "url": "https://valdo.grand-challenge.org/Task1"
+  },
+  "sourceSystem": "SPINE Insertion script"
+}

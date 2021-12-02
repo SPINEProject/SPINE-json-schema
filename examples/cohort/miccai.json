@@ -1,0 +1,46 @@
+    {
+      "uuid": "023e3ce2-d2e0-4b73-87c1-c0c166b8c313",
+      "docType": "cohort",
+      "name": "MICROBLEEDS MICCAI VALDO 2021",
+      "description": "MICROBLEEDS dataset. he goal of this task is to develop an automated method to segment cerebral microbleeds in MRI scans. The training set contains segmentations of microbleeds in the full brain for every case.  The submitted automated methods will be applied on the hidden test set and should output microbleed segmentations  for the full brain. The predicted segmentation mask should be continuous and will be thresholded at 0.5 during evaluation to obtain a binary segmentation mask (0: background, 1: microbleed). An interesting public dataset that can be used to have additional training cases, is the microbleeds dataset that was released with the following paper: Q. Dou*, H. Chen*, L. Yu, J. Qin, L. Shi, P. A. Heng, et al. 'Automatic Detection of Cerebral Microbleeds from MR Images via 3D Convolutional Neural Networks'. IEEE Transactions on Medical Imaging (TMI), 2016.This set contains 20 cases with dot annotations of microbleeds.",
+      "creationDate": "2021-09-20T16:51:33.887301",
+      "privacy": "private",
+      "relativePath": "EPVS_MICCAI_VALDO_2021",
+      "pi": "a60017ce-6be9-4054-9f84-06722d5166be",
+      "co-investigators": [
+        "0f8fc6f7-1361-4f55-9bfa-b8e70c3a5718"
+      ],
+      "diseases": [
+        {
+          "label": "Multiple Sclerosis",
+          "icdCode": "G35",
+          "url": "https://www.icd10data.com/search?s=G35"
+        },
+        {
+          "label": "Disseminated demyelination",
+          "icdCode": "G36",
+          "url": "https://www.icd10data.com/search?s=G36"
+        }
+      ],
+      "keywords": [
+        {
+          "label": "Multiple Sclerosis",
+          "iri": "http://purl.bioontology.org/ontology/SNOMEDCT/24700007"
+        },
+        {
+          "label": "Freesurfer",
+          "iri": "http://purl.org/sig/ont/fma/fma271960"
+        },
+        {
+          "label": "White Matter",
+          "iri": "http://purl.org/sig/ont/fma/fma83929"
+        }
+      ],
+      "logo": {
+        "type": "url",
+        "value": "https://www.miccai2021.org/files/images/layout/en/miccai2021-logo.png",
+        "url": "https://valdo.grand-challenge.org/Task2"
+      },
+      "sourceSystem": "SPINE Insertion script"
+    }
+
