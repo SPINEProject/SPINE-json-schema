@@ -1,0 +1,30 @@
+{
+  "uuid": "20c2d549136e928edffcdb64b901f990",
+  "docType": "cohort",
+  "name": "Testing Openneuro. Dataset ds000221.",
+  "description": "Testing database from Openneuro",
+  "creationDate": "2019-08-21T19:32:14.063Z",
+  "privacy": "public",
+  "pi": "a60017ce-6be9-4054-9f84-06722d5166be",
+  "co-investigators": [
+    "0f8fc6f7-1361-4f55-9bfa-b8e70c3a5718"
+  ],
+  "relativePath": "CohortOpenneuro_ds0002221",
+  "sourceSystem": "manualInsertion",
+  "diseases": [],
+  "keywords": [
+    {
+      "label": "Brain",
+      "iri": "http://purl.org/sig/ont/fma/fma50801"
+    },
+    {
+      "label": "MRI",
+      "iri": "http://purl.bioontology.org/ontology/SNOMEDCT/113091000"
+    }
+  ],
+  "logo": {
+    "type": "url",
+    "value": "https://openneuro.org/assets/on-light-horz.23ff22c3.svg",
+    "url": "https://openneuro.org/datasets/ds000221/versions/1.0.0"
+  }
+}
