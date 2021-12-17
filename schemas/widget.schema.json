@@ -1016,6 +1016,50 @@
           "type": "boolean"
         }
       }
+    },
+    "mainTool": {
+      "$id": "#mainTool",
+      "description": "Widget defining properties of the entire manual tool.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "activeViewer ": {
+          "description": "Defines which viewer will be initially the source of events",
+          "type": "string"
+        },
+        "leftButtonMode": {
+          "description": "Defines which widget will be used initially on mouse left-click (important for mutually exclusive brush, fill, pin etc.). Widgets are encoded with numbers",
+          "type": "number",
+          "maximum": 10,
+          "minimum": 0,
+          "$comment": " NONE: 0,PIN: 2,BRUSH: 3,ERASER: 4,FILLING: 5,AZIMUTH: 6, RULER:7,SAMPLER:8,LEVEL:9,DRAW:10"
+        },
+        "annotationsVisible": {
+          "description": "Defines whether annotations shall be visible on init",
+          "type": "boolean"
+        },
+        "projectionsVisible": {
+          "description": "Defines whether annotation projections shall be visible on init",
+          "type": "boolean"
+        },
+        "navigationModeLabel": {
+          "description": "Defines which transition after going to next/previous step should take place: to the next step or to the next case (keeping the same step)",
+          "type": "string",
+          "enum": ["step","case"],
+          "$comment": "By default step is used"
+        },
+        "autosaving": {
+          "description": "Defines whether and how often autosaving for a chosen outputs shall be applied",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "interval": {
+              "description": "if set up, defines how often (in seconds) autosave should be performed",
+              "type": "number"
+            }
+          }
+        }
+      }
     }
   },
   "properties": {
@@ -1048,6 +1092,7 @@
     "exportAnnotationsToServerTool": {"$ref": "#/definitions/exportAnnotationsToServerTool"},
     "exportAnnotationsToDiskTool": {"$ref": "#/definitions/exportAnnotationsToDiskTool"},
     "importAnnotationsFromDiskTool": {"$ref": "#/definitions/importAnnotationsFromDiskTool"},
-    "roiTableTool": {"$ref": "#/definitions/roiTableTool"}
+    "roiTableTool": {"$ref": "#/definitions/roiTableTool"},
+    "mainTool": {"$ref": "#/definitions/mainTool"}
   }
 }

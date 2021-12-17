@@ -138,5 +138,5 @@
     }
   },
   "additionalProperties": false,
-  "required": ["name","privacy","uuid","pi"]
+  "required": ["name","privacy","uuid","pi","docType"]
 }
