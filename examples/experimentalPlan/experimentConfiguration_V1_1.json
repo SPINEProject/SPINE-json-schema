@@ -74,50 +74,12 @@
 					]
 				},
 				"evaluationPeriod": {
-					"cyclic": [
-						{
-							"cycle-period": "daily",
-							"time-windows": [
-								{
-									"questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
-									"name": "VAS Fatigue",
-									"trigger": "system",
-									"timeToComplete": 2,
-									"timeToCompleteUnit": "hours",
-									"tolerance": 1,
-									"toleranceUnit": "minutes",
-									"reminders": [
-										0,
-										50
-									],
-									"remindersUnit": "minutes"
-								}
-							]
-						},
-						{
-							"cycle-period": "custom",
-							"time-windows": [
-								{
-									"questionnaireId": "2910b5f86d3389dbf4fd16dc27000291",
-									"name": "one-time questionnaire (monthly)",
-									"trigger": "system",
-									"repeat": 28,
-									"unitRepeat": "days",
-									"timeToComplete": 3,
-									"timeToCompleteUnit": "days",
-									"tolerance": 0,
-									"toleranceUnit": "minutes",
-									"reminders": [6, 12, 24, 30, 36, 48, 54, 60],
-									"remindersUnit": "hours"
-								}
-							]
-						}
-					],
+					"cyclic": [ ],
 					"specialEvent": {
 						"time-windows": [
 							{
 								"questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
-								"isVAS": false,
+								"isVAS": true,
 								"trigger": "sleep",
 								"timeToComplete": 2,
 								"timeToCompleteUnit": "hours",
@@ -128,7 +90,7 @@
 							},
 							{
 								"questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
-								"isVAS": false,
+								"isVAS": true,
 								"trigger": "nap",
 								"timeToComplete": 2,
 								"timeToCompleteUnit": "hours",
