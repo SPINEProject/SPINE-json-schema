@@ -1,161 +1,176 @@
 {
-	"_id": "fc6092c28f33a27d686da9e16c000646",
-	"docType": "experimentConfiguration",
-	"creationDate": "2022-03-06T16:11:21.798Z",
-	"reference": {
-		"experimentId": "4c7fce096dcd7b8da5a2740fda000b96",
-		"projectId": "25b2a82a03fc48d45377c1703c4ba42e"
-	},
-	"config": {
-		"experimentalPlan": {
-			"experimentId": "4c7fce096dcd7b8da5a2740fda000b96",
-			"docType": "experimentalPlan",
-			"questionnaires": [
-				"5b66d65a-cd61-4358-9248-5ae53d173e62",
-				"5a8460d1-d731-4b78-9193-182d6873846f",
-				"2910b5f86d3389dbf4fd16dc27000291"
-			],
-			"planning": {
-				"startExperiment": {
-					"time-windows": [
-						{
-							"questionnaireId": "2910b5f86d3389dbf4fd16dc27000291",
-							"name": "one-time questionnaire starting day",
-							"trigger": "system",
-							"timeToComplete": 3,
-							"timeToCompleteUnit": "days",
-							"tolerance": 0,
-							"toleranceUnit": "hours",
-							"reminders": [6, 12, 24, 30, 36, 48, 54, 60],
-							"remindersUnit": "hours"
-						},
-						{
-							"questionnaireId": "2910b5f86d3389dbf4fd16dc27000291",
-							"name": "one-time questionnaire 25 days after the previous",
-							"trigger": "timeAfterPreviousEvent",
-							"timeAfterPreviousEvent": 25,
-							"timeAfterPreviousEventUnit": "days",
-							"timeAfterPreviousEventUnit": "eventEnds",
-							"timeToComplete": 3,
-							"timeToCompleteUnit": "days",
-							"tolerance": 0,
-							"toleranceUnit": "hours",
-							"reminders": [6, 12, 24, 30, 36, 48, 54, 60],
-							"remindersUnit": "hours"
-						},
-						{
-							"questionnaireId": "2910b5f86d3389dbf4fd16dc27000291",
-							"name": "one-time questionnaire 25 days after the previous",
-							"trigger": "timeAfterPreviousEvent",
-							"timeAfterPreviousEvent": 25,
-							"timeAfterPreviousEventUnit": "days",
-							"timeAfterPreviousEventUnit": "eventEnds",
-							"timeToComplete": 3,
-							"timeToCompleteUnit": "days",
-							"tolerance": 0,
-							"toleranceUnit": "hours",
-							"reminders": [6, 12, 24, 30, 36, 48, 54, 60],
-							"remindersUnit": "hours"
-						},
-						{
-							"questionnaireId": "2910b5f86d3389dbf4fd16dc27000291",
-							"name": "one-time questionnaire 25 days after the previous",
-							"trigger": "timeAfterPreviousEvent",
-							"timeAfterPreviousEvent": 25,
-							"timeAfterPreviousEventUnit": "days",
-							"timeAfterPreviousEventUnit": "eventEnds",
-							"timeToComplete": 3,
-							"timeToCompleteUnit": "days",
-							"tolerance": 0,
-							"toleranceUnit": "hours",
-							"reminders": [6, 12, 24, 30, 36, 48, 54, 60],
-							"remindersUnit": "hours"
-						}
-					]
-				},
-				"evaluationPeriod": {
-					"cyclic": [ ],
-					"specialEvent": {
-						"time-windows": [
-							{
-								"questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
-								"isVAS": true,
-								"trigger": "sleep",
-								"timeToComplete": 2,
-								"timeToCompleteUnit": "hours",
-								"tolerance": 0,
-								"toleranceUnit": "minutes",
-								"reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
-								"remindersUnit": "minutes"
-							},
-							{
-								"questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
-								"isVAS": true,
-								"trigger": "nap",
-								"timeToComplete": 2,
-								"timeToCompleteUnit": "hours",
-								"tolerance": 0,
-								"toleranceUnit": "minutes",
-								"reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
-								"remindersUnit": "minutes"
-							},
-							{
-								"questionnaireId": "5a8460d1-d731-4b78-9193-182d6873846f",
-								"trigger": "wakeUpSleep",
-								"isVAS": false,
-								"timeToComplete": 2,
-								"timeToCompleteUnit": "hours",
-								"tolerance": 0,
-								"toleranceUnit": "minutes",
-								"reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
-								"remindersUnit": "minutes"
-							},
-							{
-								"questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
-								"isVAS": true,
-								"trigger": "wakeUpSleep",
-								"repeat": 4,
-								"unitRepeat": "hours",
-								"timeToComplete": 2,
-								"timeToCompleteUnit": "hours",
-								"tolerance": 0,
-								"toleranceUnit": "minutes",
-								"reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
-								"remindersUnit": "minutes"
-							},
-							{
-								"questionnaireId": "5a8460d1-d731-4b78-9193-182d6873846f",
-								"trigger": "wakeUpNap",
-								"isVAS": false,
-								"timeToComplete": 2,
-								"timeToCompleteUnit": "hours",
-								"tolerance": 0,
-								"toleranceUnit": "minutes",
-								"reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
-								"remindersUnit": "minutes"
-							},
-							{
-								"questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
-								"isVAS": true,
-								"trigger": "wakeUpNap",
-								"repeat": 4,
-								"unitRepeat": "hours",
-								"timeToComplete": 2,
-								"timeToCompleteUnit": "hours",
-								"tolerance": 0,
-								"toleranceUnit": "minutes",
-								"reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
-								"remindersUnit": "minutes"
-							}
-						]
+    "_id": "fc6092c28f33a27d686da9e16c000646",
+    "docType": "experimentConfiguration",
+    "creationDate": "2022-03-06T16:11:21.798Z",
+    "reference": {
+        "experimentId": "4c7fce096dcd7b8da5a2740fda000b96",
+        "projectId": "25b2a82a03fc48d45377c1703c4ba42e"
+    },
+    "config": {
+        "experimentalPlan": {
+            "experimentId": "4c7fce096dcd7b8da5a2740fda000b96",
+            "docType": "experimentalPlan",
+            "questionnaires": [
+                "5b66d65a-cd61-4358-9248-5ae53d173e62",
+                "5a8460d1-d731-4b78-9193-182d6873846f",
+                "2910b5f86d3389dbf4fd16dc27000291"
+            ],
+			"eventParameters": {
+				"tolerances": [
+					{
+						"event": "wakeUpSleep",
+						"tolerance": 2,
+						"toleranceUnit": "hours"
+					},
+					{
+						"event": "wakeUpNap",
+						"tolerance": 2,
+						"toleranceUnit": "hours"
 					}
-				},
-				"endingExperiment": {
-					"ending-criteria": "timeAfterExperimentStart",
-					"timeAfterExperimentStart":88,
-					"timeAfterExperimentStartUnit":"days"
-				}
-			}
-		}
-	}
+				],
+				"maxAwakeTime": "15:10:00"
+			},
+            "planning": {
+                "startExperiment": {
+                    "time-windows": [
+                        {
+                            "questionnaireId": "2910b5f86d3389dbf4fd16dc27000291",
+                            "name": "one-time questionnaire starting day",
+                            "trigger": "system",
+                            "timeToComplete": 3,
+                            "timeToCompleteUnit": "days",
+                            "tolerance": 0,
+                            "toleranceUnit": "hours",
+                            "reminders": [6, 12, 24, 30, 36, 48, 54, 60],
+                            "remindersUnit": "hours"
+                        },
+                        {
+                            "questionnaireId": "2910b5f86d3389dbf4fd16dc27000291",
+                            "name": "one-time questionnaire 25 days after the previous",
+                            "trigger": "timeAfterPreviousEvent",
+                            "timeAfterPreviousEvent": 25,
+                            "timeAfterPreviousEventUnit": "days",
+                            "timeAfterPreviousEventRelative": "eventEnds",
+                            "timeToComplete": 3,
+                            "timeToCompleteUnit": "days",
+                            "tolerance": 0,
+                            "toleranceUnit": "hours",
+                            "reminders": [6, 12, 24, 30, 36, 48, 54, 60],
+                            "remindersUnit": "hours"
+                        },
+                        {
+                            "questionnaireId": "2910b5f86d3389dbf4fd16dc27000291",
+                            "name": "one-time questionnaire 25 days after the previous",
+                            "trigger": "timeAfterPreviousEvent",
+                            "timeAfterPreviousEvent": 25,
+                            "timeAfterPreviousEventUnit": "days",
+                            "timeAfterPreviousEventRelative": "eventEnds",
+                            "timeToComplete": 3,
+                            "timeToCompleteUnit": "days",
+                            "tolerance": 0,
+                            "toleranceUnit": "hours",
+                            "reminders": [6, 12, 24, 30, 36, 48, 54, 60],
+                            "remindersUnit": "hours"
+                        },
+                        {
+                            "questionnaireId": "2910b5f86d3389dbf4fd16dc27000291",
+                            "name": "one-time questionnaire 25 days after the previous",
+                            "trigger": "timeAfterPreviousEvent",
+                            "timeAfterPreviousEvent": 25,
+                            "timeAfterPreviousEventUnit": "days",
+                            "timeAfterPreviousEventRelative": "eventEnds",
+                            "timeToComplete": 3,
+                            "timeToCompleteUnit": "days",
+                            "tolerance": 0,
+                            "toleranceUnit": "hours",
+                            "reminders": [6, 12, 24, 30, 36, 48, 54, 60],
+                            "remindersUnit": "hours"
+                        }
+                    ]
+                },
+                "evaluationPeriod": {
+                    "cyclic": [ ],
+                    "specialEvent": {
+                        "time-windows": [
+                            {
+                                "questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
+                                "isVAS": true,
+                                "trigger": "sleep",
+                                "timeToComplete": 2,
+                                "timeToCompleteUnit": "hours",
+                                "tolerance": 0,
+                                "toleranceUnit": "minutes",
+                                "reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
+                                "remindersUnit": "minutes"
+                            },
+                            {
+                                "questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
+                                "isVAS": true,
+                                "trigger": "nap",
+                                "timeToComplete": 2,
+                                "timeToCompleteUnit": "hours",
+                                "tolerance": 0,
+                                "toleranceUnit": "minutes",
+                                "reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
+                                "remindersUnit": "minutes"
+                            },
+                            {
+                                "questionnaireId": "5a8460d1-d731-4b78-9193-182d6873846f",
+                                "trigger": "wakeUpSleep",
+                                "isVAS": false,
+                                "timeToComplete": 2,
+                                "timeToCompleteUnit": "hours",
+                                "tolerance": 0,
+                                "toleranceUnit": "minutes",
+                                "reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
+                                "remindersUnit": "minutes"
+                            },
+                            {
+                                "questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
+                                "isVAS": true,
+                                "trigger": "wakeUpSleep",
+                                "repeat": 4,
+                                "unitRepeat": "hours",
+                                "timeToComplete": 2,
+                                "timeToCompleteUnit": "hours",
+                                "tolerance": 0,
+                                "toleranceUnit": "minutes",
+                                "reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
+                                "remindersUnit": "minutes"
+                            },
+                            {
+                                "questionnaireId": "5a8460d1-d731-4b78-9193-182d6873846f",
+                                "trigger": "wakeUpNap",
+                                "isVAS": false,
+                                "timeToComplete": 2,
+                                "timeToCompleteUnit": "hours",
+                                "tolerance": 0,
+                                "toleranceUnit": "minutes",
+                                "reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
+                                "remindersUnit": "minutes"
+                            },
+                            {
+                                "questionnaireId": "5b66d65a-cd61-4358-9248-5ae53d173e62",
+                                "isVAS": true,
+                                "trigger": "wakeUpNap",
+                                "repeat": 4,
+                                "unitRepeat": "hours",
+                                "timeToComplete": 2,
+                                "timeToCompleteUnit": "hours",
+                                "tolerance": 0,
+                                "toleranceUnit": "minutes",
+                                "reminders": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
+                                "remindersUnit": "minutes"
+                            }
+                        ]
+                    }
+                },
+                "endingExperiment": {
+                    "ending-criteria": "timeAfterExperimentStart",
+                    "timeAfterExperimentStart":88,
+                    "timeAfterExperimentStartUnit":"days"
+                }
+            }
+        }
+    }
 }
