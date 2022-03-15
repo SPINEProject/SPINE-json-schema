@@ -41,7 +41,7 @@
               "timeToCompleteUnit": "days",
               "tolerance": 0,
               "toleranceUnit": "hours",
-              "reminders": [6, 12, 24, 30, 36, 48, 54, 60],
+              "reminders": [6, 12],
               "remindersUnit": "hours"
             },
             {
@@ -55,7 +55,7 @@
               "timeToCompleteUnit": "days",
               "tolerance": 0,
               "toleranceUnit": "hours",
-              "reminders": [6, 12, 24, 30, 36, 48, 54, 60],
+              "reminders": [6, 12],
               "remindersUnit": "hours"
             },
             {
@@ -69,7 +69,7 @@
               "timeToCompleteUnit": "days",
               "tolerance": 0,
               "toleranceUnit": "hours",
-              "reminders": [6, 12, 24, 30, 36, 48, 54, 60],
+              "reminders": [6, 12],
               "remindersUnit": "hours"
             }
           ]
