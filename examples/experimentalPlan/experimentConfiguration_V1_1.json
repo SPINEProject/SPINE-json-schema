@@ -3,12 +3,12 @@
     "docType": "experimentConfiguration",
     "creationDate": "2022-03-06T16:11:21.798Z",
     "reference": {
-        "experimentId": "4c7fce096dcd7b8da5a2740fda000b96",
+        "experimentId": "ef2173835dfc5b25509f0fa87e006929",
         "projectId": "25b2a82a03fc48d45377c1703c4ba42e"
     },
     "config": {
         "experimentalPlan": {
-            "experimentId": "4c7fce096dcd7b8da5a2740fda000b96",
+            "experimentId": "ef2173835dfc5b25509f0fa87e006929",
             "docType": "experimentalPlan",
             "questionnaires": [
                 "5b66d65a-cd61-4358-9248-5ae53d173e62",
