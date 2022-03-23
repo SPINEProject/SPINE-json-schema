@@ -1,0 +1,667 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/vbaExperiment.schema.json",
+	"type": "object",
+	"title": "VBA experiment schema",
+	"description": "The schema for VBA experiment",
+	"default": {},
+  "examples":[{
+    "uuid": "a9bdb617-5c4b-46d3-b0dc-e99c791956a2",
+    "name": "experiment A",
+    "path": "/path/to/exp",
+    "design": {
+        "type": "MULTIPLE_REGRESSION",
+        "images":[
+          {
+            "uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+            "pathInExperiment": "path/to/file"
+          },
+          {
+            "uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+            "pathInExperiment": "path/to/file"
+          }
+      ],
+        "covariates": [
+          {
+            "name": "age",
+            "value":[{
+                "uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+                "value": 4
+              },{
+                "uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+                "value": 4
+              }],
+            "interactions": "NONE",
+            "centering": "NO_CENTERING"
+          }
+        ],
+        "mask": {
+          "explicit": {
+            "uuid": "142cc84446a4b2ac90b658114c002db7",
+            "pathInExperiment": "path/to/file"
+          },
+          "implicit": true,
+          "threshold": {
+            "type": "ABSOLUTE",
+            "value": 0.3
+          }
+        },
+        "globalCalculation": {
+          "type": "OMIT",
+          "value": [
+            5,
+            6
+          ]
+        },
+        "globalNormalisation": {
+          "normalisation": {
+            "type": "PROPORTIONAL"
+          },
+          "overallGrandMeanScaling": {
+            "type": "NO",
+            "value": 50
+          }
+        }
+      }
+}],
+	"definitions": {
+		"vbaExperimentBasic": {
+			"$id": "#/definitions/vbaExperimentBasic",
+			"description": "Basic description of an vba experiment",
+			"properties": {
+				"uuid": {
+					"type": "string",
+					"title": "UUID",
+					"description": "The uuid of the vba experiment."
+				},
+				"path": {
+					"type": "string",
+					"title": "Path",
+					"description": "Path to the vba experiment.",
+					"default": "",
+					"examples": [
+						"/path/to/experiment"
+					]
+				},
+				"name": {
+					"type": "string",
+					"title": "Experiment name",
+					"description": "The name of the experiment.",
+					"default": "",
+					"examples": [
+						"experiment A"
+					]
+				},
+				"design": {
+					"type": "object",
+					"title": "Design",
+					"description": "The design of the experiment.",
+					"default": {},
+					"required": [
+						"type",
+						"images",
+						"covariates",
+						"mask",
+						"globalCalculation",
+						"globalNormalisation"
+					],
+					"properties": {
+						"type": {
+							"type": "string",
+							"title": "Experiment type",
+							"description": "The type of VBA experiment",
+							"enum": [
+								"MULTIPLE_REGRESSION",
+								"ONE_SAMPLE_T_TEST",
+								"TWO_SAMPLE_T_TEST",
+								"PAIRED_T_TEST",
+								"ONE_WAY_ANOVA"
+							]
+						},
+						"images": {
+							"type": "array",
+							"title": "Images",
+							"description": "The ID of the images",
+							"default": [],
+							"examples": [
+								[{
+										"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+										"pathInExperiment": "path/to/file"
+									},
+									{
+										"uuid": "142cc84446a4b2ac90b658114c002db7",
+										"pathInExperiment": "path/to/file"
+									}
+								]
+							],
+							"additionalItems": false,
+							"items": {
+								"anyOf": [{
+									"type": "object",
+									"title": "Image item",
+									"description": "Object  describing the image",
+									"default": {},
+									"examples": [{
+										"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+										"pathInExperiment": "path/to/file"
+									}],
+									"required": [
+										"uuid",
+										"pathInExperiment"
+									],
+									"properties": {
+										"uuid": {
+											"type": "string",
+											"title": "Image UUID",
+											"description": "The UUID of the image"
+										},
+										"pathInExperiment": {
+											"type": "string",
+											"title": "Image path",
+											"description": "Path to the file in the vba experiment folder",
+											"examples": [
+												"path/to/file"
+											]
+										}
+									},
+									"additionalProperties": false
+								}]
+							}
+						},
+						"covariates": {
+							"type": "array",
+							"title": "Covariates",
+							"description": "Definition of the covariates.",
+							"examples": [
+								[{
+									"name": "age",
+									"value": [{
+											"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+											"value": 4
+										},
+										{
+											"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+											"value": 5
+										}
+									]
+								}]
+							],
+							"additionalItems": false,
+							"items": {
+								"anyOf": [{
+									"type": "object",
+									"title": "Covariatee item",
+									"description": "Covariate item schema.",
+									"default": {},
+									"examples": [{
+										"name": "age",
+										"value": [{
+												"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+												"value": 4
+											},
+											{
+												"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+												"value": 5
+											}
+										]
+									}],
+									"required": [
+										"name",
+										"value",
+										"interactions",
+										"centering"
+									],
+									"properties": {
+										"name": {
+											"type": "string",
+											"title": "Name",
+											"description": "A name for the covariate",
+											"default": "Covariate name",
+											"examples": [
+												"age"
+											]
+										},
+										"value": {
+											"type": "array",
+											"title": "Value",
+											"description": "The value of the covariate.",
+											"default": [],
+											"examples": [
+												[{
+														"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+														"value": 4
+													},
+													{
+														"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+														"value": 5
+													}
+												]
+											],
+											"additionalItems": false,
+											"items": {
+												"anyOf": [{
+													"type": "object",
+													"title": "Covariate value",
+													"description": "Covariate value schema",
+													"default": {},
+													"examples": [{
+														"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+														"value": 4
+													}],
+													"required": [
+														"uuid",
+														"value"
+													],
+													"properties": {
+														"uuid": {
+															"type": "string",
+															"title": "Covariate value UUID",
+															"description": "UUID of the data in database"
+														},
+														"value": {
+															"type": "integer",
+															"title": "Covariate value",
+															"description": "Covariate value"
+														}
+													},
+													"additionalProperties": false
+												}]
+											}
+										},
+										"interactions": {
+											"type": "string",
+											"title": "Interactions",
+											"description": "Interactions for this covariate.",
+											"enum": [
+												"NONE",
+												"WITH_FACTOR_1",
+												"WITH_FACTOR_2",
+												"WITH_FACTOR_3"
+											]
+										},
+										"centering": {
+											"type": "string",
+											"title": "Centering",
+											"description": "Centering for this covariate.",
+											"enum": [
+												"OVERALL_MEAN",
+												"FACTOR_1_MEAN",
+												"FACTOR_2_MEAN",
+												"FACTOR_3_MEAN",
+												"NO_CENTERING",
+												"USER_SPECIFIED_VALUE",
+												"AS_IMPLIED_BY_ANCOVA",
+												"GM"
+											]
+										}
+									},
+									"additionalProperties": false
+								}]
+							}
+						},
+						"mask": {
+							"type": "object",
+							"title": "Masking",
+							"description": "Schema for masking",
+							"default": {},
+							"examples": [{
+								"explicit": {
+									"uuid": "142cc84446a4b2ac90b658114c002db7",
+									"pathInExperiment": "path/to/file"
+								},
+								"implicit": true,
+								"threshold": {
+									"type": "RELATIVE",
+									"value": 0.3
+								}
+							}],
+							"required": [
+								"explicit",
+								"implicit",
+								"threshold"
+							],
+							"properties": {
+								"explicit": {
+									"type": "object",
+									"title": "Explicit masking",
+									"description": "Explicit masking schema. If the pathInExperiment attribute is not set, no explicit mask will be defined.",
+									"default": {},
+									"examples": [{
+										"uuid": "142cc84446a4b2ac90b658114c002db7",
+										"pathInExperiment": "path/to/file"
+									}],
+									"required": [],
+									"properties": {
+										"uuid": {
+											"type": "string",
+											"title": "UUID of the explicit mask"
+										},
+										"pathInExperiment": {
+											"type": "string",
+											"title": "Explicit mask path",
+											"description": "Path to the explicit mask in the spm experiment folder",
+											"examples": [
+												"path/to/file"
+											]
+										}
+									},
+									"additionalProperties": false
+								},
+								"implicit": {
+									"type": "boolean",
+									"title": "Implicit masking",
+									"default": false,
+									"examples": [
+										true
+									]
+								},
+								"threshold": {
+									"type": "object",
+									"title": "The threshold schema",
+									"description": "An explanation about the purpose of this instance.",
+									"default": {},
+									"examples": [{
+											"type": "RELATIVE",
+											"value": 0.3
+										},
+										{
+											"type": "ASBOLUTE",
+											"value": 4
+										},
+										{
+											"type": "NONE"
+										}
+									],
+									"properties": {
+										"type": {
+											"type": "string",
+											"title": "The type schema",
+											"description": "An explanation about the purpose of this instance.",
+											"default": "",
+											"examples": [
+												"RELATIVE",
+												"ASBOLUTE",
+												"NONE"
+											]
+										},
+										"value": {
+											"type": "number",
+											"title": "The value schema",
+											"description": "An explanation about the purpose of this instance.",
+											"default": 0,
+											"examples": [
+												0.3
+											]
+										}
+									},
+									"additionalProperties": false,
+									"required": [
+										"type"
+									],
+									"oneOf": [{
+											"title": "None",
+											"properties": {
+												"type": {
+													"default": "NONE",
+													"enum": [
+														"NONE"
+													]
+												}
+											}
+										},
+										{
+											"title": "Absolute",
+											"required": [
+												"value"
+											],
+											"properties": {
+												"type": {
+													"default": "ASBOLUTE",
+													"enum": [
+														"ABSOLUTE"
+													]
+												}
+											}
+										},
+										{
+											"title": "Relative",
+											"required": [
+												"value"
+											],
+											"properties": {
+												"type": {
+													"default": "RELATIVE",
+													"enum": [
+														"RELATIVE"
+													]
+												}
+											}
+										}
+									]
+								}
+							},
+							"additionalProperties": false
+						},
+						"globalCalculation": {
+							"type": "object",
+							"title": "The globalCalculation schema",
+							"description": "An explanation about the purpose of this instance.",
+							"examples": [{
+								"type": "USER",
+								"value": [
+									5,
+									6
+								]
+							}],
+							"required": [
+								"type"
+							],
+							"properties": {
+								"type": {
+									"type": "string",
+									"title": "The type schema",
+									"description": "An explanation about the purpose of this instance.",
+									"enum": [
+										"USER",
+										"OMIT",
+										"MEAN"
+									]
+								},
+								"value": {
+									"type": "array",
+									"title": "The value schema",
+									"description": "An explanation about the purpose of this instance.",
+									"default": [],
+									"examples": [
+										[
+											5,
+											6
+										]
+									],
+									"additionalItems": false,
+									"items": {
+										"anyOf": [{
+											"type": "integer",
+											"title": "The first anyOf schema",
+											"description": "An explanation about the purpose of this instance.",
+											"examples": [
+												5,
+												6
+											]
+										}]
+									}
+								}
+							},
+							"additionalProperties": false,
+							"oneOf": [{
+									"title": "Other",
+									"properties": {
+										"type": {
+											"enum": [
+												"MEAN",
+												"OMIT"
+											]
+										}
+									}
+								},
+								{
+									"title": "User",
+									"required": [
+										"value"
+									],
+									"properties": {
+										"type": {
+											"enum": [
+												"USER"
+											]
+										}
+									}
+								}
+							]
+						},
+						"globalNormalisation": {
+							"type": "object",
+							"title": "The globalNormalisation schema",
+							"description": "An explanation about the purpose of this instance.",
+							"examples": [{
+								"normalisation": {
+									"type": "NONE"
+								},
+								"overallGrandMeanScaling": {
+									"type": "YES",
+									"value": 50
+								}
+							}],
+							"required": [
+								"normalisation",
+								"overallGrandMeanScaling"
+							],
+							"properties": {
+								"normalisation": {
+									"type": "object",
+									"title": "The normalisation schema",
+									"description": "An explanation about the purpose of this instance.",
+									"examples": [{
+										"type": "NONE"
+									}],
+									"required": [
+										"type"
+									],
+									"properties": {
+										"type": {
+											"type": "string",
+											"title": "The type schema",
+											"description": "An explanation about the purpose of this instance.",
+											"enum": [
+												"NONE",
+												"PROPORTIONAL",
+												"ANCOVA"
+											]
+										}
+									},
+									"additionalProperties": false
+								},
+								"overallGrandMeanScaling": {
+									"type": "object",
+									"title": "The overallGrandMeanScaling schema",
+									"description": "An explanation about the purpose of this instance.",
+									"default": {},
+									"examples": [{
+											"type": "YES",
+											"value": 50
+										},
+										{
+											"type": "NO"
+										}
+									],
+									"required": [
+										"type"
+									],
+
+									"oneOf": [{
+											"title": "No",
+											"properties": {
+												"type": {
+													"enum": [
+														"NO"
+													]
+												}
+											}
+										},
+										{
+											"title": "Yes",
+											"required": [
+												"value"
+											],
+											"properties": {
+												"type": {
+													"enum": [
+														"YES"
+													]
+												}
+											}
+										}
+									],
+									"properties": {
+										"type": {
+											"type": "string",
+											"title": "The type schema",
+											"description": "An explanation about the purpose of this instance.",
+											"default": "",
+											"ENUM": [
+												"YES",
+												"NO"
+											]
+										},
+										"value": {
+											"type": "integer",
+											"title": "The value schema",
+											"description": "An explanation about the purpose of this instance."
+										}
+									},
+									"additionalProperties": false
+								}
+							},
+							"additionalProperties": false
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"uuid",
+				"path",
+				"name",
+				"design"
+			],
+			"additionalProperties": false
+		},
+		"vbaExperimentMultipleRegression": {
+			"$id": "#/definitions/vbaExperimentMultipleRegression",
+			"allOf": [{
+					"description": "Basic description of an vba experiment",
+					"properties": {
+						"design": {
+							"required": [
+								"type"
+							],
+							"properties": {
+								"type": {
+									"enum": [
+										"MULTIPLE_REGRESSION"
+									]
+								}
+							}
+						}
+					}
+				},
+				{
+					"$ref": "#/definitions/vbaExperimentBasic"
+				}
+			]
+		}
+	},
+	"oneOf": [{
+		"$ref": "#/definitions/vbaExperimentMultipleRegression"
+	}]
+}
