@@ -1,0 +1,83 @@
+{
+  "name": "Sagittal viewer",
+  "type": "2D",
+  "initialState": {
+    "orientationAndSliceNumber": {
+      "orientation": "AXIAL",
+      "strategy": "DYNAMIC",
+      "dynamicSliceValue": "MIDDLE"
+    },
+    "initialWindowLevel": {
+      "strategy": "DYNAMIC",
+      "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+    }
+  },
+  "displayImages": {
+    "possibleImagesToDisplay": [
+      "inputImage_key2"
+    ],
+    "hasDefaultImageToDisplay": true,
+    "defaultImageToDisplay": "inputImage_key2"
+  },
+  "displayLabelMaps": {
+    "possibleImagesToDisplay": [
+      "inputImage_key2"
+    ],
+    "hasDefaultLabelMapToDisplay": true,
+    "defaultImageToDisplay": "inputImage_key2"
+  },
+  "displayControls": {
+    "orientation": {
+      "controlVisible": false,
+      "controlEnabled": false,
+      "options": [
+        {
+          "label": "Axial",
+          "value": "AXIAL"
+        },
+        {
+          "label": "Coronal",
+          "value": "CORONAL"
+        },
+        {
+          "label": "Sagittal",
+          "value": "SAGITTAL"
+        }
+      ]
+    },
+    "smoothing": {
+      "controlVisible": false,
+      "controlEnabled": false,
+      "defaultValue": false
+    },
+    "sequence": {
+      "controlVisible": false,
+      "controlEnabled": false
+    },
+    "linked": {
+      "controlVisible": false,
+      "controlEnabled": false
+    }
+  },
+  "lookAndFeel":{
+    "color":"#90ee90",
+    "hasRim": true,
+    "hasControlPanel":false
+  },
+  "interactions": {
+    "activeViewer": {
+      "controlEnabled": false,
+      "defaultValue": false
+    },
+    "crossHairTool": {
+      "controlEnabled": true,
+      "defaultValue": {
+        "viewers": {
+          "middle": {
+            "color": "#00FF00"
+          }
+        }
+      }
+    }
+  }
+}

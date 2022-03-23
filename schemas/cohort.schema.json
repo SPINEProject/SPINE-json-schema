@@ -1,0 +1,142 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/cohort.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cohort schema",
+  "description": "Schema for cohort document.",
+  "$comment": "The schema can be indirectly applied to both CouchDB document and Cohort API response data, assuming that:  'uuid' property replaced '_id' and 'rev' property is removed.",
+  "type": "object",
+  "definitions": {
+    "cohortLogo": {
+      "$id" : "#cohortLogo",
+      "description": "Logo of a given cohort",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description":"Type of medium to be used to display image.",
+          "$comment": "So far only one option is available: 'url', since this can be used both for links and serialized image data. In future other forms of embedding external graphics can be useful",
+          "type":"string",
+          "enum": ["url"]
+        },
+        "value": {
+          "description":"The link to logo or encoded with base64 serialized version of cohort",
+          "$comment": "The value can be an absolute link eg.https://www.miccai2021.org/files/images/layout/en/miccai2021-logo.png or encoded string with binaries, i.e.  data:image/png;base64,...",
+          "type":"string"
+        },
+        "url": {
+          "description":"Link to the external Cohort home page",
+          "type":"string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "uuid": {
+      "description": "Cohort UUID",
+      "type": "string"
+    },
+    "docType": {
+      "description": "Cohort",
+      "type": "string",
+      "enum": ["cohort"]
+    },
+    "name": {
+      "description": "Cohort name",
+      "type": "string"
+    },
+    "pi": {
+      "description": "Identifier of Principal Investigator of cohort",
+      "$comment": "Uses uuid format",
+      "type": "string"
+    },
+    "co-investigators": {
+      "description": "Identifiers of co-investigators of cohort",
+      "$comment": "Uses uuid format",
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+    },
+    "description": {
+      "description": "Cohort description",
+      "type": "string"
+    },
+    "version": {
+      "description": "Cohort version",
+      "type": "string"
+    },
+    "creationDate":{
+      "description": "Date of creation of the cohort.",
+      "$comment": "Uses ISO 8601",
+      "type":"string"
+    },
+    "privacy": {
+      "description": "Cohort privacy",
+      "type": "string",
+      "enum": [
+        "PUBLIC",
+        "public",
+        "PRIVATE",
+        "private"
+      ]
+    },
+    "relativePath": {
+      "description": "Relative Path to cohort folder in filesystem",
+      "$comment": "This is for visualization of assets",
+      "type": "string"
+    },
+    "sourceSystem": {
+      "description": "How cohort was introduced into SPINE",
+      "type": "string",
+      "enum": ["SPINE Insertion script","manualInsertion"]
+    },
+    "logo": {
+      "$ref": "#/definitions/cohortLogo"
+    },
+    "keywords": {
+      "description": "Array of keywords defining contents of cohort",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "description":"Keyword label",
+            "type": "string"
+          },
+          "iri": {
+            "description":"internationalized Resource Identifier for keyword concept",
+            "$comment":"This is an ontological identifier, that can be used as link in some cases, eg. http://purl.bioontology.org/ontology/SNOMEDCT/24700007",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "diseases": {
+      "description": "Array of disease codes for cohort",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "description":"Label to be displayed along with the disease code, eg. Multiple Sclerosis",
+            "type": "string"
+          },
+          "icdCode": {
+            "description":"International Classification of Diseases Code",
+            "$comment":"This is an ICD 10 code, eg. G35 for MS",
+            "type": "string"
+          },
+          "url": {
+            "description":"Link to external page with disease classification",
+            "$comment":"This link can refer to external page with disease description, eg. https://www.icd10data.com/search?s=G36",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": ["name","privacy","uuid","pi","docType"]
+}

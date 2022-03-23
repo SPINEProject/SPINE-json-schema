@@ -1,0 +1,221 @@
+{
+  "miniWorkflow": {
+    "currentTool": {
+      "id":"1dd174e57260e384c4f45e9c490004a9",
+      "name": "Segmentation tool",
+      "description": "This tool is used to visualize a segmentation and check it.",
+      "version": "1.0.0",
+      "privacy": "PUBLIC",
+      "type": "SEGMENTATION_TOOL",
+      "inputs": {
+        "inputImage_key":{
+          "name": "Input image",
+          "description": "Input image",
+          "isList": false,
+          "type": "imageEntityInOut",
+          "imageEntityInOut_Type": "ANATOMICAL",
+          "imageEntityInOut_FileFormat": "nii.gz",
+          "required": true
+        },
+        "inputImage_key2":{
+          "name": "Segmentation",
+          "description": "Segmentation",
+          "isList": false,
+          "type": "roiInOut",
+          "typeROI": "EXPLICIT",
+          "required": true,
+          "imageEntityInOut_FileFormat": "nii.gz"
+        },
+        "inputLut_key1": {
+          "name": "Input LUT data",
+          "description": "Input LUT data for overlay displaying.",
+          "isList": false,
+          "type": "lookUpTable",
+          "required": true
+        },
+        "inputLutDescription_key1": {
+          "name": "Input description of LUT data",
+          "description": "Input LUT data for displaying options.",
+          "isList": false,
+          "type": "lookUpTableDescription",
+          "required": true
+        }
+      },
+      "outputs": {
+      },
+      "configuration":{
+        "luts": {
+          "lut_key1": {
+            "fromInputs": true,
+            "lutInputKey": "inputLut_key1"
+          }
+        },
+        "lutDescriptions": {
+          "lutDescription_key1": {
+            "fromInputs": true,
+            "lutDescriptionInputKey": "inputLutDescription_key1"
+          }
+        },
+        "rois": {
+          "overlays": {
+            "overlay_key_1": {
+              "fromInputs": true,
+              "imageInputKey": "inputImage_key2",
+              "lutKey": "lut_key1",
+              "lutDescriptionKey": "lutDescription_key1"
+            }
+          }
+        },
+        "scenes": {
+          "sceneKey1": {
+            "primaryImageInputKey": "inputImage_key",
+            "rois": {
+              "overlays": ["overlay_key_1"]
+            }
+          }
+        },
+        "viewers": {
+          "layout": {
+            "type": "SINGLE_WITH_WIDGET_PANEL",
+            "layoutOrder": {
+              "middle": "0"
+            }
+          },
+          "renderWindows": {
+            "0": {
+              "name": "Sagittal viewer",
+              "type": "2D",
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "AXIAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "INFERIORMOST"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#ffa07a",
+                "hasControlPanel": false
+              }
+            }
+          }
+        },
+        "widgets":
+        {
+          "brushTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "properties": {
+              "radius": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 1
+              }
+            }
+          },
+          "fillingTool":{
+            "controlVisible": true,
+            "controlEnabled": true
+          },
+          "eraserTool":{
+            "controlVisible":true,
+            "controlEnabled":true,
+            "properties":{
+              "radius":{
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 1
+              }
+            }
+          },
+          "labelmapLUT": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": 32764
+          },
+          "labelmapUndoRedoTool":{
+            "controlVisible":true,
+            "controlEnabled":true
+          },
+          "labelmapOpacity":{
+            "controlVisible":true,
+            "controlEnabled":true,
+            "defaultValue":1
+          }
+        }
+      }
+    },
+    "currentMaterializedTask": {
+      "label": "training-9c39728c-8ce8-419e-886d-8138ba68e96e",
+      "inputs": {
+        "inputImage_key": {
+          "value": "35d4d7d1d0fb89504a8c0c7425004e25",
+          "format": "nii.gz"
+        },
+        "inputImage_key2": {
+          "value": "35d4d7d1d0fb89504a8c0c74250066d3",
+          "format": "nii.gz"
+        },
+        "inputLut_key1": {
+          "value": "ac49b96c6eea3e74c9dce58927000af5"
+        },
+        "inputLutDescription_key1": {
+          "value": "ac49b96c6eea3e74c9dce58927001617"
+        }
+      },
+      "status": "TODO",
+      "assignedTo": "gregory.bliault@u-bordeaux.fr",
+      "dueDate": "2019-09-28T22:43:29.728Z",
+      "miniWorkflow": "mw1",
+      "uuid": "53b643d3f55f98c38962b596530000d3"
+    },
+    "status": "notstarted"
+  },
+  "listOfCases": [
+    {
+      "caseNumber": "training-9c39728c-8ce8-419e-886d-8138ba68e96e",
+      "caseStatus": "notstarted"
+    }
+  ],
+  "currentCase": "training-9c39728c-8ce8-419e-886d-8138ba68e96e"
+}

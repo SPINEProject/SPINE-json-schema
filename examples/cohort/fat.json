@@ -1,0 +1,25 @@
+{
+  "uuid": "35d4d7d1d0fb89504a8c0c74250008af",
+  "docType": "cohort",
+  "name": "Abdominal Fat Testing",
+  "description": "Testing database for Abdominal Faat",
+  "creationDate": "2020-03-10T23:54:14.063Z",
+  "privacy": "public",
+  "pi": "a60017ce-6be9-4054-9f84-06722d5166be",
+  "co-investigators": [
+    "0f8fc6f7-1361-4f55-9bfa-b8e70c3a5718"
+  ],
+  "diseases": [],
+  "keywords": [
+    {
+      "label": "Brain",
+      "iri": "http://purl.org/sig/ont/fma/fma50801"
+    },
+    {
+      "label": "MRI",
+      "iri": "http://purl.bioontology.org/ontology/SNOMEDCT/113091000"
+    }
+  ],
+  "relativePath": "Cohort_AbdominalFat_Testing",
+  "sourceSystem": "manualInsertion"
+}

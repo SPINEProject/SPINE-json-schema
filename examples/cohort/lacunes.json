@@ -1,0 +1,30 @@
+{
+  "uuid": "2be44462-b0a5-4a32-b3a7-cd33bcdff3f1",
+  "docType": "cohort",
+  "name": "LACUNES MICCAI VALDO 2021",
+  "description": "LACUNES dataset",
+  "creationDate": "2021-09-21T14:37:57.266647",
+  "relativePath": "LACUNES_MICCAI_VALDO_2021",
+  "privacy": "private",
+  "pi": "a60017ce-6be9-4054-9f84-06722d5166be",
+  "co-investigators": [
+    "0f8fc6f7-1361-4f55-9bfa-b8e70c3a5718"
+  ],
+  "diseases": [],
+  "keywords": [
+    {
+      "label": "Brain",
+      "iri": "http://purl.org/sig/ont/fma/fma50801"
+    },
+    {
+      "label": "MRI",
+      "iri": "http://purl.bioontology.org/ontology/SNOMEDCT/113091000"
+    }
+  ],
+  "logo": {
+    "type": "url",
+    "value": "https://www.miccai2021.org/files/images/layout/en/miccai2021-logo.png",
+    "url": "https://valdo.grand-challenge.org/Task3"
+  },
+  "sourceSystem": "SPINE Insertion script"
+}

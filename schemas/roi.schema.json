@@ -322,5 +322,5 @@
     }
   },
   "additionalProperties": false,
-  "required": ["typeROI", "status", "reference", "properties"]
+  "required": ["typeROI", "properties"]
 }

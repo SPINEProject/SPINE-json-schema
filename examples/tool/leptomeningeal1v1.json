@@ -1,0 +1,319 @@
+{
+  "miniWorkflow": {
+    "miniWorkflowPath": [
+      {
+        "stepKey": "annotation",
+        "stepName": "Identification of Leptomeningeal metastases"
+      }
+    ],
+    "currentStep": 1,
+    "currentTool": {
+      "id":"1dd174e57260e384c4f45e9c490004a9",
+      "name": "Pin tool",
+      "description": "This tool is used to characterize previously identified ROI's.",
+      "version": "1.0.0",
+      "privacy": "PUBLIC",
+      "type": "IDENTIFICATION_TOOL",
+      "inputs": {
+        "inputImage_key":{
+          "name": "Input image",
+          "description": "Input image",
+          "isList": false,
+          "type": "imageEntityInOut",
+          "imageEntityInOut_Type": "ANATOMICAL",
+          "imageEntityInOut_FileFormat": "nii.gz",
+          "required": true
+        }
+      },
+      "outputs": {
+        "outputAnnotationTableData_key": {
+          "name": "Output annotations data",
+          "description": "Output annotations data from annotation table",
+          "isList": false,
+          "type": "annotationTableDataInOut",
+          "required": true
+        }
+      },
+      "configuration":{
+        "scenes": {
+          "sceneKey1": {
+            "primaryImageInputKey": "inputImage_key",
+            "rois": {
+              "geometricalROIsInputKeys": [
+                "inputROIDataList_key1"
+              ]
+            }
+          }
+        },
+        "viewers": {
+          "layout": {
+            "type": "ROW",
+            "layoutOrder": {
+              "left": "0",
+              "middle": "1",
+              "right": "2"
+            }
+          },
+          "renderWindows": {
+            "0": {
+              "name": "Sagittal viewer",
+              "type": "2D",
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "SAGITTAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#ffa07a"
+              }
+            },
+            "1": {
+              "name": "Middle viewer",
+              "type": "2D",
+              "linkedControlVisible": false,
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "AXIAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "SUPERIORMOST"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "AXIAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#fff967"
+              }
+            },
+            "2": {
+              "name": "Right viewer",
+              "type": "2D",
+              "linkedControlVisible": false,
+              "initialState": {
+                "orientationAndSliceNumber": {
+                  "orientation": "CORONAL",
+                  "strategy": "DYNAMIC",
+                  "dynamicSliceValue": "MIDDLE"
+                },
+                "initialWindowLevel": {
+                  "strategy": "DYNAMIC",
+                  "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                }
+              },
+              "displayScenes": {
+                "possibleScenesToDisplay": [
+                  "sceneKey1"
+                ],
+                "hasDefaultSceneToDisplay": true,
+                "defaultSceneToDisplay": "sceneKey1"
+              },
+              "displayControls": {
+                "orientation": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "options": [
+                    {
+                      "label": "Sagittal",
+                      "value": "SAGITTAL"
+                    },
+                    {
+                      "label": "Coronal",
+                      "value": "CORONAL"
+                    },
+                    {
+                      "label": "Axial",
+                      "value": "AXIAL"
+                    }
+                  ],
+                  "defaultValue": "CORONAL"
+                },
+                "smoothing": {
+                  "controlVisible": false,
+                  "controlEnabled": false,
+                  "defaultValue": false
+                },
+                "sequence": {
+                  "controlVisible": false,
+                  "controlEnabled": false
+                }
+              },
+              "lookAndFeel":{
+                "color":"#90ee90"
+              }
+            }
+          }
+        },
+        "widgets":{
+          "pinTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "properties": {
+              "markerSize": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 2
+              },
+              "fontSize":{
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 12
+              },
+              "clearAll":{
+                "controlVisible": true,
+                "controlEnabled": true
+              }
+            }
+          },
+          "projectionTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "range": {
+                "controlVisible": true,
+                "controlEnabled": true,
+                "defaultValue": 1
+              }
+            }
+          },
+          "pointerTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false,
+            "properties": {
+              "mode": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": "onClick"
+              }
+            }
+          },
+          "crossHairTool": {
+            "controlVisible": true,
+            "controlEnabled": true,
+            "defaultValue": false
+          },
+          "annotationTableTool": {
+            "controlVisible": false,
+            "controlEnabled": false,
+            "properties": {
+              "fullTable": {
+                "controlVisible": false,
+                "controlEnabled": false,
+                "defaultValue": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "currentMaterializedTask": {
+      "label": "training-9c39728c-8ce8-419e-886d-8138ba68e96e",
+      "inputs": {
+        "inputImage_key": {
+          "value": "575bddd50492d394fe3e506e21134850",
+          "label": "FLAIR",
+          "format": "nii.gz"
+        }
+      },
+      "status": "TODO",
+      "assignedTo": "gregory.bliault@u-bordeaux.fr",
+      "dueDate": "2019-09-28T22:43:29.728Z",
+      "miniWorkflow": "mw1",
+      "uuid": "53b643d3f55f98c38962b596530000d3"
+    },
+    "status": "notstarted"
+  },
+  "listOfCases": [
+    {
+      "caseNumber": "LEPTO1",
+      "caseStatus": "notstarted"
+    },
+    {
+      "caseNumber": "LEPTO2",
+      "caseStatus": "notstarted"
+    }
+  ],
+  "currentCase": "LEPTO1"
+}
