@@ -1,0 +1,62 @@
+{
+  "pinTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "properties": {
+      "markerSize": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 2
+      },
+      "fontSize":{
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 12
+      },
+      "clearAll":{
+        "controlVisible": true,
+        "controlEnabled": true
+      }
+    }
+  },
+  "projectionTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false,
+    "properties": {
+      "range": {
+        "controlVisible": true,
+        "controlEnabled": true,
+        "defaultValue": 1
+      }
+    }
+  },
+  "pointerTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false,
+    "properties": {
+      "mode": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": "onClick"
+      }
+    }
+  },
+  "crossHairTool": {
+    "controlVisible": true,
+    "controlEnabled": true,
+    "defaultValue": false
+  },
+  "annotationTableTool": {
+    "controlVisible": false,
+    "controlEnabled": false,
+    "properties": {
+      "fullTable": {
+        "controlVisible": false,
+        "controlEnabled": false,
+        "defaultValue": false
+      }
+    }
+  }
+}

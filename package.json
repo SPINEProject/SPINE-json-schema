@@ -2,10 +2,37 @@
   "name": "SPINE-json-schema",
   "author": "Alfredo Morales Pinzon",
   "license": "MIT",
-  "keywords": ["SPINE", "schema", "model", "json", "Image Processing", "pipelines", "workflow"],
+  "keywords": [
+    "SPINE",
+    "schema",
+    "model",
+    "json",
+    "Image Processing",
+    "pipelines",
+    "workflow"
+  ],
   "description": "Set of JSON schemas for the SPINE Virtual Laboratory",
-  "version": "1.0.0",
+  "version": "2.5.0",
   "dependencies": {
-    
+    "ajv": "^6.12.2"
+  },
+  "devDependencies": {
+    "ajv-istanbul": "^0.1.0",
+    "jest": "^26.0.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html"
+    ],
+    "globals": {
+      "ajv": null
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setupTests.js"
+    ]
   }
 }

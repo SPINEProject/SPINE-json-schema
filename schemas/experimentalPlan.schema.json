@@ -1,0 +1,128 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/experimentalPlan.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Description of Experimental Plan ",
+  "description": "Schema for Experimental plan being a part of experiment configuration.",
+  "type": "object",
+  "definitions":{
+    "timeWindow": {
+    "$id": "#timeWindow",
+    "description": "Boolean flags defining controls for a given widget.",
+    "type": "object",
+    "$comment": "So far control components for widgets are implemented with Toggleable Buttons. Model can be extended by adding other complex controls, eg. sets of buttons, dropdown etc.",
+    "properties": {
+      "controlVisible": {
+        "type": "boolean",
+        "description": "Defines whether control component (eg. Button) is visible."
+      },
+      "controlEnabled": {
+        "type": "boolean",
+        "description": "Defines whether control component (eg. Button) is enabled, ie. can change a state. If not enabled, then  works only as indicator."
+      }
+    },
+    "required": ["controlEnabled", "controlVisible"]
+  }
+  },
+  "properties": {
+    "experimentId": {
+      "type": "string",
+      "description": "Reference to the experiment id"
+    },
+    "docType": {
+      "type": "string",
+      "description": "Type of document",
+      "enum": [
+        "experimentalPlan"
+      ]
+    },
+    "questionnaires": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Reference to the questionnaire Id"
+      }
+    },
+    "eventParameters": {
+      "type": "object",
+      "description": "Properties parameterizing event handling in mobile application, eg. after clicking on 'sleep' button",
+      "properties": {
+        "tolerances": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "enum": ["wakeUpSleep","wakeUpNap"],
+                "description": "Type of event"
+              },
+              "tolerance": {
+                "type": "number"
+              },
+              "toleranceUnit": {
+                "type": "string",
+                "enum": ["days","hours","minutes"],
+                "description": "Time unit for 'toleranceUnit'"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "maxAwakeTime": {
+          "type": "string",
+          "pattern": "[0-9]{0,2}:[0-9]{2}:[0-9]{2}"
+        }
+      },
+      "additionalProperties": false
+    },
+    "planning": {
+      "type": "object",
+      "properties": {
+        "startExperiment": {
+          "type": "object",
+          "properties": {
+            "time-windows": {
+
+            }
+          }
+        },
+        "evaluationPeriod": {
+          "type": "object"
+        },
+        "endingExperiment": {
+          "type": "object",
+          "properties": {
+            "time-windows": {
+
+            },
+            "ending-criteria": {
+              "type": "string",
+              "enum": ["timeAfterExperimentStart"]
+            },
+            "timeAfterExperimentStart":{
+              "type": "number",
+              "description": "Criterion for executing questionnaires if defined in time-windows section."
+            },
+            "timeAfterExperimentStartUnit":{
+              "type": "string",
+              "description": "Time unit for 'timeAfterExperimentStartUnit'"
+            },
+            "experimentDeadlineTime":{
+              "type": "number",
+              "description": "Stop criterion for experiment. It is calculated in relation to the starting time of experiment"
+            },
+            "experimentDeadlineUnit":{
+              "type": "string",
+              "enum": ["days","hours","minutes"],
+              "description": "Time unit for 'experimentDeadlineTime'"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["experimentId", "docType","questionnaires","planning"],
+  "additionalProperties": false
+}
