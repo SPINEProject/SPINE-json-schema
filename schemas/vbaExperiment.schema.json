@@ -6,9 +6,9 @@
 	"description": "The schema for VBA experiment",
 	"default": {},
   "examples":[{
-    "uuid": "a9bdb617-5c4b-46d3-b0dc-e99c791956a2",
+    "_id": "a9bdb617-5c4b-46d3-b0dc-e99c791956a2",
     "name": "experiment A",
-    "path": "/path/to/exp",
+    "spm_experiment_folder": "/path/to/exp",
     "design": {
         "type": "MULTIPLE_REGRESSION",
         "images":[
@@ -69,12 +69,12 @@
 			"$id": "#/definitions/vbaExperimentBasic",
 			"description": "Basic description of an vba experiment",
 			"properties": {
-				"uuid": {
+				"_id": {
 					"type": "string",
 					"title": "UUID",
 					"description": "The uuid of the vba experiment."
 				},
-				"path": {
+				"spm_experiment_folder": {
 					"type": "string",
 					"title": "Path",
 					"description": "Path to the vba experiment.",
@@ -146,8 +146,7 @@
 										"pathInExperiment": "path/to/file"
 									}],
 									"required": [
-										"uuid",
-										"pathInExperiment"
+										"uuid"
 									],
 									"properties": {
 										"uuid": {
@@ -249,7 +248,6 @@
 														"value": 4
 													}],
 													"required": [
-														"uuid",
 														"value"
 													],
 													"properties": {
@@ -259,7 +257,7 @@
 															"description": "UUID of the data in database"
 														},
 														"value": {
-															"type": "integer",
+															"type": "number",
 															"title": "Covariate value",
 															"description": "Covariate value"
 														}
@@ -316,9 +314,7 @@
 								}
 							}],
 							"required": [
-								"explicit",
-								"implicit",
-								"threshold"
+
 							],
 							"properties": {
 								"explicit": {
@@ -330,7 +326,9 @@
 										"uuid": "142cc84446a4b2ac90b658114c002db7",
 										"pathInExperiment": "path/to/file"
 									}],
-									"required": [],
+									"required": [
+										"uuid"
+									],
 									"properties": {
 										"uuid": {
 											"type": "string",
@@ -367,9 +365,6 @@
 										{
 											"type": "ASBOLUTE",
 											"value": 4
-										},
-										{
-											"type": "NONE"
 										}
 									],
 									"properties": {
@@ -380,8 +375,7 @@
 											"default": "",
 											"examples": [
 												"RELATIVE",
-												"ASBOLUTE",
-												"NONE"
+												"ASBOLUTE"
 											]
 										},
 										"value": {
@@ -398,17 +392,7 @@
 									"required": [
 										"type"
 									],
-									"oneOf": [{
-											"title": "None",
-											"properties": {
-												"type": {
-													"default": "NONE",
-													"enum": [
-														"NONE"
-													]
-												}
-											}
-										},
+									"oneOf": [
 										{
 											"title": "Absolute",
 											"required": [
@@ -481,7 +465,7 @@
 									"additionalItems": false,
 									"items": {
 										"anyOf": [{
-											"type": "integer",
+											"type": "number",
 											"title": "The first anyOf schema",
 											"description": "An explanation about the purpose of this instance.",
 											"examples": [
@@ -578,6 +562,7 @@
 										"type"
 									],
 
+
 									"oneOf": [{
 											"title": "No",
 											"properties": {
@@ -614,7 +599,7 @@
 											]
 										},
 										"value": {
-											"type": "integer",
+											"type": "number",
 											"title": "The value schema",
 											"description": "An explanation about the purpose of this instance."
 										}
@@ -629,8 +614,8 @@
 				}
 			},
 			"required": [
-				"uuid",
-				"path",
+				"_id",
+				"spm_experiment_folder",
 				"name",
 				"design"
 			],
