@@ -1,0 +1,676 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/vbaExperiment.schema.json",
+	"type": "object",
+	"title": "VBA experiment schema",
+	"description": "The schema for VBA experiment",
+	"default": {},
+  "examples":[],
+	"definitions": {
+		"vbaExperimentSPMBasic": {
+			"$id": "#/definitions/vbaExperimentSPMBasic",
+			"description": "Basic description of an vba experiment",
+			"properties": {
+				"_id": {
+					"type": "string",
+					"title": "UUID",
+					"description": "The uuid of the vba experiment."
+				},
+        "_rev": {
+					"type": "string",
+					"title": "revision number",
+					"description": "The uuid of the revision."
+				},
+				"docType": {
+					"type": "string",
+					"title": "doc type",
+					"enum": ["spmExperiment"]
+				},
+				"spm_experiment_folder": {
+					"type": "string",
+					"title": "Path",
+					"description": "Path to the vba experiment.",
+					"default": "",
+					"examples": [
+						"/path/to/experiment"
+					]
+				},
+				"name": {
+					"type": "string",
+					"title": "Experiment name",
+					"description": "The name of the experiment.",
+					"default": "",
+					"examples": [
+						"experiment A"
+					]
+				},
+				"design": {
+					"type": "object",
+					"title": "Design",
+					"description": "Configuration of the design matrix, describing the general linear model, data specification, and other parameters necessary for the statistical analysis.",
+					"default": {},
+					"required": [
+						"type",
+						"images",
+						"covariates",
+						"mask",
+						"globalCalculation",
+						"globalNormalisation",
+						"status"
+					],
+					"properties": {
+						"type": {
+							"type": "string",
+							"title": "Experiment type",
+							"description": "The type of VBA experiment",
+							"enum": [
+								"SPM_MULTIPLE_REGRESSION",
+								"SPM_ONE_SAMPLE_T_TEST",
+								"SPM_TWO_SAMPLE_T_TEST",
+								"SPM_PAIRED_T_TEST",
+								"SPM_ONE_WAY_ANOVA"
+							]
+						},
+						"status": {
+							"type": "string",
+							"title": "Design status",
+							"description": "The status of the design",
+							"enum": [
+								"DEFINING",
+								"DEFINED",
+								"ESTIMATED"
+							]
+						},
+						"images": {
+							"type": "array",
+							"title": "Images",
+							"description": "The ID of the images",
+							"default": [],
+							"examples": [
+								[{
+										"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+										"pathInExperiment": "path/to/file"
+									},
+									{
+										"uuid": "142cc84446a4b2ac90b658114c002db7",
+										"pathInExperiment": "path/to/file"
+									}
+								]
+							],
+							"additionalItems": false,
+							"items": {
+								"anyOf": [{
+									"type": "object",
+									"title": "Image item",
+									"description": "Object  describing the image",
+									"default": {},
+									"examples": [{
+										"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+										"pathInExperiment": "path/to/file"
+									}],
+									"required": [
+										"uuid"
+									],
+									"properties": {
+										"uuid": {
+											"type": "string",
+											"title": "Image UUID",
+											"description": "The UUID of the image"
+										},
+										"pathInExperiment": {
+											"type": "string",
+											"title": "Image path",
+											"description": "Path to the file in the vba experiment folder",
+											"examples": [
+												"path/to/file"
+											]
+										}
+									},
+									"additionalProperties": false
+								}]
+							}
+						},
+						"contrasts": {
+							"type": "array",
+							"title": "Contrasts",
+							"description": "Definition of the contrasts.",
+							"additionalItems": false,
+							"items": {
+								"anyOf": [
+									{
+									"type": "object",
+									"title": "Contrast item",
+									"description": "Contrast item schema.",
+									"default": {},
+									"required": [
+										"status"
+									],
+									"properties": {
+										"name": {
+											"type": "string",
+											"title": "Name",
+											"description": "A name for the contrast",
+											"default": "Constrast name"
+										},
+										"status": {
+											"type": "string",
+											"title": "Status",
+											"description": "A status for the contrast",
+											"enum": [
+												"DEFINING",
+												"DEFINED"
+											]
+										},
+										"result": {
+											"type": "object",
+											"title": "Results",
+											"description": "Results for this contrast",
+											"required": [
+												"threshold"
+											],
+											"properties": {
+												"threshold": {
+													"type":"object"
+												}
+											}
+										},
+										"weights": {
+											"type": "array",
+											"title": "Value",
+											"description": "The weights",
+											"default": [],
+											"additionalItems": false,
+											"items": {
+												"type": "number"
+											}
+										}
+									},
+									"additionalProperties": false
+								}
+								]
+							}
+						},
+						"covariates": {
+							"type": "array",
+							"title": "Covariates",
+							"description": "This option allows for the specification of covariates and nuisance variables (note that SPM doe not make any distinction between effects of interest (including covariates) and nuisance effects).",
+							"examples": [
+								[{
+									"name": "age",
+									"value": [{
+											"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+											"value": 4
+										},
+										{
+											"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+											"value": 5
+										}
+									]
+								}]
+							],
+							"additionalItems": false,
+							"items": {
+								"anyOf": [{
+									"type": "object",
+									"title": "Covariatee item",
+									"description": "Covariate item schema.",
+									"default": {},
+									"examples": [{
+										"name": "age",
+										"value": [{
+												"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+												"value": 4
+											},
+											{
+												"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+												"value": 5
+											}
+										]
+									}],
+									"required": [
+										"name",
+										"value",
+										"interactions",
+										"centering"
+									],
+									"properties": {
+										"name": {
+											"type": "string",
+											"title": "Name",
+											"description": "A name for the covariate",
+											"default": "Covariate name",
+											"examples": [
+												"age"
+											]
+										},
+										"value": {
+											"type": "array",
+											"title": "Value",
+											"description": "The value of the covariate.",
+											"default": [],
+											"examples": [
+												[{
+														"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+														"value": 4
+													},
+													{
+														"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+														"value": 5
+													}
+												]
+											],
+											"additionalItems": false,
+											"items": {
+												"anyOf": [{
+													"type": "object",
+													"title": "Covariate value",
+													"description": "Covariate value schema",
+													"default": {},
+													"examples": [{
+														"uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c",
+														"value": 4
+													}],
+													"required": [
+														"value"
+													],
+													"properties": {
+														"uuid": {
+															"type": "string",
+															"title": "Covariate value UUID",
+															"description": "UUID of the data in database"
+														},
+														"value": {
+															"type": "number",
+															"title": "Covariate value",
+															"description": "Covariate value"
+														}
+													},
+													"additionalProperties": false
+												}]
+											}
+										},
+										"interactions": {
+											"type": "string",
+											"title": "Interactions",
+											"description": "For each covariate you have defined, there is an opportunity to create an additional regressor that is the interaction between the covariate and a chosen experimental factor.",
+											"enum": [
+												"NONE",
+												"WITH_FACTOR_1",
+												"WITH_FACTOR_2",
+												"WITH_FACTOR_3"
+											]
+										},
+										"centering": {
+											"type": "string",
+											"title": "Centering",
+											"description": "Centering, in the simplest case, refers to subtracting the mean (central) value from the covariate values, which is equivalent to orthogonalising the covariate with respect to the constant column.Subtracting a constant from a covariate changes the beta for the constant term, but not thatfor the covariate. In the simplest case, centering a covariate in a simple regression leaves the slope unchanged, but converts the intercept from being the modelled value when the covariate was zero, to being the modelled value at the mean of the covariate, which is often more easily interpretable. For example, the modelled value at the subjects’ mean age is usually more meaningful than the (extrapolated) value at an age of zero. If a covariate value of zero is interpretable and/or you wish to preserve the values of the covariate then choose ’No centering’. You should also choose not to center if you have already subtracted some suitable value from your covariate, such as a commonly used reference level or the mean from another (e.g. larger) sample. Note that ’User specified value’ has no effect, but is present for compatibility with earlier SPM versions. Other centering options should only be used in special cases. More complicated centering options can orthogonalise a covariate or a covariate-factor interaction with respect to a factor, in which case covariate values within a particular level of a factor have their mean over that level subtracted. As in the simple case, such orthogonalisation changes the betas for the factor used to orthogonalise, not those for the covariate/interaction being orthogonalised. This therefore allows an added covariate/interaction to explain some otherwise unexplained variance, but without altering the group difference from that without the covariate/interaction. This is usually *inappropriate* except in special cases. One such case is with two groups and covariate that only has meaningful values for one group (such as a disease severity score that has no meaning for a control group); centering the covariate by the group factor centers the values for the meaningful group and (appropriately) zeroes the values for the other group.",
+											"enum": [
+												"OVERALL_MEAN",
+												"FACTOR_1_MEAN",
+												"FACTOR_2_MEAN",
+												"FACTOR_3_MEAN",
+												"NO_CENTERING",
+												"USER_SPECIFIED_VALUE",
+												"AS_IMPLIED_BY_ANCOVA",
+												"GM"
+											]
+										}
+									},
+									"additionalProperties": false
+								}]
+							}
+						},
+						"mask": {
+							"type": "object",
+							"title": "Masking",
+							"description": "The mask specifies the voxels within the image volume which are to be assessed. SPM supports three methods of masking (1) Threshold, (2) Implicit and (3) Explicit. The volume analysed is the intersection of all masks.",
+							"default": {},
+							"examples": [{
+								"explicit": {
+									"uuid": "142cc84446a4b2ac90b658114c002db7",
+									"pathInExperiment": "path/to/file"
+								},
+								"implicit": true,
+								"threshold": {
+									"type": "RELATIVE",
+									"value": 0.3
+								}
+							}],
+							"required": [
+
+							],
+							"properties": {
+								"explicit": {
+									"type": "object",
+									"title": "Explicit masking",
+									"description": "Explicit masks are other images containing (implicit) masks that are to be applied to the current analysis. other data types) are excluded from the analysis. Explicit mask images can have any orientation and voxel/image size. Nearest neighbour interpolation of a mask image is used if the voxel centers of the input images do not coincide with that of the mask image.",
+									"default": {},
+									"examples": [{
+										"uuid": "142cc84446a4b2ac90b658114c002db7",
+										"pathInExperiment": "path/to/file"
+									}],
+									"required": [
+										"uuid"
+									],
+									"properties": {
+										"uuid": {
+											"type": "string",
+											"title": "UUID of the explicit mask"
+										},
+										"pathInExperiment": {
+											"type": "string",
+											"title": "Explicit mask path",
+											"description": "Path to the explicit mask in the spm experiment folder",
+											"examples": [
+												"path/to/file"
+											]
+										}
+									},
+									"additionalProperties": false
+								},
+								"implicit": {
+									"type": "boolean",
+									"description": "An implicit mask is a mask implied by a particular voxel value. Voxels with this mask value For image data-types with a representation of NaN (see spm_type.m), NaN’s is the implicit mask value, (and NaN’s are always masked out). For image data-types without a representation of NaN, zero is the mask value, and the user can choose whether zero voxels should be masked out or not. By default, an implicit mask is used.",
+									"title": "Implicit masking",
+									"default": false,
+									"examples": [
+										true
+									]
+								},
+								"threshold": {
+									"type": "object",
+									"title": "The threshold schema",
+									"description": "Images are thresholded at a given value and only voxels at which all images exceed the threshold are included.",
+									"default": {},
+									"examples": [{
+											"type": "RELATIVE",
+											"value": 0.3
+										},
+										{
+											"type": "ASBOLUTE",
+											"value": 4
+										}
+									],
+									"properties": {
+										"type": {
+											"type": "string",
+											"title": "The type schema",
+											"description": "An explanation about the purpose of this instance.",
+											"default": "",
+											"examples": [
+												"RELATIVE",
+												"ASBOLUTE"
+											]
+										},
+										"value": {
+											"type": "number",
+											"title": "The value schema",
+											"description": "An explanation about the purpose of this instance.",
+											"default": 0,
+											"examples": [
+												0.3
+											]
+										}
+									},
+									"additionalProperties": false,
+									"required": [
+										"type"
+									],
+									"oneOf": [
+										{
+											"title": "Absolute",
+											"required": [
+												"value"
+											],
+											"properties": {
+												"type": {
+													"default": "ASBOLUTE",
+													"enum": [
+														"ABSOLUTE"
+													]
+												}
+											}
+										},
+										{
+											"title": "Relative",
+											"required": [
+												"value"
+											],
+											"properties": {
+												"type": {
+													"default": "RELATIVE",
+													"enum": [
+														"RELATIVE"
+													]
+												}
+											}
+										}
+									]
+								}
+							},
+							"additionalProperties": false
+						},
+						"globalCalculation": {
+							"type": "object",
+							"title": "The globalCalculation schema",
+							"description": "This option is for PET or VBM data (not second level fMRI). There are three methods for estimating global effects (1) Omit (assumming no other options requiring the global value chosen) (2) User defined (enter your own vector of global values) (3) Mean: SPM standard mean voxel value (within per image fullmean/8 mask)",
+							"examples": [{
+								"type": "USER",
+								"value": [
+									5,
+									6
+								]
+							}],
+							"required": [
+								"type"
+							],
+							"properties": {
+								"type": {
+									"type": "string",
+									"title": "The type schema",
+									"description": "An explanation about the purpose of this instance.",
+									"enum": [
+										"USER",
+										"OMIT",
+										"MEAN"
+									]
+								},
+								"value": {
+									"type": "array",
+									"title": "The value schema",
+									"description": "An explanation about the purpose of this instance.",
+									"default": [],
+									"examples": [
+										[
+											5,
+											6
+										]
+									],
+									"additionalItems": false,
+									"items": {
+										"anyOf": [{
+											"type": "number",
+											"title": "The first anyOf schema",
+											"description": "An explanation about the purpose of this instance.",
+											"examples": [
+												5,
+												6
+											]
+										}]
+									}
+								}
+							},
+							"additionalProperties": false,
+							"oneOf": [{
+									"title": "Other",
+									"properties": {
+										"type": {
+											"enum": [
+												"MEAN",
+												"OMIT"
+											]
+										}
+									}
+								},
+								{
+									"title": "User",
+									"required": [
+										"value"
+									],
+									"properties": {
+										"type": {
+											"enum": [
+												"USER"
+											]
+										}
+									}
+								}
+							]
+						},
+						"globalNormalisation": {
+							"type": "object",
+							"title": "The globalNormalisation schema",
+							"description": "These options are for PET or VBM data (not second level fMRI). ’Overall grand mean scaling’ simply scales all the data by a common factor such that the mean of all the global values is the value specified. ’Normalisation’ refers to either proportionally scaling each image or adding a covariate to adjust for the global values.",
+							"examples": [{
+								"normalisation": {
+									"type": "NONE"
+								},
+								"overallGrandMeanScaling": {
+									"type": "YES",
+									"value": 50
+								}
+							}],
+							"required": [
+								"normalisation",
+								"overallGrandMeanScaling"
+							],
+							"properties": {
+								"normalisation": {
+									"type": "object",
+									"title": "The normalisation schema",
+									"description": "This option is for PET or VBM data (not second level fMRI). Global nuisance effects (such as average values for PET images, or total tissue volumes for VBM) can be accounted for either by dividing the intensities in each image by the image’s global value (proportional scaling), or by including the global covariate as a nuisance effect in the general linear model (AnCova). Much has been written on which to use, and when. Basically, since proportional scaling also scales the variance term, it is appropriate for situations where the global measurement predominant y reflects gain or sensitivity. Where variance is constant across the range of global valus, linear modelling in an AnCova approach has more flexibility, since the model is not restricted o a simple proportional regression. ’Ancova by subject’ or ’Ancova by effect’ options are implemented using the ANCOVA options provided where each experimental factor (eg. subject or effect), is defined. These allow eg. different subjects to have different relationships between local and global measurements.",
+									"examples": [{
+										"type": "NONE"
+									}],
+									"required": [
+										"type"
+									],
+									"properties": {
+										"type": {
+											"type": "string",
+											"title": "The type schema",
+											"description": "An explanation about the purpose of this instance.",
+											"enum": [
+												"NONE",
+												"PROPORTIONAL",
+												"ANCOVA"
+											]
+										}
+									},
+									"additionalProperties": false
+								},
+								"overallGrandMeanScaling": {
+									"type": "object",
+									"title": "The overallGrandMeanScaling schema",
+									"description": "Scaling of the overall grand mean simply scales all the data by a common factor such that the mean of all the global values is the value specified. For qualitative data, this puts the data into an intuitively accessible scale without altering the statistics. When proportional scaling global normalisation is used each image is separately scaled such that it’s global value is that specified (in which case the grand mean is also implicitly scaled to that value). So, to proportionally scale each image so that its global value is eg. 20, select <Yes> then type in 20 for the grand mean scaled value. When using AnCova or no global normalisation, with data from different subjects or sessions, an intermediate situation may be appropriate, and you may be given the option to scale group, session or subject grand means separately.",
+									"default": {},
+									"examples": [{
+											"type": "YES",
+											"value": 50
+										},
+										{
+											"type": "NO"
+										}
+									],
+									"required": [
+										"type"
+									],
+
+
+									"oneOf": [{
+											"title": "No",
+											"properties": {
+												"type": {
+													"enum": [
+														"NO"
+													]
+												}
+											}
+										},
+										{
+											"title": "Yes",
+											"required": [
+												"value"
+											],
+											"properties": {
+												"type": {
+													"enum": [
+														"YES"
+													]
+												}
+											}
+										}
+									],
+									"properties": {
+										"type": {
+											"type": "string",
+											"title": "The type schema",
+											"description": "An explanation about the purpose of this instance.",
+											"default": "",
+											"ENUM": [
+												"YES",
+												"NO"
+											]
+										},
+										"value": {
+											"type": "number",
+											"title": "The value schema",
+											"description": "An explanation about the purpose of this instance."
+										}
+									},
+									"additionalProperties": false
+								}
+							},
+							"additionalProperties": false
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"_id",
+				"spm_experiment_folder",
+				"name",
+				"design"
+			],
+			"additionalProperties": false
+		},
+		"vbaExperimentSPMMultipleRegression": {
+			"$id": "#/definitions/vbaExperimentSPMMultipleRegression",
+			"allOf": [{
+					"description": "Basic description of an vba experiment",
+					"properties": {
+						"design": {
+							"required": [
+								"type"
+							],
+							"properties": {
+								"type": {
+									"enum": [
+										"SPM_MULTIPLE_REGRESSION"
+									]
+								}
+							}
+						}
+					}
+				},
+				{
+					"$ref": "#/definitions/vbaExperimentSPMBasic"
+				}
+			]
+		}
+	},
+	"oneOf": [{
+		"$ref": "#/definitions/vbaExperimentSPMMultipleRegression"
+	}]
+}
