@@ -335,7 +335,8 @@
                     "type": "string",
                     "description": "specify here the key corresponding to an input used to generate this output"
                   }
-                }
+                },
+                "additionalProperties": false
               }
             ]
           }
@@ -352,7 +353,8 @@
               "description": "Specify the key of the fixed/reference image for registration",
               "type": "string"
             }
-          }
+          },
+          "additionalProperties": false
         }
       }
     },
@@ -390,9 +392,10 @@
             "if": {
               "properties": {
                 "isTemplate": {
-                  "const": true
+                  "enum": [true]
                 }
-              }
+              },
+              "required": ["isTemplate"]
             },
             "then" : {
               "required": ["templateInformation"]
