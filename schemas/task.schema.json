@@ -45,7 +45,7 @@
             },
             "metadata": {
               "description":"Metadata to add to the output",
-              "type":"object"
+              "$ref": "core.schema.json#/definitions/outputDefinitionMetadata"
             },
             "reference": {
               "description":"Reference to add to the output",
