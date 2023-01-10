@@ -177,7 +177,7 @@
         }
       ]
     },
-    
+
     "annotationTableDefinitionInOut": {
       "$id": "#annotationTableDefinitionInOut",
       "description": "Schema defining an annotation table definition as input output",
@@ -259,7 +259,7 @@
         }
       ]
     },
-  
+
     "lookupTableInOut_FileFormat": {
       "$id" : "#lookupTableInOut_Type",
       "description": "File format for lookup tables",
@@ -286,7 +286,7 @@
         }
       ]
     },
-    
+
     "lookUpTableDescriptionInOut": {
       "$id": "#lookUpTableDescriptionInOut",
       "description": "Schema defining an lookup table description as input or output",
@@ -319,27 +319,88 @@
       "enum": ["nii","nii.gz","dicom.gz","minc","nrrd","dicom"]
     },
 
+    "outputDefinitionMetadata": {
+      "$id": "#outputDefinitionMetadata",
+      "description": "Metadata object for SPINE output definitions in order to add metadata to produced data.",
+      "properties": {
+        "sources": {
+          "type": "array",
+          "description": "List of keys corresponding to the data used to generate this output.",
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "fromInput": {
+                    "type": "string",
+                    "description": "specify here the key corresponding to an input used to generate this output"
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "space": {
+          "type": "object",
+          "description": "If the output is the result of a registration process, this allows to specify the moving and fixed images used in the process.",
+          "properties": {
+            "fromSpace": {
+              "description": "Specify the key of the moving/source image for registration",
+              "type": "string"
+            },
+            "toSpace": {
+              "description": "Specify the key of the fixed/reference image for registration",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+
+
     "imageEntityInOut": {
       "$id": "#imageEntityInOut",
       "description": "Schema defining an image entity as input or output",
-      "allOf":[
-        {"$ref": "#/definitions/inputOutput_spine"},
-        {
-          "properties": {
-            "type":{
-              "type": "string",
-              "enum": ["imageEntityInOut"]
+      "allOf": [
+          {"$ref": "#/definitions/inputOutput_spine"},
+          {
+            "properties": {
+              "type":{
+                "type": "string",
+                "enum": ["imageEntityInOut"]
+              },
+              "imageEntityInOut_Type": {
+                "$ref": "#/definitions/imageEntityInOut_Type"
+              },
+              "imageEntityInOut_FileFormat":{
+                "description": "This format of the file is not required as in the case of a list of EntityImages, each EntityImages can have its own format.",
+                "$ref": "#/definitions/imageEntityInOut_FileFormat"
+              },
+              "isTemplate": {
+                "type": "boolean",
+                "description": "Is this image a template?"
+              },
+              "templateInformation": {
+                "type": "string",
+                "description": "What kind of information is in this template",
+                "enum": ["GREY_SCALE","LABEL_MAP","PROBABILISTIC"]
+              }
             },
-            "imageEntityInOut_Type": {
-              "$ref": "#/definitions/imageEntityInOut_Type"
+            "required": ["imageEntityInOut_Type"],
+            "if": {
+              "properties": {
+                "isTemplate": {
+                  "enum": [true]
+                }
+              },
+              "required": ["isTemplate"]
             },
-            "imageEntityInOut_FileFormat":{
-              "description": "This format of the file is not required as in the case of a list of EntityImages, each EntityImages can have its own format.",
-              "$ref": "#/definitions/imageEntityInOut_FileFormat"
+            "then" : {
+              "required": ["templateInformation"]
             }
-          },
-          "required": ["type","imageEntityInOut_Type"]
-        }
+          }
       ]
     },
 
