@@ -620,24 +620,27 @@
 															],
 															"additionalProperties": false
 														}
-													}
-												},
-                        "withoutVisit" :{
-                          "type": "object",
+													},
                           "properties": {
-                            "image": {
-                              "$ref":  "#/definitions/imageFilterSnapshotResultImage"
+                            "withoutVisit" :{
+                              "type": "object",
+                              "properties": {
+                                "image": {
+                                  "$ref":  "#/definitions/imageFilterSnapshotResultImage"
+                                }
+                              },
+                              "required": [
+                                "image"
+                              ],
+                              "additionalProperties": false
                             }
                           },
-                          "required": [
-                            "image"
-                          ],
+                          "required": ["withoutVisit"],
                           "additionalProperties": false
-                        }
+												}
 											},
 											"required": [
-												"visit",
-                        "withoutVisit"
+												"visit"
 											],
 											"additionalProperties": false
 										}

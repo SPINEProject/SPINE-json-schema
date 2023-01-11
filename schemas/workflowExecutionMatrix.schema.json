@@ -1,0 +1,386 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Schema  for the workflow execution matrix",
+	"type": "object",
+	"definitions": {
+
+		"configurationPayload": {
+			"$id": "#configurationPayload",
+			"type": "object",
+			"properties": {
+				"label": {
+					"type": "string"
+				},
+				"autoConfig": {
+					"type": "object",
+					"patternProperties": {
+						".": {
+							"type": "object",
+							"properties": {
+								"execution": {
+									"type": "string",
+									"enum": ["local"]
+								}
+							},
+							"required": [
+								"execution"
+							],
+							"additionalProperties": false
+						}
+					}
+				},
+				"manualConfig": {
+					"type": "object",
+					"patternProperties": {
+						".": {
+							"type": "object",
+							"properties": {
+								"assignedTo": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"assignedTo"
+							],
+							"additionalProperties": false
+						}
+					}
+				}
+			},
+			"required": [
+				"label",
+				"autoConfig",
+				"manualConfig"
+			]
+		},
+
+		"matrixExecution": {
+			"$id": "#matrixExecution",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [
+					"configurationPayload"
+				],
+				"properties": {
+					"configurationPayload": {
+						"$ref": "#/definitions/configurationPayload"
+					},
+					"workflowExecutionUuid": {
+						"type": "string"
+					}
+				},
+				"additionalProperties": false
+			}
+		},
+
+		"matrixVisit": {
+			"$id": "#matrixVisit",
+			"type": "object",
+			"patternProperties": {
+				".": {
+					"type": "object",
+					"properties": {
+						"executions": {
+							"$ref": "#/definitions/matrixExecution"
+						}
+					},
+					"required": [
+						"executions"
+					],
+					"additionalProperties": false
+				}
+			},
+			"properties": {
+				"withoutVisit": {
+					"type": "object",
+					"properties": {
+						"execution": {
+							"$ref": "#/definitions/matrixExecution"
+						}
+					},
+					"required": [
+						"execution"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": []
+
+		},
+
+		"matrixSubject": {
+			"$id": "#matrixSubject",
+			"type": "object",
+			"patternProperties": {
+				".": {
+					"type": "object",
+					"properties": {
+						"visit": {
+							"$ref": "#/definitions/matrixVisit"
+						}
+					},
+					"required": [
+						"visit"
+					],
+					"additionalProperties": false
+				}
+			}
+		},
+
+
+		"matrixCohort": {
+			"$id": "#matrixCohort",
+			"type": "object",
+			"patternProperties": {
+				".": {
+					"type": "object",
+					"properties": {
+						"subject": {
+							"$ref": "#/definitions/matrixSubject"
+						}
+					},
+					"required": [
+						"subject"
+					],
+					"additionalProperties": false
+				}
+			}
+		},
+
+		"matrix": {
+			"$id": "#matrix",
+			"decription": "The matrix",
+			"type": "object",
+			"properties": {
+				"cohort": {
+					"$ref": "#/definitions/matrixCohort"
+				}
+			},
+			"required": [
+				"cohort"
+			],
+			"additionalProperties": false
+		},
+
+		"inputConfigConstant": {
+			"$id": "#inputConfigConstant",
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": ["CONSTANT"]
+				}
+			}
+		},
+
+		"inputConfigFilterResultSnapshot": {
+			"$id": "#inputConfigFilterResultSnapshot",
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": ["FILTER_RESULT_SNAPSHOT"]
+				},
+				"value": {
+					"type": "string"
+				}
+			}
+		},
+
+		"inputConfig": {
+			"$id": "#inputConfig",
+			"type": "object",
+			"patternProperties": {
+				".": {
+					"type": "object",
+					"properties": {
+						"type": {
+							"type": "string",
+							"enum": ["CONSTANT", "FILTER_RESULT_SNAPSHOT"]
+						},
+						"value": {
+
+						}
+					},
+					"required": [
+						"type",
+						"value"
+					],
+					"additionalProperties": false,
+					"oneOf": [{
+							"$ref": "#/definitions/inputConfigConstant"
+						},
+						{
+							"$ref": "#/definitions/inputConfigFilterResultSnapshot"
+						}
+					]
+				}
+			}
+		},
+
+		"raterConfig_ASSIGN_SELECTED_CASES_TO_SELECTED_RATERS": {
+			"$id": "#raterConfig_ASSIGN_SELECTED_CASES_TO_SELECTED_RATERS",
+			"type": "object",
+			"properties": {
+				"strategy": {
+					"enum": ["ASSIGN_SELECTED_CASES_TO_SELECTED_RATERS"]
+				},
+        "rater": {
+          "type": "object",
+          "patternProperties": {
+    				".": {
+    					"type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+      						"numberOfIterations": {
+      							"type": "number"
+      						},
+      						"subject": {
+      							"type": "string"
+      						},
+      						"visit": {
+      							"type": "string"
+      						}
+      					},
+      					"required": [
+      						"numberOfIterations",
+      						"visit",
+      						"subject"
+      					],
+      					"additionalProperties": false
+              }
+    				}
+    			}
+        }
+			}
+		},
+
+		"raterConfig_ASSIGN_ALL_CASES_TO_ALL_RATERS": {
+			"$id": "#raterConfig_ASSIGN_ALL_CASES_TO_ALL_RATERS",
+			"type": "object",
+			"properties": {
+				"strategy": {
+					"enum": ["ASSIGN_ALL_CASES_TO_ALL_RATERS"]
+				},
+        "rater": {
+          "type": "object",
+          "patternProperties": {
+    				".": {
+    					"type": "object",
+    					"properties": {
+    						"numberOfIterations": {
+    							"type": "number"
+    						},
+    						"subject": {
+    							"type": "string"
+    						},
+    						"visit": {
+    							"type": "string"
+    						}
+    					},
+    					"required": [
+    						"numberOfIterations"
+    					],
+    					"additionalProperties": false
+    				}
+    			}
+        }
+			}
+		},
+
+		"raterConfig": {
+			"$id": "#raterConfig",
+			"type": "object",
+			"properties": {
+				"strategy": {
+					"type": "string",
+					"enum": ["ASSIGN_ALL_CASES_TO_ALL_RATERS", "ASSIGN_SELECTED_CASES_TO_SELECTED_RATERS"]
+				},
+        "rater": {
+          "type": "object",
+          "patternProperties": {
+    				".": {
+
+            }
+    			}
+        }
+			},
+			"required": [
+				"strategy",
+        "rater"
+			],
+			"additionalProperties": false,
+			"oneOf": [{
+					"$ref": "#/definitions/raterConfig_ASSIGN_ALL_CASES_TO_ALL_RATERS"
+				},
+				{
+					"$ref": "#/definitions/raterConfig_ASSIGN_SELECTED_CASES_TO_SELECTED_RATERS"
+				}
+			]
+		},
+
+		"workflowExecutionMatrixDoc": {
+			"$id": "#workflowExecutionMatrixDoc",
+			"decription": "Workflow execution matrix document",
+			"type": "object",
+			"properties": {
+				"matrix": {
+					"$ref": "#/definitions/matrix"
+				},
+				"_id": {
+					"type": "string"
+				},
+				"docType": {
+					"type": "string",
+					"enum": [
+						"workflowExecutionMatrix"
+					]
+				},
+        "inputConfig": {
+          "$ref": "#/definitions/inputConfig"
+        },
+        "raterConfig": {
+          "$ref": "#/definitions/raterConfig"
+        },
+				"_rev": {
+					"type": "string"
+				},
+				"reference": {
+					"type": "object",
+					"properties": {
+						"ownerId": {
+							"type": "string"
+						},
+						"workflowId": {
+							"type": "string"
+						},
+						"experimentId": {
+							"type": "string"
+						},
+						"miniWorkflowSetId": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false,
+					"required": [
+						"ownerId",
+						"workflowId",
+						"experimentId",
+						"miniWorkflowSetId"
+					]
+				}
+			},
+			"required": [
+				"matrix",
+				"reference",
+				"docType",
+        "inputConfig",
+        "raterConfig"
+			],
+			"additionalProperties": false
+		}
+
+	},
+
+	"$ref": "#/definitions/workflowExecutionMatrixDoc"
+}
