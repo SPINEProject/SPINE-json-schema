@@ -1,4 +1,5 @@
 {
+	"$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflowExecutionMatrix.schema.json",
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"title": "Schema  for the workflow execution matrix",
 	"type": "object",
@@ -128,7 +129,6 @@
 			}
 		},
 
-
 		"matrixCohort": {
 			"$id": "#matrixCohort",
 			"type": "object",
@@ -235,17 +235,17 @@
       						"numberOfIterations": {
       							"type": "number"
       						},
-      						"subject": {
+      						"subjectId": {
       							"type": "string"
       						},
-      						"visit": {
+      						"visitId": {
       							"type": "string"
       						}
       					},
       					"required": [
       						"numberOfIterations",
-      						"visit",
-      						"subject"
+      						"visitId",
+      						"subjectId"
       					],
       					"additionalProperties": false
               }
@@ -336,6 +336,13 @@
 						"workflowExecutionMatrix"
 					]
 				},
+				"status": {
+					"type": "string",
+					"enum": [
+						"DRAFT",
+						"LAUNCHED"
+					]
+				},
         "inputConfig": {
           "$ref": "#/definitions/inputConfig"
         },
@@ -365,9 +372,11 @@
 					"required": [
 						"ownerId",
 						"workflowId",
-						"experimentId",
-						"miniWorkflowSetId"
+						"experimentId"
 					]
+				},
+				"label": {
+					"type": "boolean"
 				}
 			},
 			"required": [
@@ -375,12 +384,61 @@
 				"reference",
 				"docType",
         "inputConfig",
-        "raterConfig"
+        "raterConfig",
+				"label",
+				"status"
+			],
+			"additionalProperties": false
+		},
+
+		"workflowExecutionMatrixPayload": {
+			"$id": "#workflowExecutionMatrixPayload",
+			"decription": "Workflow execution matrix payload",
+			"type": "object",
+			"properties": {
+				"status": {
+					"type": "string",
+					"enum": [
+						"DRAFT",
+						"LAUNCHED"
+					]
+				},
+				"inputConfig": {
+				"$ref": "#/definitions/inputConfig"
+				},
+				"raterConfig": {
+				"$ref": "#/definitions/raterConfig"
+				},
+				"_rev": {
+					"type": "string"
+				},
+				"reference": {
+					"type": "object",
+					"properties": {
+						"experimentId": {
+							"type": "string"
+						},
+						"miniWorkflowSetId": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false,
+					"required": [
+						"experimentId"
+					]
+				},
+				"label": {
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"reference",
+				"inputConfig",
+				"raterConfig",
+				"label"
 			],
 			"additionalProperties": false
 		}
 
-	},
-
-	"$ref": "#/definitions/workflowExecutionMatrixDoc"
+	}
 }
