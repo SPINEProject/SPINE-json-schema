@@ -204,20 +204,64 @@
         "rules": {
           "type": "array"
           "items": {
-
+            "type": "object",
+            "properties": {
+              "rules": {
+                "type": "object",
+                "description": "JSON logic statement"
+              },
+              "distribution": {
+                "type": "array",
+                "description": "Distribution policy to be applied",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "integer",
+                      "minimum": 0,
+                    },
+                    "max": {
+                      "type": "integer",
+                      "minimum": 0,
+                    },
+                    "pools": {
+                      "type": "array",
+                      "description": "A list of pool names",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": ["pools","min","max"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["rules","distribution"],
+            "additionalProperties": false
           }
         },
         "pool": {
-          "type": "object"
-          "properties": {
-
+          "type": "object",
+          "patternProperties": {
+            ".": {
+              "type": "array",
+              "description": "An object representing a pool",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         },
         "maxContributionPerCase": {
-          "type": "number"
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum number of time a case can be distributed. Infinity if not set"
         },
         "maxContributionPerCasePerUser": {
-          "type": "number"
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum number of time a case can be distributed to the same user. Infinity if not set"
         }
       },
       "required": ["pool"],
