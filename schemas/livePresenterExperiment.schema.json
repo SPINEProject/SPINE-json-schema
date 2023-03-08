@@ -91,6 +91,14 @@
           "description": "id of the workflow to instanciate",
           "type":"string"
         },
+        "contribution":{
+          "description": "To be removed",
+          "type":"object",
+          "properties": {
+
+          },
+          "additionalProperties": false
+        },
         "miniWorkflowSetId":{
           "description": "id of the mini wf set to use with the workflow",
           "type":"string"
@@ -105,7 +113,7 @@
         },
         "caseDistribution": {
           "description": "Case distribution policy",
-          "$ref": "#/definitions/caseDistribution"
+          "$ref": "#/definitions/caseDistributionBase"
         },
         "centers": {
           "description": "Definition of the centers for map skill",
@@ -197,12 +205,12 @@
         }
       }
     },
-    "caseDistribution": {
-      "$id": "#caseDistribution",
+    "caseDistributionBase": {
+      "$id": "#caseDistributionBase",
       "type": "object",
       "properties": {
         "rules": {
-          "type": "array"
+          "type": "array",
           "items": {
             "type": "object",
             "properties": {
@@ -218,11 +226,11 @@
                   "properties": {
                     "min": {
                       "type": "integer",
-                      "minimum": 0,
+                      "minimum": 0
                     },
                     "max": {
                       "type": "integer",
-                      "minimum": 0,
+                      "minimum": 0
                     },
                     "pools": {
                       "type": "array",
@@ -267,27 +275,270 @@
       "required": ["pool"],
       "additionalProperties": false
     },
-    "centers": {
-      "$id": "#centers",
+    "caseDistributionMap": {
+      "$id": "#caseDistributionMap",
       "type": "object",
       "properties": {
-
+        "rules": {
+          "minItems": 0,
+          "maxItems": 0
+        }
+      }
+    },
+    "caseDistributionPresentation": {
+      "$id": "#caseDistributionPresentation",
+      "type": "object",
+      "properties": {
+        "rules": {
+          "minItems": 1
+        }
+      },
+      "required": ["rules"]
+    },
+    "centers": {
+      "$id": "#centers",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "poolId": {
+            "type": "string"
+          },
+          "centerId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "poolId",
+          "centerId"
+        ],
+        "additionalProperties": false
       }
     },
     "scoring": {
       "$id": "#scoring",
       "type": "object",
+      "patternProperties": {
+        ".": {
+          "type": "object",
+          "description": "An object representing a case",
+          "patternProperties": {
+            ".": {
+              "type": "string",
+              "description": "a uuid"
+            }
+          }
+        }
+      }
+    },
+    "passedOrFailed" : {
+      "$id": "#passedOrFailed",
+      "type": "object",
       "properties": {
-
+        "text": {
+          "type": "string"
+        },
+        "linkText": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "livePresenterExperiment": {
+          "type": "string"
+        },
+        "miniWorkflowSet": {
+          "type": "string"
+        },
+        "miniWorkflow": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "linkText",
+        "link"
+      ],
+      "additionalProperties": false
+    },
+    "scoringComponent": {
+      "$id": "#scoringComponent",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name" : {
+            "type": "string"
+          },
+          "tooltip" : {
+            "type": "string"
+          },
+          "scoringMethod" : {
+            "type": "string",
+            "enum": ["ANNOTATION_SAME_VALUE"]
+          },
+          "caseMatchingMethod" : {
+            "type": "string",
+            "enum": ["ROI_ID"]
+          },
+          "expert": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["ANNOTATION"]
+              },
+              "key": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "key"
+            ],
+            "additionalProperties": false
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["TASK_OUTPUT"]
+              },
+              "task": {
+                "type": "string"
+              },
+              "outputKey": {
+                "type": "string"
+              },
+              "outputIndex": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "type",
+              "task",
+              "outputKey"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "name",
+          "tooltip",
+          "scoringMethod",
+          "caseMatchingMethod",
+          "expert",
+          "user"
+        ],
+        "additionalProperties": false
       }
     },
     "scoringMethod": {
-      "$id": "#scoringMethod",
-      "type": "object",
-      "properties": {
+      "oneOf": [
+        {
+          "properties": {
+            "passed": {
+              "$ref": "#/definitions/passedOrFailed"
+            },
+            "failed": {
+              "$ref": "#/definitions/passedOrFailed"
+            },
+            "main": {
+              "type": "object",
+              "properties": {
+                "tooltip": {
+                  "type": "string"
+                },
+                "maxScore": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "thresholdScore": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "thresholdScore",
+                "maxScore",
+                "tooltip"
+              ],
+              "additionalProperties": false
+            },
+            "component": {
+              "description": "The list of scoring component",
+              "$ref": "#/definitions/scoringComponent"
+            }
+          },
+          "required": [
+            "passed",
+            "failed",
+            "main",
+            "component"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
 
-      }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      ],
+      "$id": "#scoringMethod",
+      "type": "object"
+    },
+
+    "livePresenterExperimentMap": {
+      "$id": "#livePresenterExperimentMap",
+      "allOf": [
+          { "$ref": "#/definitions/livePresenterExperimentBase" },
+          {
+            "properties":{
+              "caseDistribution": {
+                "allOf": [
+                    { "$ref": "#/definitions/caseDistributionMap" },
+                    { "$ref": "#/definitions/caseDistributionBase" }
+                  ]
+              }
+            },
+            "required": ["centers"]
+          }
+        ]
+    },
+
+    "livePresenterExperimentPresentation": {
+      "$id": "#livePresenterExperimentPresentation",
+      "allOf": [
+          { "$ref": "#/definitions/livePresenterExperimentBase" },
+          {
+            "properties":{
+              "caseDistribution": {
+                "allOf": [
+                    { "$ref": "#/definitions/caseDistributionPresentation" },
+                    { "$ref": "#/definitions/caseDistributionBase" }
+                  ]
+              }
+            },
+            "not": {
+             "anyOf": [
+               { "required": [ "centers" ] }
+             ]
+           }
+          }
+        ]
+    },
+
+    "livePresenterExperimentDoc": {
+      "oneOf": [
+          { "$ref": "#/definitions/livePresenterExperimentMap" },
+          { "$ref": "#/definitions/livePresenterExperimentPresentation" }
+        ]
     }
+
 
   }
 
