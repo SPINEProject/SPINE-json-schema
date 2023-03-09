@@ -1,0 +1,206 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/livePresenterExperimentResult.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Description of a live presenter experiment result.",
+  "type": "object",
+  "TODOS": [
+
+  ],
+  "QUESTIONS":[
+  ],
+  "definitions": {
+
+    "lpExperimentResultBase": {
+      "$id": "#lpExperimentResultBase",
+      "properties":{
+        "docType":{
+          "description": "Constant doc type",
+          "type":"string",
+          "enum": ["livePresenterExperimentResult"]
+        },
+        "passed":{
+          "description": "Did the user pass?",
+          "type":"boolean"
+        },
+        "reference": {
+          "type": "object",
+          "properties": {
+            "workflowExecutorId": {
+              "type":"string"
+            }
+          },
+          "required": ["workflowExecutorId"],
+          "additionalProperties": false
+        },
+        "_id": {
+          "type": "string"
+        },
+        "_rev": {
+          "type": "string"
+        },
+        "creationDate": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string",
+          "description": "user email"
+        },
+        "userSnapshot": {
+          "type": "object"
+        },
+        "views": {
+          "type": "object"
+        },
+        "final": {
+          "type": "object",
+          "properties": {
+            "max": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "score": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "value": {
+              "type": "boolean",
+              "description": "did the user pass?"
+            },
+            "text": {
+              "type": "string"
+            },
+            "linkText": {
+              "type": "string"
+            },
+            "tooltip": {
+              "type": "string"
+            },
+            "link": {
+              "type": "string"
+            },
+            "livePresenterExperiment": {
+              "type": "string"
+            },
+            "miniWorkflowSet": {
+              "type": "string"
+            },
+            "miniWorkflow": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "max",
+            "score",
+            "value",
+            "text",
+            "linkText",
+            "tooltip",
+            "link"
+        ],
+          "additionalProperties": false
+        },
+        "scoring": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "max": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "tooltip":  {
+                "type": "string"
+              },
+              "name":  {
+                "type": "string"
+              },
+              "userAnswer": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "ontologyId": {
+                    "type": "string"
+                  },
+                  "ontologyClassIri": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "label",
+                  "ontologyClassIri"
+                ],
+                "additionalProperties": false
+              },
+              "realAnswer": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "ontologyId": {
+                    "type": "string"
+                  },
+                  "ontologyClassIri": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "label",
+                  "ontologyClassIri"
+                ],
+                "additionalProperties": false
+              },
+              "inputs": {
+                "type": "object",
+                "properties": {
+                  "audioEntityId": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "value",
+              "max",
+              "tooltip",
+              "name",
+              "realAnswer",
+              "userAnswer",
+              "inputs"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "docType",
+        "passed",
+        "reference",
+        "userId",
+        "creationDate",
+        "userSnapshot",
+        "views",
+        "final",
+        "scoring"
+      ],
+      "additionalProperties": false
+
+  },
+
+    "lpExperimentResultDoc": {
+      "oneOf": [
+          { "$ref": "#/definitions/lpExperimentResultBase" }
+        ]
+    }
+
+
+  }
+
+}

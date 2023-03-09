@@ -1,0 +1,170 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/skill.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Description of a live presenter experiment.",
+  "type": "object",
+  "TODOS": [
+    "1. Review the convetion for the status for the experiment.",
+    "2. Change metrics to have values extracted from ontologies."
+  ],
+    "QUESTIONS":[
+  ],
+  "definitions": {
+
+    "skillBase": {
+      "$id": "#skillBase",
+      "properties":{
+        "docType":{
+          "description": "Constant doc type",
+          "type":"string",
+          "enum": ["skill"]
+        },
+        "description":{
+          "description": "Description of the experiment",
+          "type":"string"
+        },
+        "extraDescription":{
+          "description": "Extra description of the experiment",
+          "type":"string"
+        },
+        "type":{
+          "description": "Skill type",
+          "type":"string",
+          "enum": ["map"]
+        },
+        "skillsRequired": {
+          "description": "List of skill uuids required",
+          "type":"array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reference": {
+          "type": "object",
+          "properties": {
+            "livePresenterExperimentId": {
+              "type":"string"
+            },
+            "miniWorkflowSetId": {
+              "type":"string"
+            },
+            "miniWorkflowKey": {
+              "type":"string"
+            },
+            "presentationId": {
+              "type":"string"
+            },
+            "mapId": {
+              "type":"string"
+            }
+          },
+          "required": ["livePresenterExperimentId"],
+          "additionalProperties": false
+        },
+        "name": {
+          "$ref": "#/definitions/skillName"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "string"
+        },
+        "_rev": {
+          "type": "string"
+        }
+
+      },
+      "patternProperties":{
+
+        "^name_": {
+          "$ref": "#/definitions/skillName"
+        }
+
+      },
+      "required": [
+        "docType",
+        "description",
+        "extraDescription",
+        "reference",
+        "skillsRequired",
+        "name"
+      ],
+      "additionalProperties": false
+
+  },
+
+    "skillName": {
+      "$id": "#skillName",
+      "type": "string"
+    },
+
+
+    "skillPresentation": {
+      "$id": "#skillPresentation",
+      "allOf": [
+          { "$ref": "#/definitions/skillBase" },
+          {
+            "properties":{
+              "reference": {
+                "properties": {
+                  "livePresenterExperimentId": {
+                    "type":"string"
+                  },
+                  "miniWorkflowSetId": {
+                    "type":"string"
+                  },
+                  "miniWorkflowKey": {
+                    "type":"string"
+                  },
+                  "presentationId": {
+                    "type":"string"
+                  }
+                },
+                "required": ["livePresenterExperimentId","miniWorkflowSetId",
+                "miniWorkflowKey","presentationId"],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+    },
+
+    "skillMap": {
+      "$id": "#skillMap",
+      "allOf": [
+          { "$ref": "#/definitions/skillBase" },
+          {
+            "properties":{
+              "reference": {
+                "properties": {
+                  "livePresenterExperimentId": {
+                    "type":"string"
+                  },
+                  "mapId": {
+                    "type":"string"
+                  }
+                },
+                "required": ["livePresenterExperimentId","mapId"],
+                "additionalProperties": false
+              },
+              "type":{
+                "enum": ["map"]
+              }
+            },
+            "required": ["type"]
+          }
+        ]
+    },
+
+    "skillDoc": {
+      "oneOf": [
+          { "$ref": "#/definitions/skillMap" },
+          { "$ref": "#/definitions/skillPresentation" }
+        ]
+    }
+
+
+  }
+
+}
