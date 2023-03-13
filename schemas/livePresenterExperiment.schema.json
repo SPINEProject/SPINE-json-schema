@@ -169,7 +169,6 @@
               "description": "An object representing an input",
               "properties": {
                 "value": {
-                  "type": "string",
                   "description": "value for the input"
                 }
               },
