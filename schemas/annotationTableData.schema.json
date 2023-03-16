@@ -29,7 +29,7 @@
       "description": "The list of ROI and their annotations (content of the table)",
       "type": "array",
       "items": {
-        "type":"object"
+        "type":"object",
         "properties": {
           "id": {
             "description":"ID of the ROI",

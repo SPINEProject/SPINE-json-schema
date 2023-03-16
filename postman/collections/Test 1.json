@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "9b5f3997-677b-4ab3-847d-d5f5b8260d49",
+		"_postman_id": "752f469e-fee7-42d7-bee9-b2a78f12dbc4",
 		"name": "Test 1",
 		"description": "SPINE Workflow Execution Matrix API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "9863314-9b5f3997-677b-4ab3-847d-d5f5b8260d49"
+		"_uid": "9863314-752f469e-fee7-42d7-bee9-b2a78f12dbc4"
 	},
 	"item": [
 		{
@@ -12,7 +12,7 @@
 			"item": [
 				{
 					"name": "Get the list of workflow execution matrix for the current user",
-					"id": "a619a474-8579-4478-aeab-0a1abac7dfa5",
+					"id": "a8f8df72-52e6-49c9-814f-2021b4c5df2e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -37,7 +37,7 @@
 					},
 					"response": [
 						{
-							"id": "1af97140-7762-402b-ba9e-8b2202befdd8",
+							"id": "9333ea2c-81ce-4879-8736-74133dbf96c1",
 							"name": "The list of workflow execution matrix",
 							"originalRequest": {
 								"method": "GET",
@@ -61,6 +61,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -71,7 +72,7 @@
 							"body": "{\n  \"workflowExecutionMatrixList\": [\n    {\n      \"name\": \"Execution 1\",\n      \"uuid\": \"b91d796f1452d1a9338b8e470d13c35d\",\n      \"cohorts\": [\n        \"b91d796f1452d1a9338b8e470d13c35d\",\n        \"b91d796f1452d1a9338b8e470d13c35d\"\n      ],\n      \"workflow\": \"b91d796f1452d1a9338b8e470d13c35d\",\n      \"status\": \"DRAFT\",\n      \"statusOfExecutions\": {\n        \"draft\": 1,\n        \"done\": 0,\n        \"running\": 4\n      }\n    }\n  ],\n  \"workflows\": [\n    {\n      \"uuid\": \"b91d796f1452d1a9338b8e470d13c35d\",\n      \"name\": \"workflow1\"\n    }\n  ],\n  \"cohorts\": [\n    {\n      \"uuid\": \"b91d796f1452d1a9338b8e470d13c35d\",\n      \"name\": \"cohort1\"\n    }\n  ]\n}"
 						},
 						{
-							"id": "5410d3c8-04cc-4c57-bd5c-3d82c5915067",
+							"id": "863f3d10-685e-494c-b8dc-ede20214e309",
 							"name": "Unexpected error",
 							"originalRequest": {
 								"method": "GET",
@@ -95,6 +96,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -108,7 +110,7 @@
 				},
 				{
 					"name": "Post a new workflow execution matrix",
-					"id": "ae77a097-e8ce-4347-8978-b24fd708bc4c",
+					"id": "a5ba2052-96eb-4f08-96a2-93e21ef251f6",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -154,7 +156,7 @@
 					},
 					"response": [
 						{
-							"id": "51e38ee1-40ef-4344-8e16-cb954434175c",
+							"id": "6a4a4f4f-67b3-4eb0-af31-b9383a97d8a3",
 							"name": "The list of workflow execution matrix",
 							"originalRequest": {
 								"method": "POST",
@@ -199,6 +201,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -209,7 +212,7 @@
 							"body": "{\n  \"uuid\": \"b91d796f1452d1a9338b8e470d13c35d\",\n  \"reference\": {\n    \"workflowId\": \"b91d796f1452d1a9338b8e470d012780\",\n    \"ownerId\": \"e5fdec81-9b45-464c-b74d-4763b17392d9\"\n  },\n  \"name\": \"some name\",\n  \"status\": \"DRAFT\"\n}"
 						},
 						{
-							"id": "d2badb68-b918-4e53-a445-d2218ce963ef",
+							"id": "1d6adab0-ca15-4d58-90d9-ffc29894d65e",
 							"name": "Unexpected error",
 							"originalRequest": {
 								"method": "POST",
@@ -254,6 +257,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -266,7 +270,7 @@
 					]
 				}
 			],
-			"id": "ba9bf377-4512-4351-b289-bdf31d13261b"
+			"id": "4f456936-2797-4e8e-ab0c-922c29e62358"
 		}
 	],
 	"variable": [
