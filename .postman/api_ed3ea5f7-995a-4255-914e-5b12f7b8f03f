@@ -15,7 +15,7 @@ files[] = {"id":"9863314-752f469e-fee7-42d7-bee9-b2a78f12dbc4","path":"Test 1.js
 
 [config.relations.apiDefinition]
 rootDirectory = schemas
-files[] = {"path":"annotationTableData.schema.json","metaData":{}}
+files[] = {"path":"index.json","metaData":{}}
 
 [config.relations.apiDefinition.metaData]
 type = openapi:3_1
