@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "9b5f3997-677b-4ab3-847d-d5f5b8260d49",
+		"name": "Test 1",
+		"description": "SPINE Workflow Execution Matrix API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "9863314-9b5f3997-677b-4ab3-847d-d5f5b8260d49"
+	},
+	"item": [
+		{
+			"name": "api/workflow-execution-matrix",
+			"item": [
+				{
+					"name": "Get the list of workflow execution matrix for the current user",
+					"id": "a619a474-8579-4478-aeab-0a1abac7dfa5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/workflow-execution-matrix",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"workflow-execution-matrix"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "1af97140-7762-402b-ba9e-8b2202befdd8",
+							"name": "The list of workflow execution matrix",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/workflow-execution-matrix",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"workflow-execution-matrix"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"workflowExecutionMatrixList\": [\n    {\n      \"name\": \"Execution 1\",\n      \"uuid\": \"b91d796f1452d1a9338b8e470d13c35d\",\n      \"cohorts\": [\n        \"b91d796f1452d1a9338b8e470d13c35d\",\n        \"b91d796f1452d1a9338b8e470d13c35d\"\n      ],\n      \"workflow\": \"b91d796f1452d1a9338b8e470d13c35d\",\n      \"status\": \"DRAFT\",\n      \"statusOfExecutions\": {\n        \"draft\": 1,\n        \"done\": 0,\n        \"running\": 4\n      }\n    }\n  ],\n  \"workflows\": [\n    {\n      \"uuid\": \"b91d796f1452d1a9338b8e470d13c35d\",\n      \"name\": \"workflow1\"\n    }\n  ],\n  \"cohorts\": [\n    {\n      \"uuid\": \"b91d796f1452d1a9338b8e470d13c35d\",\n      \"name\": \"cohort1\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "5410d3c8-04cc-4c57-bd5c-3d82c5915067",
+							"name": "Unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/workflow-execution-matrix",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"workflow-execution-matrix"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Post a new workflow execution matrix",
+					"id": "ae77a097-e8ce-4347-8978-b24fd708bc4c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reference\": {\n    \"workflowId\": \"b91d796f1452d1a9338b8e470d012780\"\n  },\n  \"name\": \"some name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/workflow-execution-matrix/:workflowExecutionMatrixId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"workflow-execution-matrix",
+								":workflowExecutionMatrixId"
+							],
+							"variable": [
+								{
+									"key": "workflowExecutionMatrixId",
+									"value": "aute",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "51e38ee1-40ef-4344-8e16-cb954434175c",
+							"name": "The list of workflow execution matrix",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"reference\": {\n    \"workflowId\": \"b91d796f1452d1a9338b8e470d012780\"\n  },\n  \"name\": \"some name\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/workflow-execution-matrix/:workflowExecutionMatrixId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"workflow-execution-matrix",
+										":workflowExecutionMatrixId"
+									],
+									"variable": [
+										{
+											"key": "workflowExecutionMatrixId",
+											"value": "aute",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uuid\": \"b91d796f1452d1a9338b8e470d13c35d\",\n  \"reference\": {\n    \"workflowId\": \"b91d796f1452d1a9338b8e470d012780\",\n    \"ownerId\": \"e5fdec81-9b45-464c-b74d-4763b17392d9\"\n  },\n  \"name\": \"some name\",\n  \"status\": \"DRAFT\"\n}"
+						},
+						{
+							"id": "d2badb68-b918-4e53-a445-d2218ce963ef",
+							"name": "Unexpected error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"reference\": {\n    \"workflowId\": \"b91d796f1452d1a9338b8e470d012780\"\n  },\n  \"name\": \"some name\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/workflow-execution-matrix/:workflowExecutionMatrixId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"workflow-execution-matrix",
+										":workflowExecutionMatrixId"
+									],
+									"variable": [
+										{
+											"key": "workflowExecutionMatrixId",
+											"value": "aute",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"id": "ba9bf377-4512-4351-b289-bdf31d13261b"
+		}
+	],
+	"variable": [
+		{
+			"id": "e5d613a9-ef50-491a-ac2d-76f9ba61f416",
+			"key": "baseUrl",
+			"value": "/",
+			"type": "string"
+		}
+	]
+}
