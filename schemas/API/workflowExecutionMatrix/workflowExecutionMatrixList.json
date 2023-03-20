@@ -30,6 +30,12 @@
                                                 "done": 0,
                                                 "running": 4
                                             }
+                                        },
+                                        {
+                                            "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "cohorts": [],
+                                            "workflow": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "status": "DRAFT_2_SELECT_INPUT_DATA"
                                         }
                                     ],
                                     "workflows": [
@@ -96,7 +102,7 @@
                                         "workflowId": "b91d796f1452d1a9338b8e470d012780",
                                         "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
                                     },
-                                    "status": "DRAFT1_SELECT_WORKFLOW"
+                                    "status": "DRAFT_2_SELECT_INPUT_DATA"
                                 }
                             }
                         }
