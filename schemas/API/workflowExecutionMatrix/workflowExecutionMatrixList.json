@@ -10,7 +10,7 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixListBody"
+                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixListBody"
                         },
                         "examples": {
                             "1": {
@@ -66,7 +66,7 @@
             "content": {
                 "application/json": {
                     "schema": {
-                        "$ref": "../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixBody"
+                        "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixBody"
                     },
                     "examples": {
                         "body": {
@@ -86,7 +86,7 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixResponse"
+                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixResponse"
                         },
                         "examples": {
                             "1": {
@@ -96,7 +96,7 @@
                                         "workflowId": "b91d796f1452d1a9338b8e470d012780",
                                         "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
                                     },
-                                    "status": "DRAFT"
+                                    "status": "DRAFT1_SELECT_WORKFLOW"
                                 }
                             }
                         }
