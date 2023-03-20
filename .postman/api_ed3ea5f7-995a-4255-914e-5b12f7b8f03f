@@ -18,6 +18,7 @@ rootDirectory = schemas
 files[] = {"path":"annotation.schema.json","metaData":{}}
 files[] = {"path":"annotationTableData.schema.json","metaData":{}}
 files[] = {"path":"annotationTableDefinition.schema.json","metaData":{}}
+files[] = {"path":"API/index.json","metaData":{}}
 files[] = {"path":"center.schema.json","metaData":{}}
 files[] = {"path":"cohort.schema.json","metaData":{}}
 files[] = {"path":"core.schema.json","metaData":{}}
@@ -26,7 +27,6 @@ files[] = {"path":"experimentalPlan.schema.json","metaData":{}}
 files[] = {"path":"helpPanel.schema.json","metaData":{}}
 files[] = {"path":"imageFilter.schema.json","metaData":{}}
 files[] = {"path":"imageFilterAttribute.schema.json","metaData":{}}
-files[] = {"path":"index.json","metaData":{}}
 files[] = {"path":"livePresenterExperiment.schema.json","metaData":{}}
 files[] = {"path":"livePresenterExperimentResult.schema.json","metaData":{}}
 files[] = {"path":"materializedTask.schema.json","metaData":{}}
@@ -53,4 +53,4 @@ files[] = {"path":"workflowResult.schema.json","metaData":{}}
 
 [config.relations.apiDefinition.metaData]
 type = openapi:3
-rootFiles[] = index.json
+rootFiles[] = API/index.json

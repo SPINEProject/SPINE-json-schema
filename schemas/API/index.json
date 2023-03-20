@@ -23,7 +23,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "workflowExecutionMatrix.schema.json#/definitions/workflowExecutionMatrixList"
+                                    "$ref": "../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixListBody"
                                 },
                                 "examples": {
                                     "1": {
@@ -37,7 +37,7 @@
                                                         "b91d796f1452d1a9338b8e470d13c35d"
                                                     ],
                                                     "workflow": "b91d796f1452d1a9338b8e470d13c35d",
-                                                    "status": "DRAFT",
+                                                    "status": "LAUNCHED",
                                                     "statusOfExecutions": {
                                                         "draft": 1,
                                                         "done": 0,
@@ -91,7 +91,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixBody"
+                                "$ref": "../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixBody"
                             },
                             "examples": {
                                 "body": {
@@ -112,7 +112,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixResponse"
+                                    "$ref": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/postman2/schemas/workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixResponse"
                                 },
                                 "examples": {
                                     "1": {
@@ -122,7 +122,6 @@
                                                 "workflowId": "b91d796f1452d1a9338b8e470d012780",
                                                 "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
                                             },
-                                            "name": "some name",
                                             "status": "DRAFT"
                                         }
                                     }

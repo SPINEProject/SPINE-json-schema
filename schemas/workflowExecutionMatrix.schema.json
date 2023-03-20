@@ -569,7 +569,7 @@
                 }
             }
         },
-        "workflowExecutionMatrixList": {
+        "getWorkflowExecutionMatrixListBody": {
             "type": "object",
             "properties": {
                 "workflowExecutionMatrixList": {
