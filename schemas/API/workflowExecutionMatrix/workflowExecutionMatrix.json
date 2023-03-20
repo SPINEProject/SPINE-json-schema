@@ -1,0 +1,13 @@
+{
+    "parameters": [
+        {
+            "name": "workflowExecutionMatrixId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ]
+
+}
