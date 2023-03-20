@@ -492,7 +492,6 @@
             "type": "object",
             "required": [
                 "uuid",
-                "name",
                 "workflow",
                 "status",
                 "cohorts"
