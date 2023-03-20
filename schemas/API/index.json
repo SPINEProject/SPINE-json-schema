@@ -68,19 +68,7 @@
                         "description": "Unexpected error"
                     }
                 }
-            }
-        },
-        "/api/workflow-execution-matrix/{workflowExecutionMatrixId}": {
-            "parameters": [
-                {
-                    "name": "workflowExecutionMatrixId",
-                    "in": "path",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ],
+            },
             "post": {
                 "tags": [
                     "workflow execution matrix"
@@ -98,8 +86,7 @@
                                     "value": {
                                         "reference": {
                                             "workflowId": "b91d796f1452d1a9338b8e470d012780"
-                                        },
-                                        "name": "some name"
+                                        }
                                     }
                                 }
                             }
@@ -112,7 +99,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/postman2/schemas/workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixResponse"
+                                    "$ref": "../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixResponse"
                                 },
                                 "examples": {
                                     "1": {
@@ -134,6 +121,18 @@
                     }
                 }
             }
+        },
+        "/api/workflow-execution-matrix/{workflowExecutionMatrixId}": {
+            "parameters": [
+                {
+                    "name": "workflowExecutionMatrixId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
         }
     },
     "components": {

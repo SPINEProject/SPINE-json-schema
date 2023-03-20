@@ -340,6 +340,32 @@
             "description": "UUID of the workflow execution matrix",
             "type": "string"
         },
+        "workflowExecutionMatrixReference": {
+            "type": "object",
+            "properties": {
+                "ownerId": {
+                    "description": "Owner ID of the matrix",
+                    "type": "string"
+                },
+                "workflowId": {
+                    "description": "Workflow  ID used by the matrix",
+                    "type": "string"
+                },
+                "experimentId": {
+                    "description": "Experiment ID attached to the matrix",
+                    "type": "string"
+                },
+                "miniWorkflowSetId": {
+                    "description": "Mini workflow set ID",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "ownerId",
+                "workflowId"
+            ]
+        },
         "workflowExecutionMatrixDoc": {
             "$id": "#workflowExecutionMatrixDoc",
             "decription": "Workflow execution matrix document",
@@ -367,27 +393,7 @@
                     "type": "string"
                 },
                 "reference": {
-                    "type": "object",
-                    "properties": {
-                        "ownerId": {
-                            "type": "string"
-                        },
-                        "workflowId": {
-                            "type": "string"
-                        },
-                        "experimentId": {
-                            "type": "string"
-                        },
-                        "miniWorkflowSetId": {
-                            "type": "string"
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                        "ownerId",
-                        "workflowId",
-                        "experimentId"
-                    ]
+                    "$ref": "#/definitions/workflowExecutionMatrixReference"
                 },
                 "label": {
                     "type": "boolean"
@@ -410,11 +416,7 @@
             "type": "object",
             "properties": {
                 "status": {
-                    "type": "string",
-                    "enum": [
-                        "DRAFT",
-                        "LAUNCHED"
-                    ]
+                    "$ref": "#/definitions/workflowExecutionMatrixStatus"
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/inputConfig"
@@ -426,19 +428,7 @@
                     "type": "string"
                 },
                 "reference": {
-                    "type": "object",
-                    "properties": {
-                        "experimentId": {
-                            "type": "string"
-                        },
-                        "miniWorkflowSetId": {
-                            "type": "string"
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                        "experimentId"
-                    ]
+                    "$ref": "#/definitions/reference"
                 },
                 "label": {
                     "type": "boolean"
@@ -460,14 +450,16 @@
                 },
                 "reference": {
                     "type": "object",
-                    "required": [
-                        "workflowId"
-                    ],
                     "properties": {
                         "workflowId": {
+                            "description": "Workflow  ID used by the matrix",
                             "type": "string"
                         }
-                    }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "workflowId"
+                    ]
                 }
             },
             "required": [
@@ -478,11 +470,7 @@
             "type": "object",
             "properties": {
                 "status": {
-                    "type": "string",
-                    "enum": [
-                        "DRAFT",
-                        "LAUNCHED"
-                    ]
+                    "$ref": "#/definitions/workflowExecutionMatrixStatus"
                 },
                 "uuid": {
                     "type": "string"
@@ -491,19 +479,7 @@
                     "type": "string"
                 },
                 "reference": {
-                    "type": "object",
-                    "required": [
-                        "workflowId",
-                        "ownerId"
-                    ],
-                    "properties": {
-                        "workflowId": {
-                            "type": "string"
-                        },
-                        "ownerId": {
-                            "type": "string"
-                        }
-                    }
+                    "$ref": "#/definitions/workflowExecutionMatrixReference"
                 }
             },
             "required": [
@@ -580,6 +556,7 @@
                     }
                 },
                 "workflows": {
+                    "description": "The list of workflow",
                     "type": "array",
                     "items": {
                         "type": "object",
@@ -598,6 +575,7 @@
                     }
                 },
                 "cohorts": {
+                    "description": "The list of cohorts",
                     "type": "array",
                     "items": {
                         "type": "object",
