@@ -5,18 +5,17 @@
         "title": "SPINE API",
         "description": "SPINE API"
     },
-    "servers": 
-        [
-            {
-                "url":"{{SPINEUrl}}"
-                }
-        ]
-    ,
+    "servers": [
+        {
+            "url": "{{SPINEUrl}}"
+        }
+    ],
     "paths": {
         "/api/workflow-execution-matrix": {
-            
             "get": {
-                "tags": ["workflow execution matrix"],
+                "tags": [
+                    "workflow execution matrix"
+                ],
                 "summary": "Get the list of workflow execution matrix for the current user",
                 "responses": {
                     "200": {
@@ -24,7 +23,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/workflowExecutionMatrixList"
+                                    "$ref": "workflowExecutionMatrix.schema.json#/definitions/workflowExecutionMatrixList"
                                 },
                                 "examples": {
                                     "1": {
@@ -83,7 +82,9 @@
                 }
             ],
             "post": {
-                "tags": ["workflow execution matrix"],
+                "tags": [
+                    "workflow execution matrix"
+                ],
                 "summary": "Post a new workflow execution matrix",
                 "requestBody": {
                     "required": true,
@@ -111,7 +112,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflowExecutionMatrix.schema.json#/definitions/workflowExecutionMatrixDoc"
+                                    "$ref": "workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixResponse"
                                 },
                                 "examples": {
                                     "1": {
@@ -139,62 +140,6 @@
     "components": {
         "examples": {},
         "schemas": {
-            "workflowExecutionMatrixId": {
-                "description": "The unique identifier of a workflow execution matrix",
-                "type": "string"
-            },
-            "workflowExecutionMatrixList": {
-                "type": "object",
-                "properties": {
-                    "workflowExecutionMatrixList": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/workflowExecutionMatrixSummary"
-                        }
-                    },
-                    "workflows": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "uuid": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "name",
-                                "uuid"
-                            ]
-                        }
-                    },
-                    "cohorts": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "uuid": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "name",
-                                "uuid"
-                            ]
-                        }
-                    }
-                },
-                "required": [
-                    "orkflowExecutionMatrixList",
-                    "workflows",
-                    "cohorts"
-                ]
-            },
             "workflowExecutionMatrix": {
                 "type": "object",
                 "required": [
@@ -209,109 +154,6 @@
                         "type": "string"
                     }
                 }
-            },
-            "WorkflowExecutionMatrixSummary": {
-                "type": "object",
-                "required": [
-                    "uuid",
-                    "name",
-                    "workflow",
-                    "status",
-                    "statusOfExecutions",
-                    "cohorts"
-                ],
-                "properties": {
-                    "uuid": {
-                        "$ref": "#/components/schemas/WorkflowExecutionMatrixId"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Name of the workflow execution matrix"
-                    },
-                    "workflow": {
-                        "type": "string",
-                        "description": "Workflow UUID"
-                    },
-                    "dateOfExecution": {
-                        "type": "string",
-                        "description": "When was the matrix launched? (if launched)"
-                    },
-                    "status": {
-                        "description": "General status of the matrix",
-                        "type": "string",
-                        "enum": [
-                            "DRAFT",
-                            "LAUNCHED",
-                            "DONE"
-                        ]
-                    },
-                    "cohorts": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "description": "Cohort UUID"
-                        }
-                    },
-                    "statusOfExecutions": {
-                        "description": "Overview of the individual executions",
-                        "type": "object",
-                        "properties": {
-                            "done": {
-                                "type": "integer"
-                            },
-                            "running": {
-                                "type": "integer"
-                            },
-                            "error": {
-                                "type": "integer"
-                            }
-                        },
-                        "required": [
-                            "done",
-                            "running",
-                            "error"
-                        ]
-                    }
-                }
-            },
-            "postWorkflowExecutionMatrixResponse": {
-                "type": "object",
-                "properties": {
-                    "status": {
-                        "type": "string",
-                        "enum": [
-                            "DRAFT",
-                            "LAUNCHED"
-                        ]
-                    },
-                    "uuid": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "reference": {
-                        "type": "object",
-                        "required": [
-                            "workflowId",
-                            "ownerId"
-                        ],
-                        "properties": {
-                            "workflowId": {
-                                "type": "string"
-                            },
-                            "ownerId": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                },
-                "required": [
-                    "status",
-                    "uuid",
-                    "name",
-                    "reference"
-                ]
             }
         }
     }
