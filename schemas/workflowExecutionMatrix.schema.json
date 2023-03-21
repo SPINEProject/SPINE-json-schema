@@ -181,6 +181,14 @@
                 }
             }
         },
+        "inputConfigInputType": {
+            "description": "The input type",
+            "type": "string",
+            "enum": [
+                "CONSTANT",
+                "FILTER_RESULT_SNAPSHOT"
+            ]
+        },
         "inputConfig": {
             "$id": "#inputConfig",
             "type": "object",
@@ -189,11 +197,7 @@
                     "type": "object",
                     "properties": {
                         "type": {
-                            "type": "string",
-                            "enum": [
-                                "CONSTANT",
-                                "FILTER_RESULT_SNAPSHOT"
-                            ]
+                            "$ref": "#/definitions/inputConfigInputType"
                         },
                         "value": {}
                     },
@@ -366,6 +370,7 @@
                 "workflowId"
             ]
         },
+        
         "workflowExecutionMatrixDoc": {
             "$id": "#workflowExecutionMatrixDoc",
             "decription": "Workflow execution matrix document",
@@ -409,6 +414,74 @@
                 "status"
             ],
             "additionalProperties": false
+        },
+        "workflowExecutionMatrixReference_API": {
+            "type": "object",
+            "properties": {
+                "ownerId": {
+                    "description": "Owner ID of the matrix",
+                    "type": "string"
+                },
+                "experimentId": {
+                    "description": "Experiment ID attached to the matrix",
+                    "type": "string"
+                },
+                "miniWorkflowSetId": {
+                    "description": "Mini workflow set ID",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "ownerId"
+            ]
+        },
+        "workflowExecutionMatrixWorkflow_API": {
+            "description": "Description of the selected workflow",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "Name of the workflow",
+                    "type": "string"
+                },
+                "uuid": {
+                    "description": "Workflow UUID",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "uuid"
+            ]
+        },
+        "workflowExecutionMatrixInputConfig_API": {
+            "description": "Description of the inputs",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/definitions/workflowExecutionMatrixInputConfigInput_API"
+            }
+        },
+        "workflowExecutionMatrixInputConfigInput_API": {
+            "description": "Description of an input",
+            "type": "object",
+            "properties": {
+                "isRequired": {
+                    "description": "Is the input required",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "The input name",
+                    "type": "string"
+                },
+                "type":{
+                    "$ref": "#/definitions/inputConfigInputType"
+                } ,
+                "value":{
+                    "description": "The input value"
+                } 
+            },
+            "required": ["isRequired", "name", "type"]
         },
         "workflowExecutionMatrixPayload": {
             "$id": "#workflowExecutionMatrixPayload",
@@ -478,14 +551,22 @@
                 "name": {
                     "type": "string"
                 },
+                "workflow": {
+                    "$ref": "#/definitions/workflowExecutionMatrixWorkflow_API"
+                },
                 "reference": {
-                    "$ref": "#/definitions/workflowExecutionMatrixReference"
+                    "$ref": "#/definitions/workflowExecutionMatrixReference_API"
+                },
+                "inputConfig": {
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
                 }
             },
             "required": [
                 "status",
                 "uuid",
-                "reference"
+                "reference",
+                "workflow",
+                "inputConfig"
             ]
         },
         "workflowExecutionMatrixSummary": {
