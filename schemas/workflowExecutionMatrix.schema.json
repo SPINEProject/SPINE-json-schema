@@ -456,7 +456,7 @@
             ]
         },
         "workflowExecutionMatrixInputConfig_API": {
-            "description": "Description of the inputs",
+            "description": "See workflowExecutionMatrix.schema.json/definitions/workflowExecutionMatrixInputConfig_API",
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/definitions/workflowExecutionMatrixInputConfigInput_API"
@@ -481,7 +481,8 @@
                     "description": "The input value"
                 } 
             },
-            "required": ["isRequired", "name", "type"]
+            "required": ["isRequired", "name", "type"],
+            "additionalProperties": false
         },
         "workflowExecutionMatrixPayload": {
             "$id": "#workflowExecutionMatrixPayload",
@@ -558,6 +559,7 @@
                     "$ref": "#/definitions/workflowExecutionMatrixReference_API"
                 },
                 "inputConfig": {
+
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
                 }
             },
