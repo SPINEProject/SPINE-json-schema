@@ -1,0 +1,31 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "0.0.4",
+        "title": "SPINE API",
+        "description": "SPINE API"
+    },
+    "servers": [
+        {
+            "url": "{{SPINEUrl}}"
+        }
+    ],
+    "paths": {
+        "/api/workflow-execution-matrix": {
+            "$ref": "./workflowExecutionMatrix/workflowExecutionMatrixList.json"
+        },
+        "/api/workflow-execution-matrix/{workflowExecutionMatrixId}": {
+            "$ref": "./workflowExecutionMatrix/workflowExecutionMatrix.json"
+        }
+    },
+    "components": {
+        "examples": {},
+        "schemas": {}
+    },
+    "tags": [
+        {
+            "name": "workflow execution matrix",
+            "description": "Workflow Execution Matrix"
+        }
+    ]
+}

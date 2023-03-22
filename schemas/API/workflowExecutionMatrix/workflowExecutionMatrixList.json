@@ -1,0 +1,134 @@
+{
+    "get": {
+        "tags": [
+            "workflow execution matrix"
+        ],
+        "summary": "Get the list of workflow execution matrix for the current user",
+        "responses": {
+            "200": {
+                "description": "The list of workflow execution matrix",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixListBody"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "workflowExecutionMatrixList": [
+                                        {
+                                            "name": "Execution 1",
+                                            "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "cohorts": [
+                                                "b91d796f1452d1a9338b8e470d13c35d",
+                                                "b91d796f1452d1a9338b8e470d13c35d"
+                                            ],
+                                            "workflow": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "status": "LAUNCHED",
+                                            "statusOfExecutions": {
+                                                "draft": 1,
+                                                "done": 0,
+                                                "running": 4
+                                            }
+                                        },
+                                        {
+                                            "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "cohorts": [],
+                                            "workflow": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "status": "DRAFT_2_SELECT_INPUT_DATA"
+                                        }
+                                    ],
+                                    "workflows": [
+                                        {
+                                            "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "name": "workflow1"
+                                        }
+                                    ],
+                                    "cohorts": [
+                                        {
+                                            "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "name": "cohort1"
+                                        }
+                                    ]
+                                },
+                                "summary": "Example of response with one matrix in the list"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    },
+    "post": {
+        "tags": [
+            "workflow execution matrix"
+        ],
+        "summary": "Post a new workflow execution matrix",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixBody"
+                    },
+                    "examples": {
+                        "body": {
+                            "value": {
+                                "reference": {
+                                    "workflowId": "b91d796f1452d1a9338b8e470d012780"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "The created wf exec matrix",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                    "workflow": {
+                                        "name": "name of the workflow",
+                                        "uuid": "b91d796f1452d1a9338b8e470d012780"
+                                    },
+                                    "inputConfig": {
+                                        "inputA": {
+                                            "isRequired": true,
+                                            "name": "name of the input A",
+                                            "type": "FILTER_RESULT_SNAPSHOT",
+                                            "value": "b91d796f1452d1a9338b8e470d01609e"
+                                        },
+                                        "inputB": {
+                                            "isRequired": false,
+                                            "name": "name of the input B",
+                                            "type": "CONSTANT",
+                                            "value": 2
+                                        }
+                                    },
+                                    "reference": {
+                                        "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                    },
+                                    "status": "DRAFT_2_SELECT_INPUT_DATA"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}
