@@ -5,7 +5,6 @@
     "type": "object",
     "definitions": {
         "operator": {
-            "$id": "#operator",
             "description": "Description of an operators",
             "type": "object",
             "properties": {
@@ -24,7 +23,6 @@
             ]
         },
         "operatorEqual": {
-            "$id": "#operatorEqual",
             "allOf": [
                 {
                     "properties": {
@@ -47,7 +45,6 @@
             ]
         },
         "operatorNotEqual": {
-            "$id": "#operatorNotEqual",
             "allOf": [
                 {
                     "properties": {
@@ -70,7 +67,6 @@
             ]
         },
         "operatorLessThan": {
-            "$id": "#operatorLessThan",
             "properties": {
                 "label": {
                     "enum": [
@@ -89,7 +85,6 @@
             ]
         },
         "operatorLesserEqual": {
-            "$id": "#operatorLesserEqual",
             "allOf": [
                 {
                     "properties": {
@@ -112,7 +107,6 @@
             ]
         },
         "operatorGreaterEqual": {
-            "$id": "#operatorGreaterEqual",
             "allOf": [
                 {
                     "properties": {
@@ -135,7 +129,6 @@
             ]
         },
         "operatorGreaterThan": {
-            "$id": "#operatorGreaterThan",
             "allOf": [
                 {
                     "properties": {
@@ -158,7 +151,6 @@
             ]
         },
         "operatorContains": {
-            "$id": "#operatorContains",
             "allOf": [
                 {
                     "properties": {
@@ -181,7 +173,6 @@
             ]
         },
         "operatorDoesNotContains": {
-            "$id": "#operatorDoesNotContains",
             "allOf": [
                 {
                     "properties": {
@@ -204,7 +195,6 @@
             ]
         },
         "operatorIncludes": {
-            "$id": "#operatorIncludes",
             "allOf": [
                 {
                     "properties": {
@@ -227,7 +217,6 @@
             ]
         },
         "operatorDoesNotInclude": {
-            "$id": "#operatorDoesNotInclude",
             "allOf": [
                 {
                     "properties": {
@@ -250,7 +239,6 @@
             ]
         },
         "operatorIn": {
-            "$id": "#operatorIn",
             "allOf": [
                 {
                     "properties": {
@@ -273,7 +261,6 @@
             ]
         },
         "operatorNotIn": {
-            "$id": "#operatorNotIn",
             "allOf": [
                 {
                     "properties": {
@@ -296,7 +283,6 @@
             ]
         },
         "operatorAND": {
-            "$id": "#operatorAND",
             "allOf": [
                 {
                     "properties": {
@@ -319,7 +305,7 @@
             ]
         },
         "operatorOR": {
-            "$id": "#operatorOR",
+
             "allOf": [
                 {
                     "properties": {
@@ -342,7 +328,6 @@
             ]
         },
         "textualOperator": {
-            "$id": "#textualOperator",
             "description": "Textual operator",
             "type": "object",
             "properties": {
@@ -386,7 +371,6 @@
             ]
         },
         "numericalOperator": {
-            "$id": "#numericalOperator",
             "description": "Numerical operator",
             "type": "object",
             "properties": {
@@ -436,7 +420,6 @@
             ]
         },
         "logicalOperator": {
-            "$id": "#logicalOperator",
             "description": "Logical operator",
             "type": "object",
             "properties": {
@@ -460,7 +443,6 @@
             ]
         },
         "arrayOperator": {
-            "$id": "#arrayOperator",
             "description": "Array operator",
             "type": "object",
             "properties": {
@@ -490,7 +472,6 @@
             ]
         },
         "criterion": {
-            "$id": "#criterion",
             "description": "Criterion",
             "type": "object",
             "properties": {
@@ -517,8 +498,7 @@
             }
         },
         "expression": {
-            "$id": "#expression",
-            "description": "Expression",
+            "description": "An expression",
             "type": "object",
             "properties": {
                 "logicalOperator": {
@@ -574,6 +554,10 @@
                 "ownerId"
             ]
         },
+        "imageFilterName": {
+            "type": "string",
+            "description": "Filter name"
+        },
 		"imageFilterDoc": {
             "$id": "#imageFilterDoc",
             "decription": "image filter when posted",
@@ -581,6 +565,9 @@
             "properties": {
                 "filter": {
                     "$ref": "#/definitions/expression"
+                },
+                "name": {
+                    "$ref": "#/definitions/imageFilterName"
                 },
                 "_id": {
                     "type": "string",
@@ -603,7 +590,8 @@
             "required": [
                 "filter",
                 "reference",
-                "docType"
+                "docType",
+                "name"
             ]
         },
         "imageFilterSnapshotResultImage": {
@@ -753,12 +741,27 @@
             "type": "object",
             "properties": {
                 "uuid": {
-                    "description": "Filter UUID"
+                    "description": "Filter UUID",
+                    "type": "string"
                 },
                 "reference": {
                     "$ref": "#/definitions/imageFilterReference"
+                },
+                "name": {
+                    "$ref": "#/definitions/imageFilterName"
+                },
+                "filter": {
+                    "description": "The filter expression",
+                    "$ref": "#/definitions/expression"
                 }
-            }
+            },
+            "additionalProperties": false,
+            "required": [
+                "filter",
+                "reference",
+                "uuid",
+                "name"
+            ]
         }
     }
 }
