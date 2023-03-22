@@ -9,7 +9,7 @@ id = ed3ea5f7-995a-4255-914e-5b12f7b8f03f
 
 [config.relations.collections]
 rootDirectory = postman/collections
-files[] = {"id":"9863314-6904b330-fe27-45db-9191-40b4d90c0af9","path":"SPINE.json","metaData":{"generateCollectionPreferences":"{\"requestNameSource\":\"Fallback\",\"indentCharacter\":\"Space\",\"parametersResolution\":\"Schema\",\"folderStrategy\":\"Tags\",\"includeAuthInfoInExample\":true,\"keepImplicitHeaders\":false,\"includeDeprecated\":true,\"updateCollectionSync\":true,\"requestParametersResolution\":\"Schema\",\"exampleParametersResolution\":\"Schema\"}"}}
+files[] = {"id":"9863314-1b22f311-85d1-4c7e-8048-70f1b3ec6f50","path":"SPINE API.json","metaData":{"generateCollectionPreferences":"{\"requestNameSource\":\"Fallback\",\"indentCharacter\":\"Space\",\"parametersResolution\":\"Schema\",\"folderStrategy\":\"Tags\",\"includeAuthInfoInExample\":true,\"keepImplicitHeaders\":false,\"includeDeprecated\":true,\"updateCollectionSync\":true,\"requestParametersResolution\":\"Schema\",\"exampleParametersResolution\":\"Schema\"}"}}
 
 [config.relations.collections.metaData]
 
@@ -18,6 +18,7 @@ rootDirectory = schemas
 files[] = {"path":"annotation.schema.json","metaData":{}}
 files[] = {"path":"annotationTableData.schema.json","metaData":{}}
 files[] = {"path":"annotationTableDefinition.schema.json","metaData":{}}
+files[] = {"path":"API/filter/filter.json","metaData":{}}
 files[] = {"path":"API/index.json","metaData":{}}
 files[] = {"path":"API/workflowExecutionMatrix/workflowExecutionMatrix.json","metaData":{}}
 files[] = {"path":"API/workflowExecutionMatrix/workflowExecutionMatrixList.json","metaData":{}}

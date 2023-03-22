@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "version": "0.0.4",
+        "version": "0.0.5",
         "title": "SPINE API",
         "description": "SPINE API"
     },
@@ -16,11 +16,21 @@
         },
         "/api/workflow-execution-matrix/{workflowExecutionMatrixId}": {
             "$ref": "./workflowExecutionMatrix/workflowExecutionMatrix.json"
+        },
+        "/api/filter/{filterId}": {
+            "$ref": "./filter/filter.json"
         }
     },
     "components": {
         "examples": {},
-        "schemas": {}
+        "schemas": {},
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
     },
     "tags": [
         {
