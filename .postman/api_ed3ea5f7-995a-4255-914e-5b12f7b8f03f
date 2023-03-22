@@ -18,6 +18,7 @@ rootDirectory = schemas
 files[] = {"path":"annotation.schema.json","metaData":{}}
 files[] = {"path":"annotationTableData.schema.json","metaData":{}}
 files[] = {"path":"annotationTableDefinition.schema.json","metaData":{}}
+files[] = {"path":"API/filter/filter.json","metaData":{}}
 files[] = {"path":"API/index.json","metaData":{}}
 files[] = {"path":"API/workflowExecutionMatrix/workflowExecutionMatrix.json","metaData":{}}
 files[] = {"path":"API/workflowExecutionMatrix/workflowExecutionMatrixList.json","metaData":{}}

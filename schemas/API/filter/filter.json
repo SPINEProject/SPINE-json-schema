@@ -1,0 +1,41 @@
+{
+    "parameters": [
+        {
+            "name": "filterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "get": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "filter"
+        ],
+        "summary": "Get a filter by ID",
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../imageFilter.schema.json#/definitions/getFilterResponse"
+                        },
+                        "examples": {
+                            "1": {}
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

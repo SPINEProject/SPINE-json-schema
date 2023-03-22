@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1b22f311-85d1-4c7e-8048-70f1b3ec6f50",
+		"_postman_id": "34f5a8a1-997c-46b8-a137-364580e8befe",
 		"name": "SPINE API",
 		"description": "SPINE API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "9863314-1b22f311-85d1-4c7e-8048-70f1b3ec6f50"
+		"_uid": "9863314-34f5a8a1-997c-46b8-a137-364580e8befe"
 	},
 	"item": [
 		{
@@ -12,7 +12,7 @@
 			"item": [
 				{
 					"name": "Get the list of workflow execution matrix for the current user",
-					"id": "c04b405f-40fa-457a-8627-721ae553326a",
+					"id": "af96cfe8-9f0d-4aad-adec-8a89b88a7e4a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -47,7 +47,7 @@
 					},
 					"response": [
 						{
-							"id": "f9c39814-e4e8-45fb-bea2-3923aa8731e5",
+							"id": "38431611-f8bf-489b-8711-99b082aab47f",
 							"name": "The list of workflow execution matrix",
 							"originalRequest": {
 								"method": "GET",
@@ -72,6 +72,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -82,7 +83,7 @@
 							"body": "{\n  \"workflowExecutionMatrixList\": [\n    {\n      \"uuid\": \"<string>\",\n      \"workflow\": \"<string>\",\n      \"status\": \"DRAFT_3_SELECT_RATER\",\n      \"cohorts\": [\n        {\n          \"uuid\": \"<string>\",\n          \"count\": \"<integer>\"\n        },\n        {\n          \"uuid\": \"<string>\",\n          \"count\": \"<integer>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"dateOfExecution\": \"<string>\",\n      \"statusOfExecutions\": {\n        \"done\": \"<integer>\",\n        \"running\": \"<integer>\",\n        \"error\": \"<integer>\"\n      }\n    },\n    {\n      \"uuid\": \"<string>\",\n      \"workflow\": \"<string>\",\n      \"status\": \"DRAFT_3_SELECT_RATER\",\n      \"cohorts\": [\n        {\n          \"uuid\": \"<string>\",\n          \"count\": \"<integer>\"\n        },\n        {\n          \"uuid\": \"<string>\",\n          \"count\": \"<integer>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"dateOfExecution\": \"<string>\",\n      \"statusOfExecutions\": {\n        \"done\": \"<integer>\",\n        \"running\": \"<integer>\",\n        \"error\": \"<integer>\"\n      }\n    }\n  ],\n  \"workflows\": [\n    {\n      \"name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"cohorts\": [\n    {\n      \"name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ]\n}"
 						},
 						{
-							"id": "f5138634-ebfa-4ce1-bd9e-2612d65a19dc",
+							"id": "d875f57b-76bb-46e2-a532-1f85b583117d",
 							"name": "Unexpected error",
 							"originalRequest": {
 								"method": "GET",
@@ -107,6 +108,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -114,7 +116,7 @@
 				},
 				{
 					"name": "Post a new workflow execution matrix",
-					"id": "491a67b6-11b8-41f8-8689-51f116dd3976",
+					"id": "85a34c92-4f0b-440d-8416-cc5be058ae2f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -163,7 +165,7 @@
 					},
 					"response": [
 						{
-							"id": "8dcb265d-c515-4fd6-865a-ece1ef5ef776",
+							"id": "33ace46a-64bb-4657-a597-3f322c6a1df0",
 							"name": "The created wf exec matrix",
 							"originalRequest": {
 								"method": "POST",
@@ -202,6 +204,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -212,7 +215,7 @@
 							"body": "{\n  \"status\": \"DONE\",\n  \"uuid\": \"<string>\",\n  \"reference\": {\n    \"ownerId\": \"<string>\",\n    \"experimentId\": \"<string>\",\n    \"miniWorkflowSetId\": \"<string>\"\n  },\n  \"workflow\": {\n    \"name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"inputConfig\": {\n    \"non_12b\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": {\n        \"value\": \"reference workflowExecutionMatrix.schema.json#/definitions/inputConfigInputType not found in the OpenAPI spec\"\n      },\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    },\n    \"dof8\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": {\n        \"value\": \"reference workflowExecutionMatrix.schema.json#/definitions/inputConfigInputType not found in the OpenAPI spec\"\n      },\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    }\n  },\n  \"name\": \"<string>\"\n}"
 						},
 						{
-							"id": "f489e581-a229-4087-81b6-776c8cc81171",
+							"id": "a0392d14-056e-42be-ae9c-9842f0e72a1d",
 							"name": "Unexpected error",
 							"originalRequest": {
 								"method": "POST",
@@ -251,6 +254,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
@@ -258,7 +262,7 @@
 				},
 				{
 					"name": "Get a workflow execution matrix",
-					"id": "82b1d929-3bdd-4cdc-b08c-879f3aa64bb0",
+					"id": "7b167633-2427-4fac-a0eb-da8af589ff19",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -300,7 +304,7 @@
 					},
 					"response": [
 						{
-							"id": "56b3d2b4-f7c4-4dcb-8e25-4a5e43590f48",
+							"id": "39f1b7aa-7ef3-4db3-ba83-3c5f71f433fd",
 							"name": "200",
 							"originalRequest": {
 								"method": "GET",
@@ -331,6 +335,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -341,7 +346,7 @@
 							"body": "{\n  \"status\": \"DRAFT_1_SELECT_WORKFLOW\",\n  \"uuid\": \"<string>\",\n  \"reference\": {\n    \"ownerId\": \"<string>\",\n    \"experimentId\": \"<string>\",\n    \"miniWorkflowSetId\": \"<string>\"\n  },\n  \"name\": \"<string>\"\n}"
 						},
 						{
-							"id": "d3845cb8-6922-46f5-b3f1-52c5cdc4827a",
+							"id": "219c011e-fcaf-4250-95b4-ec01ed0af77a",
 							"name": "Unexpected error",
 							"originalRequest": {
 								"method": "GET",
@@ -372,13 +377,14 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [],
 							"cookie": []
 						}
 					]
 				}
 			],
-			"id": "0b3782e5-5f44-465d-baff-b50bf54ce009",
+			"id": "24d066c0-9a22-49c6-9386-eb0ca6972834",
 			"description": "Workflow Execution Matrix"
 		}
 	],
