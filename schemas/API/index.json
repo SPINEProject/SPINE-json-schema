@@ -22,6 +22,12 @@
         },
         "/filter": {
             "$ref": "./filter/filter.json"
+        },
+        "/filter-snapshot": {
+            "$ref": "./filter/filterSnapshot.json"
+        },
+        "/filter-snapshot/{filterSnapshotId}": {
+            "$ref": "./filter/filterSnapshotId.json"
         }
     },
     "components": {
