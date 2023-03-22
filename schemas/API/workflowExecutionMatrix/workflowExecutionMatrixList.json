@@ -10,7 +10,7 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixListBody"
+                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixListResponse"
                         },
                         "examples": {
                             "1": {

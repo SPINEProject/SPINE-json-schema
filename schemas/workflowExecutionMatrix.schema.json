@@ -638,7 +638,7 @@
                 }
             }
         },
-        "getWorkflowExecutionMatrixListBody": {
+        "getWorkflowExecutionMatrixListResponse": {
             "type": "object",
             "properties": {
                 "workflowExecutionMatrixList": {
