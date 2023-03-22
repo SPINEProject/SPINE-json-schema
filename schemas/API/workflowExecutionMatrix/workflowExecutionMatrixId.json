@@ -1,0 +1,78 @@
+{
+    "parameters": [
+        {
+            "name": "workflowExecutionMatrixId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "get": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "workflow execution matrix"
+        ],
+        "summary": "Get a workflow execution matrix",
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                    "workflow": {
+                                        "name": "name of the workflow",
+                                        "uuid": "b91d796f1452d1a9338b8e470d012780"
+                                    },
+                                    "inputConfig": {
+                                        "inputA": {
+                                            "isRequired": true,
+                                            "name": "name of the input A",
+                                            "type": "FILTER_RESULT_SNAPSHOT",
+                                            "value": "b91d796f1452d1a9338b8e470d01609e"
+                                        },
+                                        "inputB": {
+                                            "isRequired": false,
+                                            "name": "name of the input B",
+                                            "type": "CONSTANT",
+                                            "value": 2
+                                        }
+                                    },
+                                    "reference": {
+                                        "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                    },
+                                    "status": "DRAFT_2_SELECT_INPUT_DATA"
+                                },
+                                "summary": "Example of response when the matrix in step 2"
+                            },
+                            "2": {
+                                "value": {
+                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                    "reference": {
+                                        "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                    },
+                                    "status": "DRAFT_1_SELECT_WORKFLOW"
+                                },
+                                "summary": "Example of response when the matrix in step 1"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

@@ -1,0 +1,70 @@
+{
+    "parameters": [
+        {
+            "name": "filterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "get": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "filter"
+        ],
+        "summary": "Get a filter by ID",
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../imageFilter.schema.json#/definitions/getFilterResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "uuid": "4c636555d3963f0a65312032bf001eb7",
+                                    "name": "My filter",
+                                    "filter": {
+                                        "logicalOperator": {
+                                            "type": "LOGICAL_OPERATOR",
+                                            "label": "OR",
+                                            "value": "OR"
+                                        },
+                                        "criteria": [
+                                            {
+                                                "value": 400,
+                                                "operator": {
+                                                    "type": "NUMERICAL_OPERATOR",
+                                                    "variant": "ANY_ELEMENT",
+                                                    "value": "less than",
+                                                    "label": "<"
+                                                },
+                                                "attribute": "EchoTime"
+                                            }
+                                        ],
+                                        "expressions": []
+                                    },
+                                    "reference": {
+                                        "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                    }
+                                },
+                                "summary": "A filter returned by the endpoint"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

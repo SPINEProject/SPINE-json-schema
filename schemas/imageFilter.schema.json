@@ -305,7 +305,6 @@
             ]
         },
         "operatorOR": {
-
             "allOf": [
                 {
                     "properties": {
@@ -558,7 +557,7 @@
             "type": "string",
             "description": "Filter name"
         },
-		"imageFilterDoc": {
+        "imageFilterDoc": {
             "$id": "#imageFilterDoc",
             "decription": "image filter when posted",
             "type": "object",
@@ -760,6 +759,48 @@
                 "filter",
                 "reference",
                 "uuid",
+                "name"
+            ]
+        },
+        "getFilterListResponse": {
+            "type": "array",
+            "items": {
+                "description": "Filter summary",
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "description": "Filter UUID",
+                        "type": "string"
+                    },
+                    "reference": {
+                        "$ref": "#/definitions/imageFilterReference"
+                    },
+                    "name": {
+                        "$ref": "#/definitions/imageFilterName"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "reference",
+                    "uuid",
+                    "name"
+                ]
+            }
+        },
+        "postFilterBody": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/imageFilterName"
+                },
+                "filter": {
+                    "description": "The filter expression",
+                    "$ref": "#/definitions/expression"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "filter",
                 "name"
             ]
         }
