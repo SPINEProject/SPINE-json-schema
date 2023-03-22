@@ -91,11 +91,20 @@
                         "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixBody"
                     },
                     "examples": {
-                        "body": {
+                        "save": {
                             "value": {
                                 "reference": {
                                     "workflowId": "b91d796f1452d1a9338b8e470d012780"
-                                }
+                                },
+                                "status": "DRAFT_1_SELECT_WORKFLOW"
+                            }
+                        },
+                        "gostep2": {
+                            "value": {
+                                "reference": {
+                                    "workflowId": "b91d796f1452d1a9338b8e470d012780"
+                                },
+                                "status": "DRAFT_2_SELECT_INPUT_DATA"
                             }
                         }
                     }
@@ -108,10 +117,10 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixResponse"
+                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixResponse"
                         },
                         "examples": {
-                            "1": {
+                            "went step 2": {
                                 "value": {
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                     "workflow": {
@@ -122,20 +131,27 @@
                                         "inputA": {
                                             "isRequired": true,
                                             "name": "name of the input A",
-                                            "type": "FILTER_RESULT_SNAPSHOT",
-                                            "value": "b91d796f1452d1a9338b8e470d01609e"
+                                            "type": "FILTER_RESULT_SNAPSHOT"
                                         },
                                         "inputB": {
                                             "isRequired": false,
                                             "name": "name of the input B",
-                                            "type": "CONSTANT",
-                                            "value": 2
+                                            "type": "CONSTANT"
                                         }
                                     },
                                     "reference": {
                                         "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
                                     },
                                     "status": "DRAFT_2_SELECT_INPUT_DATA"
+                                }
+                            },
+                            "saved step 1": {
+                                "value": {
+                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                    "reference": {
+                                        "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                    },
+                                    "status": "DRAFT_1_SELECT_WORKFLOW"
                                 }
                             }
                         }
