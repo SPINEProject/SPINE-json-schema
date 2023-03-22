@@ -370,7 +370,6 @@
                 "workflowId"
             ]
         },
-        
         "workflowExecutionMatrixDoc": {
             "$id": "#workflowExecutionMatrixDoc",
             "decription": "Workflow execution matrix document",
@@ -474,14 +473,18 @@
                     "description": "The input name",
                     "type": "string"
                 },
-                "type":{
+                "type": {
                     "$ref": "#/definitions/inputConfigInputType"
-                } ,
-                "value":{
+                },
+                "value": {
                     "description": "The input value"
-                } 
+                }
             },
-            "required": ["isRequired", "name", "type"],
+            "required": [
+                "isRequired",
+                "name",
+                "type"
+            ],
             "additionalProperties": false
         },
         "workflowExecutionMatrixPayload": {
@@ -559,7 +562,6 @@
                     "$ref": "#/definitions/workflowExecutionMatrixReference_API"
                 },
                 "inputConfig": {
-
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
                 }
             },
@@ -691,6 +693,78 @@
                 "workflowExecutionMatrixList",
                 "workflows",
                 "cohorts"
+            ]
+        },
+        "getWorkflowExecutionMatrixResponse": {
+            "oneOf": [
+                {
+                    
+                    "$ref": "#/definitions/getWorkflowExecutionMatrixStep1Response"
+                },
+                {
+                    
+                    "$ref": "#/definitions/getWorkflowExecutionMatrixStep2Response"
+                }
+            ]
+        },
+        "getWorkflowExecutionMatrixStep2Response": {
+            "type": "object",
+            "description": "Response for a matrix in step 2",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "DRAFT_2_SELECT_INPUT_DATA"
+                    ]
+                },
+                "uuid": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "workflow": {
+                    "$ref": "#/definitions/workflowExecutionMatrixWorkflow_API"
+                },
+                "reference": {
+                    "$ref": "#/definitions/workflowExecutionMatrixReference_API"
+                },
+                "inputConfig": {
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
+                }
+            },
+            "required": [
+                "status",
+                "uuid",
+                "reference",
+                "workflow",
+                "inputConfig"
+            ]
+        },
+        "getWorkflowExecutionMatrixStep1Response": {
+            "description": "Response for a matrix in step 1",
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "DRAFT_1_SELECT_WORKFLOW"
+                    ]
+                },
+                "uuid": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "$ref": "#/definitions/workflowExecutionMatrixReference_API"
+                }
+            },
+            "required": [
+                "status",
+                "uuid",
+                "reference"
             ]
         }
     }
