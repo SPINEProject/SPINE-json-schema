@@ -20,13 +20,19 @@
                                             "name": "Execution 1",
                                             "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                             "cohorts": [
-                                                "b91d796f1452d1a9338b8e470d13c35d",
-                                                "b91d796f1452d1a9338b8e470d13c35d"
+                                                {
+                                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                                    "count": 4
+                                                },
+                                                {
+                                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                                    "count": 9
+                                                }
                                             ],
                                             "workflow": "b91d796f1452d1a9338b8e470d13c35d",
                                             "status": "LAUNCHED",
                                             "statusOfExecutions": {
-                                                "draft": 1,
+                                                "error": 1,
                                                 "done": 0,
                                                 "running": 4
                                             }
