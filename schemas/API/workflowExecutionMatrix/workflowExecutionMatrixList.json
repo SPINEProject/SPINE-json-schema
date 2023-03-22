@@ -3,6 +3,11 @@
         "tags": [
             "workflow execution matrix"
         ],
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
         "summary": "Get the list of workflow execution matrix for the current user",
         "responses": {
             "200": {
@@ -71,6 +76,11 @@
     "post": {
         "tags": [
             "workflow execution matrix"
+        ],
+        "security": [
+            {
+                "bearerAuth": []
+            }
         ],
         "summary": "Post a new workflow execution matrix",
         "requestBody": {
