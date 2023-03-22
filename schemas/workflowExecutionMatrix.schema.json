@@ -601,8 +601,19 @@
                 "cohorts": {
                     "type": "array",
                     "items": {
-                        "type": "string",
-                        "description": "Cohort UUID"
+                        "type": "object",
+                        "description": "Cohort UUID and case count",
+                        "properties": {
+                            "uuid": {
+                                "type": "string",
+                                "description": "Cohort UUID"
+                            },
+                            "count": {
+                                "type": "integer",
+                                "description": "Number of cases from this cohort",
+                                "minimum": 0
+                            }
+                        }
                     }
                 },
                 "statusOfExecutions": {
