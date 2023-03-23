@@ -732,9 +732,6 @@
                 "workflow": {
                     "$ref": "#/definitions/workflowExecutionMatrixWorkflow_API"
                 },
-                "reference": {
-                    "$ref": "#/definitions/workflowExecutionMatrixReference_API"
-                },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
                 }
@@ -760,17 +757,20 @@
                 "uuid": {
                     "type": "string"
                 },
+                "workflow": {
+                    "type": "object",
+                    "properties": {
+                        "uuid": {"type": "string"},
+                        "name": {"type": "string"}
+                    }
+                },
                 "name": {
                     "type": "string"
-                },
-                "reference": {
-                    "$ref": "#/definitions/workflowExecutionMatrixReference_API"
                 }
             },
             "required": [
                 "status",
-                "uuid",
-                "reference"
+                "uuid"
             ]
         },
         "putWorkflowExecutionMatrixBody": {
