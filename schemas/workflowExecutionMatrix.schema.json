@@ -421,6 +421,10 @@
                     "description": "Owner ID of the matrix",
                     "type": "string"
                 },
+                "workflowId": {
+                    "description": "Workflow  ID used by the matrix",
+                    "type": "string"
+                },
                 "experimentId": {
                     "description": "Experiment ID attached to the matrix",
                     "type": "string"
@@ -430,10 +434,7 @@
                     "type": "string"
                 }
             },
-            "additionalProperties": false,
-            "required": [
-                "ownerId"
-            ]
+            "additionalProperties": false
         },
         "workflowExecutionMatrixWorkflow_API": {
             "description": "Description of the selected workflow",
@@ -795,8 +796,7 @@
             },
             "required": [
                 "status",
-                "reference",
-                "inputConfig"
+                "reference"
             ]
         }
     }
