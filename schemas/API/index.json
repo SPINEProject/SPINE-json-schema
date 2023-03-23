@@ -7,18 +7,27 @@
     },
     "servers": [
         {
-            "url": "{{SPINEUrl}}"
+            "url": "{{SPINEUrl}}/api"
         }
     ],
     "paths": {
-        "/api/workflow-execution-matrix": {
-            "$ref": "./workflowExecutionMatrix/workflowExecutionMatrixList.json"
-        },
-        "/api/workflow-execution-matrix/{workflowExecutionMatrixId}": {
+        "/workflow-execution-matrix": {
             "$ref": "./workflowExecutionMatrix/workflowExecutionMatrix.json"
         },
-        "/api/filter/{filterId}": {
+        "/workflow-execution-matrix/{workflowExecutionMatrixId}": {
+            "$ref": "./workflowExecutionMatrix/workflowExecutionMatrixId.json"
+        },
+        "/filter/{filterId}": {
+            "$ref": "./filter/filterId.json"
+        },
+        "/filter": {
             "$ref": "./filter/filter.json"
+        },
+        "/filter-snapshot": {
+            "$ref": "./filter/filterSnapshot.json"
+        },
+        "/filter-snapshot/{filterSnapshotId}": {
+            "$ref": "./filter/filterSnapshotId.json"
         }
     },
     "components": {

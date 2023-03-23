@@ -305,7 +305,6 @@
             ]
         },
         "operatorOR": {
-
             "allOf": [
                 {
                     "properties": {
@@ -558,7 +557,11 @@
             "type": "string",
             "description": "Filter name"
         },
-		"imageFilterDoc": {
+        "imageFilterSnapshotName": {
+            "type": "string",
+            "description": "Filter snapshot name"
+        },
+        "imageFilterDoc": {
             "$id": "#imageFilterDoc",
             "decription": "image filter when posted",
             "type": "object",
@@ -595,7 +598,6 @@
             ]
         },
         "imageFilterSnapshotResultImage": {
-            "$id": "#imageFilterSnapshotResultImage",
             "type": "array",
             "items": {
                 "type": "object",
@@ -685,6 +687,28 @@
             ],
             "additionalProperties": false
         },
+        "imageFilterSnapshotReference": {
+            "type": "object",
+            "properties": {
+                "ownerId": {
+                    "type": "string"
+                },
+                "imageFilterId": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "ownerId",
+                "imageFilterId"
+            ]
+        },
+        "imageFilterSnapshotDocType": {
+            "type": "string",
+            "enum": [
+                "imageFilterSnapshot"
+            ]
+        },
         "imageFilterSnapshotDoc": {
             "$id": "#imageFilterSnapshotDoc",
             "decription": "image filter when posted",
@@ -703,29 +727,13 @@
                     "type": "string"
                 },
                 "docType": {
-                    "type": "string",
-                    "enum": [
-                        "imageFilterSnapshot"
-                    ]
+                    "$ref": "#/definitions/imageFilterSnapshotDocType"
                 },
                 "_rev": {
                     "type": "string"
                 },
                 "reference": {
-                    "type": "object",
-                    "properties": {
-                        "ownerId": {
-                            "type": "string"
-                        },
-                        "imageFilterId": {
-                            "type": "string"
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                        "ownerId",
-                        "imageFilterId"
-                    ]
+                    "$ref": "#/definitions/imageFilterSnapshotReference"
                 }
             },
             "required": [
@@ -762,6 +770,208 @@
                 "uuid",
                 "name"
             ]
+        },
+        "getFilterListResponse": {
+            "type": "array",
+            "items": {
+                "description": "Filter summary",
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "description": "Filter UUID",
+                        "type": "string"
+                    },
+                    "reference": {
+                        "$ref": "#/definitions/imageFilterReference"
+                    },
+                    "name": {
+                        "$ref": "#/definitions/imageFilterName"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "reference",
+                    "uuid",
+                    "name"
+                ]
+            }
+        },
+        "postFilterBody": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/imageFilterName"
+                },
+                "filter": {
+                    "description": "The filter expression",
+                    "$ref": "#/definitions/expression"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "filter",
+                "name"
+            ]
+        },
+        "imageFilterSnapshotResultVisitAPI": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "$ref": "#/definitions/imageFilterSnapshotResultImage"
+                }
+            },
+            "required": [
+                "image"
+            ],
+            "additionalProperties": false
+        },
+        "imageFilterSnapshotResultSubjectAPI": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "visit": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
+                        },
+                        "properties": {
+                            "withoutVisit": {
+                                "type": "object",
+                                "properties": {
+                                    "image": {
+                                        "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
+                                    }
+                                },
+                                "required": [
+                                    "image"
+                                ],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "visit"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "imageFilterSnapshotResultCohortAPI": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "subject": {
+                        "$ref": "#/definitions/imageFilterSnapshotResultSubjectAPI"
+                    }
+                },
+                "required": [
+                    "subject"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "imageFilterSnapshotResultAPI": {
+            "description": "image filter snapshot, result section",
+            "type": "object",
+            "properties": {
+                "cohort": {
+                    "$ref": "#/definitions/imageFilterSnapshotResultCohortAPI"
+                }
+            },
+            "required": [
+                "cohort"
+            ],
+            "additionalProperties": false
+        },
+        "getFilterSnapshotResponse": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/definitions/imageFilterSnapshotResultAPI"
+                },
+                "queryDate": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "type": "string"
+                },
+                "name": {
+                    "$ref": "#/definitions/imageFilterSnapshotName"
+                },
+                "reference": {
+                    "$ref": "#/definitions/imageFilterSnapshotReference"
+                }
+            },
+            "required": [
+                "result",
+                "queryDate",
+                "reference",
+                "uuid",
+                "name"
+            ],
+            "additionalProperties": false
+        },
+        "getFilterSnapshotListResponse": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "queryDate": {
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "type": "string"
+                    },
+                    "reference": {
+                        "$ref": "#/definitions/imageFilterSnapshotReference"
+                    },
+                    "name": {
+                        "$ref": "#/definitions/imageFilterSnapshotName"
+                    }
+                },
+                "required": [
+                    "queryDate",
+                    "reference",
+                    "uuid",
+                    "name"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "postFilterSnapshotBody": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/imageFilterSnapshotName"
+                },
+                "reference": {
+                    "type": "object",
+                    "properties": {
+                        "imageFilterId": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "imageFilterId"
+                    ]
+                },
+                "cohortIdList": {
+                    "type": "array",
+                    "description": "The list of cohort uuid",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "reference",
+                "name",
+                "cohortIdList"
+            ],
+            "additionalProperties": false
         }
     }
 }

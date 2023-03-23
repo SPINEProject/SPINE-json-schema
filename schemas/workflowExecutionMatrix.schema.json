@@ -525,6 +525,14 @@
                 "name": {
                     "type": "string"
                 },
+                "status": {
+                    "description": "Status of the workflow execution matrix",
+                    "type": "string",
+                    "enum": [
+                        "DRAFT_1_SELECT_WORKFLOW",
+                        "DRAFT_2_SELECT_INPUT_DATA"
+                    ]
+                },
                 "reference": {
                     "type": "object",
                     "properties": {
@@ -533,14 +541,11 @@
                             "type": "string"
                         }
                     },
-                    "additionalProperties": false,
-                    "required": [
-                        "workflowId"
-                    ]
+                    "additionalProperties": false
                 }
             },
             "required": [
-                "reference"
+                "status"
             ]
         },
         "postWorkflowExecutionMatrixResponse": {
@@ -698,11 +703,9 @@
         "getWorkflowExecutionMatrixResponse": {
             "oneOf": [
                 {
-                    
                     "$ref": "#/definitions/getWorkflowExecutionMatrixStep1Response"
                 },
                 {
-                    
                     "$ref": "#/definitions/getWorkflowExecutionMatrixStep2Response"
                 }
             ]
@@ -765,6 +768,35 @@
                 "status",
                 "uuid",
                 "reference"
+            ]
+        },
+        "putWorkflowExecutionMatrixBody": {
+            "type": "object",
+            "description": "Update input data",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "DRAFT_1_SELECT_WORKFLOW",
+                        "DRAFT_2_SELECT_INPUT_DATA",
+                        "DRAFT_3_SELECT_RATER",
+                        "DRAFT_4_SELECT_DISTRIBUTION"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reference": {
+                    "$ref": "#/definitions/workflowExecutionMatrixReference_API"
+                },
+                "inputConfig": {
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
+                }
+            },
+            "required": [
+                "status",
+                "reference",
+                "inputConfig"
             ]
         }
     }
