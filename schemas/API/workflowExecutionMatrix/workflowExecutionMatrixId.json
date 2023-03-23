@@ -95,13 +95,11 @@
                     "examples": {
                             "saving step 1": {
                                 "value": {
-                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                     "status": "DRAFT_1_SELECT_WORKFLOW"
                                 }
                             },
                             "saving step 1 and go next": {
                                 "value": {
-                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                     "workflow": {
                                         "uuid": "b91d796f1452d1a9338b8e470d012780"
                                     },
@@ -110,7 +108,6 @@
                             },
                             "saving step 2": {
                                 "value": {
-                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                     "inputConfig": {
                                         "inputA": {
                                             "isRequired": true,

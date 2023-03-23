@@ -534,20 +534,17 @@
                         "DRAFT_2_SELECT_INPUT_DATA"
                     ]
                 },
-                "reference": {
+                "workflow": {
                     "type": "object",
                     "properties": {
-                        "workflowId": {
-                            "description": "Workflow  ID used by the matrix",
-                            "type": "string"
-                        }
-                    },
-                    "additionalProperties": false
-                }
+                     "uuid": {"type": "string"}
+                    }
+                 }
             },
             "required": [
                 "status"
-            ]
+            ],
+            "additionalProperties": false
         },
         "postWorkflowExecutionMatrixResponse": {
             "type": "object",
@@ -596,8 +593,13 @@
                     "description": "Name of the workflow execution matrix"
                 },
                 "workflow": {
-                    "type": "string",
-                    "description": "Workflow UUID"
+                    "type": "object",
+                    "properties": {
+                        "uuid": {
+                            "type": "string",
+                            "description": "workflow uuid"
+                        }
+                    }
                 },
                 "dateOfExecution": {
                     "type": "string",
@@ -787,17 +789,20 @@
                 "name": {
                     "type": "string"
                 },
-                "reference": {
-                    "$ref": "#/definitions/workflowExecutionMatrixReference_API"
+                "workflow": {
+                   "type": "object",
+                   "properties": {
+                    "uuid": {"type": "string"}
+                   }
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
                 }
             },
             "required": [
-                "status",
-                "reference"
-            ]
+                "status"
+            ],
+            "additionalProperties": false
         }
     }
 }
