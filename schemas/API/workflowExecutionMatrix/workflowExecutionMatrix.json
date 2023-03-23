@@ -34,7 +34,8 @@
                                                     "count": 9
                                                 }
                                             ],
-                                            "workflow": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "workflow": 
+                                            {"uuid": "b91d796f1452d1a9338b8e470d13c35d"},
                                             "status": "LAUNCHED",
                                             "statusOfExecutions": {
                                                 "error": 1,
@@ -45,7 +46,7 @@
                                         {
                                             "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                             "cohorts": [],
-                                            "workflow": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "workflow":  {"uuid": "b91d796f1452d1a9338b8e470d13c35d"},
                                             "status": "DRAFT_2_SELECT_INPUT_DATA"
                                         }
                                     ],
@@ -93,17 +94,13 @@
                     "examples": {
                         "save": {
                             "value": {
-                                "reference": {
-                                    "workflowId": "b91d796f1452d1a9338b8e470d012780"
-                                },
+                                "workflow":  {"uuid": "b91d796f1452d1a9338b8e470d13c35d"},
                                 "status": "DRAFT_1_SELECT_WORKFLOW"
                             }
                         },
                         "gostep2": {
                             "value": {
-                                "reference": {
-                                    "workflowId": "b91d796f1452d1a9338b8e470d012780"
-                                },
+                                "workflow":  {"uuid": "b91d796f1452d1a9338b8e470d13c35d"},
                                 "status": "DRAFT_2_SELECT_INPUT_DATA"
                             }
                         }
