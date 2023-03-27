@@ -151,9 +151,6 @@
                     "$ref": "#/definitions/matrixCohort"
                 }
             },
-            "required": [
-                "cohort"
-            ],
             "additionalProperties": false
         },
         "inputConfigConstant": {
@@ -366,8 +363,7 @@
             },
             "additionalProperties": false,
             "required": [
-                "ownerId",
-                "workflowId"
+                "ownerId"
             ]
         },
         "workflowExecutionMatrixDoc": {
@@ -404,11 +400,8 @@
                 }
             },
             "required": [
-                "matrix",
                 "reference",
                 "docType",
-                "inputConfig",
-                "raterConfig",
                 "label",
                 "status"
             ],
@@ -537,9 +530,11 @@
                 "workflow": {
                     "type": "object",
                     "properties": {
-                     "uuid": {"type": "string"}
+                        "uuid": {
+                            "type": "string"
+                        }
                     }
-                 }
+                }
             },
             "required": [
                 "status"
@@ -739,7 +734,6 @@
             "required": [
                 "status",
                 "uuid",
-                "reference",
                 "workflow",
                 "inputConfig"
             ]
@@ -760,8 +754,12 @@
                 "workflow": {
                     "type": "object",
                     "properties": {
-                        "uuid": {"type": "string"},
-                        "name": {"type": "string"}
+                        "uuid": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
                     }
                 },
                 "name": {
@@ -790,10 +788,12 @@
                     "type": "string"
                 },
                 "workflow": {
-                   "type": "object",
-                   "properties": {
-                    "uuid": {"type": "string"}
-                   }
+                    "type": "object",
+                    "properties": {
+                        "uuid": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
