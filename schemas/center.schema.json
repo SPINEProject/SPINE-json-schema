@@ -1,0 +1,56 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/center.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Description of a center.",
+  "type": "object",
+  "TODOS": [
+
+  ],
+  "QUESTIONS":[
+  ],
+  "definitions": {
+
+    "centerBase": {
+      "$id": "#centerBase",
+      "properties":{
+        "docType":{
+          "description": "Constant doc type",
+          "type":"string",
+          "enum": ["center"]
+        },
+        "_id": {
+          "type": "string"
+        },
+        "_rev": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "latitude": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "docType",
+        "name",
+        "longitude",
+        "latitude"
+      ],
+      "additionalProperties": false
+
+  },
+
+    "centerDoc": {
+      "oneOf": [
+          { "$ref": "#/definitions/centerBase" }
+        ]
+    }
+
+
+  }
+
+}

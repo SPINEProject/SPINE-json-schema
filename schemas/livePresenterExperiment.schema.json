@@ -1,0 +1,544 @@
+{
+  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/livePresenterExperiment.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Description of a live presenter experiment.",
+  "type": "object",
+  "TODOS": [
+    "1. Review the convetion for the status for the experiment.",
+    "2. Change metrics to have values extracted from ontologies."
+  ],
+    "QUESTIONS":[
+  ],
+  "definitions": {
+
+    "livePresenterExperimentBase": {
+      "$id": "#livePresenterExperimentBase",
+      "properties":{
+        "docType":{
+          "description": "Constant doc type",
+          "type":"string",
+          "enum": ["livePresenterExperiment"]
+        },
+        "owner":{
+          "description": "Owner the experiment.",
+          "type":"string"
+        },
+        "description":{
+          "description": "Description of the experiment",
+          "type":"string"
+        },
+        "question":{
+          "description": "Question of the experiment",
+          "type":"string"
+        },
+        "hypothesis":{
+          "description": "hypothesis of the experiment",
+          "type":"string"
+        },
+        "creationDate":{
+          "description": "Date of creation of the experiment.",
+          "type":"string"
+        },
+        "uuid":{
+          "description": "UUID of the experiment in SPINE.",
+          "type":"string"
+        },
+        "revisionId":{
+          "description": "Revision id of the experiment in SPINE.",
+          "type":"string"
+        },
+        "modificationDate":{
+          "description": "Date of modification of the experiment.",
+          "type":"string"
+        },
+        "modifiedBy":{
+          "description": "User that modified the experiment.",
+          "type":"string"
+        },
+        "status":{
+          "description": "Status of the experiment.",
+          "type":"string",
+          "enum": ["DRAFT","REVIEW","EXECUTION","COMPLETED","TRASHED"]
+        },
+        "privacy": {
+          "description": "Privacy of the experiment.",
+          "$ref": "core.schema.json#/definitions/privacyExperiment"
+        },
+        "reference": {
+          "type": "object",
+          "properties": {
+            "projectId": {
+              "type":"string"
+            }
+          },
+          "required": ["projectId"]
+        },
+        "dataDescription": {
+          "type": "object",
+          "properties": {
+            "clinical": {
+              "type":"object"
+            },
+            "measurement": {
+              "type":"object"
+            }
+          }
+        },
+        "clinical": {
+          "type": "object"
+        },
+        "workflowId":{
+          "description": "id of the workflow to instanciate",
+          "type":"string"
+        },
+        "contribution":{
+          "description": "To be removed",
+          "type":"object",
+          "properties": {
+
+          },
+          "additionalProperties": false
+        },
+        "miniWorkflowSetId":{
+          "description": "id of the mini wf set to use with the workflow",
+          "type":"string"
+        },
+        "input" : {
+          "description": "List of cases.",
+          "$ref": "#/definitions/input"
+        },
+        "multiCaseConfig": {
+          "description": "Configuration for \"multicase\" workflow.",
+          "$ref": "#/definitions/multiCaseConfig"
+        },
+        "caseDistribution": {
+          "description": "Case distribution policy",
+          "$ref": "#/definitions/caseDistributionBase"
+        },
+        "centers": {
+          "description": "Definition of the centers for map skill",
+          "$ref": "#/definitions/centers"
+        },
+        "scoring": {
+          "description": "Definition of the correct answers for the scoring.",
+          "$ref": "#/definitions/scoring"
+        },
+        "scoringMethod": {
+          "description": "Definition of the scoring method.",
+          "$ref": "#/definitions/scoringMethod"
+        },
+        "_id": {
+          "type": "string"
+        },
+        "_rev": {
+          "type": "string"
+        }
+
+      },
+      "required": [
+        "docType",
+        "creationDate",
+        "description",
+        "question",
+        "hypothesis",
+        "privacy",
+        "status",
+        "reference",
+        "owner",
+        "modificationDate",
+        "modifiedBy",
+        "dataDescription",
+        "workflowId",
+        "miniWorkflowSetId",
+        "input",
+        "caseDistribution"
+      ],
+      "additionalProperties": false
+
+  },
+    "input" : {
+      "$id": "#input",
+      "type": "object",
+      "patternProperties": {
+        ".": {
+          "type": "object",
+          "description": "An object representing a case",
+          "patternProperties": {
+            ".": {
+              "type": "object",
+              "description": "An object representing an input",
+              "properties": {
+                "value": {
+                  "description": "value for the input"
+                }
+              },
+              "required": ["value"],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    },
+    "multiCaseConfig": {
+      "$id": "#multiCaseConfig",
+      "type": "object",
+      "properties": {
+        "inputs": {
+          "type": "object",
+          "description": "The inputs name",
+          "patternProperties": {
+            ".": {
+              "type": "object",
+              "description": "An object representing an input",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "multicase config input type",
+                  "enum": ["PROPERTY_NAME_WITH_INDEX", "ARRAY"]
+                }
+              },
+              "required": ["type"],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    },
+    "caseDistributionBase": {
+      "$id": "#caseDistributionBase",
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rules": {
+                "type": "object",
+                "description": "JSON logic statement"
+              },
+              "distribution": {
+                "type": "array",
+                "description": "Distribution policy to be applied",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "pools": {
+                      "type": "array",
+                      "description": "A list of pool names",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": ["pools","min","max"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["rules","distribution"],
+            "additionalProperties": false
+          }
+        },
+        "pool": {
+          "type": "object",
+          "patternProperties": {
+            ".": {
+              "type": "array",
+              "description": "An object representing a pool",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "maxContributionPerCase": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum number of time a case can be distributed. Infinity if not set"
+        },
+        "maxContributionPerCasePerUser": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum number of time a case can be distributed to the same user. Infinity if not set"
+        }
+      },
+      "required": ["pool"],
+      "additionalProperties": false
+    },
+    "caseDistributionMap": {
+      "$id": "#caseDistributionMap",
+      "type": "object",
+      "properties": {
+        "rules": {
+          "minItems": 0,
+          "maxItems": 0
+        }
+      }
+    },
+    "caseDistributionPresentation": {
+      "$id": "#caseDistributionPresentation",
+      "type": "object",
+      "properties": {
+        "rules": {
+          "minItems": 1
+        }
+      },
+      "required": ["rules"]
+    },
+    "centers": {
+      "$id": "#centers",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "poolId": {
+            "type": "string"
+          },
+          "centerId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "poolId",
+          "centerId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "scoring": {
+      "$id": "#scoring",
+      "type": "object",
+      "patternProperties": {
+        ".": {
+          "type": "object",
+          "description": "An object representing a case",
+          "patternProperties": {
+            ".": {
+              "type": "string",
+              "description": "a uuid"
+            }
+          }
+        }
+      }
+    },
+    "passedOrFailed" : {
+      "$id": "#passedOrFailed",
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "linkText": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "livePresenterExperiment": {
+          "type": "string"
+        },
+        "miniWorkflowSet": {
+          "type": "string"
+        },
+        "miniWorkflow": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "linkText",
+        "link"
+      ],
+      "additionalProperties": false
+    },
+    "scoringComponent": {
+      "$id": "#scoringComponent",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name" : {
+            "type": "string"
+          },
+          "tooltip" : {
+            "type": "string"
+          },
+          "scoringMethod" : {
+            "type": "string",
+            "enum": ["ANNOTATION_SAME_VALUE"]
+          },
+          "caseMatchingMethod" : {
+            "type": "string",
+            "enum": ["ROI_ID"]
+          },
+          "expert": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["ANNOTATION"]
+              },
+              "key": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "key"
+            ],
+            "additionalProperties": false
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["TASK_OUTPUT"]
+              },
+              "task": {
+                "type": "string"
+              },
+              "outputKey": {
+                "type": "string"
+              },
+              "outputIndex": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "type",
+              "task",
+              "outputKey"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "name",
+          "tooltip",
+          "scoringMethod",
+          "caseMatchingMethod",
+          "expert",
+          "user"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "scoringMethod": {
+      "oneOf": [
+        {
+          "properties": {
+            "passed": {
+              "$ref": "#/definitions/passedOrFailed"
+            },
+            "failed": {
+              "$ref": "#/definitions/passedOrFailed"
+            },
+            "main": {
+              "type": "object",
+              "properties": {
+                "tooltip": {
+                  "type": "string"
+                },
+                "maxScore": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "thresholdScore": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "thresholdScore",
+                "maxScore",
+                "tooltip"
+              ],
+              "additionalProperties": false
+            },
+            "component": {
+              "description": "The list of scoring component",
+              "$ref": "#/definitions/scoringComponent"
+            }
+          },
+          "required": [
+            "passed",
+            "failed",
+            "main",
+            "component"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      ],
+      "$id": "#scoringMethod",
+      "type": "object"
+    },
+
+    "livePresenterExperimentMap": {
+      "$id": "#livePresenterExperimentMap",
+      "allOf": [
+          { "$ref": "#/definitions/livePresenterExperimentBase" },
+          {
+            "properties":{
+              "caseDistribution": {
+                "allOf": [
+                    { "$ref": "#/definitions/caseDistributionMap" },
+                    { "$ref": "#/definitions/caseDistributionBase" }
+                  ]
+              }
+            },
+            "required": ["centers"]
+          }
+        ]
+    },
+
+    "livePresenterExperimentPresentation": {
+      "$id": "#livePresenterExperimentPresentation",
+      "allOf": [
+          { "$ref": "#/definitions/livePresenterExperimentBase" },
+          {
+            "properties":{
+              "caseDistribution": {
+                "allOf": [
+                    { "$ref": "#/definitions/caseDistributionPresentation" },
+                    { "$ref": "#/definitions/caseDistributionBase" }
+                  ]
+              }
+            },
+            "not": {
+             "anyOf": [
+               { "required": [ "centers" ] }
+             ]
+           }
+          }
+        ]
+    },
+
+    "livePresenterExperimentDoc": {
+      "oneOf": [
+          { "$ref": "#/definitions/livePresenterExperimentMap" },
+          { "$ref": "#/definitions/livePresenterExperimentPresentation" }
+        ]
+    }
+
+
+  }
+
+}
