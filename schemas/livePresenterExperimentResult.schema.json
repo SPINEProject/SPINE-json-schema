@@ -148,6 +148,9 @@
                   },
                   "ontologyClassIri": {
                     "type": "string"
+                  },
+                  "sourceMetadata": {
+                    "type": "object"
                   }
                 },
                 "required": [
