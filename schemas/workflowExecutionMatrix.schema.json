@@ -533,6 +533,9 @@
                             "type": "string"
                         }
                     }
+                },
+                "inputConfig": {
+                    "type": "opbj"
                 }
             },
             "required": [
