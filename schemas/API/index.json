@@ -1,0 +1,50 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "0.0.6",
+        "title": "SPINE API",
+        "description": "SPINE API"
+    },
+    "servers": [
+        {
+            "url": "{{SPINEUrl}}/api"
+        }
+    ],
+    "paths": {
+        "/workflow-execution-matrix": {
+            "$ref": "./workflowExecutionMatrix/workflowExecutionMatrix.json"
+        },
+        "/workflow-execution-matrix/{workflowExecutionMatrixId}": {
+            "$ref": "./workflowExecutionMatrix/workflowExecutionMatrixId.json"
+        },
+        "/filter/{filterId}": {
+            "$ref": "./filter/filterId.json"
+        },
+        "/filter": {
+            "$ref": "./filter/filter.json"
+        },
+        "/filter-snapshot": {
+            "$ref": "./filter/filterSnapshot.json"
+        },
+        "/filter-snapshot/{filterSnapshotId}": {
+            "$ref": "./filter/filterSnapshotId.json"
+        }
+    },
+    "components": {
+        "examples": {},
+        "schemas": {},
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "workflow execution matrix",
+            "description": "Workflow Execution Matrix"
+        }
+    ]
+}
