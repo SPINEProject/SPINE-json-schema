@@ -396,6 +396,9 @@
                 },
                 "label": {
                     "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -535,7 +538,7 @@
                     }
                 },
                 "inputConfig": {
-                    "type": "opbj"
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
                 }
             },
             "required": [
