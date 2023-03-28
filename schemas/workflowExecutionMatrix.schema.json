@@ -151,9 +151,6 @@
                     "$ref": "#/definitions/matrixCohort"
                 }
             },
-            "required": [
-                "cohort"
-            ],
             "additionalProperties": false
         },
         "inputConfigConstant": {
@@ -202,8 +199,7 @@
                         "value": {}
                     },
                     "required": [
-                        "type",
-                        "value"
+                        "type"
                     ],
                     "additionalProperties": false,
                     "oneOf": [
@@ -366,8 +362,7 @@
             },
             "additionalProperties": false,
             "required": [
-                "ownerId",
-                "workflowId"
+                "ownerId"
             ]
         },
         "workflowExecutionMatrixDoc": {
@@ -401,14 +396,14 @@
                 },
                 "label": {
                     "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
                 }
             },
             "required": [
-                "matrix",
                 "reference",
                 "docType",
-                "inputConfig",
-                "raterConfig",
                 "label",
                 "status"
             ],
@@ -537,9 +532,14 @@
                 "workflow": {
                     "type": "object",
                     "properties": {
-                     "uuid": {"type": "string"}
+                        "uuid": {
+                            "type": "string"
+                        }
                     }
-                 }
+                },
+                "inputConfig": {
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
+                }
             },
             "required": [
                 "status"
@@ -732,9 +732,6 @@
                 "workflow": {
                     "$ref": "#/definitions/workflowExecutionMatrixWorkflow_API"
                 },
-                "reference": {
-                    "$ref": "#/definitions/workflowExecutionMatrixReference_API"
-                },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
                 }
@@ -742,7 +739,6 @@
             "required": [
                 "status",
                 "uuid",
-                "reference",
                 "workflow",
                 "inputConfig"
             ]
@@ -760,17 +756,24 @@
                 "uuid": {
                     "type": "string"
                 },
+                "workflow": {
+                    "type": "object",
+                    "properties": {
+                        "uuid": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "name": {
                     "type": "string"
-                },
-                "reference": {
-                    "$ref": "#/definitions/workflowExecutionMatrixReference_API"
                 }
             },
             "required": [
                 "status",
-                "uuid",
-                "reference"
+                "uuid"
             ]
         },
         "putWorkflowExecutionMatrixBody": {
@@ -790,10 +793,12 @@
                     "type": "string"
                 },
                 "workflow": {
-                   "type": "object",
-                   "properties": {
-                    "uuid": {"type": "string"}
-                   }
+                    "type": "object",
+                    "properties": {
+                        "uuid": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
