@@ -199,8 +199,7 @@
                         "value": {}
                     },
                     "required": [
-                        "type",
-                        "value"
+                        "type"
                     ],
                     "additionalProperties": false,
                     "oneOf": [
