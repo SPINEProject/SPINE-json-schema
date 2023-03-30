@@ -124,5 +124,24 @@
                 "description": "Unexpected error"
             }
         }
+    },
+    "delete": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "filter"
+        ],
+        "summary": "Delete a filter snapshot. It is not possible to delete a snapshot if it is already associated with a matrix.",
+        "responses": {
+            "200": {
+                "description": "200"
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
     }
 }

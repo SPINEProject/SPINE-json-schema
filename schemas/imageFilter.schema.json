@@ -726,6 +726,9 @@
                 "_id": {
                     "type": "string"
                 },
+                "cohortIdList": {
+                    "$ref": "#/definitions/cohortIdList"
+                },
                 "docType": {
                     "$ref": "#/definitions/imageFilterSnapshotDocType"
                 },
@@ -734,14 +737,39 @@
                 },
                 "reference": {
                     "$ref": "#/definitions/imageFilterSnapshotReference"
+                },
+                "name": {
+                    "type": "string"
                 }
             },
             "required": [
                 "query",
+                "name",
                 "result",
                 "queryDate",
                 "reference",
-                "docType"
+                "docType",
+                "cohortIdList"
+            ],
+            "additionalProperties": false
+        },
+        "owner": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid",
+                "lastname",
+                "name"
             ],
             "additionalProperties": false
         },
@@ -760,20 +788,7 @@
                     "$ref": "#/definitions/expression"
                 },
                 "owner": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type":"string"
-                    },
-                    "lastname": {
-                      "type":"string"
-                    },
-                    "uuid": {
-                      "type":"string"
-                    }
-                  },
-                  "required": ["uuid", "lastname", "name"],
-                  "additionalProperties": false
+                    "$ref": "#/definitions/owner"
                 }
             },
             "additionalProperties": false,
@@ -794,18 +809,18 @@
                         "description": "Filter UUID",
                         "type": "string"
                     },
-                    "reference": {
-                        "$ref": "#/definitions/imageFilterReference"
-                    },
                     "name": {
                         "$ref": "#/definitions/imageFilterName"
+                    },
+                    "owner": {
+                        "$ref": "#/definitions/owner"
                     }
                 },
                 "additionalProperties": false,
                 "required": [
-                    "reference",
                     "uuid",
-                    "name"
+                    "name",
+                    "owner"
                 ]
             }
         },
@@ -898,6 +913,13 @@
             ],
             "additionalProperties": false
         },
+        "cohortIdList": {
+            "type": "array",
+            "description": "The list of cohort uuid",
+            "items": {
+                "type": "string"
+            }
+        },
         "getFilterSnapshotResponse": {
             "type": "object",
             "properties": {
@@ -913,16 +935,24 @@
                 "name": {
                     "$ref": "#/definitions/imageFilterSnapshotName"
                 },
-                "reference": {
-                    "$ref": "#/definitions/imageFilterSnapshotReference"
+                "cohortIdList": {
+                    "$ref": "#/definitions/cohortIdList"
+                },
+                "imageFilterId": {
+                    "type": "string"
+                },
+                "owner": {
+                    "$ref": "#/definitions/owner"
                 }
             },
             "required": [
                 "result",
                 "queryDate",
-                "reference",
+                "cohortIdList",
+                "imageFilterId",
                 "uuid",
-                "name"
+                "name",
+                "owner"
             ],
             "additionalProperties": false
         },
@@ -937,18 +967,30 @@
                     "uuid": {
                         "type": "string"
                     },
-                    "reference": {
-                        "$ref": "#/definitions/imageFilterSnapshotReference"
-                    },
                     "name": {
                         "$ref": "#/definitions/imageFilterSnapshotName"
+                    },
+                    "cohortIdList": {
+                        "type": "array",
+                        "description": "The list of cohort uuid",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "imageFilterId": {
+                        "type": "string"
+                    },
+                    "owner": {
+                        "$ref": "#/definitions/owner"
                     }
                 },
                 "required": [
                     "queryDate",
-                    "reference",
+                    "cohortIdList",
+                    "imageFilterId",
                     "uuid",
-                    "name"
+                    "name",
+                    "owner"
                 ],
                 "additionalProperties": false
             }
@@ -959,30 +1001,21 @@
                 "name": {
                     "$ref": "#/definitions/imageFilterSnapshotName"
                 },
-                "reference": {
-                    "type": "object",
-                    "properties": {
-                        "imageFilterId": {
-                            "type": "string"
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                        "imageFilterId"
-                    ]
-                },
                 "cohortIdList": {
                     "type": "array",
                     "description": "The list of cohort uuid",
                     "items": {
                         "type": "string"
                     }
+                },
+                "imageFilterId": {
+                    "type": "string"
                 }
             },
             "required": [
-                "reference",
                 "name",
-                "cohortIdList"
+                "cohortIdList",
+                "imageFilterId"
             ],
             "additionalProperties": false
         }
