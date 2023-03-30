@@ -71,9 +71,7 @@
                         "body": {
                             "value": {
                                     "name": "snapshot 1",
-                                    "reference": {
-                                        "imageFilterId": "91e185108f10e13dc557dc900320768d"
-                                    },
+                                    "imageFilterId": "91e185108f10e13dc557dc900320768d",
                                     "cohortIdList": ["91e185108f10e13dc557dc900320768d","e5fdec81-9b45-464c-b74d-4763b17392d9"]
                                 }
                         }

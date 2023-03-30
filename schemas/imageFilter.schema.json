@@ -760,7 +760,7 @@
                     "$ref": "#/definitions/expression"
                 },
                 "owner": {
-                  "type": "object"
+                  "type": "object",
                   "properties": {
                     "name": {
                       "type":"string"
