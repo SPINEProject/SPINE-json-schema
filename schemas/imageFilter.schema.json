@@ -752,23 +752,36 @@
                     "description": "Filter UUID",
                     "type": "string"
                 },
-                "reference": {
-                    "$ref": "#/definitions/imageFilterReference"
-                },
                 "name": {
                     "$ref": "#/definitions/imageFilterName"
                 },
                 "filter": {
                     "description": "The filter expression",
                     "$ref": "#/definitions/expression"
+                },
+                "owner": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type":"string"
+                    },
+                    "lastname": {
+                      "type":"string"
+                    },
+                    "uuid": {
+                      "type":"string"
+                    }
+                  },
+                  "required": ["uuid", "lastname", "name"],
+                  "additionalProperties": false
                 }
             },
             "additionalProperties": false,
             "required": [
                 "filter",
-                "reference",
                 "uuid",
-                "name"
+                "name",
+                "owner"
             ]
         },
         "getFilterListResponse": {
