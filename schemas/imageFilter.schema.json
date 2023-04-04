@@ -544,8 +544,7 @@
             "properties": {
                 "ownerId": {
                     "description": "Owner UUID",
-                    "type": "string",
-                    "format": "uuid"
+                    "type": "string"
                 }
             },
             "additionalProperties": false,
@@ -573,8 +572,7 @@
                     "$ref": "#/definitions/imageFilterName"
                 },
                 "_id": {
-                    "type": "string",
-                    "format": "uuid"
+                    "type": "string"
                 },
                 "_rev": {
                     "type": "string"
