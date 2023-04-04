@@ -841,6 +841,23 @@
                 "name"
             ]
         },
+        "putFilterBody": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/imageFilterName"
+                },
+                "filter": {
+                    "description": "The filter expression",
+                    "$ref": "#/definitions/expression"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "filter",
+                "name"
+            ]
+        },
         "imageFilterSnapshotResultVisitAPI": {
             "type": "object",
             "properties": {
