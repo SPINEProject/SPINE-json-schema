@@ -770,7 +770,7 @@
             ]
         },
         "getWorkflowExecutionMatrixStep1Response": {
-            "description": "Response for a matrix in step 1",,
+            "description": "Response for a matrix in step 1",
             "additionalProperties": false,
             "type": "object",
             "properties": {
