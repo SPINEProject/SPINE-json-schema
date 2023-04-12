@@ -32,10 +32,15 @@
                                 "value": {
                                     "uuid": "b91d796f1452d1a9338b8e470d01609e",
                                     "name": "snapshot 1",
-                                    "reference": {
-                                        "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9",
-                                        "imageFilterId": "91e185108f10e13dc557dc900320768d"
+                                    "owner": {
+                                        "lastname": "User",
+                                        "name": "Stupid",
+                                        "uuid": "dd4ed604-3adb-4388-8a94-91accd8d824d"
                                     },
+                                    "cohortIdList": [
+                                        "739a76b58e5194af231865f64a00e9ae"
+                                    ],
+                                    "imageFilterId": "955cdb47-0a51-4cf4-a200-13828ae361db",
                                     "result": {
                                         "cohort": {
                                             "c3e9229d-d517-4ab0-bae8-774b54c7d482": {
