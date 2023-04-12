@@ -31,10 +31,6 @@
                                 "value": [
                                     {
                                         "uuid": "b91d796f1452d1a9338b8e470d01609e",
-                                        "reference": {
-                                            "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9",
-                                            "imageFilterId": "91e185108f10e13dc557dc900320768d"
-                                        },
                                         "name": "snapshot 1",
                                         "queryDate": "2023-01-18T15:47:58.517Z"
                                     }
