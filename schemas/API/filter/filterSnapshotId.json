@@ -34,7 +34,7 @@
                                     "name": "snapshot 1",
                                     "owner": {
                                         "lastname": "User",
-                                        "name": "Stupid",
+                                        "name": "Example",
                                         "uuid": "dd4ed604-3adb-4388-8a94-91accd8d824d"
                                     },
                                     "cohortIdList": [
