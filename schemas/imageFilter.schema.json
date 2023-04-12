@@ -880,16 +880,7 @@
                         },
                         "properties": {
                             "withoutVisit": {
-                                "type": "object",
-                                "properties": {
-                                    "image": {
-                                        "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
-                                    }
-                                },
-                                "required": [
-                                    "image"
-                                ],
-                                "additionalProperties": false
+                                "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
                             }
                         }
                     }
