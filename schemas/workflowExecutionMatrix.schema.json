@@ -399,13 +399,21 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "creationDate": {
+                    "type": "string"
+                },
+                "modificationDate": {
+                    "type": "string"
                 }
             },
             "required": [
                 "reference",
                 "docType",
                 "label",
-                "status"
+                "status",
+                "creationDate",
+                "modificationDate"
             ],
             "additionalProperties": false
         },
@@ -578,11 +586,13 @@
         },
         "workflowExecutionMatrixSummary": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "uuid",
-                "workflow",
                 "status",
-                "cohorts"
+                "cohorts",
+                "creationDate",
+                "modificationDate"
             ],
             "properties": {
                 "uuid": {
@@ -645,6 +655,12 @@
                         "running",
                         "error"
                     ]
+                },
+                "creationDate": {
+                    "type": "string"
+                },
+                "modificationDate": {
+                    "type": "string"
                 }
             }
         },
@@ -716,6 +732,7 @@
         "getWorkflowExecutionMatrixStep2Response": {
             "type": "object",
             "description": "Response for a matrix in step 2",
+            "additionalProperties": false,
             "properties": {
                 "status": {
                     "type": "string",
@@ -734,18 +751,27 @@
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
+                },
+                "creationDate": {
+                    "type": "string"
+                },
+                "modificationDate": {
+                    "type": "string"
                 }
             },
             "required": [
                 "status",
                 "uuid",
                 "workflow",
-                "inputConfig"
+                "inputConfig",
+                "creationDate",
+                "modificationDate"
             ]
         },
         "getWorkflowExecutionMatrixStep1Response": {
             "description": "Response for a matrix in step 1",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "status": {
                     "type": "string",
@@ -769,11 +795,19 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "creationDate": {
+                    "type": "string"
+                },
+                "modificationDate": {
+                    "type": "string"
                 }
             },
             "required": [
                 "status",
-                "uuid"
+                "uuid",
+                "creationDate",
+                "modificationDate"
             ]
         },
         "putWorkflowExecutionMatrixBody": {
