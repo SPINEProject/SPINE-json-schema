@@ -23,8 +23,10 @@
                                     {
                                         "uuid": "4c636555d3963f0a65312032bf001eb7",
                                         "name": "My filter",
-                                        "reference": {
-                                            "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                        "owner": {
+                                            "lastname": "Bliault",
+                                            "name": "Grégory",
+                                            "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9",
                                         }
                                     }
                                 ],
@@ -98,6 +100,11 @@
                             "1": {
                                 "value": {
                                     "uuid": "4c636555d3963f0a65312032bf001eb7",
+                                    "owner": {
+                                        "lastname": "Bliault",
+                                        "name": "Grégory",
+                                        "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9",
+                                    },
                                     "name": "My filter",
                                     "filter": {
                                         "logicalOperator": {
@@ -118,9 +125,6 @@
                                             }
                                         ],
                                         "expressions": []
-                                    },
-                                    "reference": {
-                                        "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
                                     }
                                 },
                                 "summary": "The created filter returned by the endpoint"
