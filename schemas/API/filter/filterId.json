@@ -35,7 +35,7 @@
                                     "owner": {
                                         "lastname": "Bliault",
                                         "name": "Grégory",
-                                        "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9",
+                                        "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9"
                                     },
                                     "filter": {
                                         "logicalOperator": {
@@ -112,7 +112,7 @@
                                 "owner": {
                                     "lastname": "Bliault",
                                     "name": "Grégory",
-                                    "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9",
+                                    "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9"
                                 },
                                 "filter": {
                                     "logicalOperator": {
