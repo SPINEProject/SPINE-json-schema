@@ -135,7 +135,6 @@
                                         "name": "name of the workflow",
                                         "uuid": "b91d796f1452d1a9338b8e470d012780"
                                     },
-                                    
                                     "creationDate": "2023-04-11T16:38:22.213Z",
                                     "modificationDate": "2023-04-11T16:38:22.213Z",
                                     "inputConfig": {
@@ -150,15 +149,11 @@
                                             "type": "CONSTANT"
                                         }
                                     },
-                                    "reference": {
-                                        "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
-                                    },
                                     "status": "DRAFT_2_SELECT_INPUT_DATA"
                                 }
                             },
                             "saved step 1": {
                                 "value": {
-                                    
                                     "creationDate": "2023-04-11T16:38:22.213Z",
                                     "modificationDate": "2023-04-11T16:38:22.213Z",
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",
