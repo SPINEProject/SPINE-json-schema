@@ -49,9 +49,8 @@
                                             "value": 2
                                         }
                                     },
-                                    "reference": {
-                                        "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
-                                    },
+                                    "creationDate": "2023-04-11T16:38:22.213Z",
+                                    "modificationDate": "2023-04-11T16:38:22.213Z",
                                     "status": "DRAFT_2_SELECT_INPUT_DATA"
                                 },
                                 "summary": "Example of response when the matrix in step 2"
@@ -93,42 +92,42 @@
                         "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/putWorkflowExecutionMatrixBody"
                     },
                     "examples": {
-                            "saving step 1": {
-                                "value": {
-                                    "status": "DRAFT_1_SELECT_WORKFLOW"
-                                }
-                            },
-                            "saving step 1 and go next": {
-                                "value": {
-                                    "workflow": {
-                                        "uuid": "b91d796f1452d1a9338b8e470d012780"
+                        "saving step 1": {
+                            "value": {
+                                "status": "DRAFT_1_SELECT_WORKFLOW"
+                            }
+                        },
+                        "saving step 1 and go next": {
+                            "value": {
+                                "workflow": {
+                                    "uuid": "b91d796f1452d1a9338b8e470d012780"
+                                },
+                                "status": "DRAFT_2_SELECT_INPUT_DATA"
+                            }
+                        },
+                        "saving step 2": {
+                            "value": {
+                                "inputConfig": {
+                                    "inputA": {
+                                        "isRequired": true,
+                                        "name": "name of the input A",
+                                        "type": "FILTER_RESULT_SNAPSHOT",
+                                        "value": "b91d796f1452d1a9338b8e470d01609e"
                                     },
-                                    "status": "DRAFT_2_SELECT_INPUT_DATA"
-                                }
-                            },
-                            "saving step 2": {
-                                "value": {
-                                    "inputConfig": {
-                                        "inputA": {
-                                            "isRequired": true,
-                                            "name": "name of the input A",
-                                            "type": "FILTER_RESULT_SNAPSHOT",
-                                            "value": "b91d796f1452d1a9338b8e470d01609e"
-                                        },
-                                        "inputB": {
-                                            "isRequired": false,
-                                            "name": "name of the input B",
-                                            "type": "CONSTANT",
-                                            "value": 2
-                                        }
-                                    },
-                                    "workflow": {
-                                        "uuid": "b91d796f1452d1a9338b8e470d012780"
-                                    },
-                                    "status": "DRAFT_2_SELECT_INPUT_DATA"
-                                }
+                                    "inputB": {
+                                        "isRequired": false,
+                                        "name": "name of the input B",
+                                        "type": "CONSTANT",
+                                        "value": 2
+                                    }
+                                },
+                                "workflow": {
+                                    "uuid": "b91d796f1452d1a9338b8e470d012780"
+                                },
+                                "status": "DRAFT_2_SELECT_INPUT_DATA"
                             }
                         }
+                    }
                 }
             }
         },
@@ -148,6 +147,8 @@
                                         "name": "name of the workflow",
                                         "uuid": "b91d796f1452d1a9338b8e470d012780"
                                     },
+                                    "creationDate": "2023-04-11T16:38:22.213Z",
+                                    "modificationDate": "2023-04-11T16:38:22.213Z",
                                     "inputConfig": {
                                         "inputA": {
                                             "isRequired": true,
@@ -177,6 +178,8 @@
                                     },
                                     "status": "DRAFT_1_SELECT_WORKFLOW"
                                 },
+                                "creationDate": "2023-04-11T16:38:22.213Z",
+                                "modificationDate": "2023-04-11T16:38:22.213Z",
                                 "summary": "Example of response when the matrix in step 1"
                             }
                         }

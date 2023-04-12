@@ -732,6 +732,7 @@
         "getWorkflowExecutionMatrixStep2Response": {
             "type": "object",
             "description": "Response for a matrix in step 2",
+            "additionalProperties": false,
             "properties": {
                 "status": {
                     "type": "string",
@@ -770,6 +771,7 @@
         "getWorkflowExecutionMatrixStep1Response": {
             "description": "Response for a matrix in step 1",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "status": {
                     "type": "string",
