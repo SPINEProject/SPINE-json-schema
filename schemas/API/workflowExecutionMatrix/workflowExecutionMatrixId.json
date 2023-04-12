@@ -58,9 +58,8 @@
                             "2": {
                                 "value": {
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",
-                                    "reference": {
-                                        "ownerId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
-                                    },
+                                    "creationDate": "2023-04-11T16:38:22.213Z",
+                                    "modificationDate": "2023-04-11T16:38:22.213Z",
                                     "status": "DRAFT_1_SELECT_WORKFLOW"
                                 },
                                 "summary": "Example of response when the matrix in step 1"
@@ -171,10 +170,9 @@
                                 "value": {
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                     "status": "DRAFT_1_SELECT_WORKFLOW",
-                                     "creationDate": "2023-04-11T16:38:22.213Z",
+                                    "creationDate": "2023-04-11T16:38:22.213Z",
                                     "modificationDate": "2023-04-11T16:38:22.213Z"
                                 },
-
                                 "summary": "Example of response when the matrix in step 1"
                             }
                         }
