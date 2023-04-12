@@ -32,6 +32,7 @@
                                 "value": {
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                     "workflow": {
+                                        
                                         "name": "name of the workflow",
                                         "uuid": "b91d796f1452d1a9338b8e470d012780"
                                     },
