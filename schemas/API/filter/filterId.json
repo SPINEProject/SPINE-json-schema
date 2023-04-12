@@ -109,11 +109,6 @@
                         "body": {
                             "value": {
                                 "name": "My filter",
-                                "owner": {
-                                    "lastname": "Bliault",
-                                    "name": "Grégory",
-                                    "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9"
-                                },
                                 "filter": {
                                     "logicalOperator": {
                                         "type": "LOGICAL_OPERATOR",
@@ -153,6 +148,11 @@
                                 "value": {
                                     "uuid": "4c636555d3963f0a65312032bf001eb7",
                                     "name": "My filter",
+                                    "owner": {
+                                        "lastname": "Bliault",
+                                        "name": "Grégory",
+                                        "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                    },
                                     "filter": {
                                         "logicalOperator": {
                                             "type": "LOGICAL_OPERATOR",
