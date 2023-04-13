@@ -479,6 +479,7 @@
                     "type": "string"
                 },
                 "operator": {
+                    "description": "The selected operator and variante",
                     "oneOf": [
                         {
                             "$ref": "#/definitions/numericalOperator"
