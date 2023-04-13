@@ -23,6 +23,9 @@
         "/filter": {
             "$ref": "./filter/filter.json"
         },
+        "/filter/attribute": {
+            "$ref": "./filter/filterAttribute.json"
+        },
         "/filter-snapshot": {
             "$ref": "./filter/filterSnapshot.json"
         },

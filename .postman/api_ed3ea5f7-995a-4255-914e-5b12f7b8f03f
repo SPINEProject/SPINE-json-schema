@@ -19,6 +19,7 @@ files[] = {"path":"annotation.schema.json","metaData":{}}
 files[] = {"path":"annotationTableData.schema.json","metaData":{}}
 files[] = {"path":"annotationTableDefinition.schema.json","metaData":{}}
 files[] = {"path":"API/filter/filter.json","metaData":{}}
+files[] = {"path":"API/filter/filterAttribute.json","metaData":{}}
 files[] = {"path":"API/filter/filterId.json","metaData":{}}
 files[] = {"path":"API/filter/filterSnapshot.json","metaData":{}}
 files[] = {"path":"API/filter/filterSnapshotId.json","metaData":{}}
