@@ -2,6 +2,7 @@
     "examples": {},
     "schemas": {
         "postFilterBody": {
+            "title": "POST filter body",
             "type": "object",
             "properties": {
                 "name": {

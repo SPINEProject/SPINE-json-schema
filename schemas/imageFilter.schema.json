@@ -4,17 +4,39 @@
     "title": "Schema to filter image based on DICOM parameters.",
     "type": "object",
     "definitions": {
-        "operatorEqual": {
+        "criterionWithNumericalOperatorEqual": {
+            "title": "Criterion with numerical operator equal",
             "properties": {
-                "label": {
-                    "enum": [
-                        "="
-                    ]
-                },
                 "value": {
-                    "enum": [
-                        "equals"
-                    ]
+                    "type": "number"
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERICAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "="
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "equals"
+                            ]
+                        }
+                    }
                 }
             }
         },
@@ -200,6 +222,29 @@
                 }
             }
         },
+        "logicalOperator": {
+            "description": "Logical operator ruling the expression. For instance if the logical operator is AND, then all the expression will AND all the criteria and expressions, e.g., Criteria_1 AND Criteria_2 AND Expression_1 AND Expression_2",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "LOGICAL_OPERATOR"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/operatorAND"
+                },
+                {
+                    "$ref": "#/definitions/operatorOR"
+                }
+            ]
+        },
         "textualOperator": {
             "description": "Textual operator",
             "type": "object",
@@ -301,29 +346,6 @@
                 }
             ]
         },
-        "logicalOperator": {
-            "description": "Logical operator ruling the expression. For instance if the logical operator is AND, then all the expression will AND all the criteria and expressions, e.g., Criteria_1 AND Criteria_2 AND Expression_1 AND Expression_2",
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "LOGICAL_OPERATOR"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/operatorAND"
-                },
-                {
-                    "$ref": "#/definitions/operatorOR"
-                }
-            ]
-        },
         "arrayOperator": {
             "description": "Array operator",
             "type": "object",
@@ -354,7 +376,7 @@
             ]
         },
         "criterion": {
-            "description": "Criterion",
+            "title": "Criterion",
             "type": "object",
             "properties": {
                 "attribute": {
@@ -400,225 +422,7 @@
             },
             "oneOf": [
                 {
-                    "title": "Numerical operator equal",
-                    "allOf": [
-                        {
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "NUMERICAL_OPERATOR"
-                                    ]
-                                },
-                                "variant": {
-                                    "type": "string",
-                                    "enum": [
-                                        "SINGLE_VALUE",
-                                        "ALL_ELEMENT",
-                                        "ANY_ELEMENT"
-                                    ]
-                                }
-                            }
-                        },
-                        {
-                            "$ref": "#/definitions/operatorEqual"
-                        }
-                    ]
-                },
-                {
-                    "title": "Numerical operator not equal",
-                    "properties": {
-                        "value": {
-                            "type": "number"
-                        },
-                        "operator": {
-                            "allOf": [
-                                {
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "enum": [
-                                                "NUMERICAL_OPERATOR"
-                                            ]
-                                        },
-                                        "variant": {
-                                            "type": "string",
-                                            "enum": [
-                                                "SINGLE_VALUE",
-                                                "ALL_ELEMENT",
-                                                "ANY_ELEMENT"
-                                            ]
-                                        }
-                                    }
-                                },
-                                {
-                                    "properties": {
-                                        "label": {
-                                            "enum": [
-                                                "!="
-                                            ]
-                                        },
-                                        "value": {
-                                            "enum": [
-                                                "not equals"
-                                            ]
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                },
-                {
-                    "title": "Numerical operator",
-                    "description": "Numerical operator",
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "enum": [
-                                "NUMERICAL_OPERATOR"
-                            ]
-                        },
-                        "variant": {
-                            "type": "string",
-                            "enum": [
-                                "SINGLE_VALUE",
-                                "ALL_ELEMENT",
-                                "ANY_ELEMENT"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "type"
-                    ],
-                    "oneOf": [
-                        {
-                            "title": "Operator less than",
-                            "properties": {
-                                "label": {
-                                    "enum": [
-                                        "<"
-                                    ]
-                                },
-                                "value": {
-                                    "enum": [
-                                        "less than"
-                                    ]
-                                }
-                            }
-                        },
-                        {
-                            "title": "Operator lesser equal",
-                            "properties": {
-                                "label": {
-                                    "enum": [
-                                        "<="
-                                    ]
-                                },
-                                "value": {
-                                    "enum": [
-                                        "less than or equal to"
-                                    ]
-                                }
-                            }
-                        },
-                        {
-                            "title": "Operator greater equal",
-                            "properties": {
-                                "label": {
-                                    "enum": [
-                                        ">="
-                                    ]
-                                },
-                                "value": {
-                                    "enum": [
-                                        "greater than or equal to"
-                                    ]
-                                }
-                            }
-                        },
-                        {
-                            "title": "Operator greater than",
-                            "properties": {
-                                "label": {
-                                    "enum": [
-                                        ">"
-                                    ]
-                                },
-                                "value": {
-                                    "enum": [
-                                        "greater than"
-                                    ]
-                                }
-                            }
-                        }
-                    ]
-                },
-                {
-                    "title": "Textual operator",
-                    "description": "Textual operator",
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "enum": [
-                                "TEXTUAL_OPERATOR"
-                            ]
-                        },
-                        "variant": {
-                            "type": "string",
-                            "enum": [
-                                "SINGLE_VALUE",
-                                "ALL_ELEMENT",
-                                "ANY_ELEMENT"
-                            ]
-                        }
-                    },
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/operatorContains"
-                        },
-                        {
-                            "$ref": "#/definitions/operatorDoesNotContains"
-                        },
-                        {
-                            "title": "Operator not equal",
-                            "properties": {
-                                "label": {
-                                    "enum": [
-                                        "!="
-                                    ]
-                                },
-                                "value": {
-                                    "enum": [
-                                        "not equals"
-                                    ]
-                                }
-                            }
-                        },
-                        {
-                            "title": "Operator equal",
-                            "properties": {
-                                "label": {
-                                    "enum": [
-                                        "="
-                                    ]
-                                },
-                                "value": {
-                                    "enum": [
-                                        "equals"
-                                    ]
-                                }
-                            }
-                        },
-                        {
-                            "$ref": "#/definitions/operatorIn"
-                        },
-                        {
-                            "$ref": "#/definitions/operatorNotIn"
-                        }
-                    ]
+                    "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
                 }
             ],
             "required": [
@@ -635,7 +439,6 @@
                 "$ref": "#/definitions/criterion"
             }
         },
-
         "expressionList": {
             "description": "List of expression in the expression.",
             "type": "array",
@@ -655,30 +458,6 @@
                 },
                 "expressions": {
                     "$ref": "#/definitions/expressionList"
-                }
-            },
-            "required": [
-                "logicalOperator",
-                "criteria",
-                "expressions"
-            ]
-        },
-        "expressionAPI": {
-            "description": "An expression",
-            "type": "object",
-            "properties": {
-                "logicalOperator": {
-                    "$ref": "#/definitions/logicalOperator"
-                },
-                "criteria": {
-                    "$ref": "#/definitions/criteriaAPI"
-                },
-                "expressions": {
-                    "description": "List of expression in the expression.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/expressionAPI"
-                    }
                 }
             },
             "required": [
