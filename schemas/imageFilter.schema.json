@@ -89,92 +89,60 @@
             }
         },
         "operatorContains": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "contains"
-                            ]
-                        },
-                        "vale": {
-                            "enum": [
-                                "contains"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "contains"
+                    ]
+                },
+                "vale": {
+                    "enum": [
+                        "contains"
                     ]
                 }
-            ]
+            }
         },
         "operatorDoesNotContains": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "does not contain"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "does not contain"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "does not contain"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "does not contain"
                     ]
                 }
-            ]
+            }
         },
         "operatorIncludes": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "includes"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "includes"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "includes"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "includes"
                     ]
                 }
-            ]
+            }
         },
         "operatorDoesNotInclude": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "does not include"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "does not include"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "does not include"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "does not include"
                     ]
                 }
-            ]
+            }
         },
         "operatorIn": {
             "properties": {
@@ -205,48 +173,32 @@
             }
         },
         "operatorAND": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "AND"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "AND"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "AND"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "AND"
                     ]
                 }
-            ]
+            }
         },
         "operatorOR": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "OR"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "OR"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "OR"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "OR"
                     ]
                 }
-            ]
+            }
         },
         "textualOperator": {
             "description": "Textual operator",
@@ -417,9 +369,6 @@
                         },
                         {
                             "$ref": "#/definitions/textualOperator"
-                        },
-                        {
-                            "$ref": "#/definitions/arrayOperator"
                         }
                     ]
                 },
@@ -447,12 +396,50 @@
                         "type": "string"
                     },
                     "operator": {
-                        "description": "The selected operator and variante",
-                        "oneOf": [
-                            {
-                                "title": "Numerical operator",
-                                "description": "Numerical operator",
-                                "type": "object",
+                        "description": "The selected operator",
+                        "type": "object",
+                        "required": [
+                            "type",
+                            "value",
+                            "label"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "NUMERICAL_OPERATOR",
+                                    "TEXTUAL_OPERATOR"
+                                ]
+                            },
+                            "variant": {
+                                "type": "string",
+                                "enum": [
+                                    "SINGLE_VALUE",
+                                    "ALL_ELEMENT",
+                                    "ANY_ELEMENT"
+                                ]
+                            },
+                            "value": {
+                                "type": "string"
+                            },
+                            "label": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "value": {
+                        "description": "Value for the criterion."
+                    }
+                },
+                "oneOf": [
+                    {
+                        "title": "Numerical operator equal",
+                        "properties": {
+                            "value": {
+                                "type": "number"
+                            },
+                            "operator": {
                                 "properties": {
                                     "type": {
                                         "type": "string",
@@ -467,113 +454,33 @@
                                             "ALL_ELEMENT",
                                             "ANY_ELEMENT"
                                         ]
+                                    },
+                                    "label": {
+                                        "enum": [
+                                            "="
+                                        ]
+                                    },
+                                    "value": {
+                                        "enum": [
+                                            "equals"
+                                        ]
                                     }
-                                },
-                                "required": [
-                                    "type"
-                                ],
-                                "oneOf": [
-                                    {
-                                        "title": "Operator not equal",
-                                        "properties": {
-                                            "label": {
-                                                "enum": [
-                                                    "!="
-                                                ]
-                                            },
-                                            "value": {
-                                                "enum": [
-                                                    "not equals"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "title": "Operator equal",
-                                        "properties": {
-                                            "label": {
-                                                "enum": [
-                                                    "="
-                                                ]
-                                            },
-                                            "value": {
-                                                "enum": [
-                                                    "equals"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "title": "Operator less than",
-                                        "properties": {
-                                            "label": {
-                                                "enum": [
-                                                    "<"
-                                                ]
-                                            },
-                                            "value": {
-                                                "enum": [
-                                                    "less than"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "title": "Operator lesser equal",
-                                        "properties": {
-                                            "label": {
-                                                "enum": [
-                                                    "<="
-                                                ]
-                                            },
-                                            "value": {
-                                                "enum": [
-                                                    "less than or equal to"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "title": "Operator greater equal",
-                                        "properties": {
-                                            "label": {
-                                                "enum": [
-                                                    ">="
-                                                ]
-                                            },
-                                            "value": {
-                                                "enum": [
-                                                    "greater than or equal to"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "title": "Operator greater than",
-                                        "properties": {
-                                            "label": {
-                                                "enum": [
-                                                    ">"
-                                                ]
-                                            },
-                                            "value": {
-                                                "enum": [
-                                                    "greater than"
-                                                ]
-                                            }
-                                        }
-                                    }
-                                ]
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "title": "Numerical operator not equal",
+                        "properties": {
+                            "value": {
+                                "type": "number"
                             },
-                            {
-                                "title": "Textual operator",
-                                "description": "Textual operator",
-                                "type": "object",
+                            "operator": {
                                 "properties": {
                                     "type": {
                                         "type": "string",
                                         "enum": [
-                                            "TEXTUAL_OPERATOR"
+                                            "NUMERICAL_OPERATOR"
                                         ]
                                     },
                                     "variant": {
@@ -583,62 +490,179 @@
                                             "ALL_ELEMENT",
                                             "ANY_ELEMENT"
                                         ]
+                                    },
+                                    "label": {
+                                        "enum": [
+                                            "!="
+                                        ]
+                                    },
+                                    "value": {
+                                        "enum": [
+                                            "not equals"
+                                        ]
                                     }
-                                },
-                                "oneOf": [
-                                    {
-                                        "$ref": "#/definitions/operatorContains"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/operatorDoesNotContains"
-                                    },
-                                    {
-                                        "title": "Operator not equal",
-                                        "properties": {
-                                            "label": {
-                                                "enum": [
-                                                    "!="
-                                                ]
-                                            },
-                                            "value": {
-                                                "enum": [
-                                                    "not equals"
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "title": "Operator equal",
-                                        "properties": {
-                                            "label": {
-                                                "enum": [
-                                                    "="
-                                                ]
-                                            },
-                                            "value": {
-                                                "enum": [
-                                                    "equals"
-                                                ]
-                                            }
-                                        }
-                                    }
-                                    {
-                                        "$ref": "#/definitions/operatorIn"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/operatorNotIn"
-                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "title": "Numerical operator",
+                        "description": "Numerical operator",
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "NUMERICAL_OPERATOR"
                                 ]
                             },
+                            "variant": {
+                                "type": "string",
+                                "enum": [
+                                    "SINGLE_VALUE",
+                                    "ALL_ELEMENT",
+                                    "ANY_ELEMENT"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "type"
+                        ],
+                        "oneOf": [
                             {
-                                "$ref": "#/definitions/arrayOperator"
+                                "title": "Operator less than",
+                                "properties": {
+                                    "label": {
+                                        "enum": [
+                                            "<"
+                                        ]
+                                    },
+                                    "value": {
+                                        "enum": [
+                                            "less than"
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "title": "Operator lesser equal",
+                                "properties": {
+                                    "label": {
+                                        "enum": [
+                                            "<="
+                                        ]
+                                    },
+                                    "value": {
+                                        "enum": [
+                                            "less than or equal to"
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "title": "Operator greater equal",
+                                "properties": {
+                                    "label": {
+                                        "enum": [
+                                            ">="
+                                        ]
+                                    },
+                                    "value": {
+                                        "enum": [
+                                            "greater than or equal to"
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "title": "Operator greater than",
+                                "properties": {
+                                    "label": {
+                                        "enum": [
+                                            ">"
+                                        ]
+                                    },
+                                    "value": {
+                                        "enum": [
+                                            "greater than"
+                                        ]
+                                    }
+                                }
                             }
                         ]
                     },
-                    "value": {
-                        "description": "Value for the criterion."
+                    {
+                        "title": "Textual operator",
+                        "description": "Textual operator",
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "TEXTUAL_OPERATOR"
+                                ]
+                            },
+                            "variant": {
+                                "type": "string",
+                                "enum": [
+                                    "SINGLE_VALUE",
+                                    "ALL_ELEMENT",
+                                    "ANY_ELEMENT"
+                                ]
+                            }
+                        },
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/operatorContains"
+                            },
+                            {
+                                "$ref": "#/definitions/operatorDoesNotContains"
+                            },
+                            {
+                                "title": "Operator not equal",
+                                "properties": {
+                                    "label": {
+                                        "enum": [
+                                            "!="
+                                        ]
+                                    },
+                                    "value": {
+                                        "enum": [
+                                            "not equals"
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "title": "Operator equal",
+                                "properties": {
+                                    "label": {
+                                        "enum": [
+                                            "="
+                                        ]
+                                    },
+                                    "value": {
+                                        "enum": [
+                                            "equals"
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "$ref": "#/definitions/operatorIn"
+                            },
+                            {
+                                "$ref": "#/definitions/operatorNotIn"
+                            }
+                        ]
                     }
-                }
+                ],
+                "required": [
+                    "attribute",
+                    "operator",
+                    "value"
+                ],
+                "additionalProperties": false
             }
         },
         "expressionList": {
