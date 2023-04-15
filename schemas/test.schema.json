@@ -8,6 +8,7 @@
             "title": "Numerical criterion equal",
             "properties": {
                 "value": {
+                    
                     "type": "number"
                 },
                 "operator": {
