@@ -1,0 +1,1788 @@
+{
+	"info": {
+		"_postman_id": "28efa652-5d2f-40b1-aabf-08e397bcc862",
+		"name": "ss",
+		"description": "SPINE API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "9863314-28efa652-5d2f-40b1-aabf-08e397bcc862"
+	},
+	"item": [
+		{
+			"name": "workflow-execution-matrix",
+			"item": [
+				{
+					"name": "{workflowExecutionMatrixId}",
+					"item": [
+						{
+							"name": "Get a workflow execution matrix",
+							"id": "4fed884b-11cb-4e36-8cf4-e43f5164851b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/workflow-execution-matrix/:workflowExecutionMatrixId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workflow-execution-matrix",
+										":workflowExecutionMatrixId"
+									],
+									"variable": [
+										{
+											"key": "workflowExecutionMatrixId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "8a9bb588-70bc-4eb3-a85c-3c6c71dbcc96",
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/workflow-execution-matrix/:workflowExecutionMatrixId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"workflow-execution-matrix",
+												":workflowExecutionMatrixId"
+											],
+											"variable": [
+												{
+													"key": "workflowExecutionMatrixId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"status\": \"DRAFT_1_SELECT_WORKFLOW\",\n  \"uuid\": \"<string>\",\n  \"creationDate\": \"<string>\",\n  \"modificationDate\": \"<string>\",\n  \"workflow\": {\n    \"uuid\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"name\": \"<string>\"\n}"
+								},
+								{
+									"id": "151bcb3f-4884-4965-beb3-81fb61d0851f",
+									"name": "Unexpected error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/workflow-execution-matrix/:workflowExecutionMatrixId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"workflow-execution-matrix",
+												":workflowExecutionMatrixId"
+											],
+											"variable": [
+												{
+													"key": "workflowExecutionMatrixId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						},
+						{
+							"name": "Update a workflow execution matrix",
+							"id": "8f162e6b-8e74-42b9-a180-8e7f17bc3675",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"status\": \"DRAFT_4_SELECT_DISTRIBUTION\",\n  \"name\": \"<string>\",\n  \"workflow\": {\n    \"uuid\": \"<string>\"\n  },\n  \"inputConfig\": {\n    \"cupidatat_b8\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"CONSTANT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    },\n    \"fugiat0\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"CONSTANT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    },\n    \"exercitation6c8\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"FILTER_RESULT_SNAPSHOT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    },\n    \"laborum7b7\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"FILTER_RESULT_SNAPSHOT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/workflow-execution-matrix/:workflowExecutionMatrixId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workflow-execution-matrix",
+										":workflowExecutionMatrixId"
+									],
+									"variable": [
+										{
+											"key": "workflowExecutionMatrixId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "de76e917-01bb-4e89-936d-da81177c31e9",
+									"name": "200",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"status\": \"DRAFT_4_SELECT_DISTRIBUTION\",\n  \"name\": \"<string>\",\n  \"workflow\": {\n    \"uuid\": \"<string>\"\n  },\n  \"inputConfig\": {\n    \"cupidatat_b8\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"CONSTANT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    },\n    \"fugiat0\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"CONSTANT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    },\n    \"exercitation6c8\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"FILTER_RESULT_SNAPSHOT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    },\n    \"laborum7b7\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"FILTER_RESULT_SNAPSHOT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    }\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/workflow-execution-matrix/:workflowExecutionMatrixId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"workflow-execution-matrix",
+												":workflowExecutionMatrixId"
+											],
+											"variable": [
+												{
+													"key": "workflowExecutionMatrixId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"status\": \"DRAFT_1_SELECT_WORKFLOW\",\n  \"uuid\": \"<string>\",\n  \"creationDate\": \"<string>\",\n  \"modificationDate\": \"<string>\",\n  \"workflow\": {\n    \"uuid\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"name\": \"<string>\"\n}"
+								},
+								{
+									"id": "0e12871c-8c78-4f02-8fac-8757188771ee",
+									"name": "Unexpected error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"status\": \"DRAFT_4_SELECT_DISTRIBUTION\",\n  \"name\": \"<string>\",\n  \"workflow\": {\n    \"uuid\": \"<string>\"\n  },\n  \"inputConfig\": {\n    \"cupidatat_b8\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"CONSTANT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    },\n    \"fugiat0\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"CONSTANT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    },\n    \"exercitation6c8\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"FILTER_RESULT_SNAPSHOT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    },\n    \"laborum7b7\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"FILTER_RESULT_SNAPSHOT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    }\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/workflow-execution-matrix/:workflowExecutionMatrixId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"workflow-execution-matrix",
+												":workflowExecutionMatrixId"
+											],
+											"variable": [
+												{
+													"key": "workflowExecutionMatrixId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						}
+					],
+					"id": "07b59872-aa21-49f8-a723-84f4944a7a8a"
+				},
+				{
+					"name": "Get the list of workflow execution matrix for the current user",
+					"id": "04e73fc8-aa83-4430-9f9d-c9331638786a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/workflow-execution-matrix",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workflow-execution-matrix"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "fb07fb00-87cc-4c82-a31a-39eff8581ac8",
+							"name": "The list of workflow execution matrix",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/workflow-execution-matrix",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workflow-execution-matrix"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"workflowExecutionMatrixList\": [\n    {\n      \"uuid\": \"<string>\",\n      \"status\": \"LAUNCHED\",\n      \"cohorts\": [\n        {\n          \"uuid\": \"<string>\",\n          \"count\": \"<integer>\"\n        },\n        {\n          \"uuid\": \"<string>\",\n          \"count\": \"<integer>\"\n        }\n      ],\n      \"creationDate\": \"<string>\",\n      \"modificationDate\": \"<string>\",\n      \"name\": \"<string>\",\n      \"workflow\": {\n        \"uuid\": \"<string>\"\n      },\n      \"dateOfExecution\": \"<string>\",\n      \"statusOfExecutions\": {\n        \"done\": \"<integer>\",\n        \"running\": \"<integer>\",\n        \"error\": \"<integer>\"\n      }\n    },\n    {\n      \"uuid\": \"<string>\",\n      \"status\": \"DRAFT_3_SELECT_RATER\",\n      \"cohorts\": [\n        {\n          \"uuid\": \"<string>\",\n          \"count\": \"<integer>\"\n        },\n        {\n          \"uuid\": \"<string>\",\n          \"count\": \"<integer>\"\n        }\n      ],\n      \"creationDate\": \"<string>\",\n      \"modificationDate\": \"<string>\",\n      \"name\": \"<string>\",\n      \"workflow\": {\n        \"uuid\": \"<string>\"\n      },\n      \"dateOfExecution\": \"<string>\",\n      \"statusOfExecutions\": {\n        \"done\": \"<integer>\",\n        \"running\": \"<integer>\",\n        \"error\": \"<integer>\"\n      }\n    }\n  ],\n  \"workflows\": [\n    {\n      \"name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"cohorts\": [\n    {\n      \"name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "6a2fba07-23a6-453b-9ff3-ce7b242873b6",
+							"name": "Unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/workflow-execution-matrix",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workflow-execution-matrix"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				},
+				{
+					"name": "Post a new workflow execution matrix",
+					"id": "74666c73-fbd2-470b-92e9-4b698c35e434",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"DRAFT_2_SELECT_INPUT_DATA\",\n  \"name\": \"<string>\",\n  \"workflow\": {\n    \"uuid\": \"<string>\"\n  },\n  \"inputConfig\": {\n    \"ullamcoe5\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"CONSTANT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/workflow-execution-matrix",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workflow-execution-matrix"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "342930a8-d5ce-429e-ae34-6adffa190094",
+							"name": "The created wf exec matrix",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"status\": \"DRAFT_2_SELECT_INPUT_DATA\",\n  \"name\": \"<string>\",\n  \"workflow\": {\n    \"uuid\": \"<string>\"\n  },\n  \"inputConfig\": {\n    \"ullamcoe5\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"CONSTANT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/workflow-execution-matrix",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workflow-execution-matrix"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"status\": \"DRAFT_1_SELECT_WORKFLOW\",\n  \"uuid\": \"<string>\",\n  \"creationDate\": \"<string>\",\n  \"modificationDate\": \"<string>\",\n  \"workflow\": {\n    \"uuid\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"name\": \"<string>\"\n}"
+						},
+						{
+							"id": "9427b77d-bb62-4148-82b0-b5ce0e908d4c",
+							"name": "Unexpected error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"status\": \"DRAFT_2_SELECT_INPUT_DATA\",\n  \"name\": \"<string>\",\n  \"workflow\": {\n    \"uuid\": \"<string>\"\n  },\n  \"inputConfig\": {\n    \"ullamcoe5\": {\n      \"isRequired\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"type\": \"CONSTANT\",\n      \"value\": {\n        \"description\": \"The input value\"\n      }\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/workflow-execution-matrix",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workflow-execution-matrix"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				}
+			],
+			"id": "95fb3cd4-35d1-4a2e-8c56-6abe94bf9dc3"
+		},
+		{
+			"name": "filter",
+			"item": [
+				{
+					"name": "{filterId}",
+					"item": [
+						{
+							"name": "Get a filter by ID",
+							"id": "1a42484b-dacd-43aa-a386-ebfb7a7895d9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/filter/:filterId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter",
+										":filterId"
+									],
+									"variable": [
+										{
+											"key": "filterId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "ce685bb7-b891-480d-aa89-71e90b93d266",
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/filter/:filterId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter",
+												":filterId"
+											],
+											"variable": [
+												{
+													"key": "filterId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"filter\": {\n    \"value\": \"reference #/definitions/expressionAPI not found in the OpenAPI spec\"\n  },\n  \"uuid\": \"<string>\",\n  \"name\": \"<string>\",\n  \"owner\": {\n    \"uuid\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n}"
+								},
+								{
+									"id": "16b641cf-3668-4ca0-8cae-cc476fe97061",
+									"name": "Unexpected error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/filter/:filterId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter",
+												":filterId"
+											],
+											"variable": [
+												{
+													"key": "filterId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						},
+						{
+							"name": "Delete a filter. It is not possible to delete a filter if the filter already has snapshots associated.",
+							"id": "4e4afcb4-8abf-47a6-9c26-f7b9d2e80b2c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/filter/:filterId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter",
+										":filterId"
+									],
+									"variable": [
+										{
+											"key": "filterId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "f055e2cc-e554-4c8c-9d00-831ac13a64db",
+									"name": "200",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/filter/:filterId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter",
+												":filterId"
+											],
+											"variable": [
+												{
+													"key": "filterId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								},
+								{
+									"id": "37d32dad-5cb9-4291-974d-7fb09ea9b878",
+									"name": "Unexpected error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/filter/:filterId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter",
+												":filterId"
+											],
+											"variable": [
+												{
+													"key": "filterId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						},
+						{
+							"name": "Update a filter. It is not possible to update the filter if a snapshot was already published.",
+							"id": "2d09b645-3245-460b-ba9f-15b52933bec1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"filter\": {\n    \"value\": \"reference #/definitions/expressionAPI not found in the OpenAPI spec\"\n  },\n  \"name\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/filter/:filterId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter",
+										":filterId"
+									],
+									"variable": [
+										{
+											"key": "filterId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "db72ebf9-0e4f-42b2-820c-3641b153c729",
+									"name": "The updated filter",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"filter\": {\n    \"value\": \"reference #/definitions/expressionAPI not found in the OpenAPI spec\"\n  },\n  \"name\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/filter/:filterId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter",
+												":filterId"
+											],
+											"variable": [
+												{
+													"key": "filterId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"filter\": {\n    \"value\": \"reference #/definitions/expressionAPI not found in the OpenAPI spec\"\n  },\n  \"uuid\": \"<string>\",\n  \"name\": \"<string>\",\n  \"owner\": {\n    \"uuid\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n}"
+								},
+								{
+									"id": "d9ba2e3b-ee21-4ffd-a5e9-eb46e1ba5dd1",
+									"name": "Unexpected error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"filter\": {\n    \"value\": \"reference #/definitions/expressionAPI not found in the OpenAPI spec\"\n  },\n  \"name\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/filter/:filterId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter",
+												":filterId"
+											],
+											"variable": [
+												{
+													"key": "filterId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						}
+					],
+					"id": "88a3a73a-7d3c-4107-bbcb-b1b2087abc83"
+				},
+				{
+					"name": "attribute",
+					"item": [
+						{
+							"name": "Get the list of filter attributes",
+							"id": "ec325149-5e3f-4c75-8700-cf2c38d3837c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/filter/attribute",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter",
+										"attribute"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "c8150452-f173-4e43-9b0d-caa0e3a9d541",
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/filter/attribute",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter",
+												"attribute"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"title\": \"attribute with type number\"\n  },\n  {\n    \"title\": \"attribute with type number\"\n  }\n]"
+								},
+								{
+									"id": "4e8017be-ddb1-4010-bf33-1394430ed44a",
+									"name": "Unexpected error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/filter/attribute",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter",
+												"attribute"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						}
+					],
+					"id": "60d0597b-2d96-4780-b2c6-2ac37beeccfe"
+				},
+				{
+					"name": "Get the list of filter accessible by the current user",
+					"id": "45cd120b-c914-4b94-8e46-1622f4aa8d29",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/filter",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"filter"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "4adcacf3-5e06-4a5d-89f6-a616548c3586",
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/filter",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"name\": \"<string>\",\n    \"owner\": {\n      \"uuid\": \"<string>\",\n      \"lastname\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"name\": \"<string>\",\n    \"owner\": {\n      \"uuid\": \"<string>\",\n      \"lastname\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  }\n]"
+						},
+						{
+							"id": "273eb879-6372-4b09-b566-e5500e71ec63",
+							"name": "Unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/filter",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				},
+				{
+					"name": "Post a new filter",
+					"id": "c21ad59a-e486-4d66-b0a4-90bcfc73fdb3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"filter\": {\n    \"logicalOperator\": {\n      \"label\": \"AND\",\n      \"value\": \"AND\"\n    },\n    \"criteria\": [\n      {\n        \"value\": \"<number>\",\n        \"operator\": {\n          \"type\": \"NUMERICAL_OPERATOR\",\n          \"variant\": \"ALL_ELEMENT\",\n          \"label\": \"=\",\n          \"value\": \"equals\"\n        }\n      },\n      {\n        \"value\": \"<number>\",\n        \"operator\": {\n          \"type\": \"NUMERICAL_OPERATOR\",\n          \"variant\": \"SINGLE_VALUE\",\n          \"label\": \"=\",\n          \"value\": \"equals\"\n        }\n      }\n    ],\n    \"expressions\": [\n      {\n        \"logicalOperator\": {\n          \"label\": \"AND\",\n          \"value\": \"AND\"\n        },\n        \"criteria\": [\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"ANY_ELEMENT\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          },\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"ALL_ELEMENT\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          }\n        ],\n        \"expressions\": {\n          \"value\": \"<Circular reference to #/components/schemas/imageFilter.schema.json-_definitions_expressionList detected>\"\n        }\n      },\n      {\n        \"logicalOperator\": {\n          \"label\": \"AND\",\n          \"value\": \"AND\"\n        },\n        \"criteria\": [\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"ALL_ELEMENT\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          },\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"SINGLE_VALUE\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          }\n        ],\n        \"expressions\": {\n          \"value\": \"<Circular reference to #/components/schemas/imageFilter.schema.json-_definitions_expressionList detected>\"\n        }\n      }\n    ]\n  },\n  \"name\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/filter",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"filter"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "4d580c6e-1ec1-4fd9-a46d-2666a45b6a75",
+							"name": "The created filter",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"filter\": {\n    \"logicalOperator\": {\n      \"label\": \"AND\",\n      \"value\": \"AND\"\n    },\n    \"criteria\": [\n      {\n        \"value\": \"<number>\",\n        \"operator\": {\n          \"type\": \"NUMERICAL_OPERATOR\",\n          \"variant\": \"ALL_ELEMENT\",\n          \"label\": \"=\",\n          \"value\": \"equals\"\n        }\n      },\n      {\n        \"value\": \"<number>\",\n        \"operator\": {\n          \"type\": \"NUMERICAL_OPERATOR\",\n          \"variant\": \"SINGLE_VALUE\",\n          \"label\": \"=\",\n          \"value\": \"equals\"\n        }\n      }\n    ],\n    \"expressions\": [\n      {\n        \"logicalOperator\": {\n          \"label\": \"AND\",\n          \"value\": \"AND\"\n        },\n        \"criteria\": [\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"ANY_ELEMENT\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          },\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"ALL_ELEMENT\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          }\n        ],\n        \"expressions\": {\n          \"value\": \"<Circular reference to #/components/schemas/imageFilter.schema.json-_definitions_expressionList detected>\"\n        }\n      },\n      {\n        \"logicalOperator\": {\n          \"label\": \"AND\",\n          \"value\": \"AND\"\n        },\n        \"criteria\": [\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"ALL_ELEMENT\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          },\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"SINGLE_VALUE\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          }\n        ],\n        \"expressions\": {\n          \"value\": \"<Circular reference to #/components/schemas/imageFilter.schema.json-_definitions_expressionList detected>\"\n        }\n      }\n    ]\n  },\n  \"name\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/filter",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"name\": \"<string>\",\n    \"owner\": {\n      \"uuid\": \"<string>\",\n      \"lastname\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"name\": \"<string>\",\n    \"owner\": {\n      \"uuid\": \"<string>\",\n      \"lastname\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  }\n]"
+						},
+						{
+							"id": "055f4a6c-aa56-49fe-b3d8-a31e9d1c9854",
+							"name": "Unexpected error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"filter\": {\n    \"logicalOperator\": {\n      \"label\": \"AND\",\n      \"value\": \"AND\"\n    },\n    \"criteria\": [\n      {\n        \"value\": \"<number>\",\n        \"operator\": {\n          \"type\": \"NUMERICAL_OPERATOR\",\n          \"variant\": \"ALL_ELEMENT\",\n          \"label\": \"=\",\n          \"value\": \"equals\"\n        }\n      },\n      {\n        \"value\": \"<number>\",\n        \"operator\": {\n          \"type\": \"NUMERICAL_OPERATOR\",\n          \"variant\": \"SINGLE_VALUE\",\n          \"label\": \"=\",\n          \"value\": \"equals\"\n        }\n      }\n    ],\n    \"expressions\": [\n      {\n        \"logicalOperator\": {\n          \"label\": \"AND\",\n          \"value\": \"AND\"\n        },\n        \"criteria\": [\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"ANY_ELEMENT\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          },\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"ALL_ELEMENT\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          }\n        ],\n        \"expressions\": {\n          \"value\": \"<Circular reference to #/components/schemas/imageFilter.schema.json-_definitions_expressionList detected>\"\n        }\n      },\n      {\n        \"logicalOperator\": {\n          \"label\": \"AND\",\n          \"value\": \"AND\"\n        },\n        \"criteria\": [\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"ALL_ELEMENT\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          },\n          {\n            \"value\": \"<number>\",\n            \"operator\": {\n              \"type\": \"NUMERICAL_OPERATOR\",\n              \"variant\": \"SINGLE_VALUE\",\n              \"label\": \"=\",\n              \"value\": \"equals\"\n            }\n          }\n        ],\n        \"expressions\": {\n          \"value\": \"<Circular reference to #/components/schemas/imageFilter.schema.json-_definitions_expressionList detected>\"\n        }\n      }\n    ]\n  },\n  \"name\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/filter",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				}
+			],
+			"id": "245b2f85-8551-4c34-802a-c3d14bf9f76d"
+		},
+		{
+			"name": "filter-snapshot",
+			"item": [
+				{
+					"name": "{filterSnapshotId}",
+					"item": [
+						{
+							"name": "Get a filter snapshot by ID",
+							"id": "7dee6ee0-467a-457e-87b7-a3abaa882ad4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/filter-snapshot/:filterSnapshotId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter-snapshot",
+										":filterSnapshotId"
+									],
+									"variable": [
+										{
+											"key": "filterSnapshotId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "c8f5e6c0-84af-4b40-a437-eafa4957ad40",
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/filter-snapshot/:filterSnapshotId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter-snapshot",
+												":filterSnapshotId"
+											],
+											"variable": [
+												{
+													"key": "filterSnapshotId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"value\": \"reference #/definitions/getFilterSnapshotResponse not found in the OpenAPI spec\"\n}"
+								},
+								{
+									"id": "c1c2b822-25ee-4f92-97e8-359a80e00a93",
+									"name": "Unexpected error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/filter-snapshot/:filterSnapshotId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter-snapshot",
+												":filterSnapshotId"
+											],
+											"variable": [
+												{
+													"key": "filterSnapshotId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						},
+						{
+							"name": "Delete a filter snapshot. It is not possible to delete a snapshot if it is already associated with a matrix.",
+							"id": "7a1f73fd-8b49-41cb-bbfb-db97cfaa3d77",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/filter-snapshot/:filterSnapshotId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter-snapshot",
+										":filterSnapshotId"
+									],
+									"variable": [
+										{
+											"key": "filterSnapshotId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "d41a3cb2-360c-4b5d-aeeb-97d59689be4b",
+									"name": "200",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/filter-snapshot/:filterSnapshotId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter-snapshot",
+												":filterSnapshotId"
+											],
+											"variable": [
+												{
+													"key": "filterSnapshotId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								},
+								{
+									"id": "868ae0e4-78c6-42b7-84cd-567a9e7cc5d6",
+									"name": "Unexpected error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/filter-snapshot/:filterSnapshotId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"filter-snapshot",
+												":filterSnapshotId"
+											],
+											"variable": [
+												{
+													"key": "filterSnapshotId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": []
+								}
+							]
+						}
+					],
+					"id": "6333543b-96c9-49a7-9383-5ef35811838c"
+				},
+				{
+					"name": "Get the list of filter snapshot accessible by the current user for a given filter",
+					"id": "f421e6df-80d8-4239-a7e1-6068da7873b9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/filter-snapshot?filterId=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"filter-snapshot"
+							],
+							"query": [
+								{
+									"key": "filterId",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "b1d6d8e1-fe51-40a2-af08-1a6d922919cc",
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/filter-snapshot?filterId=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter-snapshot"
+									],
+									"query": [
+										{
+											"key": "filterId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"value\": \"reference #/definitions/getFilterSnapshotListResponse not found in the OpenAPI spec\"\n}"
+						},
+						{
+							"id": "c0680947-caf2-40cc-be40-c1ea3b446e5b",
+							"name": "Unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/filter-snapshot?filterId=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter-snapshot"
+									],
+									"query": [
+										{
+											"key": "filterId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				},
+				{
+					"name": "Post a new filter snapshot",
+					"id": "1f8eb78b-f01a-4cbb-a2e7-7a936e257336",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": \"reference #/definitions/postFilterSnapshotBody not found in the OpenAPI spec\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/filter-snapshot",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"filter-snapshot"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "05ddcd8a-4d9f-4cbd-b3ac-3698aaad1a54",
+							"name": "The created filter snapshot",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": \"reference #/definitions/postFilterSnapshotBody not found in the OpenAPI spec\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/filter-snapshot",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter-snapshot"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"value\": \"reference #/definitions/getFilterSnapshotResponse not found in the OpenAPI spec\"\n}"
+						},
+						{
+							"id": "7493bbd2-9fe5-4503-853e-41ef665f435a",
+							"name": "Unexpected error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": \"reference #/definitions/postFilterSnapshotBody not found in the OpenAPI spec\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/filter-snapshot",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"filter-snapshot"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": []
+						}
+					]
+				}
+			],
+			"id": "7e123615-c171-4d4c-a45a-0da240a52430"
+		}
+	],
+	"variable": [
+		{
+			"id": "555de26a-9f67-46ac-8552-9b0d00f318fd",
+			"key": "baseUrl",
+			"value": "{{SPINEUrl}}/api"
+		}
+	]
+}

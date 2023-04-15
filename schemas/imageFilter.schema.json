@@ -4,21 +4,7 @@
     "title": "Schema to filter image based on DICOM parameters.",
     "type": "object",
     "definitions": {
-        "operatorEqual": {
-            "properties": {
-                "label": {
-                    "enum": [
-                        "!="
-                    ]
-                },
-                "value": {
-                    "enum": [
-                        "not equals"
-                    ]
-                }
-            }
-        },
-        "criterionWithNumericalOperatorEqualSave": {
+        "criterionWithNumericalOperatorEqual": {
             "title": "Criterion with numerical operator equal",
             "properties": {
                 "value": {
@@ -53,59 +39,6 @@
                     }
                 }
             }
-        },
-        "criterionWithNumericalOperatorEqual": {
-            "title": "Criterion with numerical operator equal",
-            "allOf": [
-                {
-                    "properties": {
-                        "value": {
-                            "type": "number"
-                        },
-                        "operator": {
-                            "properties": {
-                                "variant": {
-                                    "type": "string",
-                                    "enum": [
-                                        "SINGLE_VALUE",
-                                        "ALL_ELEMENT",
-                                        "ANY_ELEMENT"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "$ref": "#/definitions/operatorEqual"
-                }
-            ]
-        },
-        "criterionWithNumericalOperator": {
-            "title": "Criterion with numerical operator",
-            "allOf": [
-                {
-                    "properties": {
-                        "operator": {
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "NUMERICAL_OPERATOR"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
-                        }
-                    ]
-                }
-            ]
         },
         "operatorNotEqual": {
             "properties": {
@@ -489,7 +422,7 @@
             },
             "oneOf": [
                 {
-                    "$ref": "#/definitions/criterionWithNumericalOperator"
+                    "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
                 }
             ],
             "required": [
