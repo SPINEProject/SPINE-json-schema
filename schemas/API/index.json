@@ -38,7 +38,9 @@
     },
     "components": {
         "examples": {},
-        "schemas": {},
+        "schemas": {
+
+        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",

@@ -362,37 +362,6 @@
                     "type": "string"
                 },
                 "operator": {
-                    "description": "The selected operator and variante",
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/numericalOperator"
-                        },
-                        {
-                            "$ref": "#/definitions/textualOperator"
-                        }
-                    ]
-                },
-                "value": {
-                    "description": "Value for the criterion."
-                }
-            }
-        },
-        "criteria": {
-            "description": "List of criteria in the expression",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/criterion"
-            }
-        },
-        "criterionAPI": {
-            "description": "Criterion",
-            "type": "object",
-            "properties": {
-                "attribute": {
-                    "description": "Key of the attribute to filter",
-                    "type": "string"
-                },
-                "operator": {
                     "description": "The selected operator",
                     "type": "object",
                     "required": [
@@ -659,13 +628,14 @@
             ],
             "additionalProperties": false
         },
-        "criteriaAPI": {
+        "criteria": {
             "description": "List of criteria in the expression",
             "type": "array",
             "items": {
-                "$ref": "#/definitions/criterionAPI"
+                "$ref": "#/definitions/criterion"
             }
         },
+
         "expressionList": {
             "description": "List of expression in the expression.",
             "type": "array",
@@ -841,7 +811,7 @@
                 ]
             }
         },
-        "test": {
+        "postFilterBody": {
             "type": "object",
             "properties": {
                 "name": {
@@ -849,7 +819,7 @@
                 },
                 "filter": {
                     "description": "The filter (an expression)",
-                    "$ref": "#/definitions/expressionAPI"
+                    "$ref": "#/definitions/expression"
                 }
             },
             "additionalProperties": false,
