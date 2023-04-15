@@ -25,40 +25,62 @@
             "description": "label for this attribute"
         },
         "attributeOptions": {
+            "type": "object",
+            "title": "attribute options base",
+            "properties": {
+                "areOtherValuesAllowed": {
+                    "type": "boolean"
+                },
+                "enum": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    }
+                },
+                "min": {
+                    "type": "number"
+                },
+                "max": {
+                    "type": "number"
+                }
+            },
+            "additionalProperties": false,
             "oneOf": [
                 {
-                    "description": "With enum",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/attributeOptionsBase"
-                        },
-                        {
-                            "properties": {
-                                "min": {},
-                                "max": {}
-                            },
-                            "additionalProperties": false
-                        }
-                    ]
+                    "title": "Enum is not set",
+                    "description": "Enum is set, areOtherValuesAllowed not allowed",
+                    "properties": {
+                        "min": {},
+                        "max": {}
+                    },
+                    "additionalProperties": false
                 },
                 {
-                    "description": "Without enum",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/attributeOptionsBase"
-                        },
-                        {
-                            "required": [
-                                "enum",
-                                "areOtherValuesAllowed"
-                            ]
-                        }
+                    "title": "Enum is set",
+                    "description": "Enum is set, areOtherValuesAllowed is required then",
+                    "properties": {
+                        "min": {},
+                        "max": {},
+                        "enum": {},
+                        "areOtherValuesAllowed": {}
+                    },
+                    "required": [
+                        "enum",
+                        "areOtherValuesAllowed"
                     ]
                 }
             ]
         },
         "attributeOptionsBase": {
             "type": "object",
+            "title": "attribute options base",
             "properties": {
                 "areOtherValuesAllowed": {
                     "type": "boolean"
@@ -135,9 +157,24 @@
             ],
             "additionalProperties": false
         },
+        "attributeNumberAPI": {
+            "title": "attribute with type number"
+        },
+        "attributeStringAPI": {
+            "title": "attribute with type string"
+        },
         "attributeAPI": {
-            "description": "Attribute",
+            "description": "Attribute base schema",
             "type": "object",
+            "required": [
+                "type",
+                "attributeKey",
+                "attributeLabel",
+                "multiplicityMin",
+                "multiplicityMax",
+                "options"
+            ],
+            "additionalProperties": false,
             "properties": {
                 "type": {
                     "$ref": "#/definitions/attributeType"
@@ -152,16 +189,16 @@
                     "$ref": "#/definitions/attributeLabel"
                 },
                 "multiplicityMin": {
-                    "description": "Multiplicity is defined with two values. This is the first one, must be an integer",
+                    "description": "Multiplicituy is defined with two values. This is the first one, must be an integer",
                     "type": "number",
                     "minimum": 1
                 },
                 "multiplicityMax": {
-                    "description": "Multiplicity is defined with two values. This is the first one, must be an integer or 'N'",
+                    "description": "Multiplicity is defined with two values. This is the second one, must be an integer or 'N'",
                     "oneOf": [
                         {
                             "type": "number",
-                            "minimum": 1
+                            "maximum": 1
                         },
                         {
                             "type": "string",
@@ -172,18 +209,56 @@
                     ]
                 },
                 "options": {
+                    "type": "object",
+                    "title": "attribute options base",
+                    "properties": {
+                        "areOtherValuesAllowed": {
+                            "type": "boolean"
+                        },
+                        "enum": {
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "number"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "min": {
+                            "type": "number"
+                        },
+                        "max": {
+                            "type": "number"
+                        }
+                    },
+                    "additionalProperties": false,
                     "$ref": "#/definitions/attributeOptions"
                 }
             },
-            "required": [
-                "type",
-                "attributeKey",
-                "attributeLabel",
-                "multiplicityMin",
-                "multiplicityMax",
-                "options"
-            ],
-            "additionalProperties": false
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/attributeNumberAPI"
+                },
+                {
+                    "$ref": "#/definitions/attributeStringAPI"
+                }
+            ]
         },
         "attributeNumber": {
             "description": "Attribute schema when atribute type is number",
