@@ -432,11 +432,8 @@
             "oneOf": [
                 {
                     "title": "Numerical operator equal",
-                    "properties": {
-                        "value": {
-                            "type": "number"
-                        },
-                        "operator": {
+                    "allOf": [
+                        {
                             "properties": {
                                 "type": {
                                     "type": "string",
@@ -451,20 +448,13 @@
                                         "ALL_ELEMENT",
                                         "ANY_ELEMENT"
                                     ]
-                                },
-                                "label": {
-                                    "enum": [
-                                        "="
-                                    ]
-                                },
-                                "value": {
-                                    "enum": [
-                                        "equals"
-                                    ]
                                 }
                             }
+                        },
+                        {
+                            "$ref": "#/definitions/operatorEqual"
                         }
-                    }
+                    ]
                 },
                 {
                     "title": "Numerical operator not equal",
@@ -473,32 +463,40 @@
                             "type": "number"
                         },
                         "operator": {
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "NUMERICAL_OPERATOR"
-                                    ]
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": [
+                                                "NUMERICAL_OPERATOR"
+                                            ]
+                                        },
+                                        "variant": {
+                                            "type": "string",
+                                            "enum": [
+                                                "SINGLE_VALUE",
+                                                "ALL_ELEMENT",
+                                                "ANY_ELEMENT"
+                                            ]
+                                        }
+                                    }
                                 },
-                                "variant": {
-                                    "type": "string",
-                                    "enum": [
-                                        "SINGLE_VALUE",
-                                        "ALL_ELEMENT",
-                                        "ANY_ELEMENT"
-                                    ]
-                                },
-                                "label": {
-                                    "enum": [
-                                        "!="
-                                    ]
-                                },
-                                "value": {
-                                    "enum": [
-                                        "not equals"
-                                    ]
+                                {
+                                    "properties": {
+                                        "label": {
+                                            "enum": [
+                                                "!="
+                                            ]
+                                        },
+                                        "value": {
+                                            "enum": [
+                                                "not equals"
+                                            ]
+                                        }
+                                    }
                                 }
-                            }
+                            ]
                         }
                     }
                 },
@@ -843,7 +841,7 @@
                 ]
             }
         },
-        "postFilterBody": {
+        "test": {
             "type": "object",
             "properties": {
                 "name": {

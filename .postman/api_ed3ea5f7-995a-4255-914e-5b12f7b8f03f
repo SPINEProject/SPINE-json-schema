@@ -35,6 +35,7 @@ files[] = {"path":"experiment.schema.json","metaData":{}}
 files[] = {"path":"experimentalPlan.schema.json","metaData":{}}
 files[] = {"path":"helpPanel.schema.json","metaData":{}}
 files[] = {"path":"imageFilter.schema.json","metaData":{}}
+files[] = {"path":"imageFilter.schema.old.json","metaData":{}}
 files[] = {"path":"imageFilterAttribute.schema.json","metaData":{}}
 files[] = {"path":"imageFilterSnapshot.schema.json","metaData":{}}
 files[] = {"path":"livePresenterExperiment.schema.json","metaData":{}}
