@@ -15,7 +15,7 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            
+
                             "$ref": "../../imageFilter.schema.json#/definitions/getFilterListResponse"
                         },
                         "examples": {
@@ -95,7 +95,7 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "../../imageFilter.schema.json#/definitions/getFilterListResponse"
+                            "$ref": "../../imageFilter.schema.json#/definitions/getFilterResponse"
                         },
                         "examples": {
                             "1": {
