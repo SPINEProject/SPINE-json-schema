@@ -4,7 +4,7 @@
     "title": "Schema to filter snapshots",
     "type": "object",
     "definitions": {
-        ,
+        
         "owner": {
             "type": "object",
             "properties": {
@@ -144,6 +144,10 @@
                 "imageFilterSnapshot"
             ]
         },
+        "imageFilterSnapshotName": {
+            "type": "string",
+            "description": "Filter snapshot name"
+        },
         "imageFilterSnapshotDoc": {
             "$id": "#imageFilterSnapshotDoc",
             "decription": "image filter when posted",
@@ -187,10 +191,6 @@
                 "cohortIdList"
             ],
             "additionalProperties": false
-        },
-        "imageFilterSnapshotName": {
-            "type": "string",
-            "description": "Filter snapshot name"
         },
         "imageFilterSnapshotResultVisitAPI": {
             "type": "object",
