@@ -4,69 +4,7 @@
     "title": "Schema to filter snapshots",
     "type": "object",
     "definitions": {
-        "imageFilterSnapshotResultVisitAPI": {
-            "type": "object",
-            "properties": {
-                "image": {
-                    "$ref": "#/definitions/imageFilterSnapshotResultImage"
-                }
-            },
-            "required": [
-                "image"
-            ],
-            "additionalProperties": false
-        },
-        "imageFilterSnapshotResultSubjectAPI": {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "properties": {
-                    "visit": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
-                        },
-                        "properties": {
-                            "withoutVisit": {
-                                "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
-                            }
-                        }
-                    }
-                },
-                "required": [
-                    "visit"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "imageFilterSnapshotResultCohortAPI": {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "properties": {
-                    "subject": {
-                        "$ref": "#/definitions/imageFilterSnapshotResultSubjectAPI"
-                    }
-                },
-                "required": [
-                    "subject"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "imageFilterSnapshotResultAPI": {
-            "description": "image filter snapshot, result section",
-            "type": "object",
-            "properties": {
-                "cohort": {
-                    "$ref": "#/definitions/imageFilterSnapshotResultCohortAPI"
-                }
-            },
-            "required": [
-                "cohort"
-            ],
-            "additionalProperties": false
-        },
+        ,
         "owner": {
             "type": "object",
             "properties": {
@@ -253,6 +191,69 @@
         "imageFilterSnapshotName": {
             "type": "string",
             "description": "Filter snapshot name"
+        },
+        "imageFilterSnapshotResultVisitAPI": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "$ref": "#/definitions/imageFilterSnapshotResultImage"
+                }
+            },
+            "required": [
+                "image"
+            ],
+            "additionalProperties": false
+        },
+        "imageFilterSnapshotResultSubjectAPI": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "visit": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
+                        },
+                        "properties": {
+                            "withoutVisit": {
+                                "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "visit"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "imageFilterSnapshotResultCohortAPI": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "subject": {
+                        "$ref": "#/definitions/imageFilterSnapshotResultSubjectAPI"
+                    }
+                },
+                "required": [
+                    "subject"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "imageFilterSnapshotResultAPI": {
+            "description": "image filter snapshot, result section",
+            "type": "object",
+            "properties": {
+                "cohort": {
+                    "$ref": "#/definitions/imageFilterSnapshotResultCohortAPI"
+                }
+            },
+            "required": [
+                "cohort"
+            ],
+            "additionalProperties": false
         },
         "getFilterSnapshotResponse": {
             "type": "object",
