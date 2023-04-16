@@ -9,9 +9,6 @@ id = ed3ea5f7-995a-4255-914e-5b12f7b8f03f
 
 [config.relations.collections]
 rootDirectory = postman/collections
-files[] = {"id":"9863314-28efa652-5d2f-40b1-aabf-08e397bcc862","path":"ss.json","metaData":{"generateCollectionPreferences":"{\"requestNameSource\":\"Fallback\",\"indentCharacter\":\"Space\",\"parametersResolution\":\"Schema\",\"folderStrategy\":\"Paths\",\"includeAuthInfoInExample\":true,\"keepImplicitHeaders\":false,\"includeDeprecated\":true,\"updateCollectionSync\":true,\"requestParametersResolution\":\"Schema\",\"exampleParametersResolution\":\"Schema\"}"}}
-files[] = {"id":"9863314-1e9604b0-c20a-4868-8e1b-53453df9807b","path":"t.json","metaData":{"generateCollectionPreferences":"{\"requestNameSource\":\"Fallback\",\"indentCharacter\":\"Space\",\"parametersResolution\":\"Schema\",\"folderStrategy\":\"Tags\",\"includeAuthInfoInExample\":true,\"keepImplicitHeaders\":false,\"includeDeprecated\":true,\"updateCollectionSync\":true,\"requestParametersResolution\":\"Schema\",\"exampleParametersResolution\":\"Schema\"}"}}
-files[] = {"id":"9863314-83230627-a6c5-497c-967f-58e3bde3bdf6","path":"test.json","metaData":{}}
 
 [config.relations.collections.metaData]
 
