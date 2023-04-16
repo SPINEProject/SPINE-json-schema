@@ -86,7 +86,7 @@
                 "name"
             ],
             "additionalProperties": false
-        }n
+        },
         "cohortIdList": {
             "type": "array",
             "description": "The list of cohort uuid",
