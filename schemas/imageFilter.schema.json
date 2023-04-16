@@ -851,6 +851,7 @@
                 "name": {
                     "$ref": "#/definitions/imageFilterName"
                 },
+
                 "filter": {
                     "description": "The filter (an expression)",
                     "$ref": "#/definitions/expression"
@@ -881,3 +882,4 @@
             ]
         }
     }
+}
