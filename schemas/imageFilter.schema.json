@@ -40,6 +40,42 @@
                 }
             }
         },
+        "criterionWithNumericalOperatorLessThan": {
+            "title": "Criterion with numerical operator less than",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERICAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "<"
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "less than"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "operatorNotEqual": {
             "properties": {
                 "label": {
@@ -50,20 +86,6 @@
                 "value": {
                     "enum": [
                         "not equals"
-                    ]
-                }
-            }
-        },
-        "operatorLessThan": {
-            "properties": {
-                "label": {
-                    "enum": [
-                        "<"
-                    ]
-                },
-                "value": {
-                    "enum": [
-                        "less than"
                     ]
                 }
             }
@@ -425,6 +447,9 @@
             "oneOf": [
                 {
                     "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithNumericalOperatorLessThan"
                 }
             ],
             "required": [
