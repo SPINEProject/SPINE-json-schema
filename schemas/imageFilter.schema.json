@@ -795,20 +795,7 @@
             "title": "Filter response",
             "type": "object",
             "properties": {
-                "uuid": {
-                    "description": "Filter UUID",
-                    "type": "string"
-                },
-                "name": {
-                    "$ref": "#/definitions/imageFilterName"
-                },
-                "filter": {
-                    "description": "The filter (an expression)",
-                    "$ref": "#/definitions/expression"
-                },
-                "owner": {
-                    "$ref": "#/definitions/owner"
-                }
+
             },
             "additionalProperties": false,
             "required": [
