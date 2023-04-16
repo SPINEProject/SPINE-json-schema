@@ -4,8 +4,29 @@
     "title": "Schema to filter image based on DICOM parameters.",
     "type": "object",
     "definitions": {
+        "owner": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid",
+                "lastname",
+                "name"
+            ],
+            "additionalProperties": false
+        },
         "criterionWithNumericalOperatorEqual": {
             "title": "Criterion with numerical operator equal",
+            "description": "True if the attribute value is equal to the criterion value",
             "properties": {
                 "value": {
                     "type": "number"
@@ -40,8 +61,120 @@
                 }
             }
         },
+        "criterionWithNumericalOperatorNotEqual": {
+            "title": "Criterion with numerical operator not equal",
+            "description": "True if the attribute value is not equal to the criterion value",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERICAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "!="
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "not equals"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "criterionWithTextualOperatorEqual": {
+            "title": "Criterion with textual operator equal",
+            "description": "True if the attribute value is equal to the criterion value",
+            "properties": {
+                "value": {
+                    "type": "string"
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "TEXTUAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "="
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "equals"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "criterionWithTextualOperatorNotEqual": {
+            "title": "Criterion with textual operator not equal",
+            "description": "True if the attribute value is not equal to the criterion value",
+            "properties": {
+                "value": {
+                    "type": "string"
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "TEXTUAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "!="
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "not equals"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "criterionWithNumericalOperatorLessThan": {
             "title": "Criterion with numerical operator less than",
+            "description": "True if the attribute value is less than the criterion value",
             "properties": {
                 "value": {
                     "type": "number"
@@ -76,143 +209,349 @@
                 }
             }
         },
-        "operatorNotEqual": {
+        "criterionWithNumericalOperatorLesserEqual": {
+            "title": "Criterion with numerical operator lesser equal",
+            "description": "True if the attribute value is lesser than or equal to the criterion value",
             "properties": {
-                "label": {
-                    "enum": [
-                        "!="
-                    ]
-                },
                 "value": {
-                    "enum": [
-                        "not equals"
-                    ]
+                    "type": "number"
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERICAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "<="
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "less than or equal to"
+                            ]
+                        }
+                    }
                 }
             }
         },
-        "operatorLesserEqual": {
+        "criterionWithNumericalOperatorGreaterEqual": {
+            "title": "Criterion with numerical operator greater equal",
+            "description": "True if the attribute value is greater than or equal to the criterion value",
             "properties": {
-                "label": {
-                    "enum": [
-                        "<="
-                    ]
-                },
                 "value": {
-                    "enum": [
-                        "less than or equal to"
-                    ]
+                    "type": "number"
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERICAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                ">="
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "greater than or equal to"
+                            ]
+                        }
+                    }
                 }
             }
         },
-        "operatorGreaterEqual": {
+        "criterionWithNumericalOperatorGreaterThan": {
+            "title": "Criterion with numerical operator greater than",
+            "description": "True if the attribute value is greater than the criterion value",
             "properties": {
-                "label": {
-                    "enum": [
-                        ">="
-                    ]
-                },
                 "value": {
-                    "enum": [
-                        "greater than or equal to"
-                    ]
+                    "type": "number"
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERICAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                ">"
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "greater than"
+                            ]
+                        }
+                    }
                 }
             }
         },
-        "operatorGreaterThan": {
+        "criterionWithNumericalOperatorIn": {
+            "title": "Criterion with numerical operator in",
+            "description": "True if the attribute value is in the criterion value array",
             "properties": {
-                "label": {
-                    "enum": [
-                        ">"
-                    ]
-                },
                 "value": {
-                    "enum": [
-                        "greater than"
-                    ]
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERICAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "in"
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "in"
+                            ]
+                        }
+                    }
                 }
             }
         },
-        "operatorContains": {
+        "criterionWithNumericalOperatorNotIn": {
+            "title": "Criterion with numerical operator not in",
+            "description": "True if the attribute value is not in the criterion value array",
             "properties": {
-                "label": {
-                    "enum": [
-                        "contains"
-                    ]
+                "value": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
                 },
-                "vale": {
-                    "enum": [
-                        "contains"
-                    ]
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERICAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "not in"
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "not in"
+                            ]
+                        }
+                    }
                 }
             }
         },
-        "operatorDoesNotContains": {
+        "criterionWithTextualOperatorIn": {
+            "title": "Criterion with textual operator in",
+            "description": "True if the attribute value is in the criterion value array",
             "properties": {
-                "label": {
-                    "enum": [
-                        "does not contain"
-                    ]
-                },
                 "value": {
-                    "enum": [
-                        "does not contain"
-                    ]
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "TEXTUAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "in"
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "in"
+                            ]
+                        }
+                    }
                 }
             }
         },
-        "operatorIncludes": {
+        "criterionWithTextualOperatorNotIn": {
+            "title": "Criterion with textual operator not in",
+            "description": "True if the attribute value is not in the criterion value array",
             "properties": {
-                "label": {
-                    "enum": [
-                        "includes"
-                    ]
-                },
                 "value": {
-                    "enum": [
-                        "includes"
-                    ]
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "TEXTUAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "not in"
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "not in"
+                            ]
+                        }
+                    }
                 }
             }
         },
-        "operatorDoesNotInclude": {
+        "criterionWithTextualOperatorContains": {
+            "title": "Criterion with textual operator contains",
+            "description": "True if the attribute string value contains the criterion value",
             "properties": {
-                "label": {
-                    "enum": [
-                        "does not include"
-                    ]
-                },
                 "value": {
-                    "enum": [
-                        "does not include"
-                    ]
+                    "type": "string"
+                },
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "TEXTUAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "contains"
+                            ]
+                        },
+                        "vale": {
+                            "enum": [
+                                "contains"
+                            ]
+                        }
+                    }
                 }
             }
         },
-        "operatorIn": {
+        
+        "criterionWithTextualOperatorNotContains": {
+            "title": "Criterion with textual operator not contains",
+            "description": "True if the attribute string value does not contains the criterion value",
             "properties": {
-                "label": {
-                    "enum": [
-                        "in"
-                    ]
-                },
                 "value": {
-                    "enum": [
-                        "in"
-                    ]
-                }
-            }
-        },
-        "operatorNotIn": {
-            "properties": {
-                "label": {
-                    "enum": [
-                        "not in"
-                    ]
+                    "type": "string"
                 },
-                "value": {
-                    "enum": [
-                        "not in"
-                    ]
+                "operator": {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "TEXTUAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
+                        "label": {
+                            "enum": [
+                                "does not contain"
+                            ]
+                        },
+                        "value": {
+                            "enum": [
+                                "does not contain"
+                            ]
+                        }
+                    }
                 }
             }
         },
@@ -269,136 +608,6 @@
                 }
             ]
         },
-        "textualOperator": {
-            "description": "Textual operator",
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "TEXTUAL_OPERATOR"
-                    ]
-                },
-                "variant": {
-                    "type": "string",
-                    "enum": [
-                        "SINGLE_VALUE",
-                        "ALL_ELEMENT",
-                        "ANY_ELEMENT"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/operatorContains"
-                },
-                {
-                    "$ref": "#/definitions/operatorDoesNotContains"
-                },
-                {
-                    "$ref": "#/definitions/operatorEqual"
-                },
-                {
-                    "$ref": "#/definitions/operatorNotEqual"
-                },
-                {
-                    "$ref": "#/definitions/operatorIn"
-                },
-                {
-                    "$ref": "#/definitions/operatorNotIn"
-                }
-            ]
-        },
-        "numericalOperator": {
-            "description": "Numerical operator",
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "NUMERICAL_OPERATOR"
-                    ]
-                },
-                "variant": {
-                    "type": "string",
-                    "enum": [
-                        "SINGLE_VALUE",
-                        "ALL_ELEMENT",
-                        "ANY_ELEMENT"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "oneOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "$ref": "#/definitions/operatorEqualLabel"
-                        },
-                        "value": {
-                            "enum": [
-                                "equals"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "$ref": "#/definitions/operatorNotEqual"
-                },
-                {
-                    "$ref": "#/definitions/operatorIn"
-                },
-                {
-                    "$ref": "#/definitions/operatorNotIn"
-                },
-                {
-                    "$ref": "#/definitions/operatorLessThan"
-                },
-                {
-                    "$ref": "#/definitions/operatorLesserEqual"
-                },
-                {
-                    "$ref": "#/definitions/operatorGreaterEqual"
-                },
-                {
-                    "$ref": "#/definitions/operatorGreaterThan"
-                }
-            ]
-        },
-        "arrayOperator": {
-            "description": "Array operator",
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "ARRAY_OPERATOR"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/operatorIncludes"
-                },
-                {
-                    "$ref": "#/definitions/operatorDoesNotInclude"
-                },
-                {
-                    "$ref": "#/definitions/operatorEqual"
-                },
-                {
-                    "$ref": "#/definitions/operatorNotEqual"
-                }
-            ]
-        },
         "criterion": {
             "title": "Criterion",
             "type": "object",
@@ -450,6 +659,42 @@
                 },
                 {
                     "$ref": "#/definitions/criterionWithNumericalOperatorLessThan"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithNumericalOperatorNotEqual"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithNumericalOperatorLesserEqual"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithNumericalOperatorGreaterEqual"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithNumericalOperatorGreaterThan"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithNumericalOperatorIn"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithNumericalOperatorNotIn"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorContains"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorNotContains"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorEqual"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorNotEqual"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorIn"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorNotIn"
                 }
             ],
             "required": [
@@ -546,27 +791,8 @@
                 "name"
             ]
         },
-        "owner": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "lastname": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "uuid",
-                "lastname",
-                "name"
-            ],
-            "additionalProperties": false
-        },
         "getFilterResponse": {
+            "title": "Filter response",
             "type": "object",
             "properties": {
                 "uuid": {
@@ -593,6 +819,7 @@
             ]
         },
         "getFilterListResponse": {
+            "title": "Get filter list response",
             "type": "array",
             "items": {
                 "description": "Filter summary",
@@ -618,11 +845,13 @@
             }
         },
         "postFilterBody": {
+            "title": "Post filter body",
             "type": "object",
             "properties": {
                 "name": {
                     "$ref": "#/definitions/imageFilterName"
                 },
+
                 "filter": {
                     "description": "The filter (an expression)",
                     "$ref": "#/definitions/expression"
@@ -635,6 +864,7 @@
             ]
         },
         "putFilterBody": {
+            "title": "Put filter body",
             "type": "object",
             "properties": {
                 "name": {
