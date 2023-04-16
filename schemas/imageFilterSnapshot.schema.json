@@ -67,6 +67,26 @@
             ],
             "additionalProperties": false
         },
+        "owner": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid",
+                "lastname",
+                "name"
+            ],
+            "additionalProperties": false
+        }n
         "cohortIdList": {
             "type": "array",
             "description": "The list of cohort uuid",
