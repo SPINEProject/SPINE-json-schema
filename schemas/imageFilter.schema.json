@@ -835,13 +835,7 @@
             "title": "Post filter body",
             "type": "object",
             "properties": {
-                "name": {
-                    "$ref": "#/definitions/imageFilterName"
-                },
-                "filter": {
-                    "description": "The filter (an expression)",
-                    "$ref": "#/definitions/expression"
-                }
+
             },
             "additionalProperties": false,
             "required": [
@@ -853,13 +847,7 @@
             "title": "Put filter body",
             "type": "object",
             "properties": {
-                "name": {
-                    "$ref": "#/definitions/imageFilterName"
-                },
-                "filter": {
-                    "description": "The filter (an expression)",
-                    "$ref": "#/definitions/expression"
-                }
+
             },
             "additionalProperties": false,
             "required": [
