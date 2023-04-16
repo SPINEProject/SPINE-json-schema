@@ -24,7 +24,7 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "../../imageFilter.schema.json#/definitions/getFilterSnapshotListResponse"
+                            "$ref": "../../imageFilterSnapshot.schema.json#/definitions/getFilterSnapshotListResponse"
                         },
                         "examples": {
                             "1": {
@@ -70,7 +70,7 @@
             "content": {
                 "application/json": {
                     "schema": {
-                        "$ref": "../../imageFilter.schema.json#/definitions/postFilterSnapshotBody"
+                        "$ref": "../../imageFilterSnapshot.schema.json#/definitions/postFilterSnapshotBody"
                     },
                     "examples": {
                         "body": {
@@ -93,7 +93,7 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "../../imageFilter.schema.json#/definitions/getFilterSnapshotResponse"
+                            "$ref": "../../imageFilterSnapshot.schema.json#/definitions/getFilterSnapshotResponse"
                         },
                         "examples": {
                             "1": {

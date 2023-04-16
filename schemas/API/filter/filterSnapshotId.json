@@ -25,7 +25,7 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "../../imageFilter.schema.json#/definitions/getFilterSnapshotResponse"
+                            "$ref": "../../imageFilterSnapshot.schema.json#/definitions/getFilterSnapshotResponse"
                         },
                         "examples": {
                             "1": {
