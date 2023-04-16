@@ -36,14 +36,7 @@
     "components": {
         "examples": {},
         "schemas": {
-            "postFilterBody": {
-                "properties": {
-                    "filter": {
-                        "description": "The filter (an expression)",
-                        "$ref": "../imageFilter.schema.json#/definitions/expression"
-                    }
-                }
-            }
+
         },
         "securitySchemes": {
             "bearerAuth": {
