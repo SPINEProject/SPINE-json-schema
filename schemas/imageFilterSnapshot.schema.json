@@ -4,7 +4,7 @@
     "title": "Schema to filter snapshots",
     "type": "object",
     "definitions": {
-        
+            
         "owner": {
             "type": "object",
             "properties": {
@@ -27,7 +27,7 @@
         },
         "cohortIdList": {
             "type": "array",
-            "description": "The list of cohort uuid",
+            "description": "The llist of cohort uuid",
             "items": {
                 "type": "string"
             }

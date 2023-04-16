@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "version": "0.1.0",
-        "title": "SPINE API",
+        "title": "SPINE API 3",
         "description": "SPINE API"
     },
     "servers": [
