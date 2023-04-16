@@ -553,7 +553,7 @@
                 },
                 "filter": {
                     "description": "The filter (an expression)",
-                    "$ref": "#/definitions/expressionAPI"
+                    "$ref": "#/definitions/expression"
                 },
                 "owner": {
                     "$ref": "#/definitions/owner"
@@ -617,7 +617,7 @@
                 },
                 "filter": {
                     "description": "The filter (an expression)",
-                    "$ref": "#/definitions/expressionAPI"
+                    "$ref": "#/definitions/expression"
                 }
             },
             "additionalProperties": false,
