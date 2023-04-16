@@ -195,6 +195,7 @@
             }
         },
         "operatorAND": {
+            "title": "Logical AND",
             "properties": {
                 "label": {
                     "enum": [
@@ -209,6 +210,7 @@
             }
         },
         "operatorOR": {
+            "title": "Logical OR",
             "properties": {
                 "label": {
                     "enum": [

@@ -15,7 +15,7 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "../../imageFilterAttribute.schema.json#/definitions/getAttributeListResponseAPIDoc"
+                            "$ref": "../../imageFilterAttribute.schema.json#/definitions/getAttributeListResponseAPIDocumentation"
                         },
                         "examples": {
                             "1": {

@@ -157,14 +157,98 @@
             ],
             "additionalProperties": false
         },
+        "attributeNumber": {
+            "title": "Number attribute",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "NUMBER"
+                    ]
+                },
+                "options": {
+                    "properties": {
+                        "min": {},
+                        "max": {}
+                    },
+                    "additionalProperties": false
+                }
+            }
+        },
         "attributeNumberAPI": {
-            "title": "attribute with type number"
+            "title": "Number attribute",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "NUMBER"
+                    ]
+                },
+                "options": {
+                    "properties": {
+                        "min": {},
+                        "max": {}
+                    },
+                    "additionalProperties": false
+                }
+            }
         },
-        "attributeStringAPI": {
-            "title": "attribute with type string"
+        "attributeStringWithoutEnumAPI": {
+            "title": "Attribute string without enum",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "STRING"
+                    ]
+                },
+                "options": {
+                    "additionalProperties": false
+                }
+            }
         },
-        "attributeAPI": {
-            "description": "Attribute base schema",
+        "attributeStringWithEnumAPI": {
+            "title": "Attribute string with enum",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "STRING"
+                    ]
+                },
+                "options": {
+                    "properties": {
+                        "areOtherValuesAllowed": {},
+                        "enum": {
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "required": [
+                        "enum",
+                        "areOtherValuesAllowed"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        },
+        "attributeAPIDocumentation": {
+            "title": "Attribute",
             "type": "object",
             "required": [
                 "type",
@@ -172,7 +256,8 @@
                 "attributeLabel",
                 "multiplicityMin",
                 "multiplicityMax",
-                "options"
+                "options",
+                "optionsFromSelectedCohorts"
             ],
             "additionalProperties": false,
             "properties": {
@@ -189,12 +274,12 @@
                     "$ref": "#/definitions/attributeLabel"
                 },
                 "multiplicityMin": {
-                    "description": "Multiplicituy is defined with two values. This is the first one, must be an integer",
+                    "description": "Multiplicity is defined with two values. This is the first one, must be an integer. Multiplicity 1..N means the value of this attribute can be ana array with 1 to N items.",
                     "type": "number",
                     "minimum": 1
                 },
                 "multiplicityMax": {
-                    "description": "Multiplicity is defined with two values. This is the second one, must be an integer or 'N'",
+                    "description": "Multiplicity is defined with two values. This is the second one, must be an integer or 'N'. Multiplicity 1..N means the value of this attribute can be ana array with 1 to N items.",
                     "oneOf": [
                         {
                             "type": "number",
@@ -210,12 +295,14 @@
                 },
                 "options": {
                     "type": "object",
-                    "title": "attribute options base",
+                    "description": "attribute options",
                     "properties": {
                         "areOtherValuesAllowed": {
+                            "description": "If enum is set, can the attribute take other values than the ones defined in the enum?",
                             "type": "boolean"
                         },
                         "enum": {
+                            "description": "Possible values for this attribute",
                             "type": "array",
                             "items": {
                                 "oneOf": [
@@ -241,14 +328,56 @@
                             }
                         },
                         "min": {
+                            "description": "Minimum number value for this attribute",
                             "type": "number"
                         },
                         "max": {
+                            "description": "Maximum number value for this attribute",
                             "type": "number"
                         }
                     },
-                    "additionalProperties": false,
-                    "$ref": "#/definitions/attributeOptions"
+                    "additionalProperties": false
+                },
+                "optionsFromSelectedCohorts": {
+                    "type": "object",
+                    "description": "attribute options from selected cohorts",
+                    "properties": {
+                        "enum": {
+                            "type": "array",
+                            "description": "Inventory of values for this attribute existing in the selected cohorts",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "number"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "min": {
+                            "description": "Minimum number value for this attribute existing in the selected cohorts",
+                            "type": "number"
+                        },
+                        "max": {
+                            "description": "Maximum number value for this attribute existing in the selected cohorts",
+                            "type": "number"
+                        }
+                    },
+                    "additionalProperties": false
                 }
             },
             "oneOf": [
@@ -256,89 +385,18 @@
                     "$ref": "#/definitions/attributeNumberAPI"
                 },
                 {
-                    "$ref": "#/definitions/attributeStringAPI"
-                }
-            ]
-        },
-        "attributeNumber": {
-            "description": "Attribute schema when atribute type is number",
-            "type": "object",
-            "allOf": [
-                {
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "enum": [
-                                "NUMBER"
-                            ]
-                        },
-                        "options": {
-                            "properties": {
-                                "areOtherValuesAllowed": {},
-                                "enum": {
-                                    "items": {
-                                        "type": "number"
-                                    }
-                                },
-                                "min": {},
-                                "max": {}
-                            },
-                            "additionalProperties": false
-                        }
-                    }
+                    "$ref": "#/definitions/attributeStringWithEnumAPI"
                 },
                 {
-                    "$ref": "#/definitions/attributeBase"
+                    "$ref": "#/definitions/attributeStringWithoutEnumAPI"
                 }
             ]
         },
-        "attributeString": {
-            "description": "Attribute schema when atribute type is string",
-            "type": "object",
-            "allOf": [
-                {
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "enum": [
-                                "STRING"
-                            ]
-                        },
-                        "options": {
-                            "properties": {
-                                "areOtherValuesAllowed": {},
-                                "enum": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "additionalProperties": false
-                        }
-                    }
-                },
-                {
-                    "$ref": "#/definitions/attributeBase"
-                }
-            ]
-        },
-        "attribute": {
-            "description": "Attribute",
-            "type": "object",
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/attributeNumber"
-                },
-                {
-                    "$ref": "#/definitions/attributeString"
-                }
-            ]
-        },
-        "getAttributeListResponseAPIDoc": {
+        "getAttributeListResponseAPIDocumentation": {
             "type": "array",
+            "title": "List of attributes",
             "items": {
-                "$ref": "#/definitions/attributeAPI"
+                "$ref": "#/definitions/attributeAPIDocumentation"
             }
         }
     }
