@@ -795,7 +795,20 @@
             "title": "Filter response",
             "type": "object",
             "properties": {
-
+                "uuid": {
+                    "description": "Filter UUID",
+                    "type": "string"
+                },
+                "name": {
+                    "$ref": "#/definitions/imageFilterName"
+                },
+                "filter": {
+                    "description": "The filter (an expression)",
+                    "$ref": "#/definitions/expression"
+                },
+                "owner": {
+                    "$ref": "#/definitions/owner"
+                }
             },
             "additionalProperties": false,
             "required": [
@@ -835,7 +848,13 @@
             "title": "Post filter body",
             "type": "object",
             "properties": {
-
+                "name": {
+                    "$ref": "#/definitions/imageFilterName"
+                },
+                "filter": {
+                    "description": "The filter (an expression)",
+                    "$ref": "#/definitions/expression"
+                }
             },
             "additionalProperties": false,
             "required": [
@@ -847,7 +866,13 @@
             "title": "Put filter body",
             "type": "object",
             "properties": {
-
+                "name": {
+                    "$ref": "#/definitions/imageFilterName"
+                },
+                "filter": {
+                    "description": "The filter (an expression)",
+                    "$ref": "#/definitions/expression"
+                }
             },
             "additionalProperties": false,
             "required": [
@@ -856,4 +881,3 @@
             ]
         }
     }
-}
