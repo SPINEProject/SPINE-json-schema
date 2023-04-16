@@ -594,11 +594,20 @@
                     "enum": [
                         "LOGICAL_OPERATOR"
                     ]
+                },
+                "label": {
+                    "type":"string"
+                },
+                "value": {
+                    "type":"string"
                 }
             },
             "required": [
-                "type"
+                "type",
+                "label",
+                "value"
             ],
+            "additionalProperties": false,
             "oneOf": [
                 {
                     "$ref": "#/definitions/operatorAND"
