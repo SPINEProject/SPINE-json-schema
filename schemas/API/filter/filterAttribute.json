@@ -27,13 +27,13 @@
                                         "multiplicityMin": 1,
                                         "multiplicityMax": 1,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
+
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 0.89999997615814,
                                             "max": 8,
-                                            "choices": []
+                                            "enum": [0.89999997615814,8]
                                         }
                                     },
                                     {
@@ -49,10 +49,10 @@
                                                 "PRIMARY"
                                             ]
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": null,
                                             "max": null,
-                                            "choices": [
+                                            "enum": [
                                                 "ORIGINAL",
                                                 "PRIMARY",
                                                 "M",
@@ -80,13 +80,12 @@
                                         "multiplicityMax": "N",
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 1.276,
                                             "max": 132.184,
-                                            "choices": []
+                                            "enum": []
                                         }
                                     },
                                     {
@@ -96,13 +95,12 @@
                                         "multiplicityMin": 1,
                                         "multiplicityMax": 1,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 150,
                                             "max": 2200,
-                                            "choices": []
+                                            "enum": []
                                         }
                                     },
                                     {
@@ -112,13 +110,13 @@
                                         "multiplicityMin": 1,
                                         "multiplicityMax": 1,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
+
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 0.3906,
                                             "max": 4.6875,
-                                            "choices": []
+                                            "enum": []
                                         }
                                     },
                                     {
@@ -128,13 +126,13 @@
                                         "multiplicityMin": 1,
                                         "multiplicityMax": 1,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
+
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 0.3906,
                                             "max": 4.6875,
-                                            "choices": []
+                                            "enum": []
                                         }
                                     },
                                     {
@@ -144,13 +142,13 @@
                                         "multiplicityMin": 1,
                                         "multiplicityMax": 1,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
+
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 4.792,
                                             "max": 10002,
-                                            "choices": []
+                                            "enum": []
                                         }
                                     },
                                     {
@@ -160,13 +158,13 @@
                                         "multiplicityMin": 1,
                                         "multiplicityMax": 1,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
+
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 48.8281,
                                             "max": 1953.12,
-                                            "choices": []
+                                            "enum": []
                                         }
                                     },
                                     {
@@ -177,12 +175,12 @@
                                         "multiplicityMax": 1,
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true
+
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": null,
                                             "max": null,
-                                            "choices": [
+                                            "enum": [
                                                 "MGH"
                                             ]
                                         }
@@ -195,12 +193,12 @@
                                         "multiplicityMax": 1,
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true
+
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": null,
                                             "max": null,
-                                            "choices": [
+                                            "enum": [
                                                 "HNS NVHead",
                                                 "BODY",
                                                 "HNS- CTLMID",
@@ -223,12 +221,12 @@
                                         "multiplicityMax": 1,
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true
+
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": null,
                                             "max": null,
-                                            "choices": [
+                                            "enum": [
                                                 "SIEMENS",
                                                 "GE MEDICAL SYSTEMS"
                                             ]
@@ -242,12 +240,10 @@
                                         "multiplicityMax": 1,
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true
+
                                         },
-                                        "optionsFromDb": {
-                                            "min": null,
-                                            "max": null,
-                                            "choices": [
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
                                                 "AX T1 (mprage)",
                                                 "Sag SPGR",
                                                 "Ax MS Iso Diffusion",
@@ -299,12 +295,10 @@
                                         "multiplicityMax": "N",
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true
+
                                         },
-                                        "optionsFromDb": {
-                                            "min": null,
-                                            "max": null,
-                                            "choices": [
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
                                                 "Gradient Recalled",
                                                 "Inversion Recovery",
                                                 "Echo Planar",
@@ -321,12 +315,11 @@
                                         "multiplicityMax": "N",
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true
+
                                         },
-                                        "optionsFromDb": {
-                                            "min": null,
-                                            "max": null,
-                                            "choices": [
+                                        "optionsFromSelectedCohorts": {
+
+                                            "enum": [
                                                 "Spoiled",
                                                 "MAG Prepared",
                                                 "Steady State",
@@ -344,12 +337,11 @@
                                         "multiplicityMax": "N",
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true
+
                                         },
-                                        "optionsFromDb": {
-                                            "min": null,
-                                            "max": null,
-                                            "choices": [
+                                        "optionsFromSelectedCohorts": {
+
+                                            "enum": [
                                                 "IR",
                                                 "EDR_GEMS",
                                                 "SAT_GEMS",
@@ -378,12 +370,11 @@
                                         "multiplicityMax": 1,
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true
+
                                         },
-                                        "optionsFromDb": {
-                                            "min": null,
-                                            "max": null,
-                                            "choices": [
+                                        "optionsFromSelectedCohorts": {
+
+                                            "enum": [
                                                 "*tfl3d1"
                                             ]
                                         }
@@ -396,12 +387,11 @@
                                         "multiplicityMax": 1,
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true
+
                                         },
-                                        "optionsFromDb": {
-                                            "min": null,
-                                            "max": null,
-                                            "choices": [
+                                        "optionsFromSelectedCohorts": {
+
+                                            "enum": [
                                                 "Verio",
                                                 "Signa HDxt",
                                                 "SIGNA HDx"
@@ -416,12 +406,11 @@
                                         "multiplicityMax": 1,
                                         "isOrdered": false,
                                         "options": {
-                                            "areOtherValuesAllowed": true
+
                                         },
-                                        "optionsFromDb": {
-                                            "min": null,
-                                            "max": null,
-                                            "choices": [
+                                        "optionsFromSelectedCohorts": {
+
+                                            "enum": [
                                                 "MR1EL2",
                                                 "MR1W1"
                                             ]
@@ -434,13 +423,13 @@
                                         "multiplicityMin": 1,
                                         "multiplicityMax": 1,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
+
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 64,
                                             "max": 512,
-                                            "choices": []
+                                            "enum": []
                                         }
                                     },
                                     {
@@ -450,13 +439,13 @@
                                         "multiplicityMin": 1,
                                         "multiplicityMax": 1,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
+
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 3,
                                             "max": 2128,
-                                            "choices": []
+                                            "enum": []
                                         }
                                     },
                                     {
@@ -466,13 +455,13 @@
                                         "multiplicityMin": 1,
                                         "multiplicityMax": 1,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
+
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 64,
                                             "max": 512,
-                                            "choices": []
+                                            "enum": [64,512]
                                         }
                                     },
                                     {
@@ -482,13 +471,13 @@
                                         "multiplicityMin": 1,
                                         "multiplicityMax": 1,
                                         "options": {
-                                            "areOtherValuesAllowed": true,
+
                                             "min": 0
                                         },
-                                        "optionsFromDb": {
+                                        "optionsFromSelectedCohorts": {
                                             "min": 50,
                                             "max": 76,
-                                            "choices": []
+                                            "enum": []
                                         }
                                     }
                                 ],
