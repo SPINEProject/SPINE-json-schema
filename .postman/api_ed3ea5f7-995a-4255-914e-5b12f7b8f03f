@@ -9,7 +9,9 @@ id = ed3ea5f7-995a-4255-914e-5b12f7b8f03f
 
 [config.relations.collections]
 rootDirectory = postman/collections
+files[] = {"id":"9863314-28efa652-5d2f-40b1-aabf-08e397bcc862","path":"ss.json","metaData":{"generateCollectionPreferences":"{\"requestNameSource\":\"Fallback\",\"indentCharacter\":\"Space\",\"parametersResolution\":\"Schema\",\"folderStrategy\":\"Paths\",\"includeAuthInfoInExample\":true,\"keepImplicitHeaders\":false,\"includeDeprecated\":true,\"updateCollectionSync\":true,\"requestParametersResolution\":\"Schema\",\"exampleParametersResolution\":\"Schema\"}"}}
 files[] = {"id":"9863314-1e9604b0-c20a-4868-8e1b-53453df9807b","path":"t.json","metaData":{"generateCollectionPreferences":"{\"requestNameSource\":\"Fallback\",\"indentCharacter\":\"Space\",\"parametersResolution\":\"Schema\",\"folderStrategy\":\"Tags\",\"includeAuthInfoInExample\":true,\"keepImplicitHeaders\":false,\"includeDeprecated\":true,\"updateCollectionSync\":true,\"requestParametersResolution\":\"Schema\",\"exampleParametersResolution\":\"Schema\"}"}}
+files[] = {"id":"9863314-83230627-a6c5-497c-967f-58e3bde3bdf6","path":"test.json","metaData":{}}
 
 [config.relations.collections.metaData]
 
@@ -18,7 +20,9 @@ rootDirectory = schemas
 files[] = {"path":"annotation.schema.json","metaData":{}}
 files[] = {"path":"annotationTableData.schema.json","metaData":{}}
 files[] = {"path":"annotationTableDefinition.schema.json","metaData":{}}
+files[] = {"path":"API/filter/components.json","metaData":{}}
 files[] = {"path":"API/filter/filter.json","metaData":{}}
+files[] = {"path":"API/filter/filterAttribute.json","metaData":{}}
 files[] = {"path":"API/filter/filterId.json","metaData":{}}
 files[] = {"path":"API/filter/filterSnapshot.json","metaData":{}}
 files[] = {"path":"API/filter/filterSnapshotId.json","metaData":{}}
@@ -32,7 +36,9 @@ files[] = {"path":"experiment.schema.json","metaData":{}}
 files[] = {"path":"experimentalPlan.schema.json","metaData":{}}
 files[] = {"path":"helpPanel.schema.json","metaData":{}}
 files[] = {"path":"imageFilter.schema.json","metaData":{}}
+files[] = {"path":"imageFilter.schema.old.json","metaData":{}}
 files[] = {"path":"imageFilterAttribute.schema.json","metaData":{}}
+files[] = {"path":"imageFilterSnapshot.schema.json","metaData":{}}
 files[] = {"path":"livePresenterExperiment.schema.json","metaData":{}}
 files[] = {"path":"livePresenterExperimentResult.schema.json","metaData":{}}
 files[] = {"path":"materializedTask.schema.json","metaData":{}}

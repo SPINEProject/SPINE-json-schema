@@ -1,0 +1,23 @@
+{
+    "examples": {},
+    "schemas": {
+        "postFilterBody": {
+            "title": "POST filter body",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "../../imageFilter.schema.json#/definitions/imageFilterName"
+                },
+                "filter": {
+                    "description": "The filter (an expression)",
+                    "$ref": "../../imageFilter.schema.json#/definitions/expression"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "filter",
+                "name"
+            ]
+        }
+    }
+}

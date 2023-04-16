@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "version": "0.0.6",
+        "version": "0.0.7",
         "title": "SPINE API",
         "description": "SPINE API"
     },
@@ -23,6 +23,9 @@
         "/filter": {
             "$ref": "./filter/filter.json"
         },
+        "/filter/attribute": {
+            "$ref": "./filter/filterAttribute.json"
+        },
         "/filter-snapshot": {
             "$ref": "./filter/filterSnapshot.json"
         },
@@ -32,7 +35,16 @@
     },
     "components": {
         "examples": {},
-        "schemas": {},
+        "schemas": {
+            "postFilterBody": {
+                "properties": {
+                    "filter": {
+                        "description": "The filter (an expression)",
+                        "$ref": "../imageFilter.schema.json#/definitions/expression"
+                    }
+                }
+            }
+        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",

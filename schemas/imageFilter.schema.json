@@ -4,28 +4,28 @@
     "title": "Schema to filter image based on DICOM parameters.",
     "type": "object",
     "definitions": {
-        "operator": {
-            "description": "Description of an operators",
-            "type": "object",
+        "criterionWithNumericalOperatorEqual": {
+            "title": "Criterion with numerical operator equal",
             "properties": {
-                "label": {
-                    "description": "Label of the operator",
-                    "type": "string"
-                },
                 "value": {
-                    "description": "Value of the operator",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "label",
-                "value"
-            ]
-        },
-        "operatorEqual": {
-            "allOf": [
-                {
+                    "type": "number"
+                },
+                "operator": {
                     "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERICAL_OPERATOR"
+                            ]
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
+                        },
                         "label": {
                             "enum": [
                                 "="
@@ -36,35 +36,23 @@
                                 "equals"
                             ]
                         }
-                    },
-                    "required": [
-                        "label",
-                        "value"
-                    ]
+                    }
                 }
-            ]
+            }
         },
         "operatorNotEqual": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "!="
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "not equals"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "!="
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "not equals"
                     ]
                 }
-            ]
+            }
         },
         "operatorLessThan": {
             "properties": {
@@ -78,251 +66,184 @@
                         "less than"
                     ]
                 }
-            },
-            "required": [
-                "label",
-                "value"
-            ]
+            }
         },
         "operatorLesserEqual": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "<="
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "less than or equal to"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "<="
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "less than or equal to"
                     ]
                 }
-            ]
+            }
         },
         "operatorGreaterEqual": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                ">="
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "greater than or equal to"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        ">="
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "greater than or equal to"
                     ]
                 }
-            ]
+            }
         },
         "operatorGreaterThan": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                ">"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "greater than"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        ">"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "greater than"
                     ]
                 }
-            ]
+            }
         },
         "operatorContains": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "contains"
-                            ]
-                        },
-                        "vale": {
-                            "enum": [
-                                "contains"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "contains"
+                    ]
+                },
+                "vale": {
+                    "enum": [
+                        "contains"
                     ]
                 }
-            ]
+            }
         },
         "operatorDoesNotContains": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "does not contain"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "does not contain"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "does not contain"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "does not contain"
                     ]
                 }
-            ]
+            }
         },
         "operatorIncludes": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "includes"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "includes"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "includes"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "includes"
                     ]
                 }
-            ]
+            }
         },
         "operatorDoesNotInclude": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "does not include"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "does not include"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "does not include"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "does not include"
                     ]
                 }
-            ]
+            }
         },
         "operatorIn": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "in"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "in"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "in"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "in"
                     ]
                 }
-            ]
+            }
         },
         "operatorNotIn": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "not in"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "not in"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "properties": {
+                "label": {
+                    "enum": [
+                        "not in"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "not in"
                     ]
                 }
-            ]
+            }
         },
         "operatorAND": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "AND"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "AND"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "title": "Logical AND",
+            "properties": {
+                "label": {
+                    "enum": [
+                        "AND"
+                    ]
+                },
+                "value": {
+                    "enum": [
+                        "AND"
                     ]
                 }
-            ]
+            }
         },
         "operatorOR": {
-            "allOf": [
-                {
-                    "properties": {
-                        "label": {
-                            "enum": [
-                                "OR"
-                            ]
-                        },
-                        "value": {
-                            "enum": [
-                                "OR"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "label",
-                        "value"
+            "title": "Logical OR",
+            "properties": {
+                "label": {
+                    "enum": [
+                        "OR"
                     ]
+                },
+                "value": {
+                    "enum": [
+                        "OR"
+                    ]
+                }
+            }
+        },
+        "logicalOperator": {
+            "description": "Logical operator ruling the expression. For instance if the logical operator is AND, then all the expression will AND all the criteria and expressions, e.g., Criteria_1 AND Criteria_2 AND Expression_1 AND Expression_2",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "LOGICAL_OPERATOR"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/operatorAND"
+                },
+                {
+                    "$ref": "#/definitions/operatorOR"
                 }
             ]
         },
@@ -393,7 +314,16 @@
             ],
             "oneOf": [
                 {
-                    "$ref": "#/definitions/operatorEqual"
+                    "properties": {
+                        "label": {
+                            "$ref": "#/definitions/operatorEqualLabel"
+                        },
+                        "value": {
+                            "enum": [
+                                "equals"
+                            ]
+                        }
+                    }
                 },
                 {
                     "$ref": "#/definitions/operatorNotEqual"
@@ -415,29 +345,6 @@
                 },
                 {
                     "$ref": "#/definitions/operatorGreaterThan"
-                }
-            ]
-        },
-        "logicalOperator": {
-            "description": "Logical operator",
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "LOGICAL_OPERATOR"
-                    ]
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/operatorAND"
-                },
-                {
-                    "$ref": "#/definitions/operatorOR"
                 }
             ]
         },
@@ -471,29 +378,74 @@
             ]
         },
         "criterion": {
-            "description": "Criterion",
+            "title": "Criterion",
             "type": "object",
             "properties": {
                 "attribute": {
-                    "description": "Name of the attribute to filter",
+                    "description": "Key of the attribute to filter",
                     "type": "string"
                 },
                 "operator": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/numericalOperator"
+                    "description": "The selected operator",
+                    "type": "object",
+                    "required": [
+                        "type",
+                        "value",
+                        "label"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERICAL_OPERATOR",
+                                "TEXTUAL_OPERATOR"
+                            ]
                         },
-                        {
-                            "$ref": "#/definitions/textualOperator"
+                        "variant": {
+                            "type": "string",
+                            "enum": [
+                                "SINGLE_VALUE",
+                                "ALL_ELEMENT",
+                                "ANY_ELEMENT"
+                            ]
                         },
-                        {
-                            "$ref": "#/definitions/arrayOperator"
+                        "value": {
+                            "type": "string"
+                        },
+                        "label": {
+                            "type": "string"
                         }
-                    ]
+                    }
                 },
                 "value": {
                     "description": "Value for the criterion."
                 }
+            },
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
+                }
+            ],
+            "required": [
+                "attribute",
+                "operator",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "criteria": {
+            "description": "List of criteria in the expression",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/criterion"
+            }
+        },
+        "expressionList": {
+            "description": "List of expression in the expression.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/expression"
             }
         },
         "expression": {
@@ -501,41 +453,19 @@
             "type": "object",
             "properties": {
                 "logicalOperator": {
-                    "description": "Logical operator ruling the expression. For instance if the logical operator is AND, then all the expression will AND all the criteria and expressions, e.g., Criteria_1 AND Criteria_2 AND Expression_1 AND Expression_2",
                     "$ref": "#/definitions/logicalOperator"
                 },
                 "criteria": {
-                    "description": "List of criteria in the expression",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/criterion"
-                    }
+                    "$ref": "#/definitions/criteria"
                 },
                 "expressions": {
-                    "description": "List of expression in the expression.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/expression"
-                    }
+                    "$ref": "#/definitions/expressionList"
                 }
             },
             "required": [
                 "logicalOperator",
                 "criteria",
                 "expressions"
-            ]
-        },
-        "imageFilterPost": {
-            "$id": "#imageFilterPost",
-            "decription": "image filter when posted",
-            "type": "object",
-            "properties": {
-                "filter": {
-                    "$ref": "#/definitions/expression"
-                }
-            },
-            "required": [
-                "filter"
             ]
         },
         "imageFilterReference": {
@@ -555,10 +485,6 @@
         "imageFilterName": {
             "type": "string",
             "description": "Filter name"
-        },
-        "imageFilterSnapshotName": {
-            "type": "string",
-            "description": "Filter snapshot name"
         },
         "imageFilterDoc": {
             "$id": "#imageFilterDoc",
@@ -595,162 +521,6 @@
                 "name"
             ]
         },
-        "imageFilterSnapshotResultImage": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string"
-                    },
-                    "comments": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "imageFilterSnapshotResult": {
-            "$id": "#imageFilterSnapshotResult",
-            "decription": "image filter snapshot, result section",
-            "type": "object",
-            "properties": {
-                "cohort": {
-                    "type": "object",
-                    "patternProperties": {
-                        ".": {
-                            "type": "object",
-                            "properties": {
-                                "subject": {
-                                    "type": "object",
-                                    "patternProperties": {
-                                        ".": {
-                                            "type": "object",
-                                            "properties": {
-                                                "visit": {
-                                                    "type": "object",
-                                                    "patternProperties": {
-                                                        ".": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "image": {
-                                                                    "$ref": "#/definitions/imageFilterSnapshotResultImage"
-                                                                }
-                                                            },
-                                                            "required": [
-                                                                "image"
-                                                            ],
-                                                            "additionalProperties": false
-                                                        }
-                                                    },
-                                                    "properties": {
-                                                        "withoutVisit": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "image": {
-                                                                    "$ref": "#/definitions/imageFilterSnapshotResultImage"
-                                                                }
-                                                            },
-                                                            "required": [
-                                                                "image"
-                                                            ],
-                                                            "additionalProperties": false
-                                                        }
-                                                    },
-                                                    "required": [],
-                                                    "additionalProperties": false
-                                                }
-                                            },
-                                            "required": [
-                                                "visit"
-                                            ],
-                                            "additionalProperties": false
-                                        }
-                                    }
-                                }
-                            },
-                            "required": [
-                                "subject"
-                            ],
-                            "additionalProperties": false
-                        }
-                    }
-                }
-            },
-            "required": [
-                "cohort"
-            ],
-            "additionalProperties": false
-        },
-        "imageFilterSnapshotReference": {
-            "type": "object",
-            "properties": {
-                "ownerId": {
-                    "type": "string"
-                },
-                "imageFilterId": {
-                    "type": "string"
-                }
-            },
-            "additionalProperties": false,
-            "required": [
-                "ownerId",
-                "imageFilterId"
-            ]
-        },
-        "imageFilterSnapshotDocType": {
-            "type": "string",
-            "enum": [
-                "imageFilterSnapshot"
-            ]
-        },
-        "imageFilterSnapshotDoc": {
-            "$id": "#imageFilterSnapshotDoc",
-            "decription": "image filter when posted",
-            "type": "object",
-            "properties": {
-                "query": {
-                    "type": "object"
-                },
-                "result": {
-                    "$ref": "#/definitions/imageFilterSnapshotResult"
-                },
-                "queryDate": {
-                    "type": "string"
-                },
-                "_id": {
-                    "type": "string"
-                },
-                "cohortIdList": {
-                    "$ref": "#/definitions/cohortIdList"
-                },
-                "docType": {
-                    "$ref": "#/definitions/imageFilterSnapshotDocType"
-                },
-                "_rev": {
-                    "type": "string"
-                },
-                "reference": {
-                    "$ref": "#/definitions/imageFilterSnapshotReference"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "query",
-                "name",
-                "result",
-                "queryDate",
-                "reference",
-                "docType",
-                "cohortIdList"
-            ],
-            "additionalProperties": false
-        },
         "owner": {
             "type": "object",
             "properties": {
@@ -782,8 +552,8 @@
                     "$ref": "#/definitions/imageFilterName"
                 },
                 "filter": {
-                    "description": "The filter expression",
-                    "$ref": "#/definitions/expression"
+                    "description": "The filter (an expression)",
+                    "$ref": "#/definitions/expressionAPI"
                 },
                 "owner": {
                     "$ref": "#/definitions/owner"
@@ -829,7 +599,7 @@
                     "$ref": "#/definitions/imageFilterName"
                 },
                 "filter": {
-                    "description": "The filter expression",
+                    "description": "The filter (an expression)",
                     "$ref": "#/definitions/expression"
                 }
             },
@@ -846,8 +616,8 @@
                     "$ref": "#/definitions/imageFilterName"
                 },
                 "filter": {
-                    "description": "The filter expression",
-                    "$ref": "#/definitions/expression"
+                    "description": "The filter (an expression)",
+                    "$ref": "#/definitions/expressionAPI"
                 }
             },
             "additionalProperties": false,
@@ -855,184 +625,6 @@
                 "filter",
                 "name"
             ]
-        },
-        "imageFilterSnapshotResultVisitAPI": {
-            "type": "object",
-            "properties": {
-                "image": {
-                    "$ref": "#/definitions/imageFilterSnapshotResultImage"
-                }
-            },
-            "required": [
-                "image"
-            ],
-            "additionalProperties": false
-        },
-        "imageFilterSnapshotResultSubjectAPI": {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "properties": {
-                    "visit": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
-                        },
-                        "properties": {
-                            "withoutVisit": {
-                                "type": "object",
-                                "properties": {
-                                    "image": {
-                                        "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
-                                    }
-                                },
-                                "required": [
-                                    "image"
-                                ],
-                                "additionalProperties": false
-                            }
-                        }
-                    }
-                },
-                "required": [
-                    "visit"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "imageFilterSnapshotResultCohortAPI": {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "properties": {
-                    "subject": {
-                        "$ref": "#/definitions/imageFilterSnapshotResultSubjectAPI"
-                    }
-                },
-                "required": [
-                    "subject"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "imageFilterSnapshotResultAPI": {
-            "description": "image filter snapshot, result section",
-            "type": "object",
-            "properties": {
-                "cohort": {
-                    "$ref": "#/definitions/imageFilterSnapshotResultCohortAPI"
-                }
-            },
-            "required": [
-                "cohort"
-            ],
-            "additionalProperties": false
-        },
-        "cohortIdList": {
-            "type": "array",
-            "description": "The list of cohort uuid",
-            "items": {
-                "type": "string"
-            }
-        },
-        "getFilterSnapshotResponse": {
-            "type": "object",
-            "properties": {
-                "result": {
-                    "$ref": "#/definitions/imageFilterSnapshotResultAPI"
-                },
-                "queryDate": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "type": "string"
-                },
-                "name": {
-                    "$ref": "#/definitions/imageFilterSnapshotName"
-                },
-                "cohortIdList": {
-                    "$ref": "#/definitions/cohortIdList"
-                },
-                "imageFilterId": {
-                    "type": "string"
-                },
-                "owner": {
-                    "$ref": "#/definitions/owner"
-                }
-            },
-            "required": [
-                "result",
-                "queryDate",
-                "cohortIdList",
-                "imageFilterId",
-                "uuid",
-                "name",
-                "owner"
-            ],
-            "additionalProperties": false
-        },
-        "getFilterSnapshotListResponse": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "queryDate": {
-                        "type": "string"
-                    },
-                    "uuid": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "$ref": "#/definitions/imageFilterSnapshotName"
-                    },
-                    "cohortIdList": {
-                        "type": "array",
-                        "description": "The list of cohort uuid",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "imageFilterId": {
-                        "type": "string"
-                    },
-                    "owner": {
-                        "$ref": "#/definitions/owner"
-                    }
-                },
-                "required": [
-                    "queryDate",
-                    "cohortIdList",
-                    "imageFilterId",
-                    "uuid",
-                    "name",
-                    "owner"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "postFilterSnapshotBody": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "#/definitions/imageFilterSnapshotName"
-                },
-                "cohortIdList": {
-                    "type": "array",
-                    "description": "The list of cohort uuid",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "imageFilterId": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name",
-                "cohortIdList",
-                "imageFilterId"
-            ],
-            "additionalProperties": false
         }
     }
 }
