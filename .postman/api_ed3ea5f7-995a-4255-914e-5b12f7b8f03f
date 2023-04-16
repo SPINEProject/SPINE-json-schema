@@ -20,7 +20,6 @@ rootDirectory = schemas
 files[] = {"path":"annotation.schema.json","metaData":{}}
 files[] = {"path":"annotationTableData.schema.json","metaData":{}}
 files[] = {"path":"annotationTableDefinition.schema.json","metaData":{}}
-files[] = {"path":"API/filter/components.json","metaData":{}}
 files[] = {"path":"API/filter/filter.json","metaData":{}}
 files[] = {"path":"API/filter/filterAttribute.json","metaData":{}}
 files[] = {"path":"API/filter/filterId.json","metaData":{}}
