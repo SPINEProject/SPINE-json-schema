@@ -686,9 +686,6 @@
                 },
                 {
                     "$ref": "#/definitions/criterionWithTextualOperatorEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotEqual"
                 }
             ],
             "required": [
