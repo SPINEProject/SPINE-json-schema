@@ -671,6 +671,9 @@
                 },
                 {
                     "$ref": "#/definitions/criterionWithNumericalOperatorGreaterThan"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithNumericalOperatorIn"
                 }
             ],
             "required": [
