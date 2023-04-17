@@ -715,10 +715,7 @@
         },
         "criteria": {
             "description": "List of criteria in the expression",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/criterion"
-            }
+
         },
         "expressionList": {
             "description": "List of expression in the expression.",
