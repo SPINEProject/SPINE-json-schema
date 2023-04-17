@@ -517,7 +517,6 @@
                 }
             }
         },
-        
         "criterionWithTextualOperatorNotContains": {
             "title": "Criterion with textual operator not contains",
             "description": "True if the attribute string value does not contains the criterion value",
@@ -655,34 +654,54 @@
             },
             "oneOf": [
                 {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorLessThan"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorNotEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorLesserEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorGreaterEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorGreaterThan"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorIn"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorNotIn"
+                        }
+                    ]
                 },
                 {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorLessThan"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorNotEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorLesserEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorGreaterEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorNotIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorEqual"
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorContains"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorNotContains"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorNotEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorIn"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorNotIn"
+                        }
+                    ]
                 }
             ],
             "required": [
