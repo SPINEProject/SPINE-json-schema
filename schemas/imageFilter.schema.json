@@ -735,7 +735,7 @@
                     "$ref": "#/definitions/criteria"
                 },
                 "expressions": {
-                    "$ref": "#/definitions/expressionList"
+
                 }
             },
             "required": [
