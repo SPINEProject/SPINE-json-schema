@@ -670,9 +670,6 @@
                     "$ref": "#/definitions/criterionWithNumericalOperatorGreaterEqual"
                 },
                 {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorGreaterThan"
-                },
-                {
                     "$ref": "#/definitions/criterionWithNumericalOperatorIn"
                 },
                 {
