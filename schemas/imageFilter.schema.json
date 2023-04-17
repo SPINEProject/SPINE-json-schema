@@ -654,27 +654,23 @@
                 }
             },
             "oneOf": [
-
                 {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorNotIn"
+                    "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
                 },
                 {
-                    "$ref": "#/definitions/criterionWithTextualOperatorContains"
+                    "$ref": "#/definitions/criterionWithNumericalOperatorLessThan"
                 },
                 {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotContains"
+                    "$ref": "#/definitions/criterionWithNumericalOperatorNotEqual"
                 },
                 {
-                    "$ref": "#/definitions/criterionWithTextualOperatorEqual"
+                    "$ref": "#/definitions/criterionWithNumericalOperatorLesserEqual"
                 },
                 {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotEqual"
+                    "$ref": "#/definitions/criterionWithNumericalOperatorGreaterEqual"
                 },
                 {
-                    "$ref": "#/definitions/criterionWithTextualOperatorIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotIn"
+                    "$ref": "#/definitions/criterionWithNumericalOperatorGreaterThan"
                 }
             ],
             "required": [
