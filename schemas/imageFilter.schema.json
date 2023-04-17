@@ -654,6 +654,7 @@
             },
             "oneOf": [
                 {
+                    "title": "Criterion with numerical operator",
                     "oneOf": [
                         {
                             "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
@@ -682,6 +683,7 @@
                     ]
                 },
                 {
+                    "title": "Criterion with textual operator",
                     "oneOf": [
                         {
                             "$ref": "#/definitions/criterionWithTextualOperatorContains"
