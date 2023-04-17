@@ -732,7 +732,7 @@
             "type": "object",
             "properties": {
                 "logicalOperator": {
-                    "$ref": "#/definitions/logicalOperator"
+
                 },
                 "criteria": {
                     "$ref": "#/definitions/criteria"

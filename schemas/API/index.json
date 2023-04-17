@@ -19,7 +19,8 @@
             "postFilterBody": {
                 "properties": {
                     "filter": {
-                        "description": "The filter (an expression)"
+                        "description": "The filter (an expression)",
+                        "$ref": "../imageFilter.schema.json#/definitions/expression"
                     }
                 }
             }
