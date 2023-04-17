@@ -517,7 +517,6 @@
                 }
             }
         },
-        
         "criterionWithTextualOperatorNotContains": {
             "title": "Criterion with textual operator not contains",
             "description": "True if the attribute string value does not contains the criterion value",
@@ -655,46 +654,56 @@
             },
             "oneOf": [
                 {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
+                    "title": "Criterion with numerical operator",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorLessThan"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorNotEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorLesserEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorGreaterEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorGreaterThan"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorIn"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithNumericalOperatorNotIn"
+                        }
+                    ]
                 },
                 {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorLessThan"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorNotEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorLesserEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorGreaterEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorGreaterThan"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorNotIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorContains"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotContains"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotIn"
+                    "title": "Criterion with textual operator",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorContains"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorNotContains"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorNotEqual"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorIn"
+                        },
+                        {
+                            "$ref": "#/definitions/criterionWithTextualOperatorNotIn"
+                        }
+                    ]
                 }
             ],
             "required": [
@@ -851,7 +860,6 @@
                 "name": {
                     "$ref": "#/definitions/imageFilterName"
                 },
-
                 "filter": {
                     "description": "The filter (an expression)",
                     "$ref": "#/definitions/expression"
