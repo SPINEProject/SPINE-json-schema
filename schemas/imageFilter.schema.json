@@ -594,20 +594,11 @@
                     "enum": [
                         "LOGICAL_OPERATOR"
                     ]
-                },
-                "label": {
-                    "type":"string"
-                },
-                "value": {
-                    "type":"string"
                 }
             },
             "required": [
-                "type",
-                "label",
-                "value"
+                "type"
             ],
-            "additionalProperties": false,
             "oneOf": [
                 {
                     "$ref": "#/definitions/operatorAND"
@@ -663,48 +654,7 @@
                 }
             },
             "oneOf": [
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorLessThan"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorNotEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorLesserEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorGreaterEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorGreaterThan"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithNumericalOperatorNotIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorContains"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotContains"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotEqual"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorIn"
-                },
-                {
-                    "$ref": "#/definitions/criterionWithTextualOperatorNotIn"
-                }
+
             ],
             "required": [
                 "attribute",
@@ -714,8 +664,11 @@
             "additionalProperties": false
         },
         "criteria": {
-            "description": "List of criteria in the expression"
-
+            "description": "List of criteria in the expression",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/criterion"
+            }
         },
         "expressionList": {
             "description": "List of expression in the expression.",
@@ -729,13 +682,13 @@
             "type": "object",
             "properties": {
                 "logicalOperator": {
-
+                    "$ref": "#/definitions/logicalOperator"
                 },
                 "criteria": {
                     "$ref": "#/definitions/criteria"
                 },
                 "expressions": {
-
+                    "$ref": "#/definitions/expressionList"
                 }
             },
             "required": [
@@ -857,7 +810,6 @@
                 "name": {
                     "$ref": "#/definitions/imageFilterName"
                 },
-
                 "filter": {
                     "description": "The filter (an expression)",
                     "$ref": "#/definitions/expression"
