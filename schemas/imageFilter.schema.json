@@ -655,6 +655,27 @@
             },
             "oneOf": [
 
+                {
+                    "$ref": "#/definitions/criterionWithNumericalOperatorNotIn"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorContains"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorNotContains"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorEqual"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorNotEqual"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorIn"
+                },
+                {
+                    "$ref": "#/definitions/criterionWithTextualOperatorNotIn"
+                }
             ],
             "required": [
                 "attribute",
