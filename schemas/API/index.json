@@ -16,13 +16,6 @@
         },
         "/workflow-execution-matrix/{workflowExecutionMatrixId}": {
             "$ref": "./workflowExecutionMatrix/workflowExecutionMatrixId.json"
-        },
-
-        "/filter-snapshot": {
-            "$ref": "./filter/filterSnapshot.json"
-        },
-        "/filter-snapshot/{filterSnapshotId}": {
-            "$ref": "./filter/filterSnapshotId.json"
         }
     },
     "components": {
