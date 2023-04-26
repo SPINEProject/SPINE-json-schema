@@ -755,6 +755,8 @@
                 "workflow",
                 "inputConfig",
                 "creationDate",
+                
+                "statistics",
                 "modificationDate"
             ]
         },
@@ -799,6 +801,7 @@
                 "uuid",
                 "matrix",
                 "workflow",
+                "statistics",
                 "inputConfig",
                 "creationDate",
                 "modificationDate"
@@ -844,7 +847,8 @@
                 "status",
                 "uuid",
                 "creationDate",
-                "modificationDate"
+                "modificationDate",
+                "statistics"
             ]
         },
         "putWorkflowExecutionMatrixBody": {
