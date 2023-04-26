@@ -76,15 +76,17 @@
             "type": "object",
             "description": "List of possible inputs for this visit",
             "additionalProperties": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "ID of the image"
-                    },
-                    "selected": {
-                        "type": "boolean",
-                        "description": "Is the input selected?"
+                "type": "array",
+                "items": {
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "ID of the image"
+                        },
+                        "selected": {
+                            "type": "boolean",
+                            "description": "Is the input selected?"
+                        }
                     }
                 }
             }
@@ -464,6 +466,31 @@
                 "uuid"
             ]
         },
+        "workflowExecutionMatrixStatistics": {
+            "description": "General statistics related to the combination of snapshots",
+            "type": "object",
+            "properties": {
+                "cohort": {
+                    "type": "number"
+                },
+                "subject": {
+                    "type": "number"
+                },
+                "visit": {
+                    "type": "number"
+                },
+                "image": {
+                    "type": "number"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "cohort",
+                "visit",
+                "image",
+                "subject"
+            ]
+        },
         "workflowExecutionMatrixInputConfigGet": {
             "description": "Inputs",
             "type": "object",
@@ -484,27 +511,6 @@
                     },
                     "value": {
                         "description": "The input value"
-                    },
-                    "summary": {
-                        "description": "If the input is a snapshot, the summary (number of cohort, subject and visit)",
-                        "type": "object",
-                        "properties": {
-                            "cohortCount": {
-                                "type": "number"
-                            },
-                            "subjectCount": {
-                                "type": "number"
-                            },
-                            "visitCount": {
-                                "type": "number"
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": [
-                            "cohortCount",
-                            "subjectCount",
-                            "visitCount"
-                        ]
                     }
                 },
                 "required": [
@@ -549,6 +555,9 @@
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfigPost"
+                },
+                "matrix": {
+                    "$ref": "#/definitions/matrix"
                 }
             },
             "required": [
@@ -718,6 +727,9 @@
                 "uuid": {
                     "type": "string"
                 },
+                "statistics": {
+                    "$ref": "#/definitions/workflowExecutionMatrixStatistics"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -732,6 +744,9 @@
                 },
                 "modificationDate": {
                     "type": "string"
+                },
+                "matrix": {
+                    "$ref": "#/definitions/matrix"
                 }
             },
             "required": [
@@ -757,6 +772,9 @@
                 "uuid": {
                     "type": "string"
                 },
+                "statistics": {
+                    "$ref": "#/definitions/workflowExecutionMatrixStatistics"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -773,7 +791,7 @@
                     "type": "string"
                 },
                 "matrix": {
-                    "type": "object"
+                    "$ref": "#/definitions/matrix"
                 }
             },
             "required": [
@@ -797,11 +815,17 @@
                         "DRAFT_1_SELECT_WORKFLOW"
                     ]
                 },
+                "statistics": {
+                    "$ref": "#/definitions/workflowExecutionMatrixStatistics"
+                },
                 "uuid": {
                     "type": "string"
                 },
                 "workflow": {
                     "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
+                },
+                "inputConfig": {
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfigGet"
                 },
                 "name": {
                     "type": "string"
@@ -811,6 +835,9 @@
                 },
                 "modificationDate": {
                     "type": "string"
+                },
+                "matrix": {
+                    "$ref": "#/definitions/matrix"
                 }
             },
             "required": [
@@ -841,6 +868,9 @@
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfigPost"
+                },
+                "matrix": {
+                    "$ref": "#/definitions/matrix"
                 }
             },
             "required": [

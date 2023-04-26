@@ -18,7 +18,8 @@
         "tags": [
             "filter"
         ],
-        "summary": "Get a specific snapshot statistics",
+        "summary": "/api/filter-snapshot/{filterSnapshotId}/statistics",
+        "description": "Get a specific snapshot statistics",
         "responses": {
             "200": {
                 "description": "200",
