@@ -255,6 +255,31 @@
             ],
             "additionalProperties": false
         },
+        "getFilterSnapshotStatisticsResponse": {
+            "type": "object",
+            "properties": {
+                "cohort": {
+                    "type": "number"
+                },
+                "subject": {
+                    "type": "number"
+                },
+                "visit": {
+                    "type": "number"
+                },
+                "image": {
+                    "type": "number"
+                }
+
+            },
+            "required": [
+                "cohort",
+                "subject",
+                "visit",
+                "image"
+            ],
+            "additionalProperties": false
+        },
         "getFilterSnapshotResponse": {
             "type": "object",
             "properties": {

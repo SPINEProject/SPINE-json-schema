@@ -5,7 +5,6 @@
     "type": "object",
     "definitions": {
         "configurationPayload": {
-            "$id": "#configurationPayload",
             "type": "object",
             "properties": {
                 "label": {
@@ -73,77 +72,77 @@
                 "additionalProperties": false
             }
         },
-        "matrixVisit": {
-            "$id": "#matrixVisit",
+        "matrixInput": {
             "type": "object",
-            "patternProperties": {
-                ".": {
-                    "type": "object",
-                    "properties": {
-                        "executions": {
-                            "$ref": "#/definitions/matrixExecution"
-                        }
+            "description": "List of possible inputs for this visit",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "ID of the image"
                     },
-                    "required": [
-                        "executions"
-                    ],
-                    "additionalProperties": false
+                    "selected": {
+                        "type": "boolean",
+                        "description": "Is the input selected?"
+                    }
                 }
+            }
+        },
+        "matrixVisitDetails": {
+            "type": "object",
+            "properties": {
+                "executions": {
+                    "$ref": "#/definitions/matrixExecution"
+                },
+                "inputs": {
+                    "$ref": "#/definitions/matrixInput"
+                }
+            },
+            "additionalProperties": false
+        },
+        "matrixVisit": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/definitions/matrixVisitDetails"
             },
             "properties": {
                 "withoutVisit": {
-                    "type": "object",
-                    "properties": {
-                        "execution": {
-                            "$ref": "#/definitions/matrixExecution"
-                        }
-                    },
-                    "required": [
-                        "execution"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "#/definitions/matrixVisitDetails"
                 }
-            },
-            "required": []
+            }
         },
         "matrixSubject": {
-            "$id": "#matrixSubject",
             "type": "object",
-            "patternProperties": {
-                ".": {
-                    "type": "object",
-                    "properties": {
-                        "visit": {
-                            "$ref": "#/definitions/matrixVisit"
-                        }
-                    },
-                    "required": [
-                        "visit"
-                    ],
-                    "additionalProperties": false
-                }
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "visit": {
+                        "$ref": "#/definitions/matrixVisit"
+                    }
+                },
+                "required": [
+                    "visit"
+                ],
+                "additionalProperties": false
             }
         },
         "matrixCohort": {
-            "$id": "#matrixCohort",
             "type": "object",
-            "patternProperties": {
-                ".": {
-                    "type": "object",
-                    "properties": {
-                        "subject": {
-                            "$ref": "#/definitions/matrixSubject"
-                        }
-                    },
-                    "required": [
-                        "subject"
-                    ],
-                    "additionalProperties": false
-                }
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "subject": {
+                        "$ref": "#/definitions/matrixSubject"
+                    }
+                },
+                "required": [
+                    "subject"
+                ],
+                "additionalProperties": false
             }
         },
         "matrix": {
-            "$id": "#matrix",
             "decription": "The matrix",
             "type": "object",
             "properties": {
@@ -154,7 +153,6 @@
             "additionalProperties": false
         },
         "inputConfigConstant": {
-            "$id": "#inputConfigConstant",
             "properties": {
                 "type": {
                     "type": "string",
@@ -165,7 +163,6 @@
             }
         },
         "inputConfigFilterResultSnapshot": {
-            "$id": "#inputConfigFilterResultSnapshot",
             "properties": {
                 "type": {
                     "type": "string",
@@ -187,7 +184,6 @@
             ]
         },
         "inputConfig": {
-            "$id": "#inputConfig",
             "type": "object",
             "patternProperties": {
                 ".": {
@@ -214,7 +210,6 @@
             }
         },
         "raterConfig_ASSIGN_SELECTED_CASES_TO_SELECTED_RATERS": {
-            "$id": "#raterConfig_ASSIGN_SELECTED_CASES_TO_SELECTED_RATERS",
             "type": "object",
             "properties": {
                 "strategy": {
@@ -253,7 +248,6 @@
             }
         },
         "raterConfig_ASSIGN_ALL_CASES_TO_ALL_RATERS": {
-            "$id": "#raterConfig_ASSIGN_ALL_CASES_TO_ALL_RATERS",
             "type": "object",
             "properties": {
                 "strategy": {
@@ -287,7 +281,6 @@
             }
         },
         "raterConfig": {
-            "$id": "#raterConfig",
             "type": "object",
             "properties": {
                 "strategy": {
@@ -365,8 +358,29 @@
                 "ownerId"
             ]
         },
+        "workflowExecutionMatrixInputConfig": {
+            "description": "Inputs",
+            "type": "object",
+            "additionalProperties": {
+                "description": "Description of an input",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "$ref": "#/definitions/inputConfigInputType"
+                    },
+                    "value": {
+                        "description": "The input value"
+                    }
+                },
+                "required": [
+                    "isRequired",
+                    "name",
+                    "type"
+                ],
+                "additionalProperties": false
+            }
+        },
         "workflowExecutionMatrixDoc": {
-            "$id": "#workflowExecutionMatrixDoc",
             "decription": "Workflow execution matrix document",
             "type": "object",
             "properties": {
@@ -417,29 +431,7 @@
             ],
             "additionalProperties": false
         },
-        "workflowExecutionMatrixReference_API": {
-            "type": "object",
-            "properties": {
-                "ownerId": {
-                    "description": "Owner ID of the matrix",
-                    "type": "string"
-                },
-                "workflowId": {
-                    "description": "Workflow  ID used by the matrix",
-                    "type": "string"
-                },
-                "experimentId": {
-                    "description": "Experiment ID attached to the matrix",
-                    "type": "string"
-                },
-                "miniWorkflowSetId": {
-                    "description": "Mini workflow set ID",
-                    "type": "string"
-                }
-            },
-            "additionalProperties": false
-        },
-        "workflowExecutionMatrixWorkflow_API": {
+        "workflowExecutionMatrixWorkflowGet": {
             "description": "Description of the selected workflow",
             "type": "object",
             "properties": {
@@ -458,70 +450,84 @@
                 "uuid"
             ]
         },
-        "workflowExecutionMatrixInputConfig_API": {
-            "description": "See workflowExecutionMatrix.schema.json/definitions/workflowExecutionMatrixInputConfig_API",
+        "workflowExecutionMatrixWorkflowPost": {
+            "description": "Description of the selected workflow",
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "description": "Workflow UUID",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "uuid"
+            ]
+        },
+        "workflowExecutionMatrixInputConfigGet": {
+            "description": "Inputs",
             "type": "object",
             "additionalProperties": {
-                "$ref": "#/definitions/workflowExecutionMatrixInputConfigInput_API"
+                "description": "Description of an input",
+                "type": "object",
+                "properties": {
+                    "isRequired": {
+                        "description": "Is the input required",
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "description": "The input name",
+                        "type": "string"
+                    },
+                    "type": {
+                        "$ref": "#/definitions/inputConfigInputType"
+                    },
+                    "value": {
+                        "description": "The input value"
+                    },
+                    "summary": {
+                        "description": "If the input is a snapshot, the summary (number of cohort, subject and visit)",
+                        "type": "object",
+                        "properties": {
+                            "cohortCount": {
+                                "type": "number"
+                            },
+                            "subjectCount": {
+                                "type": "number"
+                            },
+                            "visitCount": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "cohortCount",
+                            "subjectCount",
+                            "visitCount"
+                        ]
+                    }
+                },
+                "required": [
+                    "isRequired",
+                    "name",
+                    "type"
+                ],
+                "additionalProperties": false
             }
         },
-        "workflowExecutionMatrixInputConfigInput_API": {
-            "description": "Description of an input",
+        "workflowExecutionMatrixInputConfigPost": {
+            "description": "Inputs",
             "type": "object",
-            "properties": {
-                "isRequired": {
-                    "description": "Is the input required",
-                    "type": "boolean"
+            "additionalProperties": {
+                "description": "Description of an input",
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "description": "The input value"
+                    }
                 },
-                "name": {
-                    "description": "The input name",
-                    "type": "string"
-                },
-                "type": {
-                    "$ref": "#/definitions/inputConfigInputType"
-                },
-                "value": {
-                    "description": "The input value"
-                }
-            },
-            "required": [
-                "isRequired",
-                "name",
-                "type"
-            ],
-            "additionalProperties": false
-        },
-        "workflowExecutionMatrixPayload": {
-            "$id": "#workflowExecutionMatrixPayload",
-            "decription": "Workflow execution matrix payload",
-            "type": "object",
-            "properties": {
-                "status": {
-                    "$ref": "#/definitions/workflowExecutionMatrixStatus"
-                },
-                "inputConfig": {
-                    "$ref": "#/definitions/inputConfig"
-                },
-                "raterConfig": {
-                    "$ref": "#/definitions/raterConfig"
-                },
-                "_rev": {
-                    "type": "string"
-                },
-                "reference": {
-                    "$ref": "#/definitions/reference"
-                },
-                "label": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "reference",
-                "inputConfig",
-                "raterConfig",
-                "label"
-            ],
-            "additionalProperties": false
+                "additionalProperties": false
+            }
         },
         "postWorkflowExecutionMatrixBody": {
             "type": "object",
@@ -534,55 +540,21 @@
                     "type": "string",
                     "enum": [
                         "DRAFT_1_SELECT_WORKFLOW",
-                        "DRAFT_2_SELECT_INPUT_DATA"
+                        "DRAFT_2_SELECT_INPUT_DATA",
+                        "DRAFT_3_SELECT_RATER"
                     ]
                 },
                 "workflow": {
-                    "type": "object",
-                    "properties": {
-                        "uuid": {
-                            "type": "string"
-                        }
-                    }
+                    "$ref": "#/definitions/workflowExecutionMatrixWorkflowPost"
                 },
                 "inputConfig": {
-                    "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfigPost"
                 }
             },
             "required": [
                 "status"
             ],
             "additionalProperties": false
-        },
-        "postWorkflowExecutionMatrixResponse": {
-            "type": "object",
-            "properties": {
-                "status": {
-                    "$ref": "#/definitions/workflowExecutionMatrixStatus"
-                },
-                "uuid": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "workflow": {
-                    "$ref": "#/definitions/workflowExecutionMatrixWorkflow_API"
-                },
-                "reference": {
-                    "$ref": "#/definitions/workflowExecutionMatrixReference_API"
-                },
-                "inputConfig": {
-                    "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
-                }
-            },
-            "required": [
-                "status",
-                "uuid",
-                "reference",
-                "workflow",
-                "inputConfig"
-            ]
         },
         "workflowExecutionMatrixSummary": {
             "type": "object",
@@ -726,6 +698,9 @@
                 },
                 {
                     "$ref": "#/definitions/getWorkflowExecutionMatrixStep2Response"
+                },
+                {
+                    "$ref": "#/definitions/getWorkflowExecutionMatrixStep3Response"
                 }
             ]
         },
@@ -747,10 +722,10 @@
                     "type": "string"
                 },
                 "workflow": {
-                    "$ref": "#/definitions/workflowExecutionMatrixWorkflow_API"
+                    "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
                 },
                 "inputConfig": {
-                    "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfigGet"
                 },
                 "creationDate": {
                     "type": "string"
@@ -762,6 +737,49 @@
             "required": [
                 "status",
                 "uuid",
+                "workflow",
+                "inputConfig",
+                "creationDate",
+                "modificationDate"
+            ]
+        },
+        "getWorkflowExecutionMatrixStep3Response": {
+            "type": "object",
+            "description": "Response for a matrix in step 3",
+            "additionalProperties": false,
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "DRAFT_3_SELECT_RATER"
+                    ]
+                },
+                "uuid": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "workflow": {
+                    "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
+                },
+                "inputConfig": {
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfigGet"
+                },
+                "creationDate": {
+                    "type": "string"
+                },
+                "modificationDate": {
+                    "type": "string"
+                },
+                "matrix": {
+                    "type": "object"
+                }
+            },
+            "required": [
+                "status",
+                "uuid",
+                "matrix",
                 "workflow",
                 "inputConfig",
                 "creationDate",
@@ -783,15 +801,7 @@
                     "type": "string"
                 },
                 "workflow": {
-                    "type": "object",
-                    "properties": {
-                        "uuid": {
-                            "type": "string"
-                        },
-                        "name": {
-                            "type": "string"
-                        }
-                    }
+                    "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
                 },
                 "name": {
                     "type": "string"
@@ -827,15 +837,10 @@
                     "type": "string"
                 },
                 "workflow": {
-                    "type": "object",
-                    "properties": {
-                        "uuid": {
-                            "type": "string"
-                        }
-                    }
+                    "$ref": "#/definitions/workflowExecutionMatrixWorkflowPost"
                 },
                 "inputConfig": {
-                    "$ref": "#/definitions/workflowExecutionMatrixInputConfig_API"
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfigPost"
                 }
             },
             "required": [
