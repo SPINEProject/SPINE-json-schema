@@ -18,7 +18,8 @@
         "tags": [
             "filter"
         ],
-        "summary": "Get a filter snapshot by ID",
+        "summary": "/api/filter-snapshot/{filterSnapshotId}",
+        "description": "Get a filter snapshot by ID",
         "responses": {
             "200": {
                 "description": "200",
@@ -139,7 +140,8 @@
         "tags": [
             "filter"
         ],
-        "summary": "Delete a filter snapshot. It is not possible to delete a snapshot if it is already associated with a matrix.",
+        "description": "Delete a filter snapshot. It is not possible to delete a snapshot if it is already associated with a matrix.",    
+        "summary": "/api/filter-snapshot/{filterSnapshotId}",
         "responses": {
             "200": {
                 "description": "200"

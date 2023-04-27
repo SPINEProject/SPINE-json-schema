@@ -1,0 +1,50 @@
+{
+    "parameters": [
+        {
+            "name": "filterSnapshotId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "get": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "filter"
+        ],
+        "summary": "/api/filter-snapshot/{filterSnapshotId}/statistics",
+        "description": "Get a specific snapshot statistics",
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../imageFilterSnapshot.schema.json#/definitions/getFilterSnapshotStatisticsResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "cohort": 4,
+                                    "subject": 3,
+                                    "visit": 7,
+                                    "image": 10
+                                },
+                                "summary": "A filter snapshot statistics returned by the endpoint"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

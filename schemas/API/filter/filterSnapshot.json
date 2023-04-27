@@ -17,7 +17,8 @@
                 }
             }
         ],
-        "summary": "Get the list of filter snapshot accessible by the current user for a given filter",
+        "summary": "/api/filter-snapshot/",
+        "description": "Post a new filter snapshot",
         "responses": {
             "200": {
                 "description": "200",
@@ -64,7 +65,8 @@
                 "bearerAuth": []
             }
         ],
-        "summary": "Post a new filter snapshot",
+        "summary": "/api/filter-snapshot/",
+        "description": "Post a new filter snapshot",
         "requestBody": {
             "required": true,
             "content": {

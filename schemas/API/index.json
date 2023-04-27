@@ -31,6 +31,9 @@
         },
         "/filter-snapshot/{filterSnapshotId}": {
             "$ref": "./filter/filterSnapshotId.json"
+        },
+        "/filter-snapshot/{filterSnapshotId}/statistics": {
+            "$ref": "./filter/filterSnapshotIdStatistics.json"
         }
     },
     "components": {
