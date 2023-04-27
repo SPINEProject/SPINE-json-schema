@@ -116,6 +116,20 @@
                                 },
                                 "status": "DRAFT_2_SELECT_INPUT_DATA"
                             }
+                        },
+                        "gostep3": {
+                            "value": {
+                                "status": "DRAFT_3_SELECT_RATER",
+                                "name": "posted in step 3",
+                                "workflow": {
+                                    "uuid": "008f2e22-1d27-4f85-bb52-f2cca96df52d"
+                                },
+                                "inputConfig": {
+                                    "image": {
+                                        "value": "b91d796f1452d1a9338b8e470d4fbf33"
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -130,6 +144,60 @@
                             "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixResponse"
                         },
                         "examples": {
+                            "went step 3": {
+                                "value": {
+                                    "status": "DRAFT_3_SELECT_RATER",
+                                    "creationDate": "2023-04-11T16:38:22.213Z",
+                                    "modificationDate": "2023-04-11T16:38:22.213Z",
+                                    "name": "posted in step 3",
+                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                    "inputConfig": {
+                                        "icc-volume": {
+                                            "isRequired": false,
+                                            "name": "Intra cranial volume",
+                                            "type": "CONSTANT"
+                                        },
+                                        "image": {
+                                            "isRequired": true,
+                                            "name": "Input image",
+                                            "value": "b91d796f1452d1a9338b8e470d4fbf33",
+                                            "type": "FILTER_RESULT_SNAPSHOT"
+                                        }
+                                    },
+                                    "matrix": {
+                                        "cohort": {
+                                            "8a4811f962070de7cef66b978e8b5e56": {
+                                                "subject": {
+                                                    "538266fdbc32fd591138a56f3fcf3cb3": {
+                                                        "visit": {
+                                                            "withoutVisit": {
+                                                                "inputs": {
+                                                                    "image": [
+                                                                        {
+                                                                            "id": "24aca0af1c079b97b7fa0536fd5068d0",
+                                                                            "selected": false
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "workflow": {
+                                        "name": "Miklo's Medulla Oblongata Volume Measurement Workflow",
+                                        "uuid": "008f2e22-1d27-4f85-bb52-f2cca96df52d"
+                                    },
+                                    "statistics": {
+                                        "cohort": 1,
+                                        "image": 1,
+                                        "subject": 1,
+                                        "visit": 1
+                                    }
+                                }
+                            },
                             "went step 2": {
                                 "value": {
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",
