@@ -1,0 +1,191 @@
+{
+    "parameters": [
+        {
+            "name": "filterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "get": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "filter"
+        ],
+        "summary": "/api/filter/{filterId}",
+        "description": "Get a specific filter",
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../imageFilter.schema.json#/definitions/getFilterResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "uuid": "4c636555d3963f0a65312032bf001eb7",
+                                    "name": "My filter",
+                                    "owner": {
+                                        "lastname": "Bliault",
+                                        "name": "Grégory",
+                                        "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                    },
+                                    "filter": {
+                                        "logicalOperator": {
+                                            "type": "LOGICAL_OPERATOR",
+                                            "label": "OR",
+                                            "value": "OR"
+                                        },
+                                        "criteria": [
+                                            {
+                                                "value": 400,
+                                                "operator": {
+                                                    "type": "NUMERICAL_OPERATOR",
+                                                    "variant": "ANY_ELEMENT",
+                                                    "value": "less than",
+                                                    "label": "<"
+                                                },
+                                                "attribute": "EchoTime"
+                                            }
+                                        ],
+                                        "expressions": []
+                                    }
+                                },
+                                "summary": "A filter returned by the endpoint"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    },
+    "delete": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "filter"
+        ],
+        "summary": "/api/filter/{filterId}",
+        "description": "Delete a filter. It is not possible to delete a filter if the filter already has snapshots associated.",
+        "responses": {
+            "200": {
+                "description": "200"
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    },
+    "put": {
+        "tags": [
+            "filter"
+        ],
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "summary": "/api/filter/{filterId}",
+        "description": "Update a filter. It is not possible to update the filter if a snapshot was already published.",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../imageFilter.schema.json#/definitions/putFilterBody"
+                    },
+                    "examples": {
+                        "body": {
+                            "value": {
+                                "name": "My filter",
+                                "filter": {
+                                    "logicalOperator": {
+                                        "type": "LOGICAL_OPERATOR",
+                                        "label": "OR",
+                                        "value": "OR"
+                                    },
+                                    "criteria": [
+                                        {
+                                            "value": 400,
+                                            "operator": {
+                                                "type": "NUMERICAL_OPERATOR",
+                                                "variant": "ANY_ELEMENT",
+                                                "value": "less than",
+                                                "label": "<"
+                                            },
+                                            "attribute": "EchoTime"
+                                        }
+                                    ],
+                                    "expressions": []
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "The updated filter",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../imageFilter.schema.json#/definitions/getFilterResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "uuid": "4c636555d3963f0a65312032bf001eb7",
+                                    "name": "My filter",
+                                    "owner": {
+                                        "lastname": "Bliault",
+                                        "name": "Grégory",
+                                        "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                    },
+                                    "filter": {
+                                        "logicalOperator": {
+                                            "type": "LOGICAL_OPERATOR",
+                                            "label": "OR",
+                                            "value": "OR"
+                                        },
+                                        "criteria": [
+                                            {
+                                                "value": 400,
+                                                "operator": {
+                                                    "type": "NUMERICAL_OPERATOR",
+                                                    "variant": "ANY_ELEMENT",
+                                                    "value": "less than",
+                                                    "label": "<"
+                                                },
+                                                "attribute": "EchoTime"
+                                            }
+                                        ],
+                                        "expressions": []
+                                    }
+                                },
+                                "summary": "The updated filter returned by the endpoint"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

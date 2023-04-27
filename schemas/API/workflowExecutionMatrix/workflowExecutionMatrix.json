@@ -1,0 +1,186 @@
+{
+    "get": {
+        "tags": [
+            "workflow execution matrix"
+        ],
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "description": "Get the list of workflow execution matrix for the current user",
+        "summary": "/api/workflow-execution-matrix/",
+        "responses": {
+            "200": {
+                "description": "The list of workflow execution matrix",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixListResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "workflowExecutionMatrixList": [
+                                        {
+                                            "name": "Execution 1",
+                                            "creationDate": "2023-04-11T16:38:22.213Z",
+                                            "modificationDate": "2023-04-11T16:38:22.213Z",
+                                            "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "cohorts": [
+                                                {
+                                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                                    "count": 4
+                                                },
+                                                {
+                                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                                    "count": 9
+                                                }
+                                            ],
+                                            "workflow": {
+                                                "uuid": "b91d796f1452d1a9338b8e470d13c35d"
+                                            },
+                                            "status": "LAUNCHED",
+                                            "statusOfExecutions": {
+                                                "error": 1,
+                                                "done": 0,
+                                                "running": 4
+                                            }
+                                        },
+                                        {
+                                            "creationDate": "2023-04-11T16:38:22.213Z",
+                                            "modificationDate": "2023-04-11T16:38:22.213Z",
+                                            "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "cohorts": [],
+                                            "workflow": {
+                                                "uuid": "b91d796f1452d1a9338b8e470d13c35d"
+                                            },
+                                            "status": "DRAFT_2_SELECT_INPUT_DATA"
+                                        }
+                                    ],
+                                    "workflows": [
+                                        {
+                                            "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "name": "workflow1"
+                                        }
+                                    ],
+                                    "cohorts": [
+                                        {
+                                            "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                            "name": "cohort1"
+                                        }
+                                    ]
+                                },
+                                "summary": "Example of response with one matrix in the list"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    },
+    "post": {
+        "tags": [
+            "workflow execution matrix"
+        ],
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "description": "Post a new workflow execution matrix",
+        "summary": "/api/workflow-execution-matrix/",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixBody"
+                    },
+                    "examples": {
+                        "save": {
+                            "value": {
+                                "workflow": {
+                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d"
+                                },
+                                "status": "DRAFT_1_SELECT_WORKFLOW"
+                            }
+                        },
+                        "gostep2": {
+                            "value": {
+                                "workflow": {
+                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d"
+                                },
+                                "status": "DRAFT_2_SELECT_INPUT_DATA"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "The created wf exec matrix",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixResponse"
+                        },
+                        "examples": {
+                            "went step 2": {
+                                "value": {
+                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                    "workflow": {
+                                        "name": "name of the workflow",
+                                        "uuid": "b91d796f1452d1a9338b8e470d012780"
+                                    },
+                                    "creationDate": "2023-04-11T16:38:22.213Z",
+                                    "modificationDate": "2023-04-11T16:38:22.213Z",
+                                    "inputConfig": {
+                                        "inputA": {
+                                            "isRequired": true,
+                                            "name": "name of the input A",
+                                            "type": "FILTER_RESULT_SNAPSHOT"
+                                        },
+                                        "inputB": {
+                                            "isRequired": false,
+                                            "name": "name of the input B",
+                                            "type": "CONSTANT"
+                                        }
+                                    },
+                                    "status": "DRAFT_2_SELECT_INPUT_DATA",
+                                    "statistics": {
+                                        "cohort": 0,
+                                        "image": 0,
+                                        "subject": 0,
+                                        "visit": 0
+                                    }
+                                }
+                            },
+                            "saved step 1": {
+                                "value": {
+                                    "creationDate": "2023-04-11T16:38:22.213Z",
+                                    "modificationDate": "2023-04-11T16:38:22.213Z",
+                                    "uuid": "b91d796f1452d1a9338b8e470d13c35d",
+                                    "status": "DRAFT_1_SELECT_WORKFLOW",
+                                    "statistics": {
+                                        "cohort": 0,
+                                        "image": 0,
+                                        "subject": 0,
+                                        "visit": 0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

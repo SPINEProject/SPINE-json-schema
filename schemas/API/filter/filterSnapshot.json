@@ -1,0 +1,203 @@
+{
+    "get": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "filter"
+        ],
+        "parameters": [
+            {
+                "in": "query",
+                "name": "filterId",
+                "schema": {
+                    "type": "string"
+                }
+            }
+        ],
+        "summary": "/api/filter-snapshot/",
+        "description": "Post a new filter snapshot",
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../imageFilterSnapshot.schema.json#/definitions/getFilterSnapshotListResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": [
+                                    {
+                                        "uuid": "b91d796f1452d1a9338b8e470d01609e",
+                                        "name": "snapshot 1",
+                                        "queryDate": "2023-01-18T15:47:58.517Z",
+                                        "owner": {
+                                            "lastname": "User",
+                                            "name": "Example",
+                                            "uuid": "dd4ed604-3adb-4388-8a94-91accd8d824d"
+                                        },
+                                        "cohortIdList": [
+                                            "739a76b58e5194af231865f64a00e9ae"
+                                        ],
+                                        "imageFilterId": "955cdb47-0a51-4cf4-a200-13828ae361db"
+                                    }
+                                ],
+                                "summary": "A list of filter snapshots returned by the endpoint"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    },
+    "post": {
+        "tags": [
+            "filter"
+        ],
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "summary": "/api/filter-snapshot/",
+        "description": "Post a new filter snapshot",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../imageFilterSnapshot.schema.json#/definitions/postFilterSnapshotBody"
+                    },
+                    "examples": {
+                        "body": {
+                            "value": {
+                                "name": "snapshot 1",
+                                "imageFilterId": "91e185108f10e13dc557dc900320768d",
+                                "cohortIdList": [
+                                    "91e185108f10e13dc557dc900320768d",
+                                    "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "The created filter snapshot",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../imageFilterSnapshot.schema.json#/definitions/getFilterSnapshotResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "uuid": "b91d796f1452d1a9338b8e470d01609e",
+                                    "name": "snapshot 1",
+                                    "owner": {
+                                        "lastname": "User",
+                                        "name": "Example",
+                                        "uuid": "dd4ed604-3adb-4388-8a94-91accd8d824d"
+                                    },
+                                    "cohortIdList": [
+                                        "739a76b58e5194af231865f64a00e9ae"
+                                    ],
+                                    "imageFilterId": "955cdb47-0a51-4cf4-a200-13828ae361db",
+                                    "result": {
+                                        "cohort": {
+                                            "c3e9229d-d517-4ab0-bae8-774b54c7d482": {
+                                                "subject": {
+                                                    "4a7d619ba222410010ca7b8ebb00dafb": {
+                                                        "visit": {
+                                                            "4a7d619ba222410010ca7b8ebb00e5e6": {
+                                                                "image": [
+                                                                    {
+                                                                        "id": "4a7d619ba222410010ca7b8ebb00f08e",
+                                                                        "comments": ""
+                                                                    },
+                                                                    {
+                                                                        "id": "b91d796f1452d1a9338b8e470d004078",
+                                                                        "comments": ""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    },
+                                                    "4a7d619ba222410010ca7b8ebb00dafc": {
+                                                        "visit": {
+                                                            "4a7d619ba222410010ca7b8ebb00e5ea": {
+                                                                "image": [
+                                                                    {
+                                                                        "id": "b91d796f1452d1a9338b8e470d0075be",
+                                                                        "comments": ""
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "4a7d619ba222410010ca7b8ebb00e5e6": {
+                                                                "image": [
+                                                                    {
+                                                                        "id": "b91d796f1452d1a9338b8e470d00ac16",
+                                                                        "comments": ""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "c3e9229d-d517-4ab0-bae8-774b54c7d486": {
+                                                "subject": {
+                                                    "4a7d619ba222410010ca7b8ebb00dafc": {
+                                                        "visit": {
+                                                            "4a7d619ba222410010ca7b8ebb00e5e6": {
+                                                                "image": [
+                                                                    {
+                                                                        "id": "b91d796f1452d1a9338b8e470d00f580",
+                                                                        "comments": ""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "c3e9229d-d517-4ab0-bae8-774b54c7d487": {
+                                                "subject": {
+                                                    "4a7d619ba222410010ca7b8ebb00dafc": {
+                                                        "visit": {
+                                                            "4a7d619ba222410010ca7b8ebb00e5e6": {
+                                                                "image": [
+                                                                    {
+                                                                        "id": "b91d796f1452d1a9338b8e470d01525e",
+                                                                        "comments": ""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "queryDate": "2023-01-18T15:47:58.517Z"
+                                },
+                                "summary": "The created filter snapshot returned by the endpoint"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

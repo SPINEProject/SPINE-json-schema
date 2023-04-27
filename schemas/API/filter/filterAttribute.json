@@ -1,0 +1,460 @@
+{
+    "get": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "filter"
+        ],
+        "description": "Get the list of filter attributes",
+        "summary": "/api/filter/attribute",
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../imageFilterAttribute.schema.json#/definitions/getAttributeListResponseAPIDocumentation"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": [
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "SliceThickness",
+                                        "attributeLabel": "Slice thickness",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 0.89999997615814,
+                                            "max": 8,
+                                            "enum": [
+                                                0.89999997615814,
+                                                8
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "ImageType",
+                                        "attributeLabel": "Image type",
+                                        "multiplicityMin": 2,
+                                        "multiplicityMax": "N",
+                                        "isOrdered": true,
+                                        "options": {
+                                            "areOtherValuesAllowed": true,
+                                            "enum": [
+                                                "PRIMARY"
+                                            ]
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "ORIGINAL",
+                                                "PRIMARY",
+                                                "M",
+                                                "NORM",
+                                                "DIS2D",
+                                                "OTHER",
+                                                "DERIVED",
+                                                "SECONDARY",
+                                                "SCREEN SAVE",
+                                                "REFORMATTED",
+                                                "PROPELLER",
+                                                "NONE",
+                                                "ADC",
+                                                "T2",
+                                                "CMB",
+                                                "EADC"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "EchoTime",
+                                        "attributeLabel": "Echo time",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": "N",
+                                        "isOrdered": false,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 1.276,
+                                            "max": 132.184,
+                                            "enum": []
+                                        }
+                                    },
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "InversionTime",
+                                        "attributeLabel": "Inversion time",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 150,
+                                            "max": 2200,
+                                            "enum": []
+                                        }
+                                    },
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "PixelSpacing.1",
+                                        "attributeLabel": "Pixel spacing - first value",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 0.3906,
+                                            "max": 4.6875,
+                                            "enum": []
+                                        }
+                                    },
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "PixelSpacing.2",
+                                        "attributeLabel": "Pixel spacing - second value",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 0.3906,
+                                            "max": 4.6875,
+                                            "enum": []
+                                        }
+                                    },
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "RepetitionTime",
+                                        "attributeLabel": "Repetition time",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 4.792,
+                                            "max": 10002,
+                                            "enum": []
+                                        }
+                                    },
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "PixelBandwidth",
+                                        "attributeLabel": "Pixel bandwidth",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 48.8281,
+                                            "max": 1953.12,
+                                            "enum": []
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "InstitutionName",
+                                        "attributeLabel": "Institution name",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "isOrdered": false,
+                                        "options": {},
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "MGH"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "ReceiveCoilName",
+                                        "attributeLabel": "Receive coil name",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "isOrdered": false,
+                                        "options": {},
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "HNS NVHead",
+                                                "BODY",
+                                                "HNS- CTLMID",
+                                                "HNS- CTL234",
+                                                "8CTL234",
+                                                "8CTL12",
+                                                "8CTLMID",
+                                                "8CTLTOP",
+                                                "8HRBRAIN",
+                                                "HNS- CTL123",
+                                                "HNS Head"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "Manufacturer",
+                                        "attributeLabel": "Manufacturer",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "isOrdered": false,
+                                        "options": {},
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "SIEMENS",
+                                                "GE MEDICAL SYSTEMS"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "SeriesDescription",
+                                        "attributeLabel": "Series description",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "isOrdered": false,
+                                        "options": {},
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "AX T1 (mprage)",
+                                                "Sag SPGR",
+                                                "Ax MS Iso Diffusion",
+                                                "Ax T2/PD",
+                                                "Calibration Scan",
+                                                "FA (color)",
+                                                "DWI",
+                                                "FA",
+                                                "Screen save",
+                                                "Ax T1 Pre",
+                                                "T-SAG STIR",
+                                                "T-Sag T1",
+                                                "T-Sag T1-POST",
+                                                "T-AX T2 FSE",
+                                                "T-AX T1 FSE  PRE",
+                                                "T-Sag T2 FSE H",
+                                                "T-Sag T1-Post",
+                                                "Sag 3-Plane Loc",
+                                                "C-Sag T1 Post",
+                                                "Screen Save",
+                                                "3-Plane Loc Upper",
+                                                "C-SAG STIR",
+                                                "C-AX T2 FRFSE",
+                                                "COR FSE T2- FOCAL SEIZURE",
+                                                "AX FLAIR",
+                                                "Localizer",
+                                                "C-Sag T1",
+                                                "3-PLANE T2* FGRE S",
+                                                "Reformatted",
+                                                "ZERO-B",
+                                                "Ax T1 Post",
+                                                "EXP",
+                                                "Ax Iso Diffusion",
+                                                "Prop T2 1 acq",
+                                                "ADC",
+                                                "PROP ADC",
+                                                "Prop DWI 1 acq",
+                                                "PROP COMB",
+                                                "Ax FLAIR T2 Post",
+                                                "PROP eADC"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "ScanningSequence",
+                                        "attributeLabel": "Scanning sequence",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": "N",
+                                        "isOrdered": false,
+                                        "options": {},
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "Gradient Recalled",
+                                                "Inversion Recovery",
+                                                "Echo Planar",
+                                                "Research Mode",
+                                                "Spin Echo"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "SequenceVariant",
+                                        "attributeLabel": "Sequence variant",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": "N",
+                                        "isOrdered": false,
+                                        "options": {},
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "Spoiled",
+                                                "MAG Prepared",
+                                                "Steady State",
+                                                "None",
+                                                "Segmented k-Space",
+                                                "Oversampling Phase"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "ScanOptions",
+                                        "attributeLabel": "Scan options",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": "N",
+                                        "isOrdered": false,
+                                        "options": {},
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "IR",
+                                                "EDR_GEMS",
+                                                "SAT_GEMS",
+                                                "EPI_GEMS",
+                                                "PFF",
+                                                "SP",
+                                                "FAST_GEMS",
+                                                "FC_SLICE_AX_GEMS",
+                                                "FC",
+                                                "TRF_GEMS",
+                                                "FILTERED_GEMS",
+                                                "PFP",
+                                                "FC_FREQ_AX_GEMS",
+                                                "NPW",
+                                                "SEQ_GEMS",
+                                                "PROP_GEMS",
+                                                "FS"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "SequenceName",
+                                        "attributeLabel": "Sequence name",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "isOrdered": false,
+                                        "options": {},
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "*tfl3d1"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "ManufacturerModelName",
+                                        "attributeLabel": "Manufacturer model name",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "isOrdered": false,
+                                        "options": {},
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "Verio",
+                                                "Signa HDxt",
+                                                "SIGNA HDx"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "STRING",
+                                        "attributeKey": "StationName",
+                                        "attributeLabel": "Station name",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "isOrdered": false,
+                                        "options": {},
+                                        "optionsFromSelectedCohorts": {
+                                            "enum": [
+                                                "MR1EL2",
+                                                "MR1W1"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "DIM.2",
+                                        "attributeLabel": "Dimension 2",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 64,
+                                            "max": 512,
+                                            "enum": []
+                                        }
+                                    },
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "DIM.3",
+                                        "attributeLabel": "Dimension 3",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 3,
+                                            "max": 2128,
+                                            "enum": []
+                                        }
+                                    },
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "DIM.1",
+                                        "attributeLabel": "Dimension 1",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 64,
+                                            "max": 512,
+                                            "enum": [
+                                                64,
+                                                512
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "NUMBER",
+                                        "attributeKey": "DIM.4",
+                                        "attributeLabel": "Dimension 4",
+                                        "multiplicityMin": 1,
+                                        "multiplicityMax": 1,
+                                        "options": {
+                                            "min": 0
+                                        },
+                                        "optionsFromSelectedCohorts": {
+                                            "min": 50,
+                                            "max": 76,
+                                            "enum": []
+                                        }
+                                    }
+                                ],
+                                "summary": "A list of attributes"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}
