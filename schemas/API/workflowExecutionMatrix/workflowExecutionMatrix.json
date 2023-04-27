@@ -8,7 +8,8 @@
                 "bearerAuth": []
             }
         ],
-        "summary": "Get the list of workflow execution matrix for the current user",
+        "description": "Get the list of workflow execution matrix for the current user",
+        "summary": "/api/workflow-execution-matrix/",
         "responses": {
             "200": {
                 "description": "The list of workflow execution matrix",
@@ -90,7 +91,8 @@
                 "bearerAuth": []
             }
         ],
-        "summary": "Post a new workflow execution matrix",
+        "description": "Post a new workflow execution matrix",
+        "summary": "/api/workflow-execution-matrix/",
         "requestBody": {
             "required": true,
             "content": {
@@ -149,16 +151,27 @@
                                             "type": "CONSTANT"
                                         }
                                     },
-                                    "status": "DRAFT_2_SELECT_INPUT_DATA"
+                                    "status": "DRAFT_2_SELECT_INPUT_DATA",
+                                    "statistics": {
+                                        "cohort": 0,
+                                        "image": 0,
+                                        "subject": 0,
+                                        "visit": 0
+                                    }
                                 }
                             },
                             "saved step 1": {
                                 "value": {
                                     "creationDate": "2023-04-11T16:38:22.213Z",
-                                    
                                     "modificationDate": "2023-04-11T16:38:22.213Z",
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",
-                                    "status": "DRAFT_1_SELECT_WORKFLOW"
+                                    "status": "DRAFT_1_SELECT_WORKFLOW",
+                                    "statistics": {
+                                        "cohort": 0,
+                                        "image": 0,
+                                        "subject": 0,
+                                        "visit": 0
+                                    }
                                 }
                             }
                         }

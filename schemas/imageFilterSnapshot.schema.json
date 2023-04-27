@@ -4,7 +4,6 @@
     "title": "Schema to filter snapshots",
     "type": "object",
     "definitions": {
-            
         "owner": {
             "type": "object",
             "properties": {
@@ -270,7 +269,6 @@
                 "image": {
                     "type": "number"
                 }
-
             },
             "required": [
                 "cohort",

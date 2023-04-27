@@ -8,7 +8,8 @@
         "tags": [
             "filter"
         ],
-        "summary": "Get the list of filter attributes",
+        "description": "Get the list of filter attributes",
+        "summary": "/api/filter/attribute",
         "responses": {
             "200": {
                 "description": "200",

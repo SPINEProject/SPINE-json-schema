@@ -18,7 +18,8 @@
         "tags": [
             "filter"
         ],
-        "summary": "Get a filter by ID",
+        "summary": "/api/filter/{filterId}",
+        "description": "Get a specific filter",
         "responses": {
             "200": {
                 "description": "200",
@@ -78,7 +79,8 @@
         "tags": [
             "filter"
         ],
-        "summary": "Delete a filter. It is not possible to delete a filter if the filter already has snapshots associated.",
+        "summary": "/api/filter/{filterId}",
+        "description": "Delete a filter. It is not possible to delete a filter if the filter already has snapshots associated.",
         "responses": {
             "200": {
                 "description": "200"
@@ -97,7 +99,8 @@
                 "bearerAuth": []
             }
         ],
-        "summary": "Update a filter. It is not possible to update the filter if a snapshot was already published.",
+        "summary": "/api/filter/{filterId}",
+        "description": "Update a filter. It is not possible to update the filter if a snapshot was already published.",
         "requestBody": {
             "required": true,
             "content": {

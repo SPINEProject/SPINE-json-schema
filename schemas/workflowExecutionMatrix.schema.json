@@ -145,7 +145,7 @@
             }
         },
         "matrix": {
-            "decription": "The matrix",
+            "description": "The matrix",
             "type": "object",
             "properties": {
                 "cohort": {
@@ -755,7 +755,6 @@
                 "workflow",
                 "inputConfig",
                 "creationDate",
-                
                 "statistics",
                 "modificationDate"
             ]

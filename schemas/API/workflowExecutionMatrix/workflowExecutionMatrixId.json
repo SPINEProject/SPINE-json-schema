@@ -18,7 +18,8 @@
         "tags": [
             "workflow execution matrix"
         ],
-        "summary": "Get a workflow execution matrix",
+        "summary": "/api/workflow-execution-matrix/workflowExecutionMatrixId",
+        "description": "Get a workflow execution matrix",
         "responses": {
             "200": {
                 "description": "200",
@@ -32,7 +33,6 @@
                                 "value": {
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                     "workflow": {
-                                        
                                         "name": "name of the workflow",
                                         "uuid": "b91d796f1452d1a9338b8e470d012780"
                                     },
@@ -52,7 +52,13 @@
                                     },
                                     "creationDate": "2023-04-11T16:38:22.213Z",
                                     "modificationDate": "2023-04-11T16:38:22.213Z",
-                                    "status": "DRAFT_2_SELECT_INPUT_DATA"
+                                    "status": "DRAFT_2_SELECT_INPUT_DATA",
+                                    "statistics": {
+                                        "cohort": 0,
+                                        "image": 0,
+                                        "subject": 0,
+                                        "visit": 0
+                                    }
                                 },
                                 "summary": "Example of response when the matrix in step 2"
                             },
@@ -61,7 +67,13 @@
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                     "creationDate": "2023-04-11T16:38:22.213Z",
                                     "modificationDate": "2023-04-11T16:38:22.213Z",
-                                    "status": "DRAFT_1_SELECT_WORKFLOW"
+                                    "status": "DRAFT_1_SELECT_WORKFLOW",
+                                    "statistics": {
+                                        "cohort": 0,
+                                        "image": 0,
+                                        "subject": 0,
+                                        "visit": 0
+                                    }
                                 },
                                 "summary": "Example of response when the matrix in step 1"
                             }
@@ -83,7 +95,8 @@
         "tags": [
             "workflow execution matrix"
         ],
-        "summary": "Update a workflow execution matrix",
+        "summary": "/api/workflow-execution-matrix/workflowExecutionMatrixId",
+        "description": "Update a workflow execution matrix",
         "requestBody": {
             "required": true,
             "content": {
@@ -163,7 +176,13 @@
                                             "value": 2
                                         }
                                     },
-                                    "status": "DRAFT_2_SELECT_INPUT_DATA"
+                                    "status": "DRAFT_2_SELECT_INPUT_DATA",
+                                    "statistics": {
+                                        "cohort": 0,
+                                        "image": 0,
+                                        "subject": 0,
+                                        "visit": 0
+                                    }
                                 },
                                 "summary": "Example of response when the matrix in step 2"
                             },
@@ -172,7 +191,13 @@
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",
                                     "status": "DRAFT_1_SELECT_WORKFLOW",
                                     "creationDate": "2023-04-11T16:38:22.213Z",
-                                    "modificationDate": "2023-04-11T16:38:22.213Z"
+                                    "modificationDate": "2023-04-11T16:38:22.213Z",
+                                    "statistics": {
+                                        "cohort": 0,
+                                        "image": 0,
+                                        "subject": 0,
+                                        "visit": 0
+                                    }
                                 },
                                 "summary": "Example of response when the matrix in step 1"
                             }
