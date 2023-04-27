@@ -122,15 +122,9 @@
                             "value": {
                                 "inputConfig": {
                                     "inputA": {
-                                        "isRequired": true,
-                                        "name": "name of the input A",
-                                        "type": "FILTER_RESULT_SNAPSHOT",
                                         "value": "b91d796f1452d1a9338b8e470d01609e"
                                     },
                                     "inputB": {
-                                        "isRequired": false,
-                                        "name": "name of the input B",
-                                        "type": "CONSTANT",
                                         "value": 2
                                     }
                                 },
