@@ -3,21 +3,6 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "SPINE Workflow schemas",
     "type": "object",
-    "definitions": {
-        "getWorkflowAllDocsResponse": {
-            "properties": {
-                "workflow": {
-                    "type": "object"
-                },
-                "tasks": {
-                    "type": "object"
-                },
-                "tools": {
-                    "type": "object"
-                }
-            }
-        }
-    },
     "properties": {
         "name": {
             "description": "Workflow name",
