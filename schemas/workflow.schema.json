@@ -1,185 +1,224 @@
 {
-  "$id":"https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflow.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "SPINE Workflow",
-  "type": "object",
-  "properties": {
-    "name": {
-      "description":"Workflow name",
-      "type":"string"
-    },
-    "description": {
-      "description":"Workflow description",
-      "type":"string"
-    },
-    "version": {
-      "description":"Workflow version",
-      "type":"string"
-    },
-    "owner": {
-      "description":"Workflow owner",
-      "type":"string"
-    },
-    "privacy": {
-      "description":"Workflow privacy",
-        "type":"string",
-        "enum":["PUBLIC","PRIVATE"]
-      },
-    "creationDate": {
-      "description":"Workflow date of creation",
-      "type":"string"
-    },
-    "inputs":{
-      "description": "Object with the inputs of the Workflow",
-      "$ref":"task.schema.json#/definitions/spineInputsTask"
-    },
-    "constants":{
-      "description": "Object with the constant inputs of the Workflow",
-      "$ref":"task.schema.json#/definitions/spineInputsTask"
-    },
-    "outputs":{
-      "description": "Object with the outputs of the Workflow",
-      "$ref":"task.schema.json#/definitions/spineOutputsTask"
-    },
-    "tasks":{
-      "type": "object",
-      "description": "The list of task. Another workflow can be a task for a workflow.",
-      "minProperties": 1,
-      "patternProperties" : {
-        ".*" : {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "description":{
-              "description":"Task description",
-              "type":"string"
-            },
-            "name":{
-              "description":"Task human readable name",
-              "type":"string"
-            },
-            "taskId":{
-              "description":"UUID of the task or workflow descriptor",
-              "type":"string"
-            }
-          }
-        }
-      }
-    },
-    "connectionsBetweenWorkflowAndTasks": {
-      "type": "object",
-      "description": "The connections between the workflow input/output and the tasks input/output.",
-      "additionalProperties": false,
-      "properties": {
-        "inputs": {
-          "type": "object",
-          "description": "The connections between the workflow input/constants and the tasks input.",
-          "minProperties": 1,
-          "patternProperties" : {
-            ".*" : {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "workflowInput":{
-                  "description":"ID of the workflow input",
-                  "type":"string"
+    "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflow.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "SPINE Workflow schemas",
+    "type": "object",
+    "definitions": {
+        "getWorkflowAllDocsResponse": {
+            "properties": {
+                "workflow": {
+                    "type": "object"
                 },
-                "task":{
-                  "description":"Task on which to connect the workflow input",
-                  "type":"object",
-                  "properties": {
-                    "name":{
-                      "description":"Task key",
-                      "type":"string"
-                    },
-                    "input": {
-                      "description":"ID of the task input to connected to the workflow input",
-                      "type":"string"
-                    }
-                  }
+                "tasks": {
+                    "type": "object"
+                },
+                "tools": {
+                    "type": "object"
                 }
-              }
             }
-          }
+        }
+    },
+    "properties": {
+        "name": {
+            "description": "Workflow name",
+            "type": "string"
+        },
+        "description": {
+            "description": "Workflow description",
+            "type": "string"
+        },
+        "version": {
+            "description": "Workflow version",
+            "type": "string"
+        },
+        "owner": {
+            "description": "Workflow owner",
+            "type": "string"
+        },
+        "privacy": {
+            "description": "Workflow privacy",
+            "type": "string",
+            "enum": [
+                "PUBLIC",
+                "PRIVATE"
+            ]
+        },
+        "creationDate": {
+            "description": "Workflow date of creation",
+            "type": "string"
+        },
+        "inputs": {
+            "description": "Object with the inputs of the Workflow",
+            "$ref": "task.schema.json#/definitions/spineInputsTask"
+        },
+        "constants": {
+            "description": "Object with the constant inputs of the Workflow",
+            "$ref": "task.schema.json#/definitions/spineInputsTask"
         },
         "outputs": {
-          "type": "object",
-          "description": "The connections between the workflow outputs and the tasks outputs.",
-          "minProperties": 1,
-          "patternProperties" : {
-            ".*" : {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "workflowOutput":{
-                  "description":"ID of the workflow output",
-                  "type":"string"
-                },
-                "task":{
-                  "description":"Task on which to connect the workflow output",
-                  "type":"object",
-                  "properties": {
-                    "name":{
-                      "description":"Task key",
-                      "type":"string"
-                    },
-                    "output": {
-                      "description":"ID of the task output to connected to the workflow output",
-                      "type":"string"
+            "description": "Object with the outputs of the Workflow",
+            "$ref": "task.schema.json#/definitions/spineOutputsTask"
+        },
+        "tasks": {
+            "type": "object",
+            "description": "The list of task. Another workflow can be a task for a workflow.",
+            "minProperties": 1,
+            "patternProperties": {
+                ".*": {
+                    "additionalProperties": false,
+                    "type": "object",
+                    "properties": {
+                        "description": {
+                            "description": "Task description",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Task human readable name",
+                            "type": "string"
+                        },
+                        "taskId": {
+                            "description": "UUID of the task or workflow descriptor",
+                            "type": "string"
+                        }
                     }
-                  }
                 }
-              }
             }
-          }
+        },
+        "connectionsBetweenWorkflowAndTasks": {
+            "type": "object",
+            "description": "The connections between the workflow input/output and the tasks input/output.",
+            "additionalProperties": false,
+            "properties": {
+                "inputs": {
+                    "type": "object",
+                    "description": "The connections between the workflow input/constants and the tasks input.",
+                    "minProperties": 1,
+                    "patternProperties": {
+                        ".*": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "workflowInput": {
+                                    "description": "ID of the workflow input",
+                                    "type": "string"
+                                },
+                                "task": {
+                                    "description": "Task on which to connect the workflow input",
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "description": "Task key",
+                                            "type": "string"
+                                        },
+                                        "input": {
+                                            "description": "ID of the task input to connected to the workflow input",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "outputs": {
+                    "type": "object",
+                    "description": "The connections between the workflow outputs and the tasks outputs.",
+                    "minProperties": 1,
+                    "patternProperties": {
+                        ".*": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "workflowOutput": {
+                                    "description": "ID of the workflow output",
+                                    "type": "string"
+                                },
+                                "task": {
+                                    "description": "Task on which to connect the workflow output",
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "description": "Task key",
+                                            "type": "string"
+                                        },
+                                        "output": {
+                                            "description": "ID of the task output to connected to the workflow output",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "connectionsBetweenTasks": {
+            "description": "Connections between the outputs and inputs of the tasks and internal workflows",
+            "patternProperties": {
+                ".*": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "fromTask": {
+                            "description": "Output of a task to connect",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "Name of the task",
+                                    "type": "string"
+                                },
+                                "output": {
+                                    "description": "Name of the output in the task",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "output"
+                            ]
+                        },
+                        "toTask": {
+                            "description": "Intput of a task to be connect",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "Name of the task",
+                                    "type": "string"
+                                },
+                                "input": {
+                                    "description": "Name of the input in the task",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "input"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "fromTask",
+                        "toTask"
+                    ]
+                }
+            }
         }
-      }
     },
-    "connectionsBetweenTasks":{
-      "description": "Connections between the outputs and inputs of the tasks and internal workflows",
-      "patternProperties" : {
-        ".*": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "fromTask": {
-              "description": "Output of a task to connect",
-              "type": "object",
-              "properties": {
-                "name":{
-                  "description":"Name of the task",
-                  "type": "string"
-                },
-                "output":{
-                  "description":"Name of the output in the task",
-                  "type": "string"
-                }
-              },
-              "required":["name", "output"]
-            },
-            "toTask": {
-              "description": "Intput of a task to be connect",
-              "type": "object",
-              "properties": {
-                "name":{
-                  "description":"Name of the task",
-                  "type": "string"
-                },
-                "input":{
-                  "description":"Name of the input in the task",
-                  "type": "string"
-                }
-              },
-              "required":["name", "input"]
-            }
-          },
-          "required":["fromTask", "toTask"]
-        }
-      }
-    }
-  },
-  "required": ["name","uuid","description","version","owner","privacy",
-    "creationDate","inputs","outputs", "constants",
-    "tasks","connectionsBetweenWorkflowAndTasks","connectionsBetweenTasks"],
-  "additionalProperties": false
+    "required": [
+        "name",
+        "uuid",
+        "description",
+        "version",
+        "owner",
+        "privacy",
+        "creationDate",
+        "inputs",
+        "outputs",
+        "constants",
+        "tasks",
+        "connectionsBetweenWorkflowAndTasks",
+        "connectionsBetweenTasks"
+    ],
+    "additionalProperties": false
 }

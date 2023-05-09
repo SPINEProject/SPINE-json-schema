@@ -91,6 +91,25 @@
                 }
             }
         },
+        "matrixRaters": {
+            "type": "object",
+            "description": "List of raters for this visit",
+            "additionalProperties": {
+                "type": "object",
+                "items": {
+                    "properties": {
+                        "firstname": {
+                            "type": "string",
+                            "description": "User firstname"
+                        },
+                        "lastname": {
+                            "type": "string",
+                            "description": "User lastname"
+                        }
+                    }
+                }
+            }
+        },
         "matrixVisitDetails": {
             "type": "object",
             "properties": {
@@ -99,6 +118,9 @@
                 },
                 "inputs": {
                     "$ref": "#/definitions/matrixInput"
+                },
+                "raters": {
+                    "$ref": "#/definitions/matrixRaters"
                 }
             },
             "additionalProperties": false
@@ -395,6 +417,9 @@
                 "docType": {
                     "$ref": "#/definitions/workflowExecutionMatrixDocType"
                 },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
+                },
                 "status": {
                     "$ref": "#/definitions/workflowExecutionMatrixStatus"
                 },
@@ -555,6 +580,9 @@
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfigPost"
+                },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
                 },
                 "matrix": {
                     "$ref": "#/definitions/matrix"
@@ -727,6 +755,9 @@
                 "uuid": {
                     "type": "string"
                 },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
+                },
                 "statistics": {
                     "$ref": "#/definitions/workflowExecutionMatrixStatistics"
                 },
@@ -769,6 +800,9 @@
                     "enum": [
                         "DRAFT_3_SELECT_RATER"
                     ]
+                },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
                 },
                 "uuid": {
                     "type": "string"
@@ -823,6 +857,9 @@
                 "uuid": {
                     "type": "string"
                 },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
+                },
                 "workflow": {
                     "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
                 },
@@ -874,6 +911,9 @@
                 },
                 "matrix": {
                     "$ref": "#/definitions/matrix"
+                },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
                 }
             },
             "required": [

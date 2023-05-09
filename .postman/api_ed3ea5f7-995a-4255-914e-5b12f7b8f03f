@@ -24,6 +24,7 @@ files[] = {"path":"API/filter/filterSnapshot.json","metaData":{}}
 files[] = {"path":"API/filter/filterSnapshotId.json","metaData":{}}
 files[] = {"path":"API/filter/filterSnapshotIdStatistics.json","metaData":{}}
 files[] = {"path":"API/index.json","metaData":{}}
+files[] = {"path":"API/workflow/workflowIdAllDocs.json","metaData":{}}
 files[] = {"path":"API/workflowExecutionMatrix/workflowExecutionMatrix.json","metaData":{}}
 files[] = {"path":"API/workflowExecutionMatrix/workflowExecutionMatrixId.json","metaData":{}}
 files[] = {"path":"center.schema.json","metaData":{}}

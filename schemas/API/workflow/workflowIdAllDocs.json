@@ -1,0 +1,1141 @@
+{
+    "parameters": [
+        {
+            "name": "workflowId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "get": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "workflow"
+        ],
+        "summary": "/api/workflow/workflowId/allDocs",
+        "description": "Get a workflow with all documents",
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../workflow.schema.json#/definitions/getWorkflowAllDocsResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "workflow": {
+                                        "_id": "8f09b60a78cf2eb3a438674fec00c4b4",
+                                        "_rev": "2-2f2928911686f471a2b04e1227ace0d4",
+                                        "version": "0.3",
+                                        "inputs": {
+                                            "image": {
+                                                "name": "Input image",
+                                                "description": "Input image",
+                                                "isList": false,
+                                                "type": "imageEntityInOut",
+                                                "imageEntityInOut_Type": "ANATOMICAL",
+                                                "imageEntityInOut_FileFormat": "dicom.gz",
+                                                "required": true
+                                            },
+                                            "icc-volume": {
+                                                "name": "Intra cranial volume",
+                                                "description": "Intra cranial volume that will be used for normalization",
+                                                "type": "Number",
+                                                "isList": false
+                                            }
+                                        },
+                                        "outputs": {
+                                            "medulla-oblongata-volume": {
+                                                "name": "Medulla Oblongata Volume",
+                                                "description": "Volume of the medulla oblongata",
+                                                "type": "annotationInOut",
+                                                "isList": false,
+                                                "annotation": {
+                                                    "typeAnnotationForm": "OPEN_ENDED",
+                                                    "typeAnnotation": "NUMBER",
+                                                    "properties": {}
+                                                }
+                                            },
+                                            "medulla-oblongata-volume-normalized": {
+                                                "name": "Medulla Oblongata Volume Normalized by ICC volume",
+                                                "description": "Volume of the medulla oblongata normalized by ICC",
+                                                "type": "annotationInOut",
+                                                "isList": false,
+                                                "annotation": {
+                                                    "typeAnnotationForm": "OPEN_ENDED",
+                                                    "typeAnnotation": "NUMBER",
+                                                    "properties": {}
+                                                }
+                                            },
+                                            "mean-medulla-oblongata-volume-normalized": {
+                                                "name": "Mean Medulla Oblongata Volume Normalized by ICC volume",
+                                                "description": "Volume of the medulla oblongata divded by the number of slice normalized by ICC",
+                                                "type": "annotationInOut",
+                                                "isList": false,
+                                                "annotation": {
+                                                    "typeAnnotationForm": "OPEN_ENDED",
+                                                    "typeAnnotation": "NUMBER",
+                                                    "properties": {}
+                                                }
+                                            },
+                                            "mean-medulla-oblongata-volume": {
+                                                "name": "Mean Medulla Oblongata Volume",
+                                                "description": "Volume of the medulla oblongata divded by the number of slices",
+                                                "type": "annotationInOut",
+                                                "isList": false,
+                                                "annotation": {
+                                                    "typeAnnotationForm": "OPEN_ENDED",
+                                                    "typeAnnotation": "NUMBER",
+                                                    "properties": {}
+                                                }
+                                            }
+                                        },
+                                        "constants": {
+                                            "label": {
+                                                "name": "Label",
+                                                "description": "Label corresponding to the medulla oblongata",
+                                                "type": "Number",
+                                                "value": 1,
+                                                "isList": false
+                                            },
+                                            "inputShiftingNumber_key": {
+                                                "name": "Number of shifing slices",
+                                                "description": "Number of slice shifing in axial direction for the upper slice",
+                                                "type": "Number",
+                                                "value": 5,
+                                                "isList": false
+                                            },
+                                            "inputShiftingDirection_key": {
+                                                "name": "Direction of shifting slices.",
+                                                "description": "Direction of shifting slices. ",
+                                                "type": "String",
+                                                "value": "AXIAL_CRANIAL",
+                                                "isList": false
+                                            }
+                                        },
+                                        "name": "Miklo's Medulla Oblongata Volume Measurement Workflow",
+                                        "description": "Worfklow to measure the volume of the medulla oblongata",
+                                        "privacy": "PUBLIC",
+                                        "tasks": {
+                                            "lowerbound": {
+                                                "name": "Lower bound",
+                                                "name_fr": "Limite inférieure",
+                                                "description": "The user selects the lower bound",
+                                                "taskId": "8f09b60a78cf2eb3a438674fec00cf34"
+                                            },
+                                            "segmentation": {
+                                                "name": "Segmentation",
+                                                "description": "The user segments the medulla oblongata",
+                                                "taskId": "b9e5860dc809e082903c96e3e1b0f43b"
+                                            },
+                                            "volume-measurement": {
+                                                "name": "Measurement of the volume of the medulla oblongata (4 measurements)",
+                                                "description": "Automatic volume measurement of the medulla oblongata",
+                                                "taskId": "06bf3451e2d63c3bf86b43983801e7f4"
+                                            }
+                                        },
+                                        "connectionsBetweenWorkflowAndTasks": {
+                                            "inputs": {
+                                                "01": {
+                                                    "workflowInput": "image",
+                                                    "task": {
+                                                        "name": "lowerbound",
+                                                        "input": "image"
+                                                    }
+                                                },
+                                                "03": {
+                                                    "workflowInput": "image",
+                                                    "task": {
+                                                        "name": "segmentation",
+                                                        "input": "image"
+                                                    }
+                                                },
+                                                "05": {
+                                                    "workflowInput": "label",
+                                                    "task": {
+                                                        "name": "volume-measurement",
+                                                        "input": "label"
+                                                    }
+                                                },
+                                                "06": {
+                                                    "workflowInput": "icc-volume",
+                                                    "task": {
+                                                        "name": "volume-measurement",
+                                                        "input": "icc"
+                                                    }
+                                                }
+                                            },
+                                            "outputs": {
+                                                "01": {
+                                                    "workflowOutput": "medulla-oblongata-volume",
+                                                    "task": {
+                                                        "name": "volume-measurement",
+                                                        "output": "measurement"
+                                                    }
+                                                },
+                                                "02": {
+                                                    "workflowOutput": "medulla-oblongata-volume-normalized",
+                                                    "task": {
+                                                        "name": "volume-measurement",
+                                                        "output": "measurement2"
+                                                    }
+                                                },
+                                                "03": {
+                                                    "workflowOutput": "mean-medulla-oblongata-volume-normalized",
+                                                    "task": {
+                                                        "name": "volume-measurement",
+                                                        "output": "measurement3"
+                                                    }
+                                                },
+                                                "04": {
+                                                    "workflowOutput": "mean-medulla-oblongata-volume",
+                                                    "task": {
+                                                        "name": "volume-measurement",
+                                                        "output": "measurement4"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "connectionsBetweenTasks": {
+                                            "01": {
+                                                "fromTask": {
+                                                    "name": "lowerbound",
+                                                    "output": "upperSlice"
+                                                },
+                                                "toTask": {
+                                                    "name": "segmentation",
+                                                    "input": "upper-bound"
+                                                }
+                                            },
+                                            "02": {
+                                                "fromTask": {
+                                                    "name": "lowerbound",
+                                                    "output": "slice"
+                                                },
+                                                "toTask": {
+                                                    "name": "segmentation",
+                                                    "input": "lower-bound"
+                                                }
+                                            },
+                                            "04": {
+                                                "fromTask": {
+                                                    "name": "segmentation",
+                                                    "output": "segmentation"
+                                                },
+                                                "toTask": {
+                                                    "name": "volume-measurement",
+                                                    "input": "labelmap"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "tasks": {
+                                        "lowerbound": {
+                                            "_id": "8f09b60a78cf2eb3a438674fec00cf34",
+                                            "_rev": "3-e32c87d8838f771c3b870a475123f24a",
+                                            "name": "Medulla Oblongata lower Slice selection",
+                                            "description": "This task is used to select the lower bound of the medulla oblongata in the image",
+                                            "version": "0.0.3",
+                                            "privacy": "PUBLIC",
+                                            "helpFile": {
+                                                "video": "https://www.youtube.com/watch?v=_BEGorIkzYs&feature=youtu.be",
+                                                "panel": "https://drive.google.com/uc?export=download&id=1THyD_Z4rvbP6iL7Y1kQfJhSb1KAFkel5",
+                                                "video_fr": "https://www.youtube.com/watch?v=AuzE_Wx8Rtw&feature=youtu.be",
+                                                "panel_fr": "https://drive.google.com/uc?export=download&id=1JkEzGKLvJIBEynZdaA4AqmPZXBM6fSEz"
+                                            },
+                                            "process": {
+                                                "type": "manual",
+                                                "execution": {
+                                                    "executor": "SPINE",
+                                                    "descriptorId": "07ddfc16-402a-4134-a929-773f67cbc84e"
+                                                },
+                                                "contributionType": "SINGLE_USER"
+                                            },
+                                            "inputs": {
+                                                "image": {
+                                                    "name": "Input image",
+                                                    "description": "Input image",
+                                                    "isList": false,
+                                                    "type": "imageEntityInOut",
+                                                    "idInDescriptor": "inputImage_key",
+                                                    "imageEntityInOut_Type": "ANATOMICAL",
+                                                    "imageEntityInOut_FileFormat": "dicom.gz",
+                                                    "required": true
+                                                }
+                                            },
+                                            "constants": {
+                                                "inputShiftingNumber_key": {
+                                                    "name": "Number of shifing slices",
+                                                    "description": "Number of slice shifing in axial direction for the upper slice",
+                                                    "type": "Number",
+                                                    "value": 5,
+                                                    "isList": false,
+                                                    "idInDescriptor": "inputShiftingNumber_key"
+                                                },
+                                                "inputShiftingDirection_key": {
+                                                    "name": "Direction of shifting slices.",
+                                                    "description": "Direction of shifting slices. ",
+                                                    "type": "String",
+                                                    "value": "AXIAL_CRANIAL",
+                                                    "isList": false,
+                                                    "idInDescriptor": "inputShiftingDirection_key"
+                                                }
+                                            },
+                                            "outputs": {
+                                                "slice": {
+                                                    "name": "The slice number",
+                                                    "description": "The selected slice number",
+                                                    "isList": false,
+                                                    "type": "roiWithAnnotationsInOut",
+                                                    "typeROI": "EXPLICIT",
+                                                    "annotations": [
+                                                        {
+                                                            "typeAnnotationForm": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+                                                            "propertiesAnnotation": {
+                                                                "isOntologyBased": true,
+                                                                "typeAnnotationOptions": "TEXT",
+                                                                "ontologyId": "https://bioportal.bioontology.org/ontologies/SNOMEDCT",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "http://purl.bioontology.org/ontology/SNOMEDCT/279104005",
+                                                                        "valueToDisplay": "Medulla Oblongata"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "idInDescriptor": "slice_number_axial_key"
+                                                },
+                                                "upperSlice": {
+                                                    "name": "Upper slice number.",
+                                                    "description": "Uppers slice from the 'slice' number. This is shifted by a predefined amount of slices",
+                                                    "isList": false,
+                                                    "type": "roiWithAnnotationsInOut",
+                                                    "typeROI": "EXPLICIT",
+                                                    "annotations": [
+                                                        {
+                                                            "typeAnnotationForm": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+                                                            "propertiesAnnotation": {
+                                                                "isOntologyBased": true,
+                                                                "typeAnnotationOptions": "TEXT",
+                                                                "ontologyId": "https://bioportal.bioontology.org/ontologies/SNOMEDCT",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "http://purl.bioontology.org/ontology/SNOMEDCT/279104005",
+                                                                        "valueToDisplay": "Medulla Oblongata"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "idInDescriptor": "slice_number_axial_shifted_key"
+                                                }
+                                            },
+                                            "owner": "gregory.bliault@u-bordeaux.fr",
+                                            "creationDate": "2020-06-25T11:04:20.181Z",
+                                            "docType": "task"
+                                        },
+                                        "segmentation": {
+                                            "_id": "b9e5860dc809e082903c96e3e1b0f43b",
+                                            "_rev": "1-69b591b67a5bb1158fdec485368b8eb5",
+                                            "name": "Segmentation (Brush)",
+                                            "description": "This task is used to segment something in an image using the paint brush",
+                                            "version": "0.0.1",
+                                            "privacy": "PUBLIC",
+                                            "helpFile": {
+                                                "video": "https://www.youtube.com/watch?v=9JXZHMZYVak",
+                                                "panel": "https://drive.google.com/uc?export=download&id=19UujEMKIvGvFmUMZAtZx3luVod5R0-JP"
+                                            },
+                                            "process": {
+                                                "type": "manual",
+                                                "execution": {
+                                                    "executor": "SPINE",
+                                                    "descriptorId": "90b2f53b-60db-4e25-8146-67ab643f85c5"
+                                                },
+                                                "contributionType": "SINGLE_USER"
+                                            },
+                                            "inputs": {
+                                                "image": {
+                                                    "name": "Input image",
+                                                    "description": "Input image",
+                                                    "isList": false,
+                                                    "type": "imageEntityInOut",
+                                                    "imageEntityInOut_Type": "ANATOMICAL",
+                                                    "imageEntityInOut_FileFormat": "dicom.gz",
+                                                    "required": true,
+                                                    "idInDescriptor": "inputImage_key"
+                                                },
+                                                "lower-bound": {
+                                                    "name": "The lower bound",
+                                                    "description": "The selected slice number for the lower bound",
+                                                    "isList": false,
+                                                    "type": "roiWithAnnotationsInOut",
+                                                    "typeROI": "EXPLICIT",
+                                                    "annotations": [],
+                                                    "idInDescriptor": "lowerSliceNumber_key"
+                                                },
+                                                "upper-bound": {
+                                                    "name": "The upper bound",
+                                                    "description": "The selected slice number for the upper bound",
+                                                    "isList": false,
+                                                    "type": "roiWithAnnotationsInOut",
+                                                    "typeROI": "EXPLICIT",
+                                                    "annotations": [],
+                                                    "idInDescriptor": "upperSliceNumber_key"
+                                                }
+                                            },
+                                            "constants": {},
+                                            "outputs": {
+                                                "segmentation": {
+                                                    "name": "Medulla oblongata segmentation",
+                                                    "description": "The medulla oblongata segmentation from the user",
+                                                    "isList": false,
+                                                    "idInDescriptor": "segmentation_key",
+                                                    "type": "roiWithAnnotationsInOut",
+                                                    "typeROI": "EXPLICIT",
+                                                    "annotations": [
+                                                        {
+                                                            "typeAnnotationForm": "MULTIPLE_CHOICE_SINGLE_ANSWER",
+                                                            "propertiesAnnotation": {
+                                                                "isOntologyBased": true,
+                                                                "typeAnnotationOptions": "TEXT",
+                                                                "ontologyId": "https://bioportal.bioontology.org/ontologies/SNOMEDCT",
+                                                                "options": [
+                                                                    {
+                                                                        "value": "http://purl.bioontology.org/ontology/SNOMEDCT/279104005",
+                                                                        "valueToDisplay": "Medulla Oblongata"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "owner": "admin@test.com",
+                                            "creationDate": "Wed Jul 10 2019 14:05:44 GMT-0400 (GMT-04:00)",
+                                            "docType": "task"
+                                        },
+                                        "volume-measurement": {
+                                            "_id": "06bf3451e2d63c3bf86b43983801e7f4",
+                                            "_rev": "1-ad3b7ebc79e140dc4eb51316307e2e7e",
+                                            "name": "Label Volume Measurement (4 Measurements)",
+                                            "version": "0.1",
+                                            "description": "Measure the volume of one ROI given the label value",
+                                            "privacy": "PUBLIC",
+                                            "process": {
+                                                "type": "auto",
+                                                "execution": {
+                                                    "executor": "bosh",
+                                                    "descriptorId": "06bf3451e2d63c3bf86b43983801deaa"
+                                                }
+                                            },
+                                            "inputs": {
+                                                "labelmap": {
+                                                    "name": "Label Map",
+                                                    "description": "A discrete label map",
+                                                    "type": "imageEntityInOut",
+                                                    "idInDescriptor": "labelmap"
+                                                },
+                                                "label": {
+                                                    "name": "Label",
+                                                    "description": "Labem",
+                                                    "type": "Number",
+                                                    "idInDescriptor": "label"
+                                                },
+                                                "icc": {
+                                                    "name": "ICC",
+                                                    "description": "ICC",
+                                                    "type": "Number",
+                                                    "idInDescriptor": "icc"
+                                                }
+                                            },
+                                            "outputs": {
+                                                "measurement": {
+                                                    "name": "Measurement",
+                                                    "description": "Volume of the region",
+                                                    "type": "annotationInOut",
+                                                    "idInDescriptor": "measurement",
+                                                    "annotation": {
+                                                        "typeAnnotationForm": "OPEN_ENDED",
+                                                        "propertiesAnnotation": {
+                                                            "typeAnnotationOptions": "NUMBER",
+                                                            "options": "Volume"
+                                                        }
+                                                    }
+                                                },
+                                                "measurement2": {
+                                                    "name": "Measurement 2",
+                                                    "description": "Volume of the region",
+                                                    "type": "annotationInOut",
+                                                    "idInDescriptor": "measurement2",
+                                                    "annotation": {
+                                                        "typeAnnotationForm": "OPEN_ENDED",
+                                                        "propertiesAnnotation": {
+                                                            "typeAnnotationOptions": "NUMBER",
+                                                            "options": "Volume"
+                                                        }
+                                                    }
+                                                },
+                                                "measurement3": {
+                                                    "name": "Measurement 3",
+                                                    "description": "Volume of the region",
+                                                    "type": "annotationInOut",
+                                                    "idInDescriptor": "measurement3",
+                                                    "annotation": {
+                                                        "typeAnnotationForm": "OPEN_ENDED",
+                                                        "propertiesAnnotation": {
+                                                            "typeAnnotationOptions": "NUMBER",
+                                                            "options": "Volume"
+                                                        }
+                                                    }
+                                                },
+                                                "measurement4": {
+                                                    "name": "Measurement 4",
+                                                    "description": "Volume of the region",
+                                                    "type": "annotationInOut",
+                                                    "idInDescriptor": "measurement4",
+                                                    "annotation": {
+                                                        "typeAnnotationForm": "OPEN_ENDED",
+                                                        "propertiesAnnotation": {
+                                                            "typeAnnotationOptions": "NUMBER",
+                                                            "options": "Volume"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "owner": "admin@test.com",
+                                            "creationDate": "Wed Jul 10 2019 14:05:44 GMT-0400 (GMT-04:00)",
+                                            "docType": "task"
+                                        }
+                                    },
+                                    "tools": {
+                                        "07ddfc16-402a-4134-a929-773f67cbc84e": {
+                                            "_id": "07ddfc16-402a-4134-a929-773f67cbc84e",
+                                            "_rev": "1-0e8d56235a488b81664784797ccb3991",
+                                            "name": "Slice selector tool with picker only",
+                                            "description": "This tool has one viewer visible and another not rendered, kept just to provide output.Tool is used to select a specific slice in the axial direction, but with use of viewer in sagittal direction,  picker and reference line. This tool also outputs the slice number shifted N slices in a given direction.",
+                                            "version": "0.0.3",
+                                            "privacy": "PUBLIC",
+                                            "type": "SLICE_SELECTOR_WITH_PICKER",
+                                            "inputs": {
+                                                "inputImage_key": {
+                                                    "name": "Input image",
+                                                    "description": "Input image",
+                                                    "isList": false,
+                                                    "type": "imageEntityInOut",
+                                                    "imageEntityInOut_Type": "ANATOMICAL",
+                                                    "imageEntityInOut_FileFormat": "nii.gz",
+                                                    "required": true
+                                                },
+                                                "inputShiftingNumber_key": {
+                                                    "name": "Number shifting slices in the axial direction.",
+                                                    "description": "Number of slices to shift the shifted output in the cranial direction. ",
+                                                    "isList": false,
+                                                    "type": "Number",
+                                                    "required": true
+                                                },
+                                                "inputShiftingDirection_key": {
+                                                    "name": "Direction of shifting slices.",
+                                                    "description": "Direction of shifting slices. ",
+                                                    "isList": false,
+                                                    "type": "String",
+                                                    "required": true
+                                                }
+                                            },
+                                            "outputs": {
+                                                "slice_number_axial_key": {
+                                                    "name": "The slice number in axial direction",
+                                                    "description": "The selected slice number in axial direction",
+                                                    "isList": false,
+                                                    "type": "roiInOut",
+                                                    "typeROI": "IMPLICIT",
+                                                    "implicitGeometryPointer": "SLICE",
+                                                    "implicitRelationWithRoi": "CAUDAL_EXTERNAL_LIMIT",
+                                                    "planeProperties": {
+                                                        "anatomicalDirection": "AXIAL"
+                                                    }
+                                                },
+                                                "slice_number_axial_shifted_key": {
+                                                    "name": "The slice number shifted the in the axial direction",
+                                                    "description": "The selected slice number shifted in the axial direction",
+                                                    "isList": false,
+                                                    "type": "roiInOut",
+                                                    "typeROI": "IMPLICIT",
+                                                    "implicitGeometryPointer": "SLICE",
+                                                    "implicitRelationWithRoi": "CRANIAL_EXTERNAL_LIMIT",
+                                                    "planeProperties": {
+                                                        "anatomicalDirection": "AXIAL"
+                                                    }
+                                                }
+                                            },
+                                            "bindingToolInputsToViewersInputs": [],
+                                            "bindingViewersOutputsToToolOutputs": [
+                                                {
+                                                    "outputTool": "slice_number_axial_key",
+                                                    "outputViewer": {
+                                                        "viewerId": "1",
+                                                        "property": "sliceNumber",
+                                                        "orientation": "AXIAL"
+                                                    }
+                                                },
+                                                {
+                                                    "outputTool": "slice_number_axial_shifted_key",
+                                                    "outputViewer": {
+                                                        "viewerId": "1",
+                                                        "property": "sliceNumber",
+                                                        "orientation": "AXIAL",
+                                                        "function": {
+                                                            "operation": "ADDITION",
+                                                            "keyInputNumberSlices": "inputShiftingNumber_key",
+                                                            "keyInputDirection": "inputShiftingDirection_key"
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "configuration": {
+                                                "scenes": {
+                                                    "sceneKey1": {
+                                                        "primaryImageInputKey": "inputImage_key"
+                                                    }
+                                                },
+                                                "viewers": {
+                                                    "layout": {
+                                                        "type": "SINGLE",
+                                                        "layoutOrder": {
+                                                            "middle": "0",
+                                                            "output": "1"
+                                                        }
+                                                    },
+                                                    "renderWindows": {
+                                                        "0": {
+                                                            "name": "Sagittal viewer",
+                                                            "type": "2D",
+                                                            "initialState": {
+                                                                "orientationAndSliceNumber": {
+                                                                    "orientation": "SAGITTAL",
+                                                                    "strategy": "DYNAMIC",
+                                                                    "dynamicSliceValue": "MIDDLE"
+                                                                },
+                                                                "initialWindowLevel": {
+                                                                    "strategy": "DYNAMIC",
+                                                                    "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                                                                }
+                                                            },
+                                                            "displayScenes": {
+                                                                "possibleScenesToDisplay": [
+                                                                    "sceneKey1"
+                                                                ],
+                                                                "hasDefaultSceneToDisplay": true,
+                                                                "defaultSceneToDisplay": "sceneKey1"
+                                                            },
+                                                            "displayControls": {
+                                                                "orientation": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false,
+                                                                    "options": [
+                                                                        {
+                                                                            "label": "Axial",
+                                                                            "value": "AXIAL"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "smoothing": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false,
+                                                                    "defaultValue": false
+                                                                },
+                                                                "sequence": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false
+                                                                }
+                                                            },
+                                                            "lookAndFeel": {
+                                                                "color": "#ff0000",
+                                                                "hasRim": false,
+                                                                "hasControlPanel": false
+                                                            },
+                                                            "interactions": {
+                                                                "activeViewer": {
+                                                                    "controlEnabled": false,
+                                                                    "defaultValue": true
+                                                                }
+                                                            }
+                                                        },
+                                                        "1": {
+                                                            "name": "Axial invisible viewer for output purposes",
+                                                            "type": "2D",
+                                                            "initialState": {
+                                                                "orientationAndSliceNumber": {
+                                                                    "orientation": "AXIAL",
+                                                                    "strategy": "DYNAMIC",
+                                                                    "dynamicSliceValue": "MIDDLE"
+                                                                },
+                                                                "initialWindowLevel": {
+                                                                    "strategy": "DYNAMIC",
+                                                                    "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                                                                }
+                                                            },
+                                                            "displayScenes": {
+                                                                "possibleScenesToDisplay": [
+                                                                    "sceneKey1"
+                                                                ],
+                                                                "hasDefaultSceneToDisplay": true,
+                                                                "defaultSceneToDisplay": "sceneKey1"
+                                                            },
+                                                            "displayControls": {
+                                                                "orientation": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false,
+                                                                    "options": [
+                                                                        {
+                                                                            "label": "Axial",
+                                                                            "value": "AXIAL"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "smoothing": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false,
+                                                                    "defaultValue": false
+                                                                },
+                                                                "sequence": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false
+                                                                }
+                                                            },
+                                                            "lookAndFeel": {
+                                                                "color": "#00ff00"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "widgets": {
+                                                    "pointerTool": {
+                                                        "controlVisible": true,
+                                                        "controlEnabled": true,
+                                                        "defaultValue": true,
+                                                        "properties": {
+                                                            "mode": {
+                                                                "controlVisible": true,
+                                                                "controlEnabled": true,
+                                                                "defaultValue": "onClick"
+                                                            }
+                                                        }
+                                                    },
+                                                    "crossHairTool": {
+                                                        "controlVisible": false,
+                                                        "controlEnabled": false,
+                                                        "defaultValue": true
+                                                    }
+                                                }
+                                            },
+                                            "owner": "gregory.bliault@u-bordeaux.fr",
+                                            "creationDate": "2020-06-25T11:04:20.181Z",
+                                            "docType": "manualTool"
+                                        },
+                                        "90b2f53b-60db-4e25-8146-67ab643f85c5": {
+                                            "_id": "90b2f53b-60db-4e25-8146-67ab643f85c5",
+                                            "_rev": "1-e37b068090238053aae53f37ab79745f",
+                                            "name": "Segmentation (Brush)",
+                                            "description": "This tool is used to segment something in an image using the paint brush",
+                                            "version": "0.0.1",
+                                            "privacy": "PUBLIC",
+                                            "type": "SEGMENTATION_TOOL",
+                                            "inputs": {
+                                                "inputImage_key": {
+                                                    "name": "Input image",
+                                                    "description": "Input image",
+                                                    "isList": false,
+                                                    "type": "imageEntityInOut",
+                                                    "imageEntityInOut_Type": "ANATOMICAL",
+                                                    "imageEntityInOut_FileFormat": "nii.gz",
+                                                    "required": true
+                                                },
+                                                "lowerSliceNumber_key": {
+                                                    "name": "Lower axial slice number",
+                                                    "description": "Lower axial slice number",
+                                                    "isList": false,
+                                                    "type": "Number",
+                                                    "required": true
+                                                },
+                                                "upperSliceNumber_key": {
+                                                    "name": "The upper bound",
+                                                    "description": "The selected slice number for the upper bound",
+                                                    "isList": false,
+                                                    "type": "Number",
+                                                    "required": true
+                                                }
+                                            },
+                                            "outputs": {
+                                                "segmentation_key": {
+                                                    "name": "Medulla oblongata segmentation",
+                                                    "description": "The medulla oblongata segmentation from the user",
+                                                    "isList": false,
+                                                    "type": "roiInOut",
+                                                    "typeROI": "EXPLICIT"
+                                                }
+                                            },
+                                            "bindingToolInputsToViewersInputs": [
+                                                {
+                                                    "inputTool": "lowerSliceNumber_key",
+                                                    "inputViewer": {
+                                                        "viewerId": "0",
+                                                        "property": "slicingRanges_AXIAL_inferiormostSliceNumber"
+                                                    }
+                                                },
+                                                {
+                                                    "inputTool": "upperSliceNumber_key",
+                                                    "inputViewer": {
+                                                        "viewerId": "0",
+                                                        "property": "slicingRanges_AXIAL_superiormostSliceNumber"
+                                                    }
+                                                }
+                                            ],
+                                            "bindingViewersOutputsToToolOutputs": [
+                                                {
+                                                    "outputTool": "segmentation_key",
+                                                    "outputViewer": {
+                                                        "viewerId": "0",
+                                                        "viewerProperty": "currentSliceNumber_AXIAL"
+                                                    }
+                                                }
+                                            ],
+                                            "configuration": {
+                                                "viewers": {
+                                                    "layout": {
+                                                        "type": "1M1R_ARROWS",
+                                                        "layoutOrder": {
+                                                            "middle": "0",
+                                                            "upperRight": "1"
+                                                        }
+                                                    },
+                                                    "renderWindows": {
+                                                        "0": {
+                                                            "name": "Axial viewer",
+                                                            "type": "2D",
+                                                            "initialState": {
+                                                                "orientationAndSliceNumber": {
+                                                                    "orientation": "AXIAL",
+                                                                    "strategy": "DYNAMIC",
+                                                                    "dynamicSliceValue": "INFERIORMOST"
+                                                                },
+                                                                "initialWindowLevel": {
+                                                                    "strategy": "DYNAMIC",
+                                                                    "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                                                                }
+                                                            },
+                                                            "displayImages": {
+                                                                "possibleImagesToDisplay": [
+                                                                    "inputImage_key"
+                                                                ],
+                                                                "hasDefaultImageToDisplay": true,
+                                                                "defaultImageToDisplay": "inputImage_key"
+                                                            },
+                                                            "displayControls": {
+                                                                "orientation": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false,
+                                                                    "options": [
+                                                                        {
+                                                                            "label": "Axial",
+                                                                            "value": "AXIAL"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "smoothing": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false,
+                                                                    "defaultValue": false
+                                                                },
+                                                                "sequence": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false
+                                                                }
+                                                            },
+                                                            "lookAndFeel": {
+                                                                "color": "#ff0000",
+                                                                "hasRim": false,
+                                                                "hasControlPanel": false
+                                                            },
+                                                            "interactions": {
+                                                                "activeViewer": {
+                                                                    "controlEnabled": false,
+                                                                    "defaultValue": true
+                                                                },
+                                                                "crossHairTool": {
+                                                                    "controlEnabled": false
+                                                                }
+                                                            }
+                                                        },
+                                                        "1": {
+                                                            "name": "Sagittal viewer",
+                                                            "type": "2D",
+                                                            "initialState": {
+                                                                "orientationAndSliceNumber": {
+                                                                    "orientation": "SAGITTAL",
+                                                                    "strategy": "DYNAMIC",
+                                                                    "dynamicSliceValue": "MIDDLE"
+                                                                },
+                                                                "initialWindowLevel": {
+                                                                    "strategy": "DYNAMIC",
+                                                                    "dynamicStrategy": "FULLWINDOW_MIDDLELEVEL"
+                                                                }
+                                                            },
+                                                            "displayImages": {
+                                                                "possibleImagesToDisplay": [
+                                                                    "inputImage_key"
+                                                                ],
+                                                                "hasDefaultImageToDisplay": true,
+                                                                "defaultImageToDisplay": "inputImage_key"
+                                                            },
+                                                            "displayControls": {
+                                                                "orientation": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false,
+                                                                    "options": [
+                                                                        {
+                                                                            "label": "Axial",
+                                                                            "value": "AXIAL"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "smoothing": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false,
+                                                                    "defaultValue": false
+                                                                },
+                                                                "sequence": {
+                                                                    "controlVisible": false,
+                                                                    "controlEnabled": false
+                                                                }
+                                                            },
+                                                            "lookAndFeel": {
+                                                                "color": "#ff0000",
+                                                                "hasControlPanel": false
+                                                            },
+                                                            "interactions": {
+                                                                "activeViewer": {
+                                                                    "controlEnabled": false,
+                                                                    "defaultValue": false
+                                                                },
+                                                                "crossHairTool": {
+                                                                    "controlEnabled": true,
+                                                                    "defaultValue": {
+                                                                        "viewers": {
+                                                                            "middle": {
+                                                                                "color": "#00FF00"
+                                                                            }
+                                                                        },
+                                                                        "limits": {
+                                                                            "middle": {
+                                                                                "slicingRanges_AXIAL_superiormostSliceNumber": {
+                                                                                    "color": "#FF0000"
+                                                                                },
+                                                                                "slicingRanges_AXIAL_inferiormostSliceNumber": {
+                                                                                    "color": "#FF0000"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "widgets": {
+                                                    "brushTool": {
+                                                        "controlVisible": true,
+                                                        "controlEnabled": true,
+                                                        "properties": {
+                                                            "size": {
+                                                                "controlVisible": true,
+                                                                "controlEnabled": true,
+                                                                "defaultValue": 1
+                                                            }
+                                                        }
+                                                    },
+                                                    "fillingTool": {
+                                                        "controlVisible": true,
+                                                        "controlEnabled": true,
+                                                        "properties": {
+                                                            "labelmap": {
+                                                                "controlVisible": false,
+                                                                "controlEnabled": false,
+                                                                "defaultValue": 1,
+                                                                "properties": {
+                                                                    "options": [
+                                                                        {
+                                                                            "label": "Lesion",
+                                                                            "iri": "",
+                                                                            "color": "#f00",
+                                                                            "value": 1
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "eraserTool": {
+                                                        "controlVisible": true,
+                                                        "controlEnabled": true,
+                                                        "properties": {
+                                                            "size": {
+                                                                "controlVisible": true,
+                                                                "controlEnabled": true,
+                                                                "defaultValue": 1
+                                                            }
+                                                        }
+                                                    },
+                                                    "labelmapUndoRedoTool": {
+                                                        "controlVisible": true,
+                                                        "controlEnabled": true
+                                                    },
+                                                    "labelmapOpacity": {
+                                                        "controlVisible": true,
+                                                        "controlEnabled": true,
+                                                        "defaultValue": 1
+                                                    },
+                                                    "labelmapLUT": {
+                                                        "controlVisible": false,
+                                                        "controlEnabled": false,
+                                                        "defaultValue": 1,
+                                                        "properties": {
+                                                            "options": [
+                                                                {
+                                                                    "value": 1,
+                                                                    "label": "Lesion",
+                                                                    "color": "#f00",
+                                                                    "iri": ""
+                                                                },
+                                                                {
+                                                                    "value": 2,
+                                                                    "label": "Plaque",
+                                                                    "color": "#0f0",
+                                                                    "iri": ""
+                                                                },
+                                                                {
+                                                                    "value": 3,
+                                                                    "label": "Toxin",
+                                                                    "color": "#00f",
+                                                                    "iri": ""
+                                                                },
+                                                                {
+                                                                    "value": 4,
+                                                                    "label": "Tumor",
+                                                                    "color": "#f8f",
+                                                                    "iri": ""
+                                                                },
+                                                                {
+                                                                    "value": 5,
+                                                                    "label": "Aging",
+                                                                    "color": "#8ff",
+                                                                    "iri": ""
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "crossHairTool": {
+                                                        "controlVisible": false,
+                                                        "controlEnabled": false,
+                                                        "defaultValue": true
+                                                    }
+                                                }
+                                            },
+                                            "creationDate": "Wed Jul 10 2019 14:05:44 GMT-0400 (GMT-04:00)",
+                                            "owner": "admin@test.com",
+                                            "docType": "manualTool"
+                                        },
+                                        "06bf3451e2d63c3bf86b43983801deaa": {
+                                            "_id": "06bf3451e2d63c3bf86b43983801deaa",
+                                            "_rev": "1-bb9d9f64c9f67220d6d6cd41570987d8",
+                                            "docType": "boutiquesDescriptor",
+                                            "creationDate": "2019-07-10T18:05:44.014Z",
+                                            "owner": "admin@test.com",
+                                            "descriptor": {
+                                                "tool-version": "0.1",
+                                                "name": "Label Volume Measurement (4 Measurements)",
+                                                "command-line": "python /src/label_measurement4.py [labelmap] [label]",
+                                                "inputs": [
+                                                    {
+                                                        "description": "Label Map with the ROI to measures",
+                                                        "value-key": "[labelmap]",
+                                                        "type": "File",
+                                                        "optional": false,
+                                                        "id": "labelmap",
+                                                        "name": "Label Map"
+                                                    },
+                                                    {
+                                                        "value-key": "[label]",
+                                                        "type": "Number",
+                                                        "optional": false,
+                                                        "id": "label",
+                                                        "name": "Label"
+                                                    },
+                                                    {
+                                                        "value-key": "[icc]",
+                                                        "type": "Number",
+                                                        "optional": false,
+                                                        "id": "icc",
+                                                        "name": "icc"
+                                                    }
+                                                ],
+                                                "container-image": {
+                                                    "image": "micheletgregory/spine-measurement:1.0.0",
+                                                    "type": "docker"
+                                                },
+                                                "schema-version": "0.5",
+                                                "output-files": [
+                                                    {
+                                                        "path-template": "output/measurement.json",
+                                                        "description": "JSON file with the volume for the ROI",
+                                                        "optional": false,
+                                                        "id": "measurement",
+                                                        "name": "File with the measurement"
+                                                    },
+                                                    {
+                                                        "path-template": "output/measurement2.json",
+                                                        "description": "JSON file with the volume for the ROI",
+                                                        "optional": false,
+                                                        "id": "measurement2",
+                                                        "name": "File with the measurement"
+                                                    },
+                                                    {
+                                                        "path-template": "output/measurement3.json",
+                                                        "description": "JSON file with the volume for the ROI",
+                                                        "optional": false,
+                                                        "id": "measurement3",
+                                                        "name": "File with the measurement"
+                                                    },
+                                                    {
+                                                        "path-template": "output/measurement4.json",
+                                                        "description": "JSON file with the volume for the ROI",
+                                                        "optional": false,
+                                                        "id": "measurement4",
+                                                        "name": "File with the measurement"
+                                                    }
+                                                ],
+                                                "description": "Python script to measure the volume of one region of interest"
+                                            }
+                                        }
+                                    }
+                                },
+                                "summary": "Example"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}
