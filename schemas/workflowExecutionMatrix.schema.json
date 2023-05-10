@@ -534,12 +534,16 @@
                     },
                     "value": {
                         "description": "The input value"
+                    },
+                    "workflowInputType": {
+                        "description": "workflow input type"
                     }
                 },
                 "required": [
                     "isRequired",
                     "name",
-                    "type"
+                    "type",
+                    "workflowInputType"
                 ],
                 "additionalProperties": false
             }
