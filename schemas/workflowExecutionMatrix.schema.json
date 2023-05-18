@@ -574,7 +574,8 @@
                     "enum": [
                         "DRAFT_1_SELECT_WORKFLOW",
                         "DRAFT_2_SELECT_INPUT_DATA",
-                        "DRAFT_3_SELECT_RATER"
+                        "DRAFT_3_SELECT_RATER",
+                        "DRAFT_4_SELECT_DISTRIBUTION"
                     ]
                 },
                 "workflow": {
@@ -740,6 +741,9 @@
                 },
                 {
                     "$ref": "#/definitions/getWorkflowExecutionMatrixStep3Response"
+                },
+                {
+                    "$ref": "#/definitions/getWorkflowExecutionMatrixStep4Response"
                 }
             ]
         },
@@ -801,6 +805,56 @@
                     "type": "string",
                     "enum": [
                         "DRAFT_3_SELECT_RATER"
+                    ]
+                },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
+                },
+                "uuid": {
+                    "type": "string"
+                },
+                "statistics": {
+                    "$ref": "#/definitions/workflowExecutionMatrixStatistics"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "workflow": {
+                    "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
+                },
+                "inputConfig": {
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfigGet"
+                },
+                "creationDate": {
+                    "type": "string"
+                },
+                "modificationDate": {
+                    "type": "string"
+                },
+                "matrix": {
+                    "$ref": "#/definitions/matrix"
+                }
+            },
+            "required": [
+                "status",
+                "uuid",
+                "matrix",
+                "workflow",
+                "statistics",
+                "inputConfig",
+                "creationDate",
+                "modificationDate"
+            ]
+        },
+        "getWorkflowExecutionMatrixStep4Response": {
+            "type": "object",
+            "description": "Response for a matrix in step 4",
+            "additionalProperties": false,
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "DRAFT_4_SELECT_DISTRIBUTION"
                     ]
                 },
                 "createMultipleExecutionIfRepeatedInput": {

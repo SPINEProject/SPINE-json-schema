@@ -1,5 +1,18 @@
 {
     "get": {
+        "parameters": [
+            {
+                "name": "cohortIdList",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        ],
         "security": [
             {
                 "bearerAuth": []
