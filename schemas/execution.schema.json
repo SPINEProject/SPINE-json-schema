@@ -1,0 +1,54 @@
+{
+    "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/execution.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Definitions for common properties of task and workflow executions",
+    "definitions": {
+        "inputs": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "oneOf": [
+                            {
+                                "type": "object"
+                            },
+                            {
+                                "type": "array",
+                                "items": {}
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "label": {
+            "type": "string"
+        },
+        "state": {
+            "type": "string",
+            "enum": [
+                "NOT READY",
+                "DONE",
+                "WAITING",
+                "RUNNING",
+                "ERROR"
+            ]
+        },
+        "simulate": {
+            "type": "boolean"
+        },
+        "ownerId": {
+            "type": "string"
+        },
+        "workflowExecutionId": {
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "parameters": [
+        {
+            "name": "workflowId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "post": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "workflow"
+        ],
+        "summary": "/api/workflow/workflowId/configure",
+        "description": "Post a workflow configuration",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../workflowExecution.schema.json#/definitions/postWorkflowConfiguration"
+                    },
+                    "examples": {
+                        "1": {
+                            "value": {},
+                            "summary": "Example"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}
