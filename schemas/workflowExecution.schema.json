@@ -1,0 +1,209 @@
+{
+    "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/workflowExecution.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Definitions for common properties of task and workflow executions",
+    "definitions": {
+        "miniWorkflowSet": {
+            "type": "string"
+        },
+        "experimentId": {
+            "type": "string"
+        },
+        "reuseTaskConfig": {
+            "type": "object",
+            "title": "Reuse execution config",
+            "properties": {
+                "reuse": {
+                    "type": "boolean",
+                    "enum": [
+                        true
+                    ]
+                },
+                "taskExecutorId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "reuse",
+                "taskExecutorId"
+            ]
+        },
+        "newTaskConfig": {
+            "type": "object",
+            "title": "New task execution config",
+            "properties": {
+                "reuse": {
+                    "type": "boolean",
+                    "enum": [
+                        false
+                    ]
+                }
+            }
+        },
+        "newManualConfig": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/newTaskConfig"
+                },
+                {
+                    "type": "object",
+                    "title": "New manual execution config",
+                    "properties": {
+                        "assignedTo": {
+                            "type": "string"
+                        },
+                        "dueDate": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "assignedTo"
+                    ]
+                }
+            ]
+        },
+        "manualConfig": {
+            "type": "object",
+            "title": "Manual config",
+            "additionalProperties": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/reuseTaskConfig"
+                    },
+                    {
+                        "$ref":"#/definitions/newManualConfig"
+                    }
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "reuse": {
+                        "type": "boolean"
+                    },
+                    "taskExecutorId": {
+                        "type": "string"
+                    },
+                    "assignedTo": {
+                        "type": "string"
+                    },
+                    "dueDate": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "autoConfig": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/reuseTaskConfig"
+                    },
+                    {
+                        "$ref":"#/definitions/newTaskConfig"
+                    }
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "reuse": {
+                        "type": "boolean"
+                    },
+                    "taskExecutorId": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "reuseSubWorkflowConfig": {
+            "type": "object",
+            "properties": {
+                "reuse": {
+                    "enum": ["true"]
+                }
+            },
+            "required": ["workflowExecutorId","reuse"]
+        },
+        "newSubWorkflowConfig": {
+            "type": "object",
+            "properties": {
+                "reuse": {
+                    "enum": ["false"]
+                }
+            },
+            "required": ["miniWorkflowSet"]
+        },
+        "subWorkflowConfig": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "miniWorkflowSet": {
+                        "$ref": "#/definitions/miniWorkflowSet"
+                    },
+                    "manualConfig": {
+                        "$ref": "#/definitions/manualConfig"
+                    },
+                    "autoConfig": {
+                        "$ref": "#/definitions/autoConfig"
+                    },
+                    "subWorkflowConfig": {
+                        "$ref": "#/definitions/subWorkflowConfig"
+                    },
+                    "reuse": {
+                        "type": "boolean"
+                    },
+                    "workflowExecutorId":{
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "miniWorkflowSet"
+                ]
+            }
+        },
+        "postWorkflowConfiguration": {
+            "type": "object",
+            "properties": {
+                "inputs": {
+                    "$ref": "./execution.schema.json#/definitions/inputs"
+                },
+                "label": {
+                    "$ref": "./execution.schema.json#/definitions/label"
+                },
+                "simulate": {
+                    "$ref": "./execution.schema.json#/definitions/simulate"
+                },
+                "miniWorkflowSet": {
+                    "$ref": "#/definitions/miniWorkflowSet"
+                },
+                "reference": {
+                    "type": "object",
+                    "properties": {
+                        "experimentId": {
+                            "$ref": "#/definitions/experimentId"
+                        }
+                    }
+                },
+                "manualConfig": {
+                    "$ref": "#/definitions/manualConfig"
+                },
+                "autoConfig": {
+                    "$ref": "#/definitions/autoConfig"
+                },
+                "subWorkflowConfig": {
+                    "$ref": "#/definitions/subWorkflowConfig"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "inputs",
+                "label",
+                "reference",
+                "miniWorkflowSet",
+                "subWorkflowConfig"
+            ]
+        }
+    }
+}

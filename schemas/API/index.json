@@ -11,8 +11,14 @@
         }
     ],
     "paths": {
+        "/user": {
+            "$ref": "./user/user.json"
+        },
         "/workflow/{workflowId}/allDocs": {
             "$ref": "./workflow/workflowIdAllDocs.json"
+        },
+        "/workflow/{workflowId}/configure": {
+            "$ref": "./workflow/workflowIdConfigure.json"
         },
         "/workflow-execution-matrix": {
             "$ref": "./workflowExecutionMatrix/workflowExecutionMatrix.json"
