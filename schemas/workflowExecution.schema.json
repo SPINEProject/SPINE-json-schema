@@ -72,7 +72,7 @@
                         "$ref": "#/definitions/reuseTaskConfig"
                     },
                     {
-                        "$ref":"#/definitions/newManualConfig"
+                        "$ref": "#/definitions/newManualConfig"
                     }
                 ],
                 "additionalProperties": false,
@@ -101,7 +101,7 @@
                         "$ref": "#/definitions/reuseTaskConfig"
                     },
                     {
-                        "$ref":"#/definitions/newTaskConfig"
+                        "$ref": "#/definitions/newTaskConfig"
                     }
                 ],
                 "additionalProperties": false,
@@ -119,19 +119,28 @@
             "type": "object",
             "properties": {
                 "reuse": {
-                    "enum": ["true"]
+                    "enum": [
+                        "true"
+                    ]
                 }
             },
-            "required": ["workflowExecutorId","reuse"]
+            "required": [
+                "workflowExecutorId",
+                "reuse"
+            ]
         },
         "newSubWorkflowConfig": {
             "type": "object",
             "properties": {
                 "reuse": {
-                    "enum": ["false"]
+                    "enum": [
+                        "false"
+                    ]
                 }
             },
-            "required": ["miniWorkflowSet"]
+            "required": [
+                "miniWorkflowSet"
+            ]
         },
         "subWorkflowConfig": {
             "type": "object",
@@ -153,7 +162,7 @@
                     "reuse": {
                         "type": "boolean"
                     },
-                    "workflowExecutorId":{
+                    "workflowExecutorId": {
                         "type": "string"
                     }
                 },
@@ -162,6 +171,194 @@
                     "miniWorkflowSet"
                 ]
             }
+        },
+        "stateOfWorkflow": {
+            "type": "object",
+            "properties": {
+                "reuse": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "WORKFLOW"
+                    ]
+                },
+                "workflowExecutorId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "workflowExecutorId"
+            ]
+        },
+        "stateOfTask": {
+            "type": "object",
+            "properties": {
+                "reuse": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TASK"
+                    ]
+                },
+                "taskExecutorId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "taskExecutorId"
+            ]
+        },
+        "stateOfTasks": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "reuse": {
+                        "type": "boolean"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "WORKFLOW",
+                            "TASK"
+                        ]
+                    },
+                    "workflowExecutorId": {
+                        "type": "string"
+                    },
+                    "taskExecutorId": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false,
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/stateOfTask"
+                    },
+                    {
+                        "$ref": "#/definitions/stateOfWorkflow"
+                    }
+                ]
+            }
+        },
+        "stateOfTransitions": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "from": {
+                        "type": "array",
+                        "items": {
+                            "type":"string"
+                        }
+                    },
+                    "to": {
+                        "type": "array",
+                        "items": {
+                            "type":"string"
+                        }
+                    },
+                    "state": {
+                        "type": "string",
+                        "enum": [
+                            "PENDING",
+                            "FIRED"
+                        ]
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "workflowExecutionDoc": {
+            "type": "object",
+            "properties": {
+                "inputs": {
+                    "$ref": "./execution.schema.json#/definitions/inputs"
+                },
+                "_id": {
+                    "type": "string"
+                },
+                "_rev": {
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "./execution.schema.json#/definitions/label"
+                },
+                "docType": {
+                    "type": "string",
+                    "enum": ["workflowExecutor"]
+                },
+                "simulate": {
+                    "$ref": "./execution.schema.json#/definitions/simulate"
+                },
+                "miniWorkflowSet": {
+                    "$ref": "#/definitions/miniWorkflowSet"
+                },
+                "reference": {
+                    "type": "object",
+                    "properties": {
+                        "experimentId": {
+                            "$ref": "#/definitions/experimentId"
+                        },
+                        "workflowId": {
+                            "type": "string"
+                        },
+                        "eventId": {
+                            "type": "string"
+                        },
+                        "workflowExecutionId": {
+                            "type": "string"
+                        },
+                        "userId": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "workflowId","userId"
+                    ]
+                },
+                "manualConfig": {
+                    "$ref": "#/definitions/manualConfig"
+                },
+                "autoConfig": {
+                    "$ref": "#/definitions/autoConfig"
+                },
+                "subWorkflowConfig": {
+                    "$ref": "#/definitions/subWorkflowConfig"
+                },
+                "usePydra": {
+                    "type": "boolean"
+                },
+                "state": {
+                    "$ref": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/execution.schema.json#/definitions/state"
+                },
+                "stateOfTasks": {
+                    "$ref": "#/definitions/stateOfTasks"
+                },
+                "stateOfTransitions": {
+                    "$ref": "#/definitions/stateOfTransitions"
+                },
+                "creationDate": {
+                    "type": "string"
+                },
+                "remoteConfig": {
+                    "type": "object"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "inputs",
+                "label",
+                "reference",
+                "miniWorkflowSet",
+                "stateOfTasks",
+                "docType",
+                "creationDate"
+            ]
         },
         "postWorkflowConfiguration": {
             "type": "object",
@@ -194,6 +391,9 @@
                 },
                 "subWorkflowConfig": {
                     "$ref": "#/definitions/subWorkflowConfig"
+                },
+                "usePydra": {
+                    "type": "boolean"
                 }
             },
             "additionalProperties": false,
@@ -201,8 +401,7 @@
                 "inputs",
                 "label",
                 "reference",
-                "miniWorkflowSet",
-                "subWorkflowConfig"
+                "miniWorkflowSet"
             ]
         }
     }
