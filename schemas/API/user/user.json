@@ -1,0 +1,125 @@
+{
+    "get": {
+        "parameters": [
+            {
+                "name": "limit",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            {
+                "name": "name",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            {
+                "name": "lastname",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            {
+                "name": "roles",
+                "in": "query",
+                "schema": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "admin",
+                            "contributor",
+                            "scientific",
+                            "doctor"
+                        ]
+                    }
+                }
+            }
+        ],
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "filter"
+        ],
+        "summary": "/api/user",
+        "description": "Get the list of user",
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "examples": {
+                            "1": {
+                                "value": [
+                                    {
+                                        "count": 2,
+                                        "rows": [
+                                            {
+                                                "id": "e5fdec81-9b45-464c-b74d-4763b17392d9",
+                                                "name": "Grégory",
+                                                "lastname": "Bliault",
+                                                "email": "g2@test.com",
+                                                "active": false,
+                                                "roles": [
+                                                    {
+                                                        "name": "admin",
+                                                        "userRoles": {
+                                                            "userEmail": "g2@test.com",
+                                                            "roleName": "admin"
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "contributor",
+                                                        "userRoles": {
+                                                            "userEmail": "g2@test.com",
+                                                            "roleName": "contributor"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "id": "dd4ed604-3adb-4388-8a94-91accd8d824d",
+                                                "name": "Stupid",
+                                                "lastname": "User",
+                                                "email": "g3@test.com",
+                                                "active": false,
+                                                "roles": [
+                                                    {
+                                                        "name": "contributor",
+                                                        "userRoles": {
+                                                            "userEmail": "g3@test.com",
+                                                            "roleName": "contributor"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "summary": "A list of users"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

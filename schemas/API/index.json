@@ -11,6 +11,9 @@
         }
     ],
     "paths": {
+        "/user": {
+            "$ref": "./user/user.json"
+        },
         "/workflow/{workflowId}/allDocs": {
             "$ref": "./workflow/workflowIdAllDocs.json"
         },
