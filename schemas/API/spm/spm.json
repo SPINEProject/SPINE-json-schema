@@ -1,0 +1,48 @@
+{
+    "post": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "filter"
+        ],
+        "summary": "/api/run-spm-test",
+        "description": "Configure an SPM experiment",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../spm.schema.json#/definitions/postSPMExperimentBody"
+                    },
+                    "examples": {
+                        "1": {
+                            "value": {},
+                            "summary": "Example"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "examples": {
+                            "1": {
+                                "value": [],
+                                "summary": "SPM configuration"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

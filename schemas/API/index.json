@@ -43,6 +43,9 @@
         },
         "/filter-snapshot/{filterSnapshotId}/statistics": {
             "$ref": "./filter/filterSnapshotIdStatistics.json"
+        },
+        "/run-spm-test": {
+            "$ref": "./spm/spm.json"
         }
     },
     "components": {
