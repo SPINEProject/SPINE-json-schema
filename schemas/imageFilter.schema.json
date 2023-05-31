@@ -508,7 +508,7 @@
                                 "contains"
                             ]
                         },
-                        "vale": {
+                        "value": {
                             "enum": [
                                 "contains"
                             ]
