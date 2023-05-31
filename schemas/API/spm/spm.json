@@ -6,7 +6,7 @@
             }
         ],
         "tags": [
-            "filter"
+            "spm"
         ],
         "summary": "/api/run-spm-test",
         "description": "Configure an SPM experiment",
@@ -19,7 +19,58 @@
                     },
                     "examples": {
                         "1": {
-                            "value": {},
+                            "value": {
+                                "name": "experiment A",
+                                "design": {
+                                    "type": "SPM_MULTIPLE_REGRESSION",
+                                    "images": [
+                                        {
+                                            "uuid": "8148afc0-b0b5-4ec9-b61b-49b8dfc36a3c"
+                                        },
+                                        {
+                                            "uuid": "142cc84446a4b2ac90b658114c002db7"
+                                        },
+                                        {
+                                            "uuid": "142cc84446a4b2ac90b658114c0037e0"
+                                        }
+                                    ],
+                                    "covariates": [
+                                        {
+                                            "name": "age",
+                                            "value": [
+                                                {
+                                                    "value": 38
+                                                },
+                                                {
+                                                    "value": 47
+                                                },
+                                                {
+                                                    "value": 34
+                                                }
+                                            ],
+                                            "interactions": "NONE",
+                                            "centering": "NO_CENTERING"
+                                        }
+                                    ],
+                                    "mask": {
+                                        "explicit": {
+                                            "uuid": "142cc84446a4b2ac90b658114c00b3d8"
+                                        },
+                                        "implicit": true
+                                    },
+                                    "globalCalculation": {
+                                        "type": "OMIT"
+                                    },
+                                    "globalNormalisation": {
+                                        "normalisation": {
+                                            "type": "PROPORTIONAL"
+                                        },
+                                        "overallGrandMeanScaling": {
+                                            "type": "NO"
+                                        }
+                                    }
+                                }
+                            },
                             "summary": "Example"
                         }
                     }
@@ -33,8 +84,8 @@
                     "application/json": {
                         "examples": {
                             "1": {
-                                "value": [],
-                                "summary": "SPM configuration"
+                                "value": {},
+                                "summary": "SPM configuration response"
                             }
                         }
                     }

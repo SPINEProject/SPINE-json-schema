@@ -1,0 +1,64 @@
+{
+    "parameters": [
+        {
+            "name": "spmExperimentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "post": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "spm"
+        ],
+        "summary": "/api/run-spm-test/{spmExperimentId}/contrast",
+        "description": "Define the contrast for an SPM experiment",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../spm.schema.json#/definitions/postSPMExperimentContrastBody"
+                    },
+                    "examples": {
+                        "1": {
+                            "value": {
+                                "name": "negative",
+                                "weights": [
+                                    0,
+                                    -1
+                                ]
+                            },
+                            "summary": "Example"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "examples": {
+                            "1": {
+                                "value": {},
+                                "summary": "response"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}
