@@ -18,7 +18,7 @@
         "tags": [
             "spm"
         ],
-        "summary": "/api/run-spm-test/{spmExperimentId}/contrast",
+        "summary": "/api/run-spm-test/{spmExperimentId}/contrast/0/result",
         "description": "Define the contrast for an SPM experiment",
         "responses": {
             "200": {
