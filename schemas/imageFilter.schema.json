@@ -621,7 +621,8 @@
                     "required": [
                         "type",
                         "value",
-                        "label"
+                        "label",
+                        "variant"
                     ],
                     "additionalProperties": false,
                     "properties": {

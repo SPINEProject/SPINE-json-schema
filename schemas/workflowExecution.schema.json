@@ -120,7 +120,7 @@
             "properties": {
                 "reuse": {
                     "enum": [
-                        "true"
+                        true
                     ]
                 }
             },
@@ -134,7 +134,7 @@
             "properties": {
                 "reuse": {
                     "enum": [
-                        "false"
+                        false
                     ]
                 }
             },
@@ -167,8 +167,13 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": [
-                    "miniWorkflowSet"
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/reuseSubWorkflowConfig"
+                    },
+                    {
+                        "$ref": "#/definitions/newSubWorkflowConfig"
+                    }
                 ]
             }
         },
