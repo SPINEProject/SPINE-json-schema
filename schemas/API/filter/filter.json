@@ -16,7 +16,6 @@
                 "content": {
                     "application/json": {
                         "schema": {
-
                             "$ref": "../../imageFilter.schema.json#/definitions/getFilterListResponse"
                         },
                         "examples": {
@@ -29,6 +28,26 @@
                                             "lastname": "Bliault",
                                             "name": "Grégory",
                                             "uuid": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                        },
+                                        "filter": {
+                                            "logicalOperator": {
+                                                "type": "LOGICAL_OPERATOR",
+                                                "label": "OR",
+                                                "value": "OR"
+                                            },
+                                            "criteria": [
+                                                {
+                                                    "value": 400,
+                                                    "operator": {
+                                                        "type": "NUMERICAL_OPERATOR",
+                                                        "variant": "ANY_ELEMENT",
+                                                        "value": "less than",
+                                                        "label": "<"
+                                                    },
+                                                    "attribute": "EchoTime"
+                                                }
+                                            ],
+                                            "expressions": []
                                         }
                                     }
                                 ],

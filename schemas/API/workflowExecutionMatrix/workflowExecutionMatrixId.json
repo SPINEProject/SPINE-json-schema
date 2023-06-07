@@ -41,13 +41,15 @@
                                             "isRequired": true,
                                             "name": "name of the input A",
                                             "type": "FILTER_RESULT_SNAPSHOT",
-                                            "value": "b91d796f1452d1a9338b8e470d01609e"
+                                            "value": "b91d796f1452d1a9338b8e470d01609e",
+                                            "workflowInputType": "imageEntityInOut"
                                         },
                                         "inputB": {
                                             "isRequired": false,
                                             "name": "name of the input B",
                                             "type": "CONSTANT",
-                                            "value": 2
+                                            "value": 2,
+                                            "workflowInputType": "Number"
                                         }
                                     },
                                     "creationDate": "2023-04-11T16:38:22.213Z",
@@ -96,12 +98,14 @@
                                             "type": "FILTER_RESULT_SNAPSHOT",
                                             "value": "b91d796f1452d1a9338b8e470d4fbf33",
                                             "name": "Input image",
-                                            "isRequired": true
+                                            "isRequired": true,
+                                            "workflowInputType": "imageEntityInOut"
                                         },
                                         "icc-volume": {
                                             "type": "CONSTANT",
                                             "name": "Intra cranial volume",
-                                            "isRequired": false
+                                            "isRequired": false,
+                                            "workflowInputType": "Number"
                                         }
                                     },
                                     "matrix": {
@@ -276,13 +280,15 @@
                                             "isRequired": true,
                                             "name": "name of the input A",
                                             "type": "FILTER_RESULT_SNAPSHOT",
-                                            "value": "b91d796f1452d1a9338b8e470d01609e"
+                                            "value": "b91d796f1452d1a9338b8e470d01609e",
+                                            "workflowInputType": "imageEntityInOut"
                                         },
                                         "inputB": {
                                             "isRequired": false,
                                             "name": "name of the input B",
                                             "type": "CONSTANT",
-                                            "value": 2
+                                            "value": 2,
+                                            "workflowInputType": "Number"
                                         }
                                     },
                                     "status": "DRAFT_2_SELECT_INPUT_DATA",
@@ -329,12 +335,14 @@
                                             "type": "FILTER_RESULT_SNAPSHOT",
                                             "value": "b91d796f1452d1a9338b8e470d4fbf33",
                                             "name": "Input image",
-                                            "isRequired": true
+                                            "isRequired": true,
+                                            "workflowInputType": "imageEntityInOut"
                                         },
                                         "icc-volume": {
                                             "type": "CONSTANT",
                                             "name": "Intra cranial volume",
-                                            "isRequired": false
+                                            "isRequired": false,
+                                            "workflowInputType": "Number"
                                         }
                                     },
                                     "matrix": {

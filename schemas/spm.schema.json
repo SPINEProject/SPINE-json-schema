@@ -18,7 +18,14 @@
             "title": "List of images to use in the experiment",
             "type": "array",
             "items": {
-                "type": "string"
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["uuid"]
             }
         },
         "covariate": {
@@ -306,7 +313,7 @@
             "additionalProperties": false,
             "required": [
                 "name",
-                "design"
+                "weights"
             ],
             "properties": {
                 "name": {

@@ -203,12 +203,14 @@
                                             "type": "FILTER_RESULT_SNAPSHOT",
                                             "value": "b91d796f1452d1a9338b8e470d4fbf33",
                                             "name": "Input image",
-                                            "isRequired": true
+                                            "isRequired": true,
+                                            "workflowInputType": "imageEntityInOut"
                                         },
                                         "icc-volume": {
                                             "type": "CONSTANT",
                                             "name": "Intra cranial volume",
-                                            "isRequired": false
+                                            "isRequired": false,
+                                            "workflowInputType": "Number"
                                         }
                                     },
                                     "matrix": {
@@ -258,12 +260,14 @@
                                         "inputA": {
                                             "isRequired": true,
                                             "name": "name of the input A",
-                                            "type": "FILTER_RESULT_SNAPSHOT"
+                                            "type": "FILTER_RESULT_SNAPSHOT",
+                                            "workflowInputType": "imageEntityInOut"
                                         },
                                         "inputB": {
                                             "isRequired": false,
                                             "name": "name of the input B",
-                                            "type": "CONSTANT"
+                                            "type": "CONSTANT",
+                                            "workflowInputType": "Number"
                                         }
                                     },
                                     "status": "DRAFT_2_SELECT_INPUT_DATA",
