@@ -1,0 +1,113 @@
+{
+    "post": {
+        "tags": [
+            "filter"
+        ],
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "summary": "/api/filter/preview",
+        "description": "Post a filter preview",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../imageFilter.schema.json#/definitions/postFilterPreviewBody"
+                    },
+                    "examples": {
+                        "body": {
+                            "value": {
+                                "filter": {
+                                    "logicalOperator": {
+                                        "type": "LOGICAL_OPERATOR",
+                                        "label": "OR",
+                                        "value": "OR"
+                                    },
+                                    "criteria": [
+                                        {
+                                            "value": 400,
+                                            "operator": {
+                                                "type": "NUMERICAL_OPERATOR",
+                                                "variant": "ANY_ELEMENT",
+                                                "value": "less than",
+                                                "label": "<"
+                                            },
+                                            "attribute": "EchoTime"
+                                        }
+                                    ],
+                                    "expressions": []
+                                },
+                                "cohortIdList": [
+                                    "c3e9229d-d517-4ab0-bae8-774b54c7d484"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "The result",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../imageFilter.schema.json#/definitions/getFilterPreviewResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "result": {
+                                        "cohort": {
+                                            "c3e9229d-d517-4ab0-bae8-774b54c7d484": {
+                                                "subject": {
+                                                    "4a7d619ba222410010ca7b8ebb00dafb": {
+                                                        "visit": {
+                                                            "4a7d619ba222410010ca7b8ebb00e5e6": {
+                                                                "image": [
+                                                                    {
+                                                                        "id": "4a7d619ba222410010ca7b8ebb00f08c",
+                                                                        "comments": ""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    },
+                                                    "4a7d619ba222410010ca7b8ebb00dafc": {
+                                                        "visit": {
+                                                            "4a7d619ba222410010ca7b8ebb00e5ea": {
+                                                                "image": [
+                                                                    {
+                                                                        "id": "b91d796f1452d1a9338b8e470d00b454",
+                                                                        "comments": ""
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "statistics": {
+                                        "cohort": 1,
+                                        "subject": 2,
+                                        "visit": 2,
+                                        "image": 2
+                                    }
+                                },
+                                "summary": "The preview"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}
