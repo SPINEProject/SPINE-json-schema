@@ -32,6 +32,9 @@
         "/filter": {
             "$ref": "./filter/filter.json"
         },
+        "/filter/preview": {
+            "$ref": "./filter/filterPreview.json"
+        },
         "/filter/attribute": {
             "$ref": "./filter/filterAttribute.json"
         },

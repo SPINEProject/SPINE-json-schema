@@ -828,6 +828,23 @@
                 "owner"
             ]
         },
+        "getFilterPreviewResponse": {
+            "title": "Filter Preview Response",
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "./imageFilterSnapshot.schema.json#/definitions/imageFilterSnapshotResultAPI"
+                },
+                "statistics": {
+                    "$ref": "./imageFilterSnapshot.schema.json#/definitions/getFilterSnapshotStatisticsResponse"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "result",
+                "statistics"
+            ]
+        },
         "getFilterListResponse": {
             "title": "Get filter list response",
             "type": "array",
@@ -838,6 +855,10 @@
                     "uuid": {
                         "description": "Filter UUID",
                         "type": "string"
+                    },
+                    "filter": {
+                        "description": "The filter (an expression)",
+                        "$ref": "#/definitions/expression"
                     },
                     "name": {
                         "$ref": "#/definitions/imageFilterName"
@@ -850,7 +871,8 @@
                 "required": [
                     "uuid",
                     "name",
-                    "owner"
+                    "owner",
+                    "filter"
                 ]
             }
         },
@@ -870,6 +892,29 @@
             "required": [
                 "filter",
                 "name"
+            ]
+        },
+        "postFilterPreviewBody": {
+            "title": "Post filter body",
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "description": "The filter (an expression)",
+                    "$ref": "#/definitions/expression"
+                },
+                "cohortIdList": {
+                    "type": "array",
+                    "description": "The list of cohort uuid",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "filter",
+                "cohortIdList"
             ]
         },
         "putFilterBody": {
