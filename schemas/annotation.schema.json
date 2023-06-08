@@ -9,7 +9,7 @@
   "definitions": {
 
     "annotationBasic":{
-      "$id": "#annotationBasic",
+
       "description": "Basic description of an annotation",
       "properties":{
         "hasAnswer": {
@@ -84,7 +84,7 @@
     },
 
     "annotationMultipleChoiceMultipleAnswer":{
-      "$id": "#annotationMultipleChoiceMultipleAnswer",
+
       "description": "Description an annotation with multiple answers.",
       "allOf": [
         { "$ref": "#/definitions/annotationBasic" },
@@ -121,7 +121,7 @@
     },
 
     "annotationMultipleChoiceSingleAnswer":{
-      "$id": "#annotationMultipleChoiceSingleAnswer",
+
       "description": "Description an annotation with a single answers.",
       "allOf": [
         { "$ref": "#/definitions/annotationBasic" },
@@ -155,7 +155,7 @@
     },
     
     "annotationSingleChoiceSingleAnswer":{
-      "$id": "#annotationSingleChoiceSingleAnswer",
+
       "description": "Description an annotation with a single answers.",
       "allOf": [
         { "$ref": "#/definitions/annotationBasic" },
@@ -189,7 +189,7 @@
     },
 
     "annotationOpenEnded":{
-      "$id": "#annotationOpenEnded",
+
       "description": "Description an openended annotation.",
       "allOf": [
         { "$ref": "#/definitions/annotationBasic" },
@@ -216,7 +216,7 @@
     },
     
     "annotationNoAnswer":{
-      "$id": "#annotationNoAnswer",
+
       "description": "Description an annotation with no answer",
       "properties":{
         "answerType": {

@@ -91,6 +91,23 @@
                 }
             }
         },
+        "matrixRaters": {
+            "type": "object",
+            "description": "List of raters for this visit",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "firstname": {
+                        "type": "string",
+                        "description": "User firstname"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "description": "User lastname"
+                    }
+                }
+            }
+        },
         "matrixVisitDetails": {
             "type": "object",
             "properties": {
@@ -99,6 +116,9 @@
                 },
                 "inputs": {
                     "$ref": "#/definitions/matrixInput"
+                },
+                "raters": {
+                    "$ref": "#/definitions/matrixRaters"
                 }
             },
             "additionalProperties": false
@@ -395,6 +415,9 @@
                 "docType": {
                     "$ref": "#/definitions/workflowExecutionMatrixDocType"
                 },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
+                },
                 "status": {
                     "$ref": "#/definitions/workflowExecutionMatrixStatus"
                 },
@@ -511,12 +534,16 @@
                     },
                     "value": {
                         "description": "The input value"
+                    },
+                    "workflowInputType": {
+                        "description": "workflow input type"
                     }
                 },
                 "required": [
                     "isRequired",
                     "name",
-                    "type"
+                    "type",
+                    "workflowInputType"
                 ],
                 "additionalProperties": false
             }
@@ -547,7 +574,8 @@
                     "enum": [
                         "DRAFT_1_SELECT_WORKFLOW",
                         "DRAFT_2_SELECT_INPUT_DATA",
-                        "DRAFT_3_SELECT_RATER"
+                        "DRAFT_3_SELECT_RATER",
+                        "DRAFT_4_SELECT_DISTRIBUTION"
                     ]
                 },
                 "workflow": {
@@ -555,6 +583,9 @@
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfigPost"
+                },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
                 },
                 "matrix": {
                     "$ref": "#/definitions/matrix"
@@ -710,6 +741,9 @@
                 },
                 {
                     "$ref": "#/definitions/getWorkflowExecutionMatrixStep3Response"
+                },
+                {
+                    "$ref": "#/definitions/getWorkflowExecutionMatrixStep4Response"
                 }
             ]
         },
@@ -726,6 +760,9 @@
                 },
                 "uuid": {
                     "type": "string"
+                },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
                 },
                 "statistics": {
                     "$ref": "#/definitions/workflowExecutionMatrixStatistics"
@@ -769,6 +806,59 @@
                     "enum": [
                         "DRAFT_3_SELECT_RATER"
                     ]
+                },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
+                },
+                "uuid": {
+                    "type": "string"
+                },
+                "statistics": {
+                    "$ref": "#/definitions/workflowExecutionMatrixStatistics"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "workflow": {
+                    "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
+                },
+                "inputConfig": {
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfigGet"
+                },
+                "creationDate": {
+                    "type": "string"
+                },
+                "modificationDate": {
+                    "type": "string"
+                },
+                "matrix": {
+                    "$ref": "#/definitions/matrix"
+                }
+            },
+            "required": [
+                "status",
+                "uuid",
+                "matrix",
+                "workflow",
+                "statistics",
+                "inputConfig",
+                "creationDate",
+                "modificationDate"
+            ]
+        },
+        "getWorkflowExecutionMatrixStep4Response": {
+            "type": "object",
+            "description": "Response for a matrix in step 4",
+            "additionalProperties": false,
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "DRAFT_4_SELECT_DISTRIBUTION"
+                    ]
+                },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
                 },
                 "uuid": {
                     "type": "string"
@@ -823,6 +913,9 @@
                 "uuid": {
                     "type": "string"
                 },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
+                },
                 "workflow": {
                     "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
                 },
@@ -874,6 +967,9 @@
                 },
                 "matrix": {
                     "$ref": "#/definitions/matrix"
+                },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
                 }
             },
             "required": [

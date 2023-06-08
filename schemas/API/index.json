@@ -11,6 +11,15 @@
         }
     ],
     "paths": {
+        "/user": {
+            "$ref": "./user/user.json"
+        },
+        "/workflow/{workflowId}/allDocs": {
+            "$ref": "./workflow/workflowIdAllDocs.json"
+        },
+        "/workflow/{workflowId}/configure": {
+            "$ref": "./workflow/workflowIdConfigure.json"
+        },
         "/workflow-execution-matrix": {
             "$ref": "./workflowExecutionMatrix/workflowExecutionMatrix.json"
         },
@@ -23,6 +32,9 @@
         "/filter": {
             "$ref": "./filter/filter.json"
         },
+        "/filter/preview": {
+            "$ref": "./filter/filterPreview.json"
+        },
         "/filter/attribute": {
             "$ref": "./filter/filterAttribute.json"
         },
@@ -34,6 +46,15 @@
         },
         "/filter-snapshot/{filterSnapshotId}/statistics": {
             "$ref": "./filter/filterSnapshotIdStatistics.json"
+        },
+        "/run-spm-test": {
+            "$ref": "./spm/spm.json"
+        },
+        "/run-spm-test/{spmExperimentId}/constrast": {
+            "$ref": "./spm/spmIdContrast.json"
+        },
+        "/run-spm-test/{spmExperimentId}/constrast/0/result": {
+            "$ref": "./spm/spmIdContrastIndexResult.json"
         }
     },
     "components": {

@@ -1,0 +1,106 @@
+{
+    "parameters": [
+        {
+            "name": "workflowId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "post": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "workflow"
+        ],
+        "summary": "/api/workflow/workflowId/configure",
+        "description": "Post a workflow configuration",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../workflowExecution.schema.json#/definitions/postWorkflowConfiguration"
+                    },
+                    "examples": {
+                        "1": {
+                            "value": {
+                                "inputs": {
+                                    "inputs_key_1": {
+                                        "value": "24aca0af1c079b97b7fa0536fd5068d0"
+                                    },
+                                    "inputs_key_2": {
+                                        "value": "628b2528bbafe6fe4b5914d17816d85c"
+                                    }
+                                },
+                                "miniWorkflowSet": "31370a23-2581-41bd-88e9-cfe75a85b085",
+                                "label": "0001",
+                                "reference": {
+                                    "experimentId": "05e73621-fb15-4e28-b756-b5d8d366fb9a"
+                                },
+                                "autoConfig": {},
+                                "manualConfig": {
+                                    "Task_1": {
+                                        "assignedTo": "tguy@test.com",
+                                        "dueDate": ""
+                                    },
+                                    "Task_2": {
+                                        "assignedTo": "tguy@test.com",
+                                        "dueDate": ""
+                                    }
+                                },
+                                "subWorkflowConfig": {
+                                    "registration": {
+                                        "miniWorkflowSet": "935fba65-2c25-47bf-a559-84811359fef2",
+                                        "manualConfig": {
+                                            "Task_1": {
+                                                "assignedTo": "tguy@test.com",
+                                                "dueDate": ""
+                                            },
+                                            "Task_2": {
+                                                "assignedTo": "tguy@test.com",
+                                                "dueDate": ""
+                                            }
+                                        },
+                                        "subWorkflowConfig": {
+                                            "registration": {
+                                                "miniWorkflowSet": "e80593bb-c287-45b5-a1d5-5a3ba8fbf037",
+                                                "manualConfig": {
+                                                    "Task_1": {
+                                                        "assignedTo": "tguy@test.com",
+                                                        "dueDate": ""
+                                                    },
+                                                    "Task_2": {
+                                                        "assignedTo": "tguy@test.com",
+                                                        "dueDate": ""
+                                                    }
+                                                },
+                                                "autoConfig": {
+                                                    "registration": {
+                                                        "reuse": true,
+                                                        "taskExecutorId": "09e9e86f-28fa-41e1-8a61-34ff9be0dd15"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "summary": "Example"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

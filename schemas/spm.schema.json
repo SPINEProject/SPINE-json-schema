@@ -1,0 +1,339 @@
+{
+    "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/spm.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Definitions SPM",
+    "definitions": {
+        "name": {
+            "type": "string",
+            "title": "Experiment name"
+        },
+        "type": {
+            "title": "SPM Experiment Type",
+            "type": "string",
+            "enum": [
+                "SPM_MULTIPLE_REGRESSION"
+            ]
+        },
+        "images": {
+            "title": "List of images to use in the experiment",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["uuid"]
+            }
+        },
+        "covariate": {
+            "title": "A covariate",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "value"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Covariate name"
+                },
+                "value": {
+                    "type": "array",
+                    "title": "covariate values",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "value": {
+                                "oneOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "number"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "value"
+                        ]
+                    }
+                },
+                "interactions": {
+                    "type": "string",
+                    "title": "Covariate interaction",
+                    "description": "For each covariate you have defined, there is an opportunity to create an additional regressor that is the interaction between the covariate and a chosen experimental factor.",
+                    "enum": [
+                        "NONE",
+                        "WITH_FACTOR_2",
+                        "WITH_FACTOR_1",
+                        "WITH_FACTOR_3"
+                    ]
+                },
+                "centering": {
+                    "type": "string",
+                    "title": "Covariate centering",
+                    "description": "Centering, in the simplest case, refers to subtracting the mean (central) value from the covariate values, which is equivalent to orthogonalising the covariate with respect to the constant column.",
+                    "enum": [
+                        "OVERALL_MEAN",
+                        "FACTOR_1_MEAN",
+                        "FACTOR_2_MEAN",
+                        "FACTOR_3_MEAN",
+                        "NO_CENTERING",
+                        "USER_SPECIFIED_VALUE",
+                        "AS_IMPLIED_BY_ANCOVA",
+                        "GM"
+                    ]
+                }
+            }
+        },
+        "covariates": {
+            "title": "List of covariates and their value",
+            "description": "The order of the covariates values must follow the order of the images",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/covariate"
+            }
+        },
+        "mask": {
+            "type": "object",
+            "title": "Masking options",
+            "additionalProperties": false,
+            "description": "The mask specifies the voxels within the image volume which are to be assessed. SPM supports three methods of masking (1) Threshold, (2) Implicit and (3) Explicit. The volume analysed is the intersection of all masks.",
+            "properties": {
+                "explicit": {
+                    "description": "Explicit masks are other images containing (implicit) masks that are to be applied to the current analysis. All voxels with value NaN (for image data-types with a representation of NaN), or zero (for other data types) are excluded from the analysis. Explicit mask images can have any orientation and voxel/image size. Nearest neighbour interpolation of a mask image is used if the voxel centers of the input images do not coincide with that of the mask image.",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "uuid"
+                    ],
+                    "properties": {
+                        "uuid": {
+                            "type": "string",
+                            "title": "UUID of the image"
+                        }
+                    }
+                },
+                "implicit": {
+                    "description": "An \"implicit mask\" is a mask implied by a particular voxel value. Voxels with this mask value are excluded from the analysis. For image data-types with a representation of NaN (see spm_type.m), NaN’s is the implicit mask value, (and NaN’s are always masked out). For image data-types without a representation of NaN, zero is the mask value, and the user can choose whether zero voxels should be masked out or not. By default, an implicit mask is used.",
+                    "type": "boolean"
+                },
+                "threshold": {
+                    "description": "Images are thresholded at a given value and only voxels at which all images exceed the threshold are included. The RELATIVE option allows you to specify the value of the threshold as a proportion of the global value",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "RELATIVE",
+                                "ABSOLUTE"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "design": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "images",
+                "covariates",
+                "mask"
+            ],
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/type"
+                },
+                "images": {
+                    "$ref": "#/definitions/images"
+                },
+                "covariates": {
+                    "$ref": "#/definitions/covariates"
+                },
+                "mask": {
+                    "$ref": "#/definitions/mask"
+                },
+                "globalCalculation": {
+                    "type": "object",
+                    "title": "Global calculation",
+                    "description": "This option is for PET or VBM data (not second level fMRI). There are three methods for estimating global effects (1) Omit (assumming no other options requiring the global value chosen) (2) User defined (enter your own vector of global values) (3) Mean: SPM standard mean voxel value (within per image fullmean/8 mask)",
+                    "required": [
+                        "type"
+                    ],
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "USER",
+                                "OMIT",
+                                "MEAN"
+                            ]
+                        },
+                        "value": {
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            }
+                        }
+                    },
+                    "additionalProperties": false,
+                    "oneOf": [
+                        {
+                            "title": "Other",
+                            "properties": {
+                                "type": {
+                                    "enum": [
+                                        "MEAN",
+                                        "OMIT"
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "title": "User",
+                            "required": [
+                                "value"
+                            ],
+                            "properties": {
+                                "type": {
+                                    "enum": [
+                                        "USER"
+                                    ]
+                                },
+                                "value": {}
+                            }
+                        }
+                    ]
+                },
+                "globalNormalisation": {
+                    "type": "object",
+                    "title": "Global normalisation",
+                    "description": "These options are for PET or VBM data (not second level fMRI). ’Overall grand mean scaling’ simply scales all the data by a common factor such that the mean of all the global values is the value specified. ’Normalisation’ refers to either proportionally scaling each image or adding a covariate to adjust for the global values.",
+                    "required": [
+                        "normalisation",
+                        "overallGrandMeanScaling"
+                    ],
+                    "properties": {
+                        "normalisation": {
+                            "type": "object",
+                            "description": "This option is for PET or VBM data (not second level fMRI). Global nuisance effects (such as average values for PET images, or total tissue volumes for VBM) can be accounted for either by dividing the intensities in each image by the image’s global value (proportional scaling), or by including the global covariate as a nuisance effect in the general linear model (AnCova). Much has been written on which to use, and when. Basically, since proportional scaling also scales the variance term, it is appropriate for situations where the global measurement predominant y reflects gain or sensitivity. Where variance is constant across the range of global valus, linear modelling in an AnCova approach has more flexibility, since the model is not restricted o a simple proportional regression. ’Ancova by subject’ or ’Ancova by effect’ options are implemented using the ANCOVA options provided where each experimental factor (eg. subject or effect), is defined. These allow eg. different subjects to have different relationships between local and global measurements.",
+                            "required": [
+                                "type"
+                            ],
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "NONE",
+                                        "PROPORTIONAL",
+                                        "ANCOVA"
+                                    ]
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "overallGrandMeanScaling": {
+                            "type": "object",
+                            "title": "The overallGrandMeanScaling schema",
+                            "description": "Scaling of the overall grand mean simply scales all the data by a common factor such that the mean of all the global values is the value specified. For qualitative data, this puts the data into an intuitively accessible scale without altering the statistics. When proportional scaling global normalisation is used each image is separately scaled such that it’s global value is that specified (in which case the grand mean is also implicitly scaled to that value). So, to proportionally scale each image so that its global value is eg. 20, select <Yes> then type in 20 for the grand mean scaled value. When using AnCova or no global normalisation, with data from different subjects or sessions, an intermediate situation may be appropriate, and you may be given the option to scale group, session or subject grand means separately.",
+                            "required": [
+                                "type"
+                            ],
+                            "oneOf": [
+                                {
+                                    "title": "No",
+                                    "properties": {
+                                        "type": {
+                                            "enum": [
+                                                "NO"
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "title": "Yes",
+                                    "required": [
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "type": {
+                                            "enum": [
+                                                "YES"
+                                            ]
+                                        },
+                                        "value": {}
+                                    }
+                                }
+                            ],
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "YES",
+                                        "NO"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "number"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            }
+        },
+        "postSPMExperimentBody": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "design"
+            ],
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/name"
+                },
+                "design": {
+                    "$ref": "#/definitions/design"
+                }
+            }
+        },
+        "postSPMExperimentContrastBody": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "weights"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "name of the contrast"
+                },
+                "weights": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "description": "Vector specifying weights for each column of the design matrix",
+                    "title": "constrast vector"
+                }
+            }
+        },
+        "getSPMExperimentContrastIndexResult": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "To be defined"
+        }
+    }
+}
