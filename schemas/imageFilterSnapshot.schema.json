@@ -41,6 +41,21 @@
                     },
                     "comments": {
                         "type": "string"
+                    },
+                    "label": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "excluded": {
+                        "type": "boolean"
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
                     }
                 },
                 "required": [
@@ -196,6 +211,12 @@
             "properties": {
                 "image": {
                     "$ref": "#/definitions/imageFilterSnapshotResultImage"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -218,6 +239,9 @@
                                 "$ref": "#/definitions/imageFilterSnapshotResultVisitAPI"
                             }
                         }
+                    },
+                    "label": {
+                        "type": "string"
                     }
                 },
                 "required": [
@@ -233,6 +257,9 @@
                 "properties": {
                     "subject": {
                         "$ref": "#/definitions/imageFilterSnapshotResultSubjectAPI"
+                    },
+                    "label": {
+                        "type": "string"
                     }
                 },
                 "required": [
