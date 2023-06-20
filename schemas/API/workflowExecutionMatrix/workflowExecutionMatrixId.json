@@ -252,6 +252,46 @@
                                     "uuid": "008f2e22-1d27-4f85-bb52-f2cca96df52d"
                                 }
                             }
+                        },
+                        "saving launched": {
+                            "value": {
+                                "status": "LAUNCHED",
+                                "name": "posted in step launched",
+                                "createMultipleExecutionIfRepeatedInput": false,
+                                "workflow": {
+                                    "uuid": "008f2e22-1d27-4f85-bb52-f2cca96df52d"
+                                },
+                                "inputConfig": {
+                                    "image": {
+                                        "value": "b91d796f1452d1a9338b8e470d4fbf33"
+                                    }
+                                },
+                                "matrix": {
+                                    "cohort": {
+                                        "8a4811f962070de7cef66b978e8b5e56": {
+                                            "subject": {
+                                                "538266fdbc32fd591138a56f3fcf3cb3": {
+                                                    "visit": {
+                                                        "withoutVisit": {
+                                                            "inputs": {
+                                                                "image": [
+                                                                    {
+                                                                        "id": "24aca0af1c079b97b7fa0536fd5068d0",
+                                                                        "selected": true
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "raters": {
+                                                                "e5fdec81-9b45-464c-b74d-4763b17392d9": {}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -266,6 +306,90 @@
                             "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/getWorkflowExecutionMatrixResponse"
                         },
                         "examples": {
+                            "launched": {
+                                "value": {
+                                    "status": "LAUNCHED",
+                                    "uuid": "b91d796f1452d1a9338b8e470d4fdd69",
+                                    "name": "launched",
+                                    "creationDate": "2023-04-25T15:26:05.516Z",
+                                    "modificationDate": "2023-05-09T16:01:34.955Z",
+                                    "completion": {
+                                        "done": 0,
+                                        "error": 0,
+                                        "notStarted": 1,
+                                        "running": 0
+                                    },
+                                    "createMultipleExecutionIfRepeatedInput": false,
+                                    "inputConfig": {
+                                        "icc-volume": {
+                                            "isRequired": false,
+                                            "name": "Intra cranial volume",
+                                            "type": "CONSTANT",
+                                            "workflowInputType": "Number"
+                                        },
+                                        "image": {
+                                            "isRequired": true,
+                                            "name": "Input image",
+                                            "value": "b91d796f1452d1a9338b8e470d4fbf33",
+                                            "type": "FILTER_RESULT_SNAPSHOT",
+                                            "workflowInputType": "imageEntityInOut"
+                                        }
+                                    },
+                                    "matrix": {
+                                        "cohort": {
+                                            "8a4811f962070de7cef66b978e8b5e56": {
+                                                "subject": {
+                                                    "538266fdbc32fd591138a56f3fcf3cb3": {
+                                                        "visit": {
+                                                            "withoutVisit": {
+                                                                "inputs": {
+                                                                    "image": [
+                                                                        {
+                                                                            "id": "24aca0af1c079b97b7fa0536fd5068d0",
+                                                                            "selected": true
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "raters": {
+                                                                    "e5fdec81-9b45-464c-b74d-4763b17392d9": {
+                                                                        "lastname": "Bliault",
+                                                                        "name": "Grégory"
+                                                                    }
+                                                                },
+                                                                "status": "NOT_STARTED",
+                                                                "executions": [
+                                                                    {
+                                                                        "configuration": {
+                                                                            "inputs": {
+                                                                                "image": {
+                                                                                    "value": "24aca0af1c079b97b7fa0536fd5068d0"
+                                                                                }
+                                                                            },
+                                                                            "raterId": "e5fdec81-9b45-464c-b74d-4763b17392d9"
+                                                                        },
+                                                                        "similarExecutionList": [],
+                                                                        "status": "NOT_STARTED"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "workflow": {
+                                        "name": "Miklo's Medulla Oblongata Volume Measurement Workflow",
+                                        "uuid": "008f2e22-1d27-4f85-bb52-f2cca96df52d"
+                                    },
+                                    "statistics": {
+                                        "cohort": 1,
+                                        "image": 1,
+                                        "subject": 1,
+                                        "visit": 1
+                                    }
+                                }
+                            },
                             "1": {
                                 "value": {
                                     "uuid": "b91d796f1452d1a9338b8e470d13c35d",

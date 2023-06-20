@@ -64,71 +64,98 @@
                 "additionalProperties": false
             }
         },
+        "imageFilterSnapshotResultVisit": {
+            "type": "object",
+            "patternProperties": {
+                ".": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "$ref": "#/definitions/imageFilterSnapshotResultImage"
+                        },
+                        "label": {
+                            "type": "string"
+                        },
+                        "date": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "image"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "properties": {
+                "withoutVisit": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "$ref": "#/definitions/imageFilterSnapshotResultImage"
+                        },
+                        "label": {
+                            "type": "string"
+                        },
+                        "date": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "image"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [],
+            "additionalProperties": false
+        },
+        "imageFilterSnapshotResultSubject": {
+            "type": "object",
+            "patternProperties": {
+                ".": {
+                    "type": "object",
+                    "properties": {
+                        "visit": {
+                            "$ref": "#/definitions/imageFilterSnapshotResultVisit"
+                        },
+                        "label": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "visit"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        },
+        "imageFilterSnapshotResultCohort": {
+            "type": "object",
+            "patternProperties": {
+                ".": {
+                    "type": "object",
+                    "properties": {
+                        "subject": {
+                            "$ref": "#/definitions/imageFilterSnapshotResultSubject"
+                        },
+                        "label": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "subject"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        },
         "imageFilterSnapshotResult": {
             "$id": "#imageFilterSnapshotResult",
             "decription": "image filter snapshot, result section",
             "type": "object",
             "properties": {
                 "cohort": {
-                    "type": "object",
-                    "patternProperties": {
-                        ".": {
-                            "type": "object",
-                            "properties": {
-                                "subject": {
-                                    "type": "object",
-                                    "patternProperties": {
-                                        ".": {
-                                            "type": "object",
-                                            "properties": {
-                                                "visit": {
-                                                    "type": "object",
-                                                    "patternProperties": {
-                                                        ".": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "image": {
-                                                                    "$ref": "#/definitions/imageFilterSnapshotResultImage"
-                                                                }
-                                                            },
-                                                            "required": [
-                                                                "image"
-                                                            ],
-                                                            "additionalProperties": false
-                                                        }
-                                                    },
-                                                    "properties": {
-                                                        "withoutVisit": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                                "image": {
-                                                                    "$ref": "#/definitions/imageFilterSnapshotResultImage"
-                                                                }
-                                                            },
-                                                            "required": [
-                                                                "image"
-                                                            ],
-                                                            "additionalProperties": false
-                                                        }
-                                                    },
-                                                    "required": [],
-                                                    "additionalProperties": false
-                                                }
-                                            },
-                                            "required": [
-                                                "visit"
-                                            ],
-                                            "additionalProperties": false
-                                        }
-                                    }
-                                }
-                            },
-                            "required": [
-                                "subject"
-                            ],
-                            "additionalProperties": false
-                        }
-                    }
+                    "$ref": "#/definitions/imageFilterSnapshotResultCohort"
                 }
             },
             "required": [
