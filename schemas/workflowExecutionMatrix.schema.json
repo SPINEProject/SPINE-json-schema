@@ -4,69 +4,75 @@
     "title": "Schema  for the workflow execution matrix",
     "type": "object",
     "definitions": {
-        "configurationPayload": {
+        "configuration": {
             "type": "object",
             "properties": {
-                "label": {
+                "rater": {
                     "type": "string"
                 },
-                "autoConfig": {
+                "inputs": {
                     "type": "object",
-                    "patternProperties": {
-                        ".": {
-                            "type": "object",
-                            "properties": {
-                                "execution": {
-                                    "type": "string",
-                                    "enum": [
-                                        "local"
+                    "addionnalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "value": {
+                                "type": {
+                                    "anyOf": [
+                                        "string",
+                                        "array",
+                                        "number"
                                     ]
                                 }
-                            },
-                            "required": [
-                                "execution"
-                            ],
-                            "additionalProperties": false
-                        }
-                    }
-                },
-                "manualConfig": {
-                    "type": "object",
-                    "patternProperties": {
-                        ".": {
-                            "type": "object",
-                            "properties": {
-                                "assignedTo": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "assignedTo"
-                            ],
-                            "additionalProperties": false
-                        }
+                            }
+                        },
+                        "additionalProperties": false
                     }
                 }
             },
             "required": [
-                "label",
-                "autoConfig",
-                "manualConfig"
+                "raterId",
+                "inputs"
             ]
+        },
+        "launchedMatrixExecution": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+
+                },
+                "required": ["configuration", "status", "similarExecutionList"]
+            }
         },
         "matrixExecution": {
             "type": "array",
             "items": {
                 "type": "object",
                 "required": [
-                    "configurationPayload"
+                    "configuration"
                 ],
                 "properties": {
-                    "configurationPayload": {
-                        "$ref": "#/definitions/configurationPayload"
+                    "configuration": {
+                        "$ref": "#/definitions/configuration"
                     },
-                    "workflowExecutionUuid": {
+                    "workflowExecutionId": {
                         "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "DONE",
+                            "NOT_STARTED",
+                            "RUNNING",
+                            "ERROR",
+                            "REUSED"
+                        ]
+                    },
+                    "similarExecutionList": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "additionalProperties": false
@@ -108,6 +114,16 @@
                 }
             }
         },
+        "launchedMatrixVisitDetails": {
+            "type": "object",
+            "properties": {
+                "executions": {
+                    "$ref": "#/definitions/launchedMatrixExecution"
+                }
+            },
+            "additionalProperties": false,
+            "required": ["executions", "inputs", "raters", "status"] 
+        },
         "matrixVisitDetails": {
             "type": "object",
             "properties": {
@@ -119,9 +135,29 @@
                 },
                 "raters": {
                     "$ref": "#/definitions/matrixRaters"
+                },
+                "status": {
+                    "description": "Status of the executions for this visit",
+                    "type": "string",
+                    "enum": [
+                        "DONE",
+                        "NOT_STARTED",
+                        "RUNNING"
+                    ]
                 }
             },
             "additionalProperties": false
+        },
+        "launchedMatrixVisit": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/definitions/launchedMatrixVisitDetails"
+            },
+            "properties": {
+                "withoutVisit": {
+                    "$ref": "#/definitions/launchedMatrixVisitDetails"
+                }
+            }
         },
         "matrixVisit": {
             "type": "object",
@@ -131,6 +167,17 @@
             "properties": {
                 "withoutVisit": {
                     "$ref": "#/definitions/matrixVisitDetails"
+                }
+            }
+        },
+        "launchedMatrixSubject": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "visit": {
+                        "$ref": "#/definitions/launchedMatrixVisit"
+                    }
                 }
             }
         },
@@ -147,6 +194,17 @@
                     "visit"
                 ],
                 "additionalProperties": false
+            }
+        },
+        "launchedMatrixCohort": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "subject": {
+                        "$ref": "#/definitions/launchedMatrixSubject"
+                    }
+                }
             }
         },
         "matrixCohort": {
@@ -173,6 +231,15 @@
                 }
             },
             "additionalProperties": false
+        },
+        "launchedMatrix": {
+            "description": "The matrix",
+            "type": "object",
+            "properties": {
+                "cohort": {
+                    "$ref": "#/definitions/launchedMatrixCohort"
+                }
+            }
         },
         "inputConfigConstant": {
             "properties": {
@@ -575,7 +642,7 @@
                         "DRAFT_1_SELECT_WORKFLOW",
                         "DRAFT_2_SELECT_INPUT_DATA",
                         "DRAFT_3_SELECT_RATER",
-                        "DRAFT_4_SELECT_DISTRIBUTION"
+                        "LAUNCHED"
                     ]
                 },
                 "workflow": {
@@ -743,7 +810,7 @@
                     "$ref": "#/definitions/getWorkflowExecutionMatrixStep3Response"
                 },
                 {
-                    "$ref": "#/definitions/getWorkflowExecutionMatrixStep4Response"
+                    "$ref": "#/definitions/getWorkflowExecutionMatrixLaunchedResponse"
                 }
             ]
         },
@@ -896,6 +963,88 @@
                 "modificationDate"
             ]
         },
+        "getWorkflowExecutionMatrixLaunchedResponse": {
+            "type": "object",
+            "description": "Response for a matrix in step 4",
+            "additionalProperties": false,
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "LAUNCHED"
+                    ]
+                },
+                "createMultipleExecutionIfRepeatedInput": {
+                    "type": "boolean"
+                },
+                "uuid": {
+                    "type": "string"
+                },
+                "statistics": {
+                    "$ref": "#/definitions/workflowExecutionMatrixStatistics"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "workflow": {
+                    "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
+                },
+                "inputConfig": {
+                    "$ref": "#/definitions/workflowExecutionMatrixInputConfigGet"
+                },
+                "creationDate": {
+                    "type": "string"
+                },
+                "modificationDate": {
+                    "type": "string"
+                },
+                "matrix": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/matrix"
+                        },
+                        {
+                            "$ref": "#/definitions/launchedMatrix"
+                        }
+                    ]
+                },
+                "completion": {
+                    "type": "object",
+                    "properties": {
+                        "done": {
+                            "type": "number"
+                        },
+                        "running": {
+                            "type": "number"
+                        },
+                        "error": {
+                            "type": "number"
+                        },
+                        "notStarted": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "done",
+                        "running",
+                        "error",
+                        "notStarted"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "status",
+                "uuid",
+                "matrix",
+                "workflow",
+                "statistics",
+                "inputConfig",
+                "creationDate",
+                "modificationDate",
+                "completion"
+            ]
+        },
         "getWorkflowExecutionMatrixStep1Response": {
             "description": "Response for a matrix in step 1",
             "type": "object",
@@ -953,7 +1102,7 @@
                         "DRAFT_1_SELECT_WORKFLOW",
                         "DRAFT_2_SELECT_INPUT_DATA",
                         "DRAFT_3_SELECT_RATER",
-                        "DRAFT_4_SELECT_DISTRIBUTION"
+                        "LAUNCHED"
                     ]
                 },
                 "name": {
