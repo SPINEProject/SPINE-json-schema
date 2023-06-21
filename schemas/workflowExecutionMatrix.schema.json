@@ -38,10 +38,12 @@
             "type": "array",
             "items": {
                 "type": "object",
-                "properties": {
-
-                },
-                "required": ["configuration", "status", "similarExecutionList"]
+                "properties": {},
+                "required": [
+                    "configuration",
+                    "status",
+                    "similarExecutionList"
+                ]
             }
         },
         "matrixExecution": {
@@ -121,8 +123,12 @@
                     "$ref": "#/definitions/launchedMatrixExecution"
                 }
             },
-            "additionalProperties": false,
-            "required": ["executions", "inputs", "raters", "status"] 
+            "required": [
+                "executions",
+                "inputs",
+                "raters",
+                "status"
+            ]
         },
         "matrixVisitDetails": {
             "type": "object",
@@ -135,6 +141,12 @@
                 },
                 "raters": {
                     "$ref": "#/definitions/matrixRaters"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string"
                 },
                 "status": {
                     "description": "Status of the executions for this visit",
@@ -188,6 +200,9 @@
                 "properties": {
                     "visit": {
                         "$ref": "#/definitions/matrixVisit"
+                    },
+                    "label": {
+                        "type": "string"
                     }
                 },
                 "required": [
@@ -214,6 +229,9 @@
                 "properties": {
                     "subject": {
                         "$ref": "#/definitions/matrixSubject"
+                    },
+                    "label": {
+                        "type": "string"
                     }
                 },
                 "required": [

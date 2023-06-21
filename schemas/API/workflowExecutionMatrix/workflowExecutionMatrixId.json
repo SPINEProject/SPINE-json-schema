@@ -111,22 +111,26 @@
                                     "matrix": {
                                         "cohort": {
                                             "8a4811f962070de7cef66b978e8b5e56": {
+                                                "label": "cohort 1",
                                                 "subject": {
                                                     "538266fdbc32fd591138a56f3fcf3cb3": {
+                                                        "label": "subject 1",
                                                         "visit": {
                                                             "withoutVisit": {
+                                                                "date": "14-06-2023",
+                                                                "label": "visit 1",
                                                                 "inputs": {
                                                                     "image": [
                                                                         {
                                                                             "id": "24aca0af1c079b97b7fa0536fd5068d0",
-                                                                            "selected": true
+                                                                            "selected": false
                                                                         }
                                                                     ]
                                                                 },
                                                                 "raters": {
                                                                     "e5fdec81-9b45-464c-b74d-4763b17392d9": {
-                                                                        "name": "Grégory",
-                                                                        "lastname": "Bliault"
+                                                                        "lastname": "Bliault",
+                                                                        "name": "Grégory"
                                                                     }
                                                                 }
                                                             }
@@ -218,30 +222,37 @@
                                 "status": "DRAFT_3_SELECT_RATER",
                                 "name": "test",
                                 "matrix": {
-                                    "cohort": {
-                                        "8a4811f962070de7cef66b978e8b5e56": {
-                                            "subject": {
-                                                "538266fdbc32fd591138a56f3fcf3cb3": {
-                                                    "visit": {
-                                                        "withoutVisit": {
-                                                            "inputs": {
-                                                                "image": [
-                                                                    {
-                                                                        "id": "24aca0af1c079b97b7fa0536fd5068d0",
-                                                                        "selected": true
+                                        "cohort": {
+                                            "8a4811f962070de7cef66b978e8b5e56": {
+                                                "label": "cohort 1",
+                                                "subject": {
+                                                    "538266fdbc32fd591138a56f3fcf3cb3": {
+                                                        "label": "subject 1",
+                                                        "visit": {
+                                                            "withoutVisit": {
+                                                                "date": "14-06-2023",
+                                                                "label": "visit 1",
+                                                                "inputs": {
+                                                                    "image": [
+                                                                        {
+                                                                            "id": "24aca0af1c079b97b7fa0536fd5068d0",
+                                                                            "selected": false
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "raters": {
+                                                                    "e5fdec81-9b45-464c-b74d-4763b17392d9": {
+                                                                        "lastname": "Bliault",
+                                                                        "name": "Grégory"
                                                                     }
-                                                                ]
-                                                            },
-                                                            "raters": {
-                                                                "e5fdec81-9b45-464c-b74d-4763b17392d9": {}
+                                                                }
                                                             }
                                                         }
                                                     }
                                                 }
                                             }
                                         }
-                                    }
-                                },
+                                    },
                                 "createMultipleExecutionIfRepeatedInput": true,
                                 "inputConfig": {
                                     "image": {
@@ -472,22 +483,26 @@
                                     "matrix": {
                                         "cohort": {
                                             "8a4811f962070de7cef66b978e8b5e56": {
+                                                "label": "cohort 1",
                                                 "subject": {
                                                     "538266fdbc32fd591138a56f3fcf3cb3": {
+                                                        "label": "subject 1",
                                                         "visit": {
                                                             "withoutVisit": {
+                                                                "date": "14-06-2023",
+                                                                "label": "visit 1",
                                                                 "inputs": {
                                                                     "image": [
                                                                         {
                                                                             "id": "24aca0af1c079b97b7fa0536fd5068d0",
-                                                                            "selected": true
+                                                                            "selected": false
                                                                         }
                                                                     ]
                                                                 },
                                                                 "raters": {
                                                                     "e5fdec81-9b45-464c-b74d-4763b17392d9": {
-                                                                        "name": "Grégory",
-                                                                        "lastname": "Bliault"
+                                                                        "lastname": "Bliault",
+                                                                        "name": "Grégory"
                                                                     }
                                                                 }
                                                             }
