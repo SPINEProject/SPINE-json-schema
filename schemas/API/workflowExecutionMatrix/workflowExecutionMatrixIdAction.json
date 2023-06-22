@@ -1,0 +1,54 @@
+{
+    "parameters": [
+        {
+            "name": "workflowExecutionMatrixId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "post": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "workflow execution matrix"
+        ],
+        "summary": "/api/workflow-execution-matrix/workflowExecutionMatrixId/action",
+        "description": "This API is used to post an action (launch, reuse, ...) for a wf exec matrix case",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixActionBody"
+                    },
+                    "examples": {
+
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            
+                        },
+                        "examples": {
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

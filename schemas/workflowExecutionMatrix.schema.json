@@ -1143,6 +1143,69 @@
                 "status"
             ],
             "additionalProperties": false
+        },
+        "postWorkflowExecutionMatrixActionReuseBody": {
+            "type": "object",
+            "required": ["executorIdToReuse"],
+            "properties": {
+                 "actionType": {
+                    "type": "string",
+                    "enum": [
+                        "REUSE"
+                    ]
+                }
+            }
+        },
+        "postWorkflowExecutionMatrixActionOtherBody": {
+            "type": "object",
+            "properties": {
+                 "actionType": {
+                    "type": "string",
+                    "enum": [
+                        "LAUNCH",
+                        "RELAUNCH_AFTER_ERROR"
+                    ]
+                }
+            }
+        },
+        "postWorkflowExecutionMatrixActionBody": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["cohortId","subjectId","visitId","executionIndex","actionType"],
+            "properties": {
+                "cohortId": {
+                    "type": "string"
+                },
+                "subjectId": {
+                    "type": "string"
+                },
+                "visitId": {
+                    "type": "string"
+                },
+                "executionIndex": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "actionType": {
+                    "type": "string",
+                    "enum": [
+                        "LAUNCH",
+                        "RELAUNCH_AFTER_ERROR",
+                        "REUSE"
+                    ]
+                },
+                "executorIdToReuse": {
+                    "type": "string"
+                }
+            },
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/postWorkflowExecutionMatrixActionReuseBody"
+                },
+                {
+                    "$ref": "#/definitions/postWorkflowExecutionMatrixActionOtherBody"
+                }
+            ]
         }
     }
 }
