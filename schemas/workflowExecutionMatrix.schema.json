@@ -70,6 +70,9 @@
                             "REUSED"
                         ]
                     },
+                    "reused": {
+                        "type": "boolean"
+                    },
                     "similarExecutionList": {
                         "type": "array",
                         "items": {
@@ -154,7 +157,8 @@
                     "enum": [
                         "DONE",
                         "NOT_STARTED",
-                        "RUNNING"
+                        "RUNNING",
+                        "ERROR"
                     ]
                 }
             },
