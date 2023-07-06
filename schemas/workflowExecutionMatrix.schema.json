@@ -533,6 +533,9 @@
                 },
                 "modificationDate": {
                     "type": "string"
+                },
+                "executionDate": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -1018,6 +1021,9 @@
                     "type": "string"
                 },
                 "modificationDate": {
+                    "type": "string"
+                },
+                "executionDate": {
                     "type": "string"
                 },
                 "matrix": {
