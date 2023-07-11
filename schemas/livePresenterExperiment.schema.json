@@ -374,18 +374,18 @@
           },
           "scoringMethod" : {
             "type": "string",
-            "enum": ["ANNOTATION_SAME_VALUE"]
+            "enum": ["ANNOTATION_SAME_VALUE", "DICE_SCORE"]
           },
           "caseMatchingMethod" : {
             "type": "string",
-            "enum": ["ROI_ID"]
+            "enum": ["ROI_ID", "ORIGINAL_IMAGE_ID"]
           },
           "expert": {
             "type": "object",
             "properties": {
               "type": {
                 "type": "string",
-                "enum": ["ANNOTATION"]
+                "enum": ["ANNOTATION", "ROI"]
               },
               "key": {
                 "type": "string"
@@ -451,11 +451,11 @@
                   "type": "string"
                 },
                 "maxScore": {
-                  "type": "integer",
+                  "type": "number",
                   "minimum": 0
                 },
                 "thresholdScore": {
-                  "type": "integer",
+                  "type": "number",
                   "minimum": 0
                 }
               },
