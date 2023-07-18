@@ -62,6 +62,26 @@
                 }
             ]
         },
+        "newAutoConfig": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/newTaskConfig"
+                },
+                {
+                    "type": "object",
+                    "title": "New auto execution config",
+                    "properties": {
+                        "execution": {
+                            "enum": ["local"],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "execution"
+                    ]
+                }
+            ]
+        },
         "manualConfig": {
             "type": "object",
             "title": "Manual config",
@@ -101,7 +121,7 @@
                         "$ref": "#/definitions/reuseTaskConfig"
                     },
                     {
-                        "$ref": "#/definitions/newTaskConfig"
+                        "$ref": "#/definitions/newAutoConfig"
                     }
                 ],
                 "additionalProperties": false,

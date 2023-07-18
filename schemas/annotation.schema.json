@@ -69,6 +69,12 @@
                   "description": "Id of the materialized task used to created the ROI. If not set then the materialized task has not been submitted.",
                   "type": "string"
                 },
+                "taskExecutorId": {
+                  "type": "string"
+                },
+                "variableId": {
+                  "type": "string"
+                },
                 "questionId":{
                   "description": "Id of the question related to this annotation. An annotation is an answer to a question.",
                   "type": "string"
