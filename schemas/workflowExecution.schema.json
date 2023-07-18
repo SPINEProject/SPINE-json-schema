@@ -131,6 +131,10 @@
                     },
                     "taskExecutorId": {
                         "type": "string"
+                    },
+                    "execution": {
+                        "enum": ["local"],
+                        "type": "string"
                     }
                 }
             }
