@@ -55,11 +55,11 @@
           "type": "object",
           "properties": {
             "max": {
-              "type": "integer",
+              "type": "number",
               "minimum": 0
             },
             "score": {
-              "type": "integer",
+              "type": "number",
               "minimum": 0
             },
             "value": {
@@ -105,11 +105,11 @@
             "type": "object",
             "properties": {
               "value": {
-                "type": "integer",
+                "type": "number",
                 "minimum": 0
               },
               "max": {
-                "type": "integer",
+                "type": "number",
                 "minimum": 0
               },
               "view": {
