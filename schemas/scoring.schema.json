@@ -50,17 +50,17 @@
                             "groups": {
                                 "type": "object",
                                 "properties": {
-                                    "group1": {
+                                    "group_1": {
                                         "$ref": "#/definitions/roiIdList"
                                     },
-                                    "group2": {
+                                    "group_2": {
                                         "$ref": "#/definitions/roiIdList"
                                     }
                                 },
                                 "additionalProperties": false,
                                 "required": [
-                                    "group1",
-                                    "group2"
+                                    "group_1",
+                                    "group_2"
                                 ]
                             }
                         },
@@ -75,17 +75,17 @@
                     "description": "Definition of the two groups",
                     "title": "Definition of the two groups",
                     "properties": {
-                        "group1": {
+                        "group_1": {
                             "$ref": "#/definitions/groupDefinition"
                         },
-                        "group2": {
+                        "group_2": {
                             "$ref": "#/definitions/groupDefinition"
                         }
                     },
                     "additionalProperties": false,
                     "required": [
-                        "group1",
-                        "group2"
+                        "group_1",
+                        "group_2"
                     ]
                 }
             }
