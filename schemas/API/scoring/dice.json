@@ -35,18 +35,7 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "type": "object",
-                            "additionalProperties": false,
-                            "properties": {
-                                "diceCoefficient": {
-                                    "type": "number",
-                                    "minimum": 0,
-                                    "maximum": 1
-                                }
-                            },
-                            "required": [
-                                "diceCoefficient"
-                            ]
+                            "$ref": "../../scoring.schema.json#/definitions/getDiceResponse"
                         },
                         "examples": {
                             "1": {

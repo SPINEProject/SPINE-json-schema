@@ -33,6 +33,20 @@
                 }
             }
         },
+        "getDiceResponse": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "diceCoefficient": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            },
+            "required": [
+                "diceCoefficient"
+            ]
+        },
         "postMultiCaseDice": {
             "type": "object",
             "additionalProperties": false,
