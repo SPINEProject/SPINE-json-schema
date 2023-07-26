@@ -107,10 +107,16 @@
                         "type": "string"
                     },
                     "Group 1": {
-                        "type": "string"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "Group 2": {
-                        "type": "string"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "Group 1 Name": {
                         "type": "string"
