@@ -47,15 +47,27 @@
                     "additionalProperties": {
                         "type": "object",
                         "properties": {
-                            "group1": {
-                                "$ref": "#/definitions/roiIdList"
-                            },
-                            "group2": {
-                                "$ref": "#/definitions/roiIdList"
+                            "groups": {
+                                "type": "object",
+                                "properties": {
+                                    "group1": {
+                                        "$ref": "#/definitions/roiIdList"
+                                    },
+                                    "group2": {
+                                        "$ref": "#/definitions/roiIdList"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "group1",
+                                    "group2"
+                                ]
                             }
                         },
                         "additionalProperties": false,
-                        "required": ["group1", "group2"]
+                        "required": [
+                            "groups"
+                        ]
                     }
                 },
                 "groups": {
@@ -83,7 +95,13 @@
             "items": {
                 "type": "object",
                 "additionalProperties": false,
-                "required": ["Case ID", "Group 1", "Group 1 Name", "Group 2", "Group 2 Name"],
+                "required": [
+                    "Case ID",
+                    "Group 1",
+                    "Group 1 Name",
+                    "Group 2",
+                    "Group 2 Name"
+                ],
                 "properties": {
                     "Case ID": {
                         "type": "string"
@@ -105,7 +123,7 @@
                     },
                     "Dice": {
                         "type": "number",
-                        "minimum":0,
+                        "minimum": 0,
                         "maximum": 1
                     }
                 }
