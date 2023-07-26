@@ -33,50 +33,6 @@
                                     {
                                         "uuid": "b91d796f1452d1a9338b8e470d01609e",
                                         "name": "snapshot 1",
-                                        "result": {
-                                            "cohort": {
-                                                "8a4811f962070de7cef66b978e8b5e56": {
-                                                    "label": "Testing cohort 3",
-                                                    "subject": {
-                                                        "538266fdbc32fd591138a56f3fcf3cb3": {
-                                                            "label": "sub-220",
-                                                            "visit": {
-                                                                "withoutVisit": {
-                                                                    "date": "undefined",
-                                                                    "image": [
-                                                                        {
-                                                                            "comments": "",
-                                                                            "excluded": false,
-                                                                            "id": "24aca0af1c079b97b7fa0536fd5068d0",
-                                                                            "label": "sub-30bea927_ses-12276045172839167155223782008252020480000111709_acq-001_undefined",
-                                                                            "metadata": {
-                                                                                "Dimensions": "[256 256 208]",
-                                                                                "Protocol Name": "AX T1 (mprage)",
-                                                                                "Series Description": "AX T1 (mprage)"
-                                                                            },
-                                                                            "name": "Generic Filename"
-                                                                        },
-                                                                        {
-                                                                            "comments": "",
-                                                                            "excluded": false,
-                                                                            "id": "4e48bb07-866d-48e8-97d9-ab0e520229ce",
-                                                                            "label": "sub-30bea927_ses-12276045172839167155223782008252020480000111709_acq-001_undefined",
-                                                                            "metadata": {
-                                                                                "Dimensions": "[256 256 208]",
-                                                                                "Protocol Name": "AX T1 (mprage)",
-                                                                                "Series Description": "AX T1 (mprage)"
-                                                                            },
-                                                                            "name": "Generic Filename"
-                                                                        }
-                                                                    ],
-                                                                    "label": "undefined"
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
                                         "queryDate": "2023-01-18T15:47:58.517Z",
                                         "owner": {
                                             "lastname": "User",
