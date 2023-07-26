@@ -25,6 +25,7 @@ files[] = {"path":"API/filter/filterSnapshot.json","metaData":{}}
 files[] = {"path":"API/filter/filterSnapshotId.json","metaData":{}}
 files[] = {"path":"API/filter/filterSnapshotIdStatistics.json","metaData":{}}
 files[] = {"path":"API/index.json","metaData":{}}
+files[] = {"path":"API/scoring/dice.json","metaData":{}}
 files[] = {"path":"API/scoring/multiCaseDiceCsv.json","metaData":{}}
 files[] = {"path":"API/spm/spm.json","metaData":{}}
 files[] = {"path":"API/spm/spmIdContrast.json","metaData":{}}

@@ -1,0 +1,67 @@
+{
+    "parameters": [
+        {
+            "name": "imageEntity2Id",
+            "in": "query",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "imageEntity1Id",
+            "in": "query",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "get": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "scoring",
+            "dice"
+        ],
+        "summary": "/dice",
+        "description": "Compute dice score of two images (based on any value => 1 in images)",
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "diceCoefficient": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "maximum": 1
+                                }
+                            },
+                            "required": [
+                                "diceCoefficient"
+                            ]
+                        },
+                        "examples": {
+                            "1": {
+                                "value": {
+                                    "diceCoefficient": 1
+                                },
+                                "summary": "response"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}
