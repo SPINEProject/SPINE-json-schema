@@ -1,0 +1,66 @@
+{
+    "post": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "event"
+        ],
+        "summary": "/event/find-by-annotations-produced",
+        "description": "Find the list of event that are producing specific annotations",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../event.schema.json#/definitions/postEventFindByAnnotationsProducedBody"
+                    },
+                    "examples": {
+                        "1": {
+                            "value": [
+                                {
+                                    "questionId": "what_is_it",
+                                    "ontologyClassIri": "​​http://purl.obolibrary.org/obo/UBERON_0002132"
+                                }
+                            ],
+                            "summary": "Example"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../event.schema.json#/definitions/postEventFindByAnnotationsProducedResponse"
+                        },
+                        "examples": {
+                            "1": {
+                                "value": [
+                                    {
+                                        "uuid": "4128b044-b23b-4d7a-a67f-2b7f4e3522db",
+                                        "name": "Red nucleus segmentation",
+                                        "description": "tbd",
+                                        "imageUrl": "https://drive.google.com/uc?export=download&id=1heq4vqrCAmMv5c5FfaC01diByC4Ud0Ml",
+                                        "place": "tbd",
+                                        "openingDate": "2023-01-21T16:00:00+0000",
+                                        "closingDate": "2024-02-28T23:00:00+0000"
+                                    }
+                                ],
+                                "summary": "response"
+                            }
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

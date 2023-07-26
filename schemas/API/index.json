@@ -64,6 +64,9 @@
         },
         "/dice": {
             "$ref": "./scoring/dice.json"
+        },
+        "/event/find-by-annotations-produced": {
+            "$ref": "./event/eventFindByAnnotationsProduced.json"
         }
         
     },
