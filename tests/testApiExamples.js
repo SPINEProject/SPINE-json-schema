@@ -36,7 +36,7 @@ const loadAndParseSchema = function (schemaPath) {
 
                     obj[prop] = obj[prop].replace("./", "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/");
 
-                    
+
                     try {
                       ajvValidator.addSchema(schema);
                     }
@@ -79,7 +79,7 @@ try {
             if(HttpMethod.includes(prop)) {
                 // look for examples and schema in responses and requestBody
                 console.log("\x1b[34m ############### Validating "+prop+" "+p+" \x1b[37m")
-                if(def[prop].hasOwnProperty("requestBody")) {
+                if(def[prop].hasOwnProperty("requestBody") && def[prop].requestBody.content["application/json"]) {
 
                     console.log("\x1b[34m  request body \x1b[37m")
                     const splitted = def[prop].requestBody.content["application/json"].schema["$ref"].split("#")
@@ -113,7 +113,7 @@ try {
                         }
                     }
                 }
-                if(def[prop].hasOwnProperty("responses") && def[prop].responses.hasOwnProperty("200")) {
+                if(def[prop].hasOwnProperty("responses") && def[prop].responses.hasOwnProperty("200") && def[prop].responses["200"].content["application/json"]) {
 
                     console.log("\x1b[34m  response 200 \x1b[37m")
                     if(def[prop].responses["200"].content["application/json"].schema) {
