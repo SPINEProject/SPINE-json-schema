@@ -42,7 +42,7 @@
       "$id" : "#spineTypeInOut",
       "description": "SPINE Type",
       "type": "string",
-      "enum": ["String","Number","imageFileInOut","imageEntityInOut",
+      "enum": ["String","Number","3DImageReconstruction","imageFileInOut","imageEntityInOut",
         "auxiliaryImageFile","lookUpTable","lookUpTableDescription","roiInOut","annotationInOut",
         "roiWithAnnotationsInOut","annotationTableDefinitionInputOutput", "annotationFormDefinitionInputOutput",
         "annotationTableDataInOut", "annotationFormDataInOut","polyRoiInOut"]
@@ -119,6 +119,43 @@
             }
           },
           "required": ["type"]
+        }
+      ]
+    },
+
+    "3DImageReconstruction_Type" : {
+      "$id":"#3DImageReconstruction_Type",
+      "description":"Schema defining a 3D brain segmentation image type",
+      "type": "string",
+      "enum":["PNGReconstruction",""]
+    },
+
+    "3DImageReconstruction_FileFormat": {
+      "$id": "#3DImageReconstruction_FileFormat",
+      "description":"Format of 3D brain segmentation image",
+      "type":"string",
+      "enum":["png",""]
+    },
+
+    "3DImageReconstruction": {
+      "$id": "#3DImageReconstruction",
+      "description": "Schema defining a 3D brain segmentation image file as output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "string",
+              "enum": ["3DImageReconstruction"]
+            },
+            "3DImageReconstruction_Type": {
+              "$ref": "#/definitions/3DImageReconstruction_Type"
+            },
+            "3DImageReconstruction_FileFormat":{
+              "$ref": "#/definitions/imageFileInOut_FileFormat"
+            }
+          },
+          "required": ["type","3DImageReconstruction_Type","3DImageReconstruction_FileFormat"]
         }
       ]
     },
