@@ -1,0 +1,61 @@
+{
+    "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/event.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Definitions event",
+    "definitions": {
+        "postEventFindByAnnotationsProducedBody": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 1,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "questionId",
+                    "ontologyClassIri"
+                ],
+                "properties": {
+                    "questionId": {
+                        "type": "string"
+                    },
+                    "ontologyClassIri": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "postEventFindByAnnotationsProducedResponse": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "uuid"
+                ],
+                "properties": {
+                    "uuid": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "imageUrl": {
+                        "type": "string"
+                    },
+                    "place": {
+                        "type": "string"
+                    },
+                    "openingDate": {
+                        "type": "string"
+                    },
+                    "closingDate": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

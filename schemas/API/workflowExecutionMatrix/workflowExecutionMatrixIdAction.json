@@ -46,8 +46,7 @@
                 "description": "200",
                 "content": {
                     "application/json": {
-                        "schema": {},
-                        "examples": {}
+
                     }
                 }
             },

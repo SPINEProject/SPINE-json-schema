@@ -62,6 +62,26 @@
                 }
             ]
         },
+        "newAutoConfig": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/newTaskConfig"
+                },
+                {
+                    "type": "object",
+                    "title": "New auto execution config",
+                    "properties": {
+                        "execution": {
+                            "enum": ["local"],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "execution"
+                    ]
+                }
+            ]
+        },
         "manualConfig": {
             "type": "object",
             "title": "Manual config",
@@ -101,7 +121,7 @@
                         "$ref": "#/definitions/reuseTaskConfig"
                     },
                     {
-                        "$ref": "#/definitions/newTaskConfig"
+                        "$ref": "#/definitions/newAutoConfig"
                     }
                 ],
                 "additionalProperties": false,
@@ -110,6 +130,10 @@
                         "type": "boolean"
                     },
                     "taskExecutorId": {
+                        "type": "string"
+                    },
+                    "execution": {
+                        "enum": ["local"],
                         "type": "string"
                     }
                 }
@@ -361,6 +385,9 @@
                 "label": {
                     "$ref": "./execution.schema.json#/definitions/label"
                 },
+                "caseLabel": {
+                    "$ref": "./execution.schema.json#/definitions/caseLabel"
+                },
                 "docType": {
                     "type": "string",
                     "enum": [
@@ -445,6 +472,9 @@
                 "label": {
                     "$ref": "./execution.schema.json#/definitions/label"
                 },
+                "caseLabel": {
+                    "$ref": "./execution.schema.json#/definitions/caseLabel"
+                },
                 "simulate": {
                     "$ref": "./execution.schema.json#/definitions/simulate"
                 },
@@ -494,6 +524,9 @@
                 },
                 "label": {
                     "$ref": "./execution.schema.json#/definitions/label"
+                },
+                "caseLabel": {
+                    "$ref": "./execution.schema.json#/definitions/caseLabel"
                 },
                 "creationDate": {
                     "type": "string"

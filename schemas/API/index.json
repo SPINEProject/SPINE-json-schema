@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "version": "0.1.9",
+        "version": "0.2",
         "title": "SPINE API",
         "description": "SPINE API"
     },
@@ -58,7 +58,17 @@
         },
         "/run-spm-test/{spmExperimentId}/constrast/0/result": {
             "$ref": "./spm/spmIdContrastIndexResult.json"
+        },
+        "/multi-case-dice/csv": {
+            "$ref": "./scoring/multiCaseDiceCsv.json"
+        },
+        "/dice": {
+            "$ref": "./scoring/dice.json"
+        },
+        "/event/find-by-annotations-produced": {
+            "$ref": "./event/eventFindByAnnotationsProduced.json"
         }
+        
     },
     "components": {
         "examples": {},

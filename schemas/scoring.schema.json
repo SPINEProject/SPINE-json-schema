@@ -1,0 +1,153 @@
+{
+    "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/scoring.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Definitions scoring",
+    "definitions": {
+        "roiIdList": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "groupDefinition": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "contributors"
+            ],
+            "properties": {
+                "contributors": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "label"
+                        ],
+                        "properties": {
+                            "label": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "getDiceResponse": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "diceCoefficient": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            },
+            "required": [
+                "diceCoefficient"
+            ]
+        },
+        "postMultiCaseDice": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "cases",
+                "groups"
+            ],
+            "properties": {
+                "cases": {
+                    "type": "object",
+                    "title": "List of cases and their associated roi id",
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "groups": {
+                                "type": "object",
+                                "properties": {
+                                    "group_1": {
+                                        "$ref": "#/definitions/roiIdList"
+                                    },
+                                    "group_2": {
+                                        "$ref": "#/definitions/roiIdList"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "group_1",
+                                    "group_2"
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "groups"
+                        ]
+                    }
+                },
+                "groups": {
+                    "type": "object",
+                    "description": "Definition of the two groups",
+                    "title": "Definition of the two groups",
+                    "properties": {
+                        "group_1": {
+                            "$ref": "#/definitions/groupDefinition"
+                        },
+                        "group_2": {
+                            "$ref": "#/definitions/groupDefinition"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "group_1",
+                        "group_2"
+                    ]
+                }
+            }
+        },
+        "multiCaseDiceResponse": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "Case ID",
+                    "Group 1",
+                    "Group 1 Name",
+                    "Group 2",
+                    "Group 2 Name"
+                ],
+                "properties": {
+                    "Case ID": {
+                        "type": "string"
+                    },
+                    "Group 1": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "Group 2": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "Group 1 Name": {
+                        "type": "string"
+                    },
+                    "Group 2 Name": {
+                        "type": "string"
+                    },
+                    "Error message": {
+                        "type": "string"
+                    },
+                    "Dice": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                    }
+                }
+            }
+        }
+    }
+}
