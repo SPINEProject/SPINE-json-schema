@@ -12,7 +12,7 @@
     "workflow"
   ],
   "description": "Set of JSON schemas for the SPINE Virtual Laboratory",
-  "version": "3.1.0-dev.8",
+  "version": "3.1.0",
   "dependencies": {
     "ajv": "^6.12.2"
   },
