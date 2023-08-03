@@ -41,7 +41,7 @@
       "$id": "#layoutViewersType",
       "description": "Type of viewers layout.",
       "type": "string",
-      "enum": ["SINGLE","1M1R_IN_ROW","SINGLE_WITH_WIDGET_PANEL", "1M4R", "1M2R", "1M2R_WIDGETS","1M1R_ARROWS", "ROW"]
+      "enum": ["SINGLE","1M1R_IN_ROW","SINGLE_WITH_WIDGET_PANEL", "1M4R", "1M2R", "1M2R_WIDGETS","1M1R_ARROWS", "ROW","VERTICAL_FORM", "SIX_PACK","3_BY_3","3_BY_6", "2_BY_2"]
     },
 
     "possibleValueInAnnotationTable": {
