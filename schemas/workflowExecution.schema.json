@@ -163,7 +163,7 @@
                 }
             },
             "required": [
-                "miniWorkflowSet"
+
             ]
         },
         "subWorkflowConfig": {
@@ -457,7 +457,6 @@
                 "inputs",
                 "label",
                 "reference",
-                "miniWorkflowSet",
                 "stateOfTasks",
                 "docType",
                 "creationDate"
@@ -506,8 +505,7 @@
             "required": [
                 "inputs",
                 "label",
-                "reference",
-                "miniWorkflowSet"
+                "reference"
             ]
         },
         "getWorkflowExecution": {
@@ -563,7 +561,6 @@
             "required": [
                 "inputs",
                 "label",
-                "miniWorkflowSet",
                 "state",
                 "creationDate",
                 "stateOfTasks"
