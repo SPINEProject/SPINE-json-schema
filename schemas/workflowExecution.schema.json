@@ -499,6 +499,10 @@
                 },
                 "usePydra": {
                     "type": "boolean"
+                },
+                "queueName": {
+                    "description": "If using Pydra you can send the workflow to a Temporal queue",
+                    "type": "string"
                 }
             },
             "additionalProperties": false,
