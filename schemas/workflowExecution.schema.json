@@ -161,10 +161,7 @@
                         false
                     ]
                 }
-            },
-            "required": [
-
-            ]
+            }
         },
         "subWorkflowConfig": {
             "type": "object",
@@ -435,6 +432,10 @@
                 },
                 "usePydra": {
                     "type": "boolean"
+                },
+                "queueName": {
+                    "description": "If using Pydra you can send the workflow to a Temporal queue",
+                    "type": "string"
                 },
                 "state": {
                     "$ref": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/execution.schema.json#/definitions/state"

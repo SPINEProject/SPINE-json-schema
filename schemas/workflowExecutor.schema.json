@@ -5,6 +5,7 @@
     "additionalProperties": false,
     "title": "Workflow Executor",
     "properties": {
+        
       "uuid": {
         "description":"Task Executor UUID",
         "type":"string"

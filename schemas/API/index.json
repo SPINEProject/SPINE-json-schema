@@ -29,6 +29,9 @@
         "/workflow-execution-matrix/{workflowExecutionMatrixId}/action": {
             "$ref": "./workflowExecutionMatrix/workflowExecutionMatrixIdAction.json"
         },
+        "/workflow-execution-matrix/{workflowExecutionMatrixId}/global-action": {
+            "$ref": "./workflowExecutionMatrix/workflowExecutionMatrixIdGlobalAction.json"
+        },
         "/filter/{filterId}": {
             "$ref": "./filter/filterId.json"
         },

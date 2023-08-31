@@ -37,6 +37,7 @@ files[] = {"path":"API/workflow/workflowIdConfigure.json","metaData":{}}
 files[] = {"path":"API/workflowExecutionMatrix/workflowExecutionMatrix.json","metaData":{}}
 files[] = {"path":"API/workflowExecutionMatrix/workflowExecutionMatrixId.json","metaData":{}}
 files[] = {"path":"API/workflowExecutionMatrix/workflowExecutionMatrixIdAction.json","metaData":{}}
+files[] = {"path":"API/workflowExecutionMatrix/workflowExecutionMatrixIdGlobalAction.json","metaData":{}}
 files[] = {"path":"center.schema.json","metaData":{}}
 files[] = {"path":"cohort.schema.json","metaData":{}}
 files[] = {"path":"core.schema.json","metaData":{}}
