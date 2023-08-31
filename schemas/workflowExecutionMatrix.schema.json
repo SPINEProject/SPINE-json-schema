@@ -42,7 +42,8 @@
                 "required": [
                     "configuration",
                     "status",
-                    "similarExecutionList"
+                    "similarExecutionList",
+                    "isQueued"
                 ]
             }
         },
@@ -71,6 +72,9 @@
                         ]
                     },
                     "reused": {
+                        "type": "boolean"
+                    },
+                    "isQueued": {
                         "type": "boolean"
                     },
                     "similarExecutionList": {
