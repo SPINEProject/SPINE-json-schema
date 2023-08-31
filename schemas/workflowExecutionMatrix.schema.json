@@ -42,8 +42,7 @@
                 "required": [
                     "configuration",
                     "status",
-                    "similarExecutionList",
-                    "isQueued"
+                    "similarExecutionList"
                 ]
             }
         },
