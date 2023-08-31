@@ -73,8 +73,8 @@
                     "reused": {
                         "type": "boolean"
                     },
-                    "isQueued": {
-                        "type": "boolean"
+                    "queueProgress": {
+                        "type": "string"
                     },
                     "similarExecutionList": {
                         "type": "array",
