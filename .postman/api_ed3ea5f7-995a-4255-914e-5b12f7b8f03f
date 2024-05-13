@@ -49,6 +49,7 @@ files[] = {"path":"helpPanel.schema.json","metaData":{}}
 files[] = {"path":"imageFilter.schema.json","metaData":{}}
 files[] = {"path":"imageFilterAttribute.schema.json","metaData":{}}
 files[] = {"path":"imageFilterSnapshot.schema.json","metaData":{}}
+files[] = {"path":"import.schema.json","metaData":{}}
 files[] = {"path":"livePresenterExperiment.schema.json","metaData":{}}
 files[] = {"path":"livePresenterExperimentResult.schema.json","metaData":{}}
 files[] = {"path":"materializedTask.schema.json","metaData":{}}
