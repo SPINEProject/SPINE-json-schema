@@ -47,13 +47,19 @@
         "status": {
             "type": "string",
             "enum": [
+                "FAILED",
+                "DONE",
+                "RUNNING"
+            ]
+        },
+        "step": {
+            "type": "string",
+            "enum": [
                 "LISTING",
                 "LISTING_DONE",
                 "PROCESSING_SERIES",
                 "PROCESSING_SERIES_DONE",
-                "REPLICATING",
-                "FAILED",
-                "DONE"
+                "REPLICATING"
             ]
         },
         "reference": {
@@ -74,21 +80,124 @@
             "type": "object",
             "properties": {
                 "status": {
-                    "enum": ["LISTING"]
+                    "enum": [
+                        "LISTING"
+                    ]
+                },
+                "step": {
+                    "enum": [
+                        "RUNNING"
+                    ]
+                }
+            }
+        },
+        "importReplicating": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "REPLICATING"
+                    ]
                 }
             },
             "required": [
-
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "subjectCount",
+                "visitCount",
+                "acquisitionCount"
             ]
+        },
+        "importListingDone": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "LISTING_DONE"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount"
+            ]
+        },
+        "importProcessingSeries": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "PROCESSING_SERIES"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount"
+            ]
+        },
+        "importProcessingSeriesDone": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "PROCESSING_SERIES_DONE"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "subjectCount",
+                "visitCount",
+                "acquisitionCount"
+            ]
+        },
+        "importDone": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "DONE"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "subjectCount",
+                "visitCount",
+                "acquisitionCount",
+                "endUploadDate"
+            ]
+        },
+        "importFailed": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "FAILED"
+                    ]
+                }
+            },
+            "required": [
+                "failMessage"
+            ]
+        },
+        "failMessage": {
+            "type": "string"
         },
         "importDoc": {
             "type": "object",
             "properties": {
                 "anonymize": {
-                    "$ref": "#definitions/anonymize"
+                    "$ref": "#/definitions/anonymize"
                 },
                 "_id": {
                     "$ref": "#/definitions/_id"
+                },
+                "failMessage": {
+                    "$ref": "#/definitions/failMessage"
                 },
                 "_rev": {
                     "$ref": "#/definitions/_rev"
@@ -123,12 +232,17 @@
                 "status": {
                     "$ref": "#/definitions/status"
                 },
+                "step": {
+                    "$ref": "#/definitions/step"
+                },
                 "reference": {
                     "$ref": "#/definitions/reference"
                 }
             },
             "oneOf": [
-                {"#ref": "#/definitions/importListing"}
+                {
+                    "#ref": "#/definitions/importListing"
+                }
             ],
             "additionalProperties": false,
             "required": [
@@ -137,7 +251,8 @@
                 "docType",
                 "uploadDate",
                 "pathToFolder",
-                "_ìd",
+                "step",
+                "_id",
                 "_rev",
                 "anonymize"
             ]
