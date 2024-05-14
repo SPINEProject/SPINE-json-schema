@@ -47,19 +47,15 @@
         "status": {
             "type": "string",
             "enum": [
-                "FAILED",
-                "DONE",
-                "RUNNING"
-            ]
-        },
-        "step": {
-            "type": "string",
-            "enum": [
                 "LISTING",
                 "LISTING_DONE",
+                "LISTING_FAILED",
                 "PROCESSING_SERIES",
                 "PROCESSING_SERIES_DONE",
-                "REPLICATING"
+                "PROCESSING_SERIES_FAILED",
+                "REPLICATING",
+                "REPLICATING_FAILED",
+                "DONE"
             ]
         },
         "reference": {
@@ -83,30 +79,8 @@
                     "enum": [
                         "LISTING"
                     ]
-                },
-                "step": {
-                    "enum": [
-                        "RUNNING"
-                    ]
                 }
             }
-        },
-        "importReplicating": {
-            "type": "object",
-            "properties": {
-                "status": {
-                    "enum": [
-                        "REPLICATING"
-                    ]
-                }
-            },
-            "required": [
-                "dicomFileCount",
-                "nonDicomFileCount",
-                "subjectCount",
-                "visitCount",
-                "acquisitionCount"
-            ]
         },
         "importListingDone": {
             "type": "object",
@@ -121,6 +95,17 @@
                 "dicomFileCount",
                 "nonDicomFileCount"
             ]
+        },
+        "importListingFailed": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "LISTING_FAILED"
+                    ]
+                }
+            },
+            "required": ["failMessage"]
         },
         "importProcessingSeries": {
             "type": "object",
@@ -153,12 +138,62 @@
                 "acquisitionCount"
             ]
         },
+        "importProcessingSeriesFailed": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "PROCESSING_SERIES_FAILED"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "failMessage"
+            ]
+        },
+        "importReplicating": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "REPLICATING"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "subjectCount",
+                "visitCount",
+                "acquisitionCount"
+            ]
+        },
+                "importReplicatingFailed": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "REPLICATING_FAILED"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "subjectCount",
+                "visitCount",
+                "acquisitionCount",
+                "failMessage"
+            ]
+        },
         "importDone": {
             "type": "object",
             "properties": {
                 "status": {
                     "enum": [
-                        "DONE"
+                        "REPLICATING_DONE"
                     ]
                 }
             },
@@ -169,19 +204,6 @@
                 "visitCount",
                 "acquisitionCount",
                 "endUploadDate"
-            ]
-        },
-        "importFailed": {
-            "type": "object",
-            "properties": {
-                "status": {
-                    "enum": [
-                        "FAILED"
-                    ]
-                }
-            },
-            "required": [
-                "failMessage"
             ]
         },
         "failMessage": {
@@ -224,6 +246,9 @@
                     "$ref": "#/definitions/visitCount"
                 },
                 "acquisitionCount": {
+                    "$ref": "#/definitions/acquisitionCount"
+                },
+                "seriesCount": {
                     "$ref": "#/definitions/acquisitionCount"
                 },
                 "docType": {
