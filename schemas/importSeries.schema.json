@@ -1,0 +1,84 @@
+{
+    "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/importSeries.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Import visit",
+    "definitions": {
+        "_id": {
+            "type": "string"
+        },
+        "_rev": {
+            "type": "string"
+        },
+        "docType": {
+            "type": "string",
+            "enum": [
+                "importSeries"
+            ]
+        },
+        "reference": {
+            "type": "object",
+            "properties": {
+                "importId": {
+                    "type": "string"
+                },
+                "importSubjectId": {
+                    "type": "string"
+                },
+                "importVisitId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "importId",
+                "importSubjectId",
+                "importVisitId"
+            ]
+        },
+        "label":{
+          "type": "string"
+        },
+        "seriesNumber": {
+          "type": "string"
+        },
+        "pathToDispatchedFolder": {
+          "type": "string"
+        },
+        "processed": {
+          "type": "boolean"
+        },
+        "importSeriesDoc": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/_id"
+                },
+                "_rev": {
+                    "$ref": "#/definitions/_rev"
+                },
+                "reference": {
+                    "$ref": "#/definitions/reference"
+                },
+                "seriesNumber": {
+                  "$ref": "#/definitions/label"
+                },
+                "pathToDispatchedFolder": {
+                  "$ref": "#/definitions/pathToDispatchedFolder"
+                },
+                "processed": {
+                  "$ref": "#/definitions/processed"
+                },
+                "docType": {
+                  "$ref": "#/definitions/docType"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "reference",
+                "docType",
+                "processed",
+                "pathToDispatchedFolder",
+                "seriesNumber"
+            ]
+        }
+    }
+}

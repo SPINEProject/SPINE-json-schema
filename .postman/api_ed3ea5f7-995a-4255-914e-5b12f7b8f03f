@@ -50,6 +50,7 @@ files[] = {"path":"imageFilter.schema.json","metaData":{}}
 files[] = {"path":"imageFilterAttribute.schema.json","metaData":{}}
 files[] = {"path":"imageFilterSnapshot.schema.json","metaData":{}}
 files[] = {"path":"import.schema.json","metaData":{}}
+files[] = {"path":"importSeries.schema.json","metaData":{}}
 files[] = {"path":"importSubject.schema.json","metaData":{}}
 files[] = {"path":"importVisit.schema.json","metaData":{}}
 files[] = {"path":"livePresenterExperiment.schema.json","metaData":{}}
