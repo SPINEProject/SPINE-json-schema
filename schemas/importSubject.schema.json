@@ -1,0 +1,68 @@
+{
+    "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/import.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Import",
+    "definitions": {
+        "_id": {
+            "type": "string"
+        },
+        "_rev": {
+            "type": "string"
+        },
+        "docType": {
+            "type": "string",
+            "enum": [
+                "importSubject"
+            ]
+        },
+        "reference": {
+            "type": "object",
+            "properties": {
+                "importId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "importId"
+            ]
+        },
+        "originalCohortId":{
+          "type": "string"
+        },
+        "dob":{
+          "type": "string"
+        },
+        "sex":{
+          "type": "string"
+        },
+        "importSubjectDoc": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/_id"
+                },
+                "_rev": {
+                    "$ref": "#/definitions/_rev"
+                },
+                "reference": {
+                    "$ref": "#/definitions/reference"
+                },
+                "originalCohortId": {
+                  "$ref": "#/definitions/originalCohortId"
+                },
+                "dob": {
+                  "$ref": "#/definitions/dob"
+                },
+                "sex": {
+                  "$ref": "#/definitions/sex"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "reference",
+                "docType",
+                "originalCohortId"
+            ]
+        }
+    }
+}

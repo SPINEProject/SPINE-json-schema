@@ -9,6 +9,23 @@
         "_rev": {
             "type": "string"
         },
+        "progress": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "cohort": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            }
+          },
+          "required": ["name", "id"]
+        },
         "pathToFolder": {
             "type": "string"
         },
@@ -19,6 +36,10 @@
             "type": "string"
         },
         "dicomFileCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
+        "totalFileCount": {
             "minimum": 0,
             "type": "integer"
         },
@@ -47,6 +68,7 @@
         "status": {
             "type": "string",
             "enum": [
+                "INIT",
                 "LISTING",
                 "LISTING_DONE",
                 "LISTING_FAILED",
@@ -63,14 +85,31 @@
             "properties": {
                 "cohortId": {
                     "type": "string"
+                },
+                "userId": {
+                    "type": "string"
                 }
             },
             "required": [
-                "cohortId"
+                "cohortId",
+                "userId"
             ]
         },
         "anonymize": {
             "type": "boolean"
+        },
+        "importInit": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "INIT"
+                    ]
+                }
+            },
+            "required": [
+                "status"
+            ]
         },
         "importListing": {
             "type": "object",
@@ -80,7 +119,12 @@
                         "LISTING"
                     ]
                 }
-            }
+            },
+            "required": [
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
         },
         "importListingDone": {
             "type": "object",
@@ -93,7 +137,10 @@
             },
             "required": [
                 "dicomFileCount",
-                "nonDicomFileCount"
+                "nonDicomFileCount",
+                "uploadDate",
+                "status",
+                "totalFileCount"
             ]
         },
         "importListingFailed": {
@@ -105,7 +152,12 @@
                     ]
                 }
             },
-            "required": ["failMessage"]
+            "required": [
+                "failMessage",
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
         },
         "importProcessingSeries": {
             "type": "object",
@@ -118,7 +170,10 @@
             },
             "required": [
                 "dicomFileCount",
-                "nonDicomFileCount"
+                "nonDicomFileCount",
+                "uploadDate",
+                "status",
+                "totalFileCount"
             ]
         },
         "importProcessingSeriesDone": {
@@ -135,7 +190,10 @@
                 "nonDicomFileCount",
                 "subjectCount",
                 "visitCount",
-                "acquisitionCount"
+                "acquisitionCount",
+                "uploadDate",
+                "status",
+                "totalFileCount"
             ]
         },
         "importProcessingSeriesFailed": {
@@ -150,7 +208,10 @@
             "required": [
                 "dicomFileCount",
                 "nonDicomFileCount",
-                "failMessage"
+                "failMessage",
+                "uploadDate",
+                "status",
+                "totalFileCount"
             ]
         },
         "importReplicating": {
@@ -167,10 +228,13 @@
                 "nonDicomFileCount",
                 "subjectCount",
                 "visitCount",
-                "acquisitionCount"
+                "acquisitionCount",
+                "uploadDate",
+                "status",
+                "totalFileCount"
             ]
         },
-                "importReplicatingFailed": {
+        "importReplicatingFailed": {
             "type": "object",
             "properties": {
                 "status": {
@@ -185,7 +249,10 @@
                 "subjectCount",
                 "visitCount",
                 "acquisitionCount",
-                "failMessage"
+                "failMessage",
+                "uploadDate",
+                "status",
+                "totalFileCount"
             ]
         },
         "importDone": {
@@ -203,7 +270,10 @@
                 "subjectCount",
                 "visitCount",
                 "acquisitionCount",
-                "endUploadDate"
+                "endUploadDate",
+                "uploadDate",
+                "status",
+                "totalFileCount"
             ]
         },
         "failMessage": {
@@ -242,6 +312,9 @@
                 "subjectCount": {
                     "$ref": "#/definitions/subjectCount"
                 },
+                "totalFileCount": {
+                    "$ref": "#/definitions/totalFileCount"
+                },
                 "visitCount": {
                     "$ref": "#/definitions/visitCount"
                 },
@@ -257,16 +330,40 @@
                 "status": {
                     "$ref": "#/definitions/status"
                 },
-                "step": {
-                    "$ref": "#/definitions/step"
-                },
                 "reference": {
                     "$ref": "#/definitions/reference"
                 }
             },
             "oneOf": [
                 {
-                    "#ref": "#/definitions/importListing"
+                    "$ref": "#/definitions/importListing"
+                },
+                {
+                    "$ref": "#/definitions/importListingDone"
+                },
+                {
+                    "$ref": "#/definitions/importListingFailed"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeries"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeriesDone"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeriesFailed"
+                },
+                {
+                    "$ref": "#/definitions/importReplicating"
+                },
+                {
+                    "$ref": "#/definitions/importReplicatingFailed"
+                },
+                {
+                    "$ref": "#/definitions/importDone"
+                },
+                {
+                    "$ref": "#/definitions/importInit"
                 }
             ],
             "additionalProperties": false,
@@ -274,12 +371,113 @@
                 "reference",
                 "status",
                 "docType",
-                "uploadDate",
                 "pathToFolder",
-                "step",
-                "_id",
-                "_rev",
                 "anonymize"
+            ]
+        },
+        "postImport": {
+            "properties": {
+                "dicomPath": {
+                    "$ref": "#/definitions/pathToFolder"
+                },
+                "anonymization": {
+                    "$ref": "#/definitions/anonymize"
+                }
+            },
+            "required": ["dicomPath", "anonymization"]
+        },
+        "postImportResponse": {
+            "type": "object",
+            "properties": {
+                "anonymize": {
+                    "$ref": "#/definitions/anonymize"
+                },
+                "uuid": {
+                    "$ref": "#/definitions/_id"
+                },
+                "failMessage": {
+                    "$ref": "#/definitions/failMessage"
+                },
+                "folder": {
+                    "$ref": "#/definitions/pathToFolder"
+                },
+                "endUploadDate": {
+                    "$ref": "#/definitions/endUploadDate"
+                },
+                "uploadDate": {
+                    "$ref": "#/definitions/uploadDate"
+                },
+                "dicomFileCount": {
+                    "$ref": "#/definitions/dicomFileCount"
+                },
+                "progress": {
+                  "$ref": "#/definitions/progress"
+                },
+                "totalFileCount": {
+                    "$ref": "#/definitions/totalFileCount"
+                },
+                "nonDicomFileCount": {
+                    "$ref": "#/definitions/nonDicomFileCount"
+                },
+                "subjectCount": {
+                    "$ref": "#/definitions/subjectCount"
+                },
+                "visitCount": {
+                    "$ref": "#/definitions/visitCount"
+                },
+                "acquisitionCount": {
+                    "$ref": "#/definitions/acquisitionCount"
+                },
+                "seriesCount": {
+                    "$ref": "#/definitions/acquisitionCount"
+                },
+                "status": {
+                    "$ref": "#/definitions/status"
+                },
+                "cohort": {
+                    "$ref": "#/definitions/cohort"
+                }
+            },
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/importListing"
+                },
+                {
+                    "$ref": "#/definitions/importListingDone"
+                },
+                {
+                    "$ref": "#/definitions/importListingFailed"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeries"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeriesDone"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeriesFailed"
+                },
+                {
+                    "$ref": "#/definitions/importReplicating"
+                },
+                {
+                    "$ref": "#/definitions/importReplicatingFailed"
+                },
+                {
+                    "$ref": "#/definitions/importDone"
+                },
+                {
+                    "$ref": "#/definitions/importInit"
+                }
+            ],
+            "additionalProperties": false,
+            "required": [
+                "status",
+                "folder",
+                "anonymize",
+                "uuid",
+                "cohort",
+                "progress"
             ]
         }
     }
