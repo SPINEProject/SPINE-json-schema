@@ -3,6 +3,64 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Import",
     "definitions": {
+        "lutTableItems": {
+            "type": "object",
+            "required": [
+                "dicomPatientId",
+                "spineSubjectId",
+                "fromCohortLut"
+            ],
+            "properties": {
+                "dicomPatientId": {
+                    "type": "string"
+                },
+                "spineSubjectId": {
+                    "type": "string"
+                },
+                "fromCohortLut": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "lutTable": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/lutTableItems"
+            }
+        },
+        "exhaustiveLut": {
+            "type": "boolean"
+        },
+        "subjectLabelAnonMethod": {
+            "type": "string",
+            "enum": [
+                "RANDOM_LABEL",
+                "SAME_LABELS",
+                "LUT_LABELS"
+            ]
+        },
+        "fieldsToAnonymizeTable": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/fieldsToAnonymizeTableItems"
+            }
+        },
+        "fieldsToAnonymizeTableItems": {
+            "type": "object",
+            "required": [
+                "tag",
+                "anonValue"
+            ],
+            "properties": {
+                "tag": {
+                    "type": "string",
+                    "pattern": "^\\([0-9A-F]{4},[0-9A-F]{4}\\)$"
+                },
+                "anonValue": {
+                    "type": "string"
+                }
+            }
+        },
         "_id": {
             "type": "string"
         },
@@ -10,21 +68,24 @@
             "type": "string"
         },
         "progress": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
         },
         "cohort": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
             },
-            "id": {
-              "type": "string"
-            }
-          },
-          "required": ["name", "id"]
+            "required": [
+                "name",
+                "id"
+            ]
         },
         "pathToFolder": {
             "type": "string"
@@ -383,8 +444,25 @@
                 "anonymization": {
                     "$ref": "#/definitions/anonymize"
                 }
+                "lut": {
+                    "$ref": "#/definitions/lutTable"
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLut"
+                },
+                "subjectLabelAnonMethod": {
+                    "$ref": "#/definitions/subjectLabelAnonMethod"
+                },
+                "fieldsToAnonymize": {
+                    "$ref": "#/definitions/fieldsToAnonymizeTable"
+                }
             },
-            "required": ["dicomPath", "anonymization"]
+            "required": [
+                "dicomPath",
+                "anonymization",
+                "lut",
+                "exhaustiveLut"
+            ]
         },
         "postImportResponse": {
             "type": "object",
@@ -411,7 +489,7 @@
                     "$ref": "#/definitions/dicomFileCount"
                 },
                 "progress": {
-                  "$ref": "#/definitions/progress"
+                    "$ref": "#/definitions/progress"
                 },
                 "totalFileCount": {
                     "$ref": "#/definitions/totalFileCount"
