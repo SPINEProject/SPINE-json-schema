@@ -873,27 +873,29 @@
             ]
         },
         "patientIdLutDoc": {
-          "type": "object",
-          "properties": {
-            "lut": {
-              "$ref": "#/definitions/lutTable"
+            "type": "object",
+            "properties": {
+                "lut": {
+                    "$ref": "#/definitions/lutTable"
+                },
+                "_id": {
+                    "$ref": "#/definitions/_id"
+                },
+                "_rev": {
+                    "$ref": "#/definitions/_rev"
+                },
+                "docType": {
+                    "type": "string",
+                    "enum": [
+                        "patientIdLut"
+                    ]
+                }
             },
-            "_id": {
-                "$ref": "#/definitions/_id"
-            },
-            "_rev": {
-                "$ref": "#/definitions/_rev"
-            },
-            "docType": {
-              "type": "string",
-              "enum": ["patientIdLut"]
-            }
-          },
-          "required":[
-            "lut",
-            "docType"
-          ],
-          "additionalProperties": false
+            "required": [
+                "lut",
+                "docType"
+            ],
+            "additionalProperties": false
         }
     }
 }
