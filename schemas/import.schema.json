@@ -363,6 +363,142 @@
         "failMessage": {
             "type": "string"
         },
+        "importDocNoAnon": {
+            "type": "object",
+            "properties": {
+                "anonymize": {
+                    "enum": [
+                        false
+                    ]
+                }
+            },
+            "required": [
+                "anonymize"
+            ]
+        },
+        "importDocAnonRandomLabels": {
+            "type": "object",
+            "properties": {
+                "subjectLabelAnonMethod": {
+                    "enum": [
+                        "RANDOM_LABELS"
+                    ]
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutFalse"
+                }
+            },
+            "required": [
+                "subjectLabelAnonMethod",
+                "exhaustiveLut"
+            ]
+        },
+        "importDocAnonSameLabels": {
+            "type": "object",
+            "properties": {
+                "subjectLabelAnonMethod": {
+                    "enum": [
+                        "SAME_LABELS"
+                    ]
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutFalse"
+                }
+            },
+            "required": [
+                "subjectLabelAnonMethod",
+                "exhaustiveLut"
+            ]
+        },
+        "importDocAnonLutLabels": {
+            "type": "object",
+            "properties": {
+                "lut": {
+                    "$ref": "#/definitions/lutTableExhaustive"
+                },
+                "subjectLabelAnonMethod": {
+                    "enum": [
+                        "LUT_LABELS"
+                    ]
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutTrue"
+                }
+            },
+            "required": [
+                "subjectLabelAnonMethod",
+                "exhaustiveLut",
+                "lut"
+            ]
+        },
+        "importDocAnon": {
+            "type": "object",
+            "properties": {
+                "anonymize": {
+                    "enum": [
+                        true
+                    ]
+                }
+            },
+            "required": [
+                "anonymize"
+            ],
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/importDocAnonRandomLabels"
+                },
+                {
+                    "$ref": "#/definitions/importDocAnonSameLabels"
+                },
+                {
+                    "$ref": "#/definitions/importDocAnonLutLabels"
+                }
+            ]
+        },
+        "importDocStepVariants": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/importListing"
+                },
+                {
+                    "$ref": "#/definitions/importListingDone"
+                },
+                {
+                    "$ref": "#/definitions/importListingFailed"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeries"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeriesDone"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeriesFailed"
+                },
+                {
+                    "$ref": "#/definitions/importReplicating"
+                },
+                {
+                    "$ref": "#/definitions/importReplicatingFailed"
+                },
+                {
+                    "$ref": "#/definitions/importDone"
+                },
+                {
+                    "$ref": "#/definitions/importInit"
+                }
+            ]
+        },
+        "importDocAnonVariants": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/importDocNoAnon"
+                },
+                {
+                    "$ref": "#/definitions/importDocAnon"
+                }
+            ]
+        },
         "importDoc": {
             "type": "object",
             "properties": {
@@ -371,6 +507,18 @@
                 },
                 "_id": {
                     "$ref": "#/definitions/_id"
+                },
+                "lutId": {
+                    "$ref": "#/definitions/_id"
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLut"
+                },
+                "subjectLabelAnonMethod": {
+                    "$ref": "#/definitions/subjectLabelAnonMethod"
+                },
+                "fieldsToAnonymize": {
+                    "$ref": "#/definitions/fieldsToAnonymizeTable"
                 },
                 "failMessage": {
                     "$ref": "#/definitions/failMessage"
@@ -418,36 +566,12 @@
                     "$ref": "#/definitions/reference"
                 }
             },
-            "oneOf": [
+            "allOf": [
                 {
-                    "$ref": "#/definitions/importListing"
+                    "$ref": "#/definitions/importDocStepVariants"
                 },
                 {
-                    "$ref": "#/definitions/importListingDone"
-                },
-                {
-                    "$ref": "#/definitions/importListingFailed"
-                },
-                {
-                    "$ref": "#/definitions/importProcessingSeries"
-                },
-                {
-                    "$ref": "#/definitions/importProcessingSeriesDone"
-                },
-                {
-                    "$ref": "#/definitions/importProcessingSeriesFailed"
-                },
-                {
-                    "$ref": "#/definitions/importReplicating"
-                },
-                {
-                    "$ref": "#/definitions/importReplicatingFailed"
-                },
-                {
-                    "$ref": "#/definitions/importDone"
-                },
-                {
-                    "$ref": "#/definitions/importInit"
+                    "$ref": "#/definitions/importDocAnonVariants"
                 }
             ],
             "additionalProperties": false,
@@ -456,7 +580,9 @@
                 "status",
                 "docType",
                 "pathToFolder",
-                "anonymize"
+                "anonymize",
+                "lut",
+                "exhaustiveLut"
             ]
         },
         "postImportLutExhaustiveNoAnon": {
@@ -493,19 +619,15 @@
                     "$ref": "#/definitions/pathToFolder"
                 },
                 "anonymization": {
-                    "$ref": "#/definitions/anonymize"
+                    "enum": [
+                        false
+                    ]
                 },
                 "lut": {
                     "$ref": "#/definitions/lutTable"
                 },
                 "exhaustiveLut": {
                     "$ref": "#/definitions/exhaustiveLut"
-                },
-                "subjectLabelAnonMethod": {
-                    "$ref": "#/definitions/subjectLabelAnonMethod"
-                },
-                "fieldsToAnonymize": {
-                    "$ref": "#/definitions/fieldsToAnonymizeTable"
                 }
             },
             "required": [
@@ -577,19 +699,7 @@
                 "subjectLabelAnonMethod",
                 "exhaustiveLut",
                 "lut"
-            ],
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/postImportAnonRandomLabels"
-                },
-                {
-                    "$ref": "#/definitions/postImportAnonSameLabels"
-                },
-                {
-                    "$ref": "#/definitions/postImportAnonLutLabels"
-                }
-            ],
-            "additionalProperties": false
+            ]
         },
         "postImportAnon": {
             "type": "object",
@@ -598,7 +708,9 @@
                     "$ref": "#/definitions/pathToFolder"
                 },
                 "anonymization": {
-                    "$ref": "#/definitions/anonymize"
+                    "enum": [
+                        true
+                    ]
                 },
                 "lut": {
                     "$ref": "#/definitions/lutTable"
