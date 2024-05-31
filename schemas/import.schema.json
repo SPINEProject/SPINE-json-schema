@@ -413,9 +413,6 @@
         "importDocAnonLutLabels": {
             "type": "object",
             "properties": {
-                "lut": {
-                    "$ref": "#/definitions/lutTableExhaustive"
-                },
                 "subjectLabelAnonMethod": {
                     "enum": [
                         "LUT_LABELS"
@@ -427,8 +424,7 @@
             },
             "required": [
                 "subjectLabelAnonMethod",
-                "exhaustiveLut",
-                "lut"
+                "exhaustiveLut"
             ]
         },
         "importDocAnon": {
@@ -581,7 +577,7 @@
                 "docType",
                 "pathToFolder",
                 "anonymize",
-                "lut",
+                "lutId",
                 "exhaustiveLut"
             ]
         },
@@ -875,6 +871,29 @@
                 "cohort",
                 "progress"
             ]
+        },
+        "patientIdLutDoc": {
+          "type": "object",
+          "properties": {
+            "lut": {
+              "$ref": "#/definitions/lutTable"
+            },
+            "_id": {
+                "$ref": "#/definitions/_id"
+            },
+            "_rev": {
+                "$ref": "#/definitions/_rev"
+            },
+            "docType": {
+              "type": "string",
+              "enum": ["patientIdLut"]
+            }
+          },
+          "required":[
+            "lut",
+            "docType"
+          ],
+          "additionalProperties": false
         }
     }
 }
