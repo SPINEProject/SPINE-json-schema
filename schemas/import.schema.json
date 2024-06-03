@@ -361,7 +361,25 @@
             ]
         },
         "failMessage": {
-            "type": "string"
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "reason": {
+                            "type": "string"
+                        },
+                        "missingPatientIds": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "importDocNoAnon": {
             "type": "object",
@@ -777,6 +795,36 @@
                     "$ref": "#/definitions/postImportAnon"
                 }
             ]
+        },
+        "postImportResume": {
+          "type": "object",
+          "required": ["stepToResume"],
+          "additionalProperties": false,
+          "properties": {
+            "stepToResume": {
+              "type": "string",
+              "enum": ["LISTING", "PROCESSING_SERIES"]
+            }
+            "newLutRows": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                    "dicomPatientId",
+                    "spineSubjectId"
+                ],
+                "properties": {
+                    "dicomPatientId": {
+                        "type": "string"
+                    },
+                    "spineSubjectId": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
         },
         "postImportResponse": {
             "type": "object",
