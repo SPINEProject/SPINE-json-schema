@@ -69,6 +69,30 @@
                 },
                 "docType": {
                   "$ref": "#/definitions/docType"
+                },
+                "pathToDicoms": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "dicomHeaderSummary": {
+                  "type":"object",
+                  "required": ["all"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "all": {
+                      "type": "object"
+                    }
+                  }
+                },
+                "sopInstanceUids": {
+                  "type":"array",
+                  "items": {
+                    "type": "string"
                 }
             },
             "additionalProperties": false,

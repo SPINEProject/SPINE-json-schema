@@ -797,34 +797,39 @@
             ]
         },
         "postImportResume": {
-          "type": "object",
-          "required": ["stepToResume"],
-          "additionalProperties": false,
-          "properties": {
-            "stepToResume": {
-              "type": "string",
-              "enum": ["LISTING", "PROCESSING_SERIES"]
-            }
-            "newLutRows": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": [
-                    "dicomPatientId",
-                    "spineSubjectId"
-                ],
-                "properties": {
-                    "dicomPatientId": {
-                        "type": "string"
-                    },
-                    "spineSubjectId": {
-                        "type": "string"
-                    }
+            "type": "object",
+            "required": [
+                "stepToResume"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "stepToResume": {
+                    "type": "string",
+                    "enum": [
+                        "LISTING",
+                        "PROCESSING_SERIES"
+                    ]
                 },
-                "additionalProperties": false
-              }
+                "newLutRows": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "dicomPatientId",
+                            "spineSubjectId"
+                        ],
+                        "properties": {
+                            "dicomPatientId": {
+                                "type": "string"
+                            },
+                            "spineSubjectId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
             }
-          }
         },
         "postImportResponse": {
             "type": "object",
