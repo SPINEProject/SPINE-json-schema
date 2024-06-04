@@ -34,17 +34,17 @@
                 "importVisitId"
             ]
         },
-        "label":{
-          "type": "string"
+        "label": {
+            "type": "string"
         },
         "seriesNumber": {
-          "type": "string"
+            "type": "string"
         },
         "pathToDispatchedFolder": {
-          "type": "string"
+            "type": "string"
         },
         "processed": {
-          "type": "boolean"
+            "type": "boolean"
         },
         "importSeriesDoc": {
             "type": "object",
@@ -59,40 +59,43 @@
                     "$ref": "#/definitions/reference"
                 },
                 "seriesNumber": {
-                  "$ref": "#/definitions/label"
+                    "$ref": "#/definitions/label"
                 },
                 "pathToDispatchedFolder": {
-                  "$ref": "#/definitions/pathToDispatchedFolder"
+                    "$ref": "#/definitions/pathToDispatchedFolder"
                 },
                 "processed": {
-                  "$ref": "#/definitions/processed"
+                    "$ref": "#/definitions/processed"
                 },
                 "docType": {
-                  "$ref": "#/definitions/docType"
+                    "$ref": "#/definitions/docType"
                 },
                 "pathToDicoms": {
-                  "type": "string"
+                    "type": "string"
                 },
                 "name": {
-                  "type": "string"
+                    "type": "string"
                 },
                 "label": {
-                  "type": "string"
+                    "type": "string"
                 },
                 "dicomHeaderSummary": {
-                  "type":"object",
-                  "required": ["all"],
-                  "additionalProperties": false,
-                  "properties": {
-                    "all": {
-                      "type": "object"
+                    "type": "object",
+                    "required": [
+                        "all"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "all": {
+                            "type": "object"
+                        }
                     }
-                  }
                 },
                 "sopInstanceUids": {
-                  "type":"array",
-                  "items": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             },
             "additionalProperties": false,

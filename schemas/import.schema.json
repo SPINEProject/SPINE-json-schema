@@ -143,6 +143,14 @@
             "minimum": 0,
             "type": "integer"
         },
+        "acquisitionProcessedCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
+        "acquisitionReplicatedCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
         "docType": {
             "type": "string",
             "enum": [
@@ -272,9 +280,7 @@
             "required": [
                 "dicomFileCount",
                 "nonDicomFileCount",
-                "subjectCount",
-                "visitCount",
-                "acquisitionCount",
+
                 "uploadDate",
                 "status",
                 "totalFileCount"
@@ -310,9 +316,6 @@
             "required": [
                 "dicomFileCount",
                 "nonDicomFileCount",
-                "subjectCount",
-                "visitCount",
-                "acquisitionCount",
                 "uploadDate",
                 "status",
                 "totalFileCount"
@@ -330,9 +333,6 @@
             "required": [
                 "dicomFileCount",
                 "nonDicomFileCount",
-                "subjectCount",
-                "visitCount",
-                "acquisitionCount",
                 "failMessage",
                 "uploadDate",
                 "status",
@@ -351,9 +351,6 @@
             "required": [
                 "dicomFileCount",
                 "nonDicomFileCount",
-                "subjectCount",
-                "visitCount",
-                "acquisitionCount",
                 "endUploadDate",
                 "uploadDate",
                 "status",
@@ -816,7 +813,8 @@
                         "type": "object",
                         "required": [
                             "dicomPatientId",
-                            "spineSubjectId"
+                            "spineSubjectId",
+                            "fromCohortLut"
                         ],
                         "properties": {
                             "dicomPatientId": {
@@ -824,6 +822,9 @@
                             },
                             "spineSubjectId": {
                                 "type": "string"
+                            },
+                            "fromCohortLut": {
+                                "type": "boolean"
                             }
                         },
                         "additionalProperties": false
@@ -872,6 +873,12 @@
                 },
                 "acquisitionCount": {
                     "$ref": "#/definitions/acquisitionCount"
+                },
+                "acquisitionProcessedCount": {
+                    "$ref": "#/definitions/acquisitionProcessedCount"
+                },
+                "acquisitionReplicatedCount": {
+                    "$ref": "#/definitions/acquisitionReplicatedCount"
                 },
                 "seriesCount": {
                     "$ref": "#/definitions/acquisitionCount"
