@@ -3,6 +3,72 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Import",
     "definitions": {
+        "filterDicomsRule": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "valueStartsWith",
+                        "valueInList"
+                    ]
+                },
+                "dicom_field": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "array",
+                    "item": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "type",
+                "dicom_field",
+                "values"
+            ]
+        },
+        "filterDicoms": {
+            "type": "object",
+            "properties": {
+                "filterDicoms": {
+                    "type": "boolean"
+                },
+                "filterDicomsRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/filterDicomsRule"
+                    }
+                }
+            },
+            "required": [
+                "filterDicoms"
+            ],
+            "oneOf": [
+                {
+                    "properties": {
+                        "filterDicoms": {
+                            "enum": [
+                                true
+                            ]
+                        }
+                    },
+                    "required": [
+                        "filterDicomsRules"
+                    ]
+                },
+                {
+                    "properties": {
+                        "filterDicoms": {
+                            "enum": [
+                                false
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
         "lutTableItems": {
             "type": "object",
             "required": [
@@ -56,7 +122,6 @@
         "subjectLabelAnonMethod": {
             "type": "string",
             "enum": [
-                "RANDOM_LABELS",
                 "SAME_LABELS",
                 "LUT_LABELS"
             ]
@@ -280,7 +345,6 @@
             "required": [
                 "dicomFileCount",
                 "nonDicomFileCount",
-
                 "uploadDate",
                 "status",
                 "totalFileCount"
@@ -344,7 +408,7 @@
             "properties": {
                 "status": {
                     "enum": [
-                        "REPLICATING_DONE"
+                        "DONE"
                     ]
                 }
             },
@@ -575,6 +639,9 @@
                 },
                 "reference": {
                     "$ref": "#/definitions/reference"
+                },
+                "filterDicoms": {
+                    "$ref": "#/definitions/filterDicoms"
                 }
             },
             "allOf": [
@@ -593,7 +660,8 @@
                 "pathToFolder",
                 "anonymize",
                 "lutId",
-                "exhaustiveLut"
+                "exhaustiveLut",
+                "filterDicoms"
             ]
         },
         "postImportLutExhaustiveNoAnon": {
@@ -654,8 +722,7 @@
                 {
                     "$ref": "#/definitions/postImportLutNonExhaustiveNoAnon"
                 }
-            ],
-            "additionalProperties": false
+            ]
         },
         "postImportAnonRandomLabels": {
             "type": "object",
@@ -752,8 +819,7 @@
                 {
                     "$ref": "#/definitions/postImportAnonLutLabels"
                 }
-            ],
-            "additionalProperties": false
+            ]
         },
         "postImport": {
             "type": "object",
@@ -775,13 +841,17 @@
                 },
                 "fieldsToAnonymize": {
                     "$ref": "#/definitions/fieldsToAnonymizeTable"
+                },
+                "filterDicoms": {
+                    "$ref": "#/definitions/filterDicoms"
                 }
             },
             "required": [
                 "dicomPath",
                 "anonymization",
                 "lut",
-                "exhaustiveLut"
+                "exhaustiveLut",
+                "filterDicoms"
             ],
             "additionalProperties": false,
             "oneOf": [

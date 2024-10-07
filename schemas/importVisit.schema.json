@@ -34,10 +34,13 @@
           "type": "string"
         },
         "visitType":{
-          "type": "string"
+          "type": "string",
           "enum": ["imaging"]
         },
         "date":{
+          "type": "string"
+        },
+        "time":{
           "type": "string"
         },
         "importVisitDoc": {
@@ -59,7 +62,10 @@
                   "$ref": "#/definitions/visitType"
                 },
                 "date": {
-                  "$ref": "#/definitions/sex"
+                  "$ref": "#/definitions/date"
+                },
+                "time": {
+                  "$ref": "#/definitions/time"
                 },
                 "docType": {
                   "$ref": "#/definitions/docType"
