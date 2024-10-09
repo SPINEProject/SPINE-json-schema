@@ -1,0 +1,1031 @@
+{
+    "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/import.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Import",
+    "definitions": {
+        "filterDicomsRule": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "valueStartsWith",
+                        "valueInList"
+                    ]
+                },
+                "dicom_field": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "array",
+                    "item": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "type",
+                "dicom_field",
+                "values"
+            ]
+        },
+        "filterDicoms": {
+            "type": "object",
+            "properties": {
+                "filterDicoms": {
+                    "type": "boolean"
+                },
+                "filterDicomsRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/filterDicomsRule"
+                    }
+                }
+            },
+            "required": [
+                "filterDicoms"
+            ],
+            "oneOf": [
+                {
+                    "properties": {
+                        "filterDicoms": {
+                            "enum": [
+                                true
+                            ]
+                        }
+                    },
+                    "required": [
+                        "filterDicomsRules"
+                    ]
+                },
+                {
+                    "properties": {
+                        "filterDicoms": {
+                            "enum": [
+                                false
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "lutTableItems": {
+            "type": "object",
+            "required": [
+                "dicomPatientId",
+                "spineSubjectId",
+                "fromCohortLut"
+            ],
+            "properties": {
+                "dicomPatientId": {
+                    "type": "string"
+                },
+                "spineSubjectId": {
+                    "type": "string"
+                },
+                "fromCohortLut": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "lutTable": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/lutTableItems"
+            }
+        },
+        "lutTableExhaustive": {
+            "type": "array",
+            "minItems": 1,
+            "allOf": [
+                {
+                    "$ref": "#/definitions/lutTable"
+                }
+            ]
+        },
+        "exhaustiveLutTrue": {
+            "type": "boolean",
+            "enum": [
+                true
+            ]
+        },
+        "exhaustiveLutFalse": {
+            "type": "boolean",
+            "enum": [
+                false
+            ]
+        },
+        "exhaustiveLut": {
+            "type": "boolean"
+        },
+        "subjectLabelAnonMethod": {
+            "type": "string",
+            "enum": [
+                "SAME_LABELS",
+                "LUT_LABELS"
+            ]
+        },
+        "fieldsToAnonymizeTable": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/fieldsToAnonymizeTableItems"
+            }
+        },
+        "fieldsToAnonymizeTableItems": {
+            "type": "object",
+            "required": [
+                "tag",
+                "anonValue"
+            ],
+            "properties": {
+                "tag": {
+                    "type": "string",
+                    "pattern": "^\\([0-9A-F]{4},[0-9A-F]{4}\\)$"
+                },
+                "anonValue": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "_id": {
+            "type": "string"
+        },
+        "_rev": {
+            "type": "string"
+        },
+        "progress": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+        },
+        "cohort": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "id"
+            ]
+        },
+        "pathToFolder": {
+            "type": "string"
+        },
+        "endUploadDate": {
+            "type": "string"
+        },
+        "uploadDate": {
+            "type": "string"
+        },
+        "dicomFileCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
+        "totalFileCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
+        "nonDicomFileCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
+        "subjectCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
+        "visitCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
+        "acquisitionCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
+        "acquisitionProcessedCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
+        "acquisitionReplicatedCount": {
+            "minimum": 0,
+            "type": "integer"
+        },
+        "docType": {
+            "type": "string",
+            "enum": [
+                "import"
+            ]
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "INIT",
+                "LISTING",
+                "LISTING_DONE",
+                "LISTING_FAILED",
+                "PROCESSING_SERIES",
+                "PROCESSING_SERIES_DONE",
+                "PROCESSING_SERIES_FAILED",
+                "REPLICATING",
+                "REPLICATING_FAILED",
+                "DONE"
+            ]
+        },
+        "reference": {
+            "type": "object",
+            "properties": {
+                "cohortId": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "cohortId",
+                "userId"
+            ]
+        },
+        "anonymize": {
+            "type": "boolean"
+        },
+        "importInit": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "INIT"
+                    ]
+                }
+            },
+            "required": [
+                "status"
+            ]
+        },
+        "importListing": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "LISTING"
+                    ]
+                }
+            },
+            "required": [
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
+        },
+        "importListingDone": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "LISTING_DONE"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
+        },
+        "importListingFailed": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "LISTING_FAILED"
+                    ]
+                }
+            },
+            "required": [
+                "failMessage",
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
+        },
+        "importProcessingSeries": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "PROCESSING_SERIES"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
+        },
+        "importProcessingSeriesDone": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "PROCESSING_SERIES_DONE"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
+        },
+        "importProcessingSeriesFailed": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "PROCESSING_SERIES_FAILED"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "failMessage",
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
+        },
+        "importReplicating": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "REPLICATING"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
+        },
+        "importReplicatingFailed": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "REPLICATING_FAILED"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "failMessage",
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
+        },
+        "importDone": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "DONE"
+                    ]
+                }
+            },
+            "required": [
+                "dicomFileCount",
+                "nonDicomFileCount",
+                "endUploadDate",
+                "uploadDate",
+                "status",
+                "totalFileCount"
+            ]
+        },
+        "failMessage": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "reason": {
+                            "type": "string"
+                        },
+                        "missingPatientIds": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "importDocNoAnon": {
+            "type": "object",
+            "properties": {
+                "anonymize": {
+                    "enum": [
+                        false
+                    ]
+                }
+            },
+            "required": [
+                "anonymize"
+            ]
+        },
+        "importDocAnonRandomLabels": {
+            "type": "object",
+            "properties": {
+                "subjectLabelAnonMethod": {
+                    "enum": [
+                        "RANDOM_LABELS"
+                    ]
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutFalse"
+                }
+            },
+            "required": [
+                "subjectLabelAnonMethod",
+                "exhaustiveLut"
+            ]
+        },
+        "importDocAnonSameLabels": {
+            "type": "object",
+            "properties": {
+                "subjectLabelAnonMethod": {
+                    "enum": [
+                        "SAME_LABELS"
+                    ]
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutFalse"
+                }
+            },
+            "required": [
+                "subjectLabelAnonMethod",
+                "exhaustiveLut"
+            ]
+        },
+        "importDocAnonLutLabels": {
+            "type": "object",
+            "properties": {
+                "subjectLabelAnonMethod": {
+                    "enum": [
+                        "LUT_LABELS"
+                    ]
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutTrue"
+                }
+            },
+            "required": [
+                "subjectLabelAnonMethod",
+                "exhaustiveLut"
+            ]
+        },
+        "importDocAnon": {
+            "type": "object",
+            "properties": {
+                "anonymize": {
+                    "enum": [
+                        true
+                    ]
+                }
+            },
+            "required": [
+                "anonymize"
+            ],
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/importDocAnonRandomLabels"
+                },
+                {
+                    "$ref": "#/definitions/importDocAnonSameLabels"
+                },
+                {
+                    "$ref": "#/definitions/importDocAnonLutLabels"
+                }
+            ]
+        },
+        "importDocStepVariants": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/importListing"
+                },
+                {
+                    "$ref": "#/definitions/importListingDone"
+                },
+                {
+                    "$ref": "#/definitions/importListingFailed"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeries"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeriesDone"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeriesFailed"
+                },
+                {
+                    "$ref": "#/definitions/importReplicating"
+                },
+                {
+                    "$ref": "#/definitions/importReplicatingFailed"
+                },
+                {
+                    "$ref": "#/definitions/importDone"
+                },
+                {
+                    "$ref": "#/definitions/importInit"
+                }
+            ]
+        },
+        "importDocAnonVariants": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/importDocNoAnon"
+                },
+                {
+                    "$ref": "#/definitions/importDocAnon"
+                }
+            ]
+        },
+        "importDoc": {
+            "type": "object",
+            "properties": {
+                "anonymize": {
+                    "$ref": "#/definitions/anonymize"
+                },
+                "_id": {
+                    "$ref": "#/definitions/_id"
+                },
+                "lutId": {
+                    "$ref": "#/definitions/_id"
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLut"
+                },
+                "subjectLabelAnonMethod": {
+                    "$ref": "#/definitions/subjectLabelAnonMethod"
+                },
+                "fieldsToAnonymize": {
+                    "$ref": "#/definitions/fieldsToAnonymizeTable"
+                },
+                "failMessage": {
+                    "$ref": "#/definitions/failMessage"
+                },
+                "_rev": {
+                    "$ref": "#/definitions/_rev"
+                },
+                "pathToFolder": {
+                    "$ref": "#/definitions/pathToFolder"
+                },
+                "endUploadDate": {
+                    "$ref": "#/definitions/endUploadDate"
+                },
+                "uploadDate": {
+                    "$ref": "#/definitions/uploadDate"
+                },
+                "dicomFileCount": {
+                    "$ref": "#/definitions/dicomFileCount"
+                },
+                "nonDicomFileCount": {
+                    "$ref": "#/definitions/nonDicomFileCount"
+                },
+                "subjectCount": {
+                    "$ref": "#/definitions/subjectCount"
+                },
+                "totalFileCount": {
+                    "$ref": "#/definitions/totalFileCount"
+                },
+                "visitCount": {
+                    "$ref": "#/definitions/visitCount"
+                },
+                "acquisitionCount": {
+                    "$ref": "#/definitions/acquisitionCount"
+                },
+                "seriesCount": {
+                    "$ref": "#/definitions/acquisitionCount"
+                },
+                "docType": {
+                    "$ref": "#/definitions/docType"
+                },
+                "status": {
+                    "$ref": "#/definitions/status"
+                },
+                "reference": {
+                    "$ref": "#/definitions/reference"
+                },
+                "filterDicoms": {
+                    "$ref": "#/definitions/filterDicoms"
+                }
+            },
+            "allOf": [
+                {
+                    "$ref": "#/definitions/importDocStepVariants"
+                },
+                {
+                    "$ref": "#/definitions/importDocAnonVariants"
+                }
+            ],
+            "additionalProperties": false,
+            "required": [
+                "reference",
+                "status",
+                "docType",
+                "pathToFolder",
+                "anonymize",
+                "lutId",
+                "exhaustiveLut",
+                "filterDicoms"
+            ]
+        },
+        "postImportLutExhaustiveNoAnon": {
+            "type": "object",
+            "properties": {
+                "lut": {
+                    "$ref": "#/definitions/lutTableExhaustive"
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutTrue"
+                }
+            },
+            "required": [
+                "lut",
+                "exhaustiveLut"
+            ]
+        },
+        "postImportLutNonExhaustiveNoAnon": {
+            "type": "object",
+            "properties": {
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutFalse"
+                }
+            },
+            "required": [
+                "lut",
+                "exhaustiveLut"
+            ]
+        },
+        "postImportNoAnon": {
+            "type": "object",
+            "properties": {
+                "dicomPath": {
+                    "$ref": "#/definitions/pathToFolder"
+                },
+                "anonymization": {
+                    "enum": [
+                        false
+                    ]
+                },
+                "lut": {
+                    "$ref": "#/definitions/lutTable"
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLut"
+                }
+            },
+            "required": [
+                "dicomPath",
+                "anonymization",
+                "lut",
+                "exhaustiveLut"
+            ],
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/postImportLutExhaustiveNoAnon"
+                },
+                {
+                    "$ref": "#/definitions/postImportLutNonExhaustiveNoAnon"
+                }
+            ]
+        },
+        "postImportAnonRandomLabels": {
+            "type": "object",
+            "properties": {
+                "subjectLabelAnonMethod": {
+                    "enum": [
+                        "RANDOM_LABELS"
+                    ]
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutFalse"
+                }
+            },
+            "required": [
+                "subjectLabelAnonMethod",
+                "exhaustiveLut"
+            ]
+        },
+        "postImportAnonSameLabels": {
+            "type": "object",
+            "properties": {
+                "subjectLabelAnonMethod": {
+                    "enum": [
+                        "SAME_LABELS"
+                    ]
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutFalse"
+                }
+            },
+            "required": [
+                "subjectLabelAnonMethod",
+                "exhaustiveLut"
+            ]
+        },
+        "postImportAnonLutLabels": {
+            "type": "object",
+            "properties": {
+                "lut": {
+                    "$ref": "#/definitions/lutTableExhaustive"
+                },
+                "subjectLabelAnonMethod": {
+                    "enum": [
+                        "LUT_LABELS"
+                    ]
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLutTrue"
+                }
+            },
+            "required": [
+                "subjectLabelAnonMethod",
+                "exhaustiveLut",
+                "lut"
+            ]
+        },
+        "postImportAnon": {
+            "type": "object",
+            "properties": {
+                "dicomPath": {
+                    "$ref": "#/definitions/pathToFolder"
+                },
+                "anonymization": {
+                    "enum": [
+                        true
+                    ]
+                },
+                "lut": {
+                    "$ref": "#/definitions/lutTable"
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLut"
+                },
+                "subjectLabelAnonMethod": {
+                    "$ref": "#/definitions/subjectLabelAnonMethod"
+                },
+                "fieldsToAnonymize": {
+                    "$ref": "#/definitions/fieldsToAnonymizeTable"
+                }
+            },
+            "required": [
+                "subjectLabelAnonMethod",
+                "fieldsToAnonymize",
+                "exhaustiveLut",
+                "lut"
+            ],
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/postImportAnonRandomLabels"
+                },
+                {
+                    "$ref": "#/definitions/postImportAnonSameLabels"
+                },
+                {
+                    "$ref": "#/definitions/postImportAnonLutLabels"
+                }
+            ]
+        },
+        "postImport": {
+            "type": "object",
+            "properties": {
+                "dicomPath": {
+                    "$ref": "#/definitions/pathToFolder"
+                },
+                "anonymization": {
+                    "$ref": "#/definitions/anonymize"
+                },
+                "lut": {
+                    "$ref": "#/definitions/lutTable"
+                },
+                "exhaustiveLut": {
+                    "$ref": "#/definitions/exhaustiveLut"
+                },
+                "subjectLabelAnonMethod": {
+                    "$ref": "#/definitions/subjectLabelAnonMethod"
+                },
+                "fieldsToAnonymize": {
+                    "$ref": "#/definitions/fieldsToAnonymizeTable"
+                },
+                "filterDicoms": {
+                    "$ref": "#/definitions/filterDicoms"
+                }
+            },
+            "required": [
+                "dicomPath",
+                "anonymization",
+                "lut",
+                "exhaustiveLut",
+                "filterDicoms"
+            ],
+            "additionalProperties": false,
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/postImportNoAnon"
+                },
+                {
+                    "$ref": "#/definitions/postImportAnon"
+                }
+            ]
+        },
+        "postImportResume": {
+            "type": "object",
+            "required": [
+                "stepToResume"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "stepToResume": {
+                    "type": "string",
+                    "enum": [
+                        "LISTING",
+                        "PROCESSING_SERIES"
+                    ]
+                },
+                "newLutRows": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "dicomPatientId",
+                            "spineSubjectId",
+                            "fromCohortLut"
+                        ],
+                        "properties": {
+                            "dicomPatientId": {
+                                "type": "string"
+                            },
+                            "spineSubjectId": {
+                                "type": "string"
+                            },
+                            "fromCohortLut": {
+                                "type": "boolean"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            }
+        },
+        "postImportResponse": {
+            "type": "object",
+            "properties": {
+                "anonymize": {
+                    "$ref": "#/definitions/anonymize"
+                },
+                "uuid": {
+                    "$ref": "#/definitions/_id"
+                },
+                "failMessage": {
+                    "$ref": "#/definitions/failMessage"
+                },
+                "folder": {
+                    "$ref": "#/definitions/pathToFolder"
+                },
+                "endUploadDate": {
+                    "$ref": "#/definitions/endUploadDate"
+                },
+                "uploadDate": {
+                    "$ref": "#/definitions/uploadDate"
+                },
+                "dicomFileCount": {
+                    "$ref": "#/definitions/dicomFileCount"
+                },
+                "progress": {
+                    "$ref": "#/definitions/progress"
+                },
+                "totalFileCount": {
+                    "$ref": "#/definitions/totalFileCount"
+                },
+                "nonDicomFileCount": {
+                    "$ref": "#/definitions/nonDicomFileCount"
+                },
+                "subjectCount": {
+                    "$ref": "#/definitions/subjectCount"
+                },
+                "visitCount": {
+                    "$ref": "#/definitions/visitCount"
+                },
+                "acquisitionCount": {
+                    "$ref": "#/definitions/acquisitionCount"
+                },
+                "acquisitionProcessedCount": {
+                    "$ref": "#/definitions/acquisitionProcessedCount"
+                },
+                "acquisitionReplicatedCount": {
+                    "$ref": "#/definitions/acquisitionReplicatedCount"
+                },
+                "seriesCount": {
+                    "$ref": "#/definitions/acquisitionCount"
+                },
+                "status": {
+                    "$ref": "#/definitions/status"
+                },
+                "cohort": {
+                    "$ref": "#/definitions/cohort"
+                }
+            },
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/importListing"
+                },
+                {
+                    "$ref": "#/definitions/importListingDone"
+                },
+                {
+                    "$ref": "#/definitions/importListingFailed"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeries"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeriesDone"
+                },
+                {
+                    "$ref": "#/definitions/importProcessingSeriesFailed"
+                },
+                {
+                    "$ref": "#/definitions/importReplicating"
+                },
+                {
+                    "$ref": "#/definitions/importReplicatingFailed"
+                },
+                {
+                    "$ref": "#/definitions/importDone"
+                },
+                {
+                    "$ref": "#/definitions/importInit"
+                }
+            ],
+            "additionalProperties": false,
+            "required": [
+                "status",
+                "folder",
+                "anonymize",
+                "uuid",
+                "cohort",
+                "progress"
+            ]
+        },
+        "patientIdLutDoc": {
+            "type": "object",
+            "properties": {
+                "lut": {
+                    "$ref": "#/definitions/lutTable"
+                },
+                "_id": {
+                    "$ref": "#/definitions/_id"
+                },
+                "_rev": {
+                    "$ref": "#/definitions/_rev"
+                },
+                "docType": {
+                    "type": "string",
+                    "enum": [
+                        "patientIdLut"
+                    ]
+                }
+            },
+            "required": [
+                "lut",
+                "docType"
+            ],
+            "additionalProperties": false
+        }
+    }
+}

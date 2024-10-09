@@ -161,10 +161,7 @@
                         false
                     ]
                 }
-            },
-            "required": [
-                "miniWorkflowSet"
-            ]
+            }
         },
         "subWorkflowConfig": {
             "type": "object",
@@ -436,6 +433,10 @@
                 "usePydra": {
                     "type": "boolean"
                 },
+                "queueName": {
+                    "description": "If using Pydra you can send the workflow to a Temporal queue",
+                    "type": "string"
+                },
                 "state": {
                     "$ref": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/execution.schema.json#/definitions/state"
                 },
@@ -457,7 +458,6 @@
                 "inputs",
                 "label",
                 "reference",
-                "miniWorkflowSet",
                 "stateOfTasks",
                 "docType",
                 "creationDate"
@@ -500,14 +500,17 @@
                 },
                 "usePydra": {
                     "type": "boolean"
+                },
+                "queueName": {
+                    "description": "If using Pydra you can send the workflow to a Temporal queue",
+                    "type": "string"
                 }
             },
             "additionalProperties": false,
             "required": [
                 "inputs",
                 "label",
-                "reference",
-                "miniWorkflowSet"
+                "reference"
             ]
         },
         "getWorkflowExecution": {
@@ -563,7 +566,6 @@
             "required": [
                 "inputs",
                 "label",
-                "miniWorkflowSet",
                 "state",
                 "creationDate",
                 "stateOfTasks"

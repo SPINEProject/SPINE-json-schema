@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "version": "0.2",
+        "version": "0.2.3-dev",
         "title": "SPINE API",
         "description": "SPINE API"
     },
@@ -28,6 +28,9 @@
         },
         "/workflow-execution-matrix/{workflowExecutionMatrixId}/action": {
             "$ref": "./workflowExecutionMatrix/workflowExecutionMatrixIdAction.json"
+        },
+        "/workflow-execution-matrix/{workflowExecutionMatrixId}/global-action": {
+            "$ref": "./workflowExecutionMatrix/workflowExecutionMatrixIdGlobalAction.json"
         },
         "/filter/{filterId}": {
             "$ref": "./filter/filterId.json"

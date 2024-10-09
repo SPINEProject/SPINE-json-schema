@@ -1,0 +1,54 @@
+{
+    "parameters": [
+        {
+            "name": "workflowExecutionMatrixId",
+            "in": "path",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ],
+    "post": {
+        "security": [
+            {
+                "bearerAuth": []
+            }
+        ],
+        "tags": [
+            "workflow execution matrix"
+        ],
+        "summary": "/api/workflow-execution-matrix/workflowExecutionMatrixId/global-action",
+        "description": "This API is used to post an action (launch, ...) to all the case of a wf exec plan",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../workflowExecutionMatrix.schema.json#/definitions/postWorkflowExecutionMatrixGlobalActionBody"
+                    },
+                    "examples": {
+                        "1": {
+                            "value": {
+                                "actionType": "LAUNCH"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "200",
+                "content": {
+                    "application/json": {
+
+                    }
+                }
+            },
+            "500": {
+                "description": "Unexpected error"
+            }
+        }
+    }
+}

@@ -73,6 +73,9 @@
                     "reused": {
                         "type": "boolean"
                     },
+                    "queueProgress": {
+                        "type": "string"
+                    },
                     "similarExecutionList": {
                         "type": "array",
                         "items": {
@@ -1216,6 +1219,19 @@
                     "$ref": "#/definitions/postWorkflowExecutionMatrixActionOtherBody"
                 }
             ]
+        },
+        "postWorkflowExecutionMatrixGlobalActionBody": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["actionType"],
+            "properties": {
+                "actionType": {
+                    "type": "string",
+                    "enum": [
+                        "LAUNCH"
+                    ]
+                }
+            }
         }
     }
 }

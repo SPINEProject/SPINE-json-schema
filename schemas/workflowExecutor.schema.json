@@ -5,17 +5,18 @@
     "additionalProperties": false,
     "title": "Workflow Executor",
     "properties": {
+        
       "uuid": {
         "description":"Task Executor UUID",
         "type":"string"
       },
       "label":{
         "type":"string",
-        "description": "Label for this workflow instance",
+        "description": "Label for this workflow instance"
       },
       "miniWorkflowSet":{
         "type":"string",
-        "description": "UUID of a mini workflow set to use for this execution",
+        "description": "UUID of a mini workflow set to use for this execution"
       },
       "reference": {
         "description":"References to other entities",
