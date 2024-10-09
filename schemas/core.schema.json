@@ -42,7 +42,7 @@
       "$id" : "#spineTypeInOut",
       "description": "SPINE Type",
       "type": "string",
-      "enum": ["String","Number","imageFileInOut","imageEntityInOut",
+      "enum": ["String","Number","Boolean","imageFileInOut","imageEntityInOut",
         "auxiliaryImageFile","lookUpTable","lookUpTableDescription","roiInOut","annotationInOut",
         "roiWithAnnotationsInOut","annotationTableDefinitionInputOutput", "annotationFormDefinitionInputOutput",
         "annotationTableDataInOut", "annotationFormDataInOut","polyRoiInOut"]
@@ -116,6 +116,23 @@
             "type":{
               "type": "string",
               "enum": ["Number"]
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+
+    "Boolean": {
+      "$id": "#Boolean",
+      "description": "Schema defining Boolean as input or output",
+      "allOf":[
+        {"$ref": "#/definitions/inputOutput_spine"},
+        {
+          "properties": {
+            "type":{
+              "type": "boolean",
+              "enum": ["Boolean"]
             }
           },
           "required": ["type"]
@@ -541,6 +558,7 @@
         {"$ref": "#/definitions/roiWithAnnotationsInOut"},
         {"$ref": "#/definitions/String"},
         {"$ref": "#/definitions/Number"},
+        {"$ref": "#/definitions/Boolean"},
         {"$ref": "#/definitions/imageFileInOut"},
         {"$ref": "#/definitions/lookupTableInOut"},
         {"$ref": "#/definitions/lookUpTableDescriptionInOut"},
