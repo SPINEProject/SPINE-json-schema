@@ -44,6 +44,9 @@
                 "_rev": {
                     "$ref": "#/definitions/_rev"
                 },
+                "docType": {
+                    "$ref": "#/definitions/docType"
+                },
                 "reference": {
                     "$ref": "#/definitions/reference"
                 },
