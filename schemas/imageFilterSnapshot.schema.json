@@ -106,7 +106,6 @@
                     "additionalProperties": false
                 }
             },
-            "required": [],
             "additionalProperties": false
         },
         "imageFilterSnapshotResultSubject": {
@@ -150,8 +149,7 @@
             }
         },
         "imageFilterSnapshotResult": {
-            "$id": "#imageFilterSnapshotResult",
-            "decription": "image filter snapshot, result section",
+            "description": "image filter snapshot, result section",
             "type": "object",
             "properties": {
                 "cohort": {

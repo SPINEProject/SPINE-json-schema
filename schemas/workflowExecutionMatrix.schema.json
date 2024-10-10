@@ -12,17 +12,31 @@
                 },
                 "inputs": {
                     "type": "object",
-                    "addionnalProperties": {
+                    "additionalProperties": {
                         "type": "object",
                         "properties": {
                             "value": {
-                                "type": {
-                                    "anyOf": [
-                                        "string",
-                                        "array",
-                                        "number"
-                                    ]
-                                }
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "number"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "number"
+                                    }
+                                ]
                             }
                         },
                         "additionalProperties": false
@@ -469,7 +483,8 @@
             },
             "additionalProperties": false,
             "required": [
-                "ownerId"
+                "ownerId",
+                "experimentId"
             ]
         },
         "workflowExecutionMatrixInputConfig": {
@@ -1159,9 +1174,11 @@
         },
         "postWorkflowExecutionMatrixActionReuseBody": {
             "type": "object",
-            "required": ["executorIdToReuse"],
+            "required": [
+                "executorIdToReuse"
+            ],
             "properties": {
-                 "actionType": {
+                "actionType": {
                     "type": "string",
                     "enum": [
                         "REUSE"
@@ -1172,7 +1189,7 @@
         "postWorkflowExecutionMatrixActionOtherBody": {
             "type": "object",
             "properties": {
-                 "actionType": {
+                "actionType": {
                     "type": "string",
                     "enum": [
                         "LAUNCH",
@@ -1184,7 +1201,13 @@
         "postWorkflowExecutionMatrixActionBody": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["cohortId","subjectId","visitId","executionIndex","actionType"],
+            "required": [
+                "cohortId",
+                "subjectId",
+                "visitId",
+                "executionIndex",
+                "actionType"
+            ],
             "properties": {
                 "cohortId": {
                     "type": "string"
@@ -1223,7 +1246,9 @@
         "postWorkflowExecutionMatrixGlobalActionBody": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["actionType"],
+            "required": [
+                "actionType"
+            ],
             "properties": {
                 "actionType": {
                     "type": "string",
