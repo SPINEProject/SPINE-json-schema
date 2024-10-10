@@ -585,12 +585,45 @@
                 "uuid"
             ]
         },
+        "workflowExecutionMatrixExperimentGet": {
+            "description": "Description of the selected ecperiment",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "Name of the experiment",
+                    "type": "string"
+                },
+                "uuid": {
+                    "description": "Experiment UUID",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "uuid"
+            ]
+        },
         "workflowExecutionMatrixWorkflowPost": {
             "description": "Description of the selected workflow",
             "type": "object",
             "properties": {
                 "uuid": {
                     "description": "Workflow UUID",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "uuid"
+            ]
+        },
+        "workflowExecutionMatrixExperimentPost": {
+            "description": "Selected experiment",
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "description": "Experiment UUID",
                     "type": "string"
                 }
             },
@@ -691,6 +724,9 @@
                 "workflow": {
                     "$ref": "#/definitions/workflowExecutionMatrixWorkflowPost"
                 },
+                "experiment": {
+                    "$ref": "#/definitions/workflowExecutionMatrixExperimentPost"
+                },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfigPost"
                 },
@@ -730,6 +766,15 @@
                         "uuid": {
                             "type": "string",
                             "description": "workflow uuid"
+                        }
+                    }
+                },
+                "experiment": {
+                    "type": "object",
+                    "properties": {
+                        "uuid": {
+                            "type": "string",
+                            "description": "experiment uuid"
                         }
                     }
                 },
@@ -883,6 +928,9 @@
                 "workflow": {
                     "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
                 },
+                "experiment": {
+                    "$ref": "#/definitions/workflowExecutionMatrixExperimentGet"
+                },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfigGet"
                 },
@@ -934,6 +982,9 @@
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfigGet"
+                },
+                "experiment": {
+                    "$ref": "#/definitions/workflowExecutionMatrixExperimentGet"
                 },
                 "creationDate": {
                     "type": "string"
@@ -1032,6 +1083,9 @@
                 "workflow": {
                     "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
                 },
+                "experiment": {
+                    "$ref": "#/definitions/workflowExecutionMatrixExperimentGet"
+                },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfigGet"
                 },
@@ -1113,6 +1167,9 @@
                 },
                 "workflow": {
                     "$ref": "#/definitions/workflowExecutionMatrixWorkflowGet"
+                },
+                "experiment": {
+                    "$ref": "#/definitions/workflowExecutionMatrixExperimentGet"
                 },
                 "inputConfig": {
                     "$ref": "#/definitions/workflowExecutionMatrixInputConfigGet"
