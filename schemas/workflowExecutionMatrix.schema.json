@@ -738,7 +738,8 @@
                 }
             },
             "required": [
-                "status"
+                "status",
+                "experiment"
             ],
             "additionalProperties": false
         },
@@ -948,6 +949,7 @@
                 "status",
                 "uuid",
                 "workflow",
+                "experiment",
                 "inputConfig",
                 "creationDate",
                 "statistics",
@@ -1000,6 +1002,7 @@
                 "status",
                 "uuid",
                 "matrix",
+                "experiment",
                 "workflow",
                 "statistics",
                 "inputConfig",
@@ -1137,6 +1140,7 @@
                 "status",
                 "uuid",
                 "matrix",
+                "experiment",
                 "workflow",
                 "statistics",
                 "inputConfig",
@@ -1190,6 +1194,7 @@
             "required": [
                 "status",
                 "uuid",
+                "experiment",
                 "creationDate",
                 "modificationDate",
                 "statistics"
