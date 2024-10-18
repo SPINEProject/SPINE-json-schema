@@ -234,7 +234,8 @@
                 "PROCESSING_SERIES_FAILED",
                 "REPLICATING",
                 "REPLICATING_FAILED",
-                "DONE"
+                "DONE",
+                "ABORTED"
             ]
         },
         "reference": {
@@ -261,6 +262,19 @@
                 "status": {
                     "enum": [
                         "INIT"
+                    ]
+                }
+            },
+            "required": [
+                "status"
+            ]
+        },
+        "importAborted": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "enum": [
+                        "ABORTED"
                     ]
                 }
             },
@@ -561,6 +575,9 @@
                 },
                 {
                     "$ref": "#/definitions/importInit"
+                },
+                {
+                    "$ref": "#/definitions/importAborted"
                 }
             ]
         },
@@ -990,6 +1007,9 @@
                 },
                 {
                     "$ref": "#/definitions/importInit"
+                },
+                {
+                    "$ref": "#/definitions/importAborted"
                 }
             ],
             "additionalProperties": false,
