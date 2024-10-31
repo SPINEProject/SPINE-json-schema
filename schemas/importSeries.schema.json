@@ -26,6 +26,9 @@
                 },
                 "importVisitId": {
                     "type": "string"
+                },
+                "mainDatabaseId": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -79,6 +82,9 @@
                 "label": {
                     "type": "string"
                 },
+                "replicated": {
+                    "type": "boolean"
+                }, 
                 "dicomHeaderSummary": {
                     "type": "object",
                     "required": [

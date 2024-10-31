@@ -20,20 +20,23 @@
             "properties": {
                 "importId": {
                     "type": "string"
+                },
+                "mainDatabaseId": {
+                    "type": "string"
                 }
             },
             "required": [
                 "importId"
             ]
         },
-        "originalCohortId":{
-          "type": "string"
+        "originalCohortId": {
+            "type": "string"
         },
-        "dob":{
-          "type": "string"
+        "dob": {
+            "type": "string"
         },
-        "sex":{
-          "type": "string"
+        "sex": {
+            "type": "string"
         },
         "importSubjectDoc": {
             "type": "object",
@@ -51,13 +54,19 @@
                     "$ref": "#/definitions/reference"
                 },
                 "originalCohortId": {
-                  "$ref": "#/definitions/originalCohortId"
+                    "$ref": "#/definitions/originalCohortId"
                 },
                 "dob": {
-                  "$ref": "#/definitions/dob"
+                    "$ref": "#/definitions/dob"
                 },
                 "sex": {
-                  "$ref": "#/definitions/sex"
+                    "$ref": "#/definitions/sex"
+                },
+                "processed": {
+                    "type": "boolean"
+                },
+                "replicated": {
+                    "type": "boolean"
                 }
             },
             "additionalProperties": false,

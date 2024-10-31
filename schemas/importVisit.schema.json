@@ -1,83 +1,114 @@
 {
-    "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/importVisit.schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Import visit",
-    "definitions": {
-        "_id": {
+  "$id": "https://raw.githubusercontent.com/SPINEProject/SPINE-json-schema/master/schemas/importVisit.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Import visit",
+  "definitions": {
+    "_id": {
+      "type": "string"
+    },
+    "_rev": {
+      "type": "string"
+    },
+    "docType": {
+      "type": "string",
+      "enum": [
+        "importVisit"
+      ]
+    },
+    "reference": {
+      "type": "object",
+      "properties": {
+        "importId": {
+          "type": "string"
+        },
+        "importSubjectId": {
+          "type": "string"
+        },
+        "mainDatabaseId": {
             "type": "string"
+        }
+      },
+      "required": [
+        "importId",
+        "importSubjectId"
+      ]
+    },
+    "label": {
+      "type": "string"
+    },
+    "visitType": {
+      "type": "string",
+      "enum": [
+        "imaging"
+      ]
+    },
+    "date": {
+      "type": "string"
+    },
+    "time": {
+      "type": "string"
+    },
+    "importVisitDoc": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "$ref": "#/definitions/_id"
         },
         "_rev": {
-            "type": "string"
-        },
-        "docType": {
-            "type": "string",
-            "enum": [
-                "importVisit"
-            ]
+          "$ref": "#/definitions/_rev"
         },
         "reference": {
-            "type": "object",
-            "properties": {
-                "importId": {
-                    "type": "string"
-                },
-                "importSubjectId": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "importId",
-                "importSubjectId"
-            ]
+          "$ref": "#/definitions/reference"
         },
-        "label":{
-          "type": "string"
+        "label": {
+          "$ref": "#/definitions/label"
         },
-        "visitType":{
-          "type": "string",
-          "enum": ["imaging"]
+        "visitType": {
+          "$ref": "#/definitions/visitType"
         },
-        "date":{
-          "type": "string"
+        "date": {
+          "$ref": "#/definitions/date"
         },
-        "time":{
-          "type": "string"
+        "time": {
+          "$ref": "#/definitions/time"
         },
-        "importVisitDoc": {
-            "type": "object",
-            "properties": {
-                "_id": {
-                    "$ref": "#/definitions/_id"
-                },
-                "_rev": {
-                    "$ref": "#/definitions/_rev"
-                },
-                "reference": {
-                    "$ref": "#/definitions/reference"
-                },
-                "label": {
-                  "$ref": "#/definitions/label"
-                },
-                "visitType": {
-                  "$ref": "#/definitions/visitType"
-                },
-                "date": {
-                  "$ref": "#/definitions/date"
-                },
-                "time": {
-                  "$ref": "#/definitions/time"
-                },
-                "docType": {
-                  "$ref": "#/definitions/docType"
-                }
-            },
-            "additionalProperties": false,
-            "required": [
-                "reference",
-                "docType",
-                "label",
-                "visitType"
-            ]
+        "docType": {
+          "$ref": "#/definitions/docType"
+        },
+        "processed": {
+          "type": "boolean"
+        },
+        "replicated": {
+          "type": "boolean"
+        },
+        "sex": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "object",
+            "array",
+            "null"
+          ]
+        },
+        "dob": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "object",
+            "array",
+            "null"
+          ]
         }
+      },
+      "additionalProperties": false,
+      "required": [
+        "reference",
+        "docType",
+        "label",
+        "visitType"
+      ]
     }
+  }
 }
