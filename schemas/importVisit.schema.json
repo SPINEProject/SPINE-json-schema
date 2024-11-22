@@ -25,7 +25,7 @@
           "type": "string"
         },
         "mainDatabaseId": {
-            "type": "string"
+          "type": "string"
         }
       },
       "required": [
@@ -41,6 +41,9 @@
       "enum": [
         "imaging"
       ]
+    },
+    "studyInstanceUid": {
+      "type": "string"
     },
     "date": {
       "type": "string"
@@ -80,6 +83,9 @@
         },
         "replicated": {
           "type": "boolean"
+        },
+        "studyInstanceUid": {
+          "$ref": "#/definitions/studyInstanceUid"
         },
         "sex": {
           "type": [
