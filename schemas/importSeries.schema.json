@@ -40,6 +40,9 @@
         "label": {
             "type": "string"
         },
+        "seriesInstanceUid": {
+            "type": "string"
+        },
         "seriesNumber": {
             "type": "string"
         },
@@ -64,6 +67,9 @@
                 "seriesNumber": {
                     "$ref": "#/definitions/label"
                 },
+                "seriesInstanceUid": {
+                    "$ref": "#/definitions/seriesInstanceUid"
+                },
                 "pathToDispatchedFolder": {
                     "$ref": "#/definitions/pathToDispatchedFolder"
                 },
@@ -84,7 +90,7 @@
                 },
                 "replicated": {
                     "type": "boolean"
-                }, 
+                },
                 "dicomHeaderSummary": {
                     "type": "object",
                     "required": [
@@ -110,7 +116,7 @@
                 "docType",
                 "processed",
                 "pathToDispatchedFolder",
-                "seriesNumber"
+                "seriesInstanceUid"
             ]
         }
     }
