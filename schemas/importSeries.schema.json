@@ -91,6 +91,20 @@
                 "replicated": {
                     "type": "boolean"
                 },
+                "duplicate": {
+                    "type": "object",
+                    "properties": {
+                        "duplicateOfId": {
+                            "type": "string"
+                        },
+                        "userDecision": {
+                            "type": "string",
+                            "enum": ["Pending", "Overwrite", "Discard"]
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": ["duplicateOfId","userDecision" ]
+                },
                 "dicomHeaderSummary": {
                     "type": "object",
                     "required": [
