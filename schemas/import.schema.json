@@ -451,6 +451,12 @@
                             "items": {
                                 "type": "string"
                             }
+                        },
+                        "pendingDuplicates": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
                         }
                     }
                 }
@@ -916,7 +922,27 @@
                         },
                         "additionalProperties": false
                     }
+                },
+                "pendingDuplicates":{
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "importSeriesId",
+                            "seriesInstanceUid"
+                        ],
+                        "properties": {
+                            "importSeriesId": {
+                                "type": "string"
+                            },
+                            "seriesInstanceUid": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": true
+                    }
                 }
+
             }
         },
         "postImportResponse": {
