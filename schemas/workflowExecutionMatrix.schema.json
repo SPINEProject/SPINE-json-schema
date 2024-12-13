@@ -4,6 +4,35 @@
     "title": "Schema  for the workflow execution matrix",
     "type": "object",
     "definitions": {
+        "inputDetails": {
+            "type": "object",
+            "patternProperties": {
+                ".": {
+                    "type": "object",
+                    "properties": {
+                        "seriesDescription": {
+                            "type": ["string", "null"]
+                        },
+                        "sliceThickness": {
+                            "type": ["number", "null"]
+                        },
+                        "pixelSpacing": {
+                            "type": ["array", "null"],
+                            "items": {
+                                "type": "number"
+                            }
+                        },
+                        "dim": {
+                            "type": ["array","null"],
+                            "items": {
+                                "type": "number"
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            }
+        },
         "configuration": {
             "type": "object",
             "properties": {
@@ -996,6 +1025,9 @@
                 },
                 "matrix": {
                     "$ref": "#/definitions/matrix"
+                },
+                "inputDetails": {
+                    "$ref": "#/definitions/inputDetails"
                 }
             },
             "required": [
@@ -1007,7 +1039,8 @@
                 "statistics",
                 "inputConfig",
                 "creationDate",
-                "modificationDate"
+                "modificationDate",
+                "inputDetails"
             ]
         },
         "getWorkflowExecutionMatrixStep4Response": {
@@ -1111,6 +1144,9 @@
                         }
                     ]
                 },
+                "inputDetails": {
+                    "$ref": "#/definitions/inputDetails"
+                },
                 "completion": {
                     "type": "object",
                     "properties": {
@@ -1146,7 +1182,8 @@
                 "inputConfig",
                 "creationDate",
                 "modificationDate",
-                "completion"
+                "completion",
+                "inputDetails"
             ]
         },
         "getWorkflowExecutionMatrixStep1Response": {
