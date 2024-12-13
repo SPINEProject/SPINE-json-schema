@@ -5,30 +5,32 @@
     "type": "object",
     "definitions": {
         "inputDetails": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "seriesDescription": {
-                        "type": "string"
-                    },
-                    "sliceThickness": {
-                        "type": "number"
-                    },
-                    "pixelSpacing": {
-                        "type": "array",
-                        "items": {
-                            "type": "number"
+            "type": "object",
+            "patternProperties": {
+                ".": {
+                    "type": "object",
+                    "properties": {
+                        "seriesDescription": {
+                            "type": ["string", "null"]
+                        },
+                        "sliceThickness": {
+                            "type": ["number", "null"]
+                        },
+                        "pixelSpacing": {
+                            "type": ["array", "null"],
+                            "items": {
+                                "type": "number"
+                            }
+                        },
+                        "dim": {
+                            "type": ["array","null"],
+                            "items": {
+                                "type": "number"
+                            }
                         }
                     },
-                    "dim": {
-                        "type": "array",
-                        "items": {
-                            "type": "number"
-                        }
-                    }
-                },
-                "additionalProperties": false
+                    "additionalProperties": false
+                }
             }
         },
         "configuration": {
@@ -1025,7 +1027,7 @@
                     "$ref": "#/definitions/matrix"
                 },
                 "inputDetails": {
-                    "$ref": "#definitions/inputDetails"
+                    "$ref": "#/definitions/inputDetails"
                 }
             },
             "required": [
@@ -1142,9 +1144,8 @@
                         }
                     ]
                 },
-                
                 "inputDetails": {
-                    "$ref": "#definitions/inputDetails"
+                    "$ref": "#/definitions/inputDetails"
                 },
                 "completion": {
                     "type": "object",
