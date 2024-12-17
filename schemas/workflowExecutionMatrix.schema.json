@@ -5,33 +5,7 @@
     "type": "object",
     "definitions": {
         "inputDetails": {
-            "type": "object",
-            "patternProperties": {
-                ".": {
-                    "type": "object",
-                    "properties": {
-                        "seriesDescription": {
-                            "type": ["string", "null"]
-                        },
-                        "sliceThickness": {
-                            "type": ["number", "null"]
-                        },
-                        "pixelSpacing": {
-                            "type": ["array", "null"],
-                            "items": {
-                                "type": "number"
-                            }
-                        },
-                        "dim": {
-                            "type": ["array","null"],
-                            "items": {
-                                "type": "number"
-                            }
-                        }
-                    },
-                    "additionalProperties": false
-                }
-            }
+            "type": "object"
         },
         "configuration": {
             "type": "object",
