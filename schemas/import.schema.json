@@ -665,6 +665,9 @@
                 },
                 "filterDicoms": {
                     "$ref": "#/definitions/filterDicoms"
+                },
+                "deleteFolderAfterUpload": {
+                    "type": "boolean"
                 }
             },
             "allOf": [
@@ -684,7 +687,8 @@
                 "anonymize",
                 "lutId",
                 "exhaustiveLut",
-                "filterDicoms"
+                "filterDicoms",
+                "deleteFolderAfterUpload"
             ]
         },
         "postImportLutExhaustiveNoAnon": {
@@ -867,6 +871,9 @@
                 },
                 "filterDicoms": {
                     "$ref": "#/definitions/filterDicoms"
+                },
+                "deleteFolderAfterUpload": {
+                    "type": "boolean"
                 }
             },
             "required": [
@@ -874,7 +881,8 @@
                 "anonymization",
                 "lut",
                 "exhaustiveLut",
-                "filterDicoms"
+                "filterDicoms",
+                "deleteFolderAfterUpload"
             ],
             "additionalProperties": false,
             "oneOf": [
