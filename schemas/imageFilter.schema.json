@@ -834,7 +834,10 @@
                     "$ref": "#/definitions/filterTableTemplateGroups"
                 },
                 "modalities": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             },
             "additionalProperties": false,
@@ -870,7 +873,10 @@
                     "$ref": "#/definitions/filterTableTemplateGroups"
                 },
                 "modalities": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             },
             "additionalProperties": false,
