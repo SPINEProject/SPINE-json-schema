@@ -766,6 +766,120 @@
             "type": "string",
             "description": "Filter name"
         },
+        "filterTableTemplateGroups": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "groupName": {
+                        "type": "string"
+                    },
+                    "collapsed": {
+                        "type": "boolean"
+                    },
+                    "attributes": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "bookmarked": {
+                                    "type": "boolean"
+                                },
+                                "key": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "bookmarked",
+                                "name",
+                                "key"
+                            ]
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "groupName",
+                    "collapsed",
+                    "attributes"
+                ]
+            }
+        },
+        "filterTableTemplateDoc": {
+            "type": "object",
+            "properties": {
+                "editable": {
+                    "type": "boolean"
+                },
+                "_rev": {
+                    "type": "string"
+                },
+                "docType": {
+                    "type": "string",
+                    "enum": [
+                        "filterTableTemplate"
+                    ]
+                },
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "groups": {
+                    "$ref": "#/definitions/filterTableTemplateGroups"
+                },
+                "modalities": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "groups",
+                "modalities",
+                "docType"
+            ]
+        },
+        "filterTableTemplate": {
+            "type": "object",
+            "properties": {
+                "editable": {
+                    "type": "boolean"
+                },
+                "_rev": {
+                    "type": "string"
+                },
+                "docType": {
+                    "type": "string",
+                    "enum": [
+                        "filterTableTemplate"
+                    ]
+                },
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "groups": {
+                    "$ref": "#/definitions/filterTableTemplateGroups"
+                },
+                "modalities": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "groups",
+                "modalities"
+            ]
+        },
         "imageFilterDoc": {
             "$id": "#imageFilterDoc",
             "decription": "image filter when posted",
