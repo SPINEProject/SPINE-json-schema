@@ -1157,7 +1157,7 @@
                 "filter",
                 "cohortIdList",
                 "visitIdList",
-                "sujectIdList"
+                "subjectIdList"
             ]
         },
         "putFilterBody": {
