@@ -766,6 +766,150 @@
             "type": "string",
             "description": "Filter name"
         },
+        "filterTableTemplateGroups": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "groupName": {
+                        "type": "string"
+                    },
+                    "collapsed": {
+                        "type": "boolean"
+                    },
+                    "attributes": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "bookmarked": {
+                                    "type": "boolean"
+                                },
+                                "key": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                                "bookmarked",
+                                "name",
+                                "key"
+                            ]
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "groupName",
+                    "collapsed",
+                    "attributes"
+                ]
+            }
+        },
+        "filterTableTemplateDoc": {
+            "type": "object",
+            "properties": {
+                "editable": {
+                    "type": "boolean"
+                },
+                "_rev": {
+                    "type": "string"
+                },
+                "docType": {
+                    "type": "string",
+                    "enum": [
+                        "filterTableTemplate"
+                    ]
+                },
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "groups": {
+                    "$ref": "#/definitions/filterTableTemplateGroups"
+                },
+                "modalities": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "groups",
+                "modalities",
+                "docType"
+            ]
+        },
+        "filterTableTemplate": {
+            "type": "object",
+            "properties": {
+                "editable": {
+                    "type": "boolean"
+                },
+                "_rev": {
+                    "type": "string"
+                },
+                "docType": {
+                    "type": "string",
+                    "enum": [
+                        "filterTableTemplate"
+                    ]
+                },
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "groups": {
+                    "$ref": "#/definitions/filterTableTemplateGroups"
+                },
+                "modalities": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "groups",
+                "modalities"
+            ]
+        },
+        "lazyFilter": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "object",
+                    "properties": {
+                        "selected": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "selectedMin": {
+                            "type": "number"
+                        },
+                        "selectedMax": {
+                            "type": "number"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
         "imageFilterDoc": {
             "$id": "#imageFilterDoc",
             "decription": "image filter when posted",
@@ -788,6 +932,18 @@
                     "enum": [
                         "imageFilter"
                     ]
+                },
+                "imageFilterType": {
+                    "type": "string",
+                    "enum": [
+                        "basic"
+                    ]
+                },
+                "template": {
+                    "$ref": "#/definitions/filterTableTemplate"
+                },
+                "lazyFilter": {
+                    "$ref": "#/definitions/lazyFilter"
                 },
                 "reference": {
                     "$ref": "#/definitions/imageFilterReference"
@@ -818,6 +974,18 @@
                 },
                 "owner": {
                     "$ref": "#/definitions/owner"
+                },
+                "imageFilterType": {
+                    "type": "string",
+                    "enum": [
+                        "basic"
+                    ]
+                },
+                "template": {
+                    "$ref": "#/definitions/filterTableTemplate"
+                },
+                "lazyFilter": {
+                    "$ref": "#/definitions/lazyFilter"
                 }
             },
             "additionalProperties": false,
@@ -865,6 +1033,18 @@
                     },
                     "owner": {
                         "$ref": "#/definitions/owner"
+                    },
+                    "imageFilterType": {
+                        "type": "string",
+                        "enum": [
+                            "basic"
+                        ]
+                    },
+                    "template": {
+                        "$ref": "#/definitions/filterTableTemplate"
+                    },
+                    "lazyFilter": {
+                        "$ref": "#/definitions/lazyFilter"
                     }
                 },
                 "additionalProperties": false,
@@ -886,6 +1066,18 @@
                 "filter": {
                     "description": "The filter (an expression)",
                     "$ref": "#/definitions/expression"
+                },
+                "imageFilterType": {
+                    "type": "string",
+                    "enum": [
+                        "basic"
+                    ]
+                },
+                "template": {
+                    "$ref": "#/definitions/filterTableTemplate"
+                },
+                "lazyFilter": {
+                    "$ref": "#/definitions/lazyFilter"
                 }
             },
             "additionalProperties": false,
@@ -917,6 +1109,57 @@
                 "cohortIdList"
             ]
         },
+        "postFilterPreviewBodyV2": {
+            "title": "Post filter body v2",
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "description": "The filter (an expression)",
+                    "$ref": "#/definitions/expression"
+                },
+                "cohortIdList": {
+                    "type": "array",
+                    "description": "The list of cohort uuid",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "subjectIdList": {
+                    "type": "array",
+                    "description": "The list of subject uuid",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "sortOptions": {
+                    "type": "object",
+                    "properties": {
+                        "sortField": {
+                            "type": ["string", "null"]
+                        },
+                        "sortOrder": {
+                            "type": ["number", "null"]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "visitIdList": {
+                    "type": "array",
+                    "description": "The list of visit uuid",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "filter",
+                "cohortIdList",
+                "visitIdList",
+                "subjectIdList"
+            ]
+        },
         "putFilterBody": {
             "title": "Put filter body",
             "type": "object",
@@ -927,6 +1170,18 @@
                 "filter": {
                     "description": "The filter (an expression)",
                     "$ref": "#/definitions/expression"
+                },
+                "imageFilterType": {
+                    "type": "string",
+                    "enum": [
+                        "basic"
+                    ]
+                },
+                "template": {
+                    "$ref": "#/definitions/filterTableTemplate"
+                },
+                "lazyFilter": {
+                    "$ref": "#/definitions/lazyFilter"
                 }
             },
             "additionalProperties": false,
