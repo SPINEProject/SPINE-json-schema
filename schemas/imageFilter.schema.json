@@ -1125,7 +1125,7 @@
                         "type": "string"
                     }
                 },
-                "sujectIdList": {
+                "subjectIdList": {
                     "type": "array",
                     "description": "The list of subject uuid",
                     "items": {
