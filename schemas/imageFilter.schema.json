@@ -1066,6 +1066,15 @@
                 "filter": {
                     "description": "The filter (an expression)",
                     "$ref": "#/definitions/expression"
+                },
+                "template": {
+                    "$ref": "#/definitions/filterTableTemplate"
+                },
+                "lazyFilter": {
+                    "$ref": "#/definitions/lazyFilter"
+                },
+                "reference": {
+                    "$ref": "#/definitions/imageFilterReference"
                 }
             },
             "additionalProperties": false,
