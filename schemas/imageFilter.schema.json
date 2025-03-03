@@ -1067,14 +1067,17 @@
                     "description": "The filter (an expression)",
                     "$ref": "#/definitions/expression"
                 },
+                "imageFilterType": {
+                    "type": "string",
+                    "enum": [
+                        "basic"
+                    ]
+                },
                 "template": {
                     "$ref": "#/definitions/filterTableTemplate"
                 },
                 "lazyFilter": {
                     "$ref": "#/definitions/lazyFilter"
-                },
-                "reference": {
-                    "$ref": "#/definitions/imageFilterReference"
                 }
             },
             "additionalProperties": false,
@@ -1106,6 +1109,57 @@
                 "cohortIdList"
             ]
         },
+        "postFilterPreviewBodyV2": {
+            "title": "Post filter body v2",
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "description": "The filter (an expression)",
+                    "$ref": "#/definitions/expression"
+                },
+                "cohortIdList": {
+                    "type": "array",
+                    "description": "The list of cohort uuid",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "sujectIdList": {
+                    "type": "array",
+                    "description": "The list of subject uuid",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "sortOptions": {
+                    "type": "object",
+                    "properties": {
+                        "sortField": {
+                            "type": ["string", "null"]
+                        },
+                        "sortOrder": {
+                            "type": ["number", "null"]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "visitIdList": {
+                    "type": "array",
+                    "description": "The list of visit uuid",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "filter",
+                "cohortIdList",
+                "visitIdList",
+                "sujectIdList"
+            ]
+        },
         "putFilterBody": {
             "title": "Put filter body",
             "type": "object",
@@ -1119,12 +1173,14 @@
                 },
                 "imageFilterType": {
                     "type": "string",
-                    "enum": ["basic"]
+                    "enum": [
+                        "basic"
+                    ]
                 },
                 "template": {
                     "$ref": "#/definitions/filterTableTemplate"
                 },
-                "lazyFilter":{
+                "lazyFilter": {
                     "$ref": "#/definitions/lazyFilter"
                 }
             },
