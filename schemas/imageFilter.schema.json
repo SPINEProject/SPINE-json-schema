@@ -940,10 +940,10 @@
                     ]
                 },
                 "template": {
-                    "$ref": "filterTableTemplate"
+                    "$ref": "#/definitions/filterTableTemplate"
                 },
                 "lazyFilter": {
-                    "$ref": "lazyFilter"
+                    "$ref": "#/definitions/lazyFilter"
                 },
                 "reference": {
                     "$ref": "#/definitions/imageFilterReference"
@@ -982,10 +982,10 @@
                     ]
                 },
                 "template": {
-                    "$ref": "filterTableTemplate"
+                    "$ref": "#/definitions/filterTableTemplate"
                 },
                 "lazyFilter": {
-                    "$ref": "lazyFilter"
+                    "$ref": "#/definitions/lazyFilter"
                 }
             },
             "additionalProperties": false,
@@ -1041,10 +1041,10 @@
                         ]
                     },
                     "template": {
-                        "$ref": "filterTableTemplate"
+                        "$ref": "#/definitions/filterTableTemplate"
                     },
                     "lazyFilter": {
-                        "$ref": "lazyFilter"
+                        "$ref": "#/definitions/lazyFilter"
                     }
                 },
                 "additionalProperties": false,
@@ -1113,10 +1113,10 @@
                     "enum": ["basic"]
                 },
                 "template": {
-                    "$ref": "filterTableTemplate"
+                    "$ref": "#/definitions/filterTableTemplate"
                 },
                 "lazyFilter":{
-                    "$ref": "lazyFilter"
+                    "$ref": "#/definitions/lazyFilter"
                 }
             },
             "additionalProperties": false,
