@@ -1125,6 +1125,9 @@
                         "type": "string"
                     }
                 },
+                "bookmark": {
+                    "type": "string"
+                },
                 "subjectIdList": {
                     "type": "array",
                     "description": "The list of subject uuid",
