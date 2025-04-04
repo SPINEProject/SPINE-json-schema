@@ -625,6 +625,10 @@
                 "uuid": {
                     "description": "Experiment UUID",
                     "type": "string"
+                },
+                "projectId": {
+                    "description": "Project ID",
+                    "type": "string"
                 }
             },
             "additionalProperties": false,
