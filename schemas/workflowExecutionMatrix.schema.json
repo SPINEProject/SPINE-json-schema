@@ -11,19 +11,31 @@
                     "type": "object",
                     "properties": {
                         "seriesDescription": {
-                            "type": ["string", "null"]
+                            "type": [
+                                "string",
+                                "null"
+                            ]
                         },
                         "sliceThickness": {
-                            "type": ["number", "null"]
+                            "type": [
+                                "number",
+                                "null"
+                            ]
                         },
                         "pixelSpacing": {
-                            "type": ["array", "null"],
+                            "type": [
+                                "array",
+                                "null"
+                            ],
                             "items": {
                                 "type": "number"
                             }
                         },
                         "dim": {
-                            "type": ["array","null"],
+                            "type": [
+                                "array",
+                                "null"
+                            ],
                             "items": {
                                 "type": "number"
                             }
@@ -809,6 +821,18 @@
                         "uuid": {
                             "type": "string",
                             "description": "experiment uuid"
+                        }
+                    }
+                },
+                "importedInExperimentIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "uuid": {
+                                "type": "string",
+                                "description": "experiment uuid"
+                            }
                         }
                     }
                 },
