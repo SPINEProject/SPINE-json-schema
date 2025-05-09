@@ -511,7 +511,9 @@
                 },
                 "importedInExperimentIds": {
                     "type": "array",
-                    "items": "string"
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "workflowId": {
                     "description": "Workflow  ID used by the matrix",
