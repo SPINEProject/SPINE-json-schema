@@ -509,6 +509,18 @@
                     "description": "Owner ID of the matrix",
                     "type": "string"
                 },
+                "importedInExperimentIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "uuid": {
+                                "type": "string",
+                                "description": "experiment uuid"
+                            }
+                        }
+                    }
+                },
                 "workflowId": {
                     "description": "Workflow  ID used by the matrix",
                     "type": "string"
