@@ -5,7 +5,45 @@
     "type": "object",
     "definitions": {
         "inputDetails": {
-            "type": "object"
+            "type": "object",
+            "patternProperties": {
+                ".": {
+                    "type": "object",
+                    "properties": {
+                        "seriesDescription": {
+                            "type": [
+                                "string",
+                                "null"
+                            ]
+                        },
+                        "sliceThickness": {
+                            "type": [
+                                "number",
+                                "null"
+                            ]
+                        },
+                        "pixelSpacing": {
+                            "type": [
+                                "array",
+                                "null"
+                            ],
+                            "items": {
+                                "type": "number"
+                            }
+                        },
+                        "dim": {
+                            "type": [
+                                "array",
+                                "null"
+                            ],
+                            "items": {
+                                "type": "number"
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                }
+}
         },
         "configuration": {
             "type": "object",
@@ -471,6 +509,12 @@
                     "description": "Owner ID of the matrix",
                     "type": "string"
                 },
+                "importedInExperimentIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "workflowId": {
                     "description": "Workflow  ID used by the matrix",
                     "type": "string"
@@ -599,6 +643,10 @@
                 "uuid": {
                     "description": "Experiment UUID",
                     "type": "string"
+                },
+                "projectId": {
+                    "description": "Project ID",
+                    "type": "string"
                 }
             },
             "additionalProperties": false,
@@ -630,7 +678,7 @@
                     "type": "string"
                 }
             },
-            "additionalProperties": false,
+            "additionalProperties": true,
             "required": [
                 "uuid"
             ]
@@ -779,6 +827,18 @@
                         "uuid": {
                             "type": "string",
                             "description": "experiment uuid"
+                        }
+                    }
+                },
+                "importedInExperimentIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "uuid": {
+                                "type": "string",
+                                "description": "experiment uuid"
+                            }
                         }
                     }
                 },
