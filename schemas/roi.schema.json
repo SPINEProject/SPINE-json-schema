@@ -76,6 +76,10 @@
       "type": "string",
       "enum": ["SAVED","SUBMITTED"]
     },
+    "contributionDate": {
+      "description": "Date of contribution",
+      "type": "string"
+    },
     "reference": {
       "description": "References of the ROI. Two schemas : for ROI coming from workflow executed inside of SPINE or outside of SPINE",
       "type": "object",
@@ -95,6 +99,14 @@
               "type": "string"
             },
             "mainRoiId":{
+              "description": "UUID of parent roi",
+              "type": "string"
+            },
+            "workflowExecutorId":{
+              "description": "UUID of parent roi",
+              "type": "string"
+            },
+            "taskExecutorId":{
               "description": "UUID of parent roi",
               "type": "string"
             }
